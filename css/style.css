@@ -490,11 +490,7 @@ body {
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
-@media (min-width: 768px) {
-  .rotation-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
+
 .game-card {
   height: 200px;
   width: 100%;
@@ -817,18 +813,7 @@ body {
 .aboutme-highlight span:first-child {
   font-size: 1.6rem;
 }
-@media (max-width: 540px) {
-  .platforms-row {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .platform-badge {
-    justify-content: center;
-  }
-  .games-flex {
-    justify-content: center;
-  }
-}
+
 
 /* ─────────────────────────────────────────────────────────────
    10. ADMIN PAGE STYLES (login, toolbar, tables, etc.)
@@ -1324,12 +1309,6 @@ body {
   font-size: 28px;
 }
 
-@media (max-width: 600px) {
-  .meta-form-grid { grid-template-columns: 1fr; }
-  .admin-table th:nth-child(5),
-  .admin-table td:nth-child(5) { display: none; }
-}
-
 /* ─────────────────────────────────────────────────────────────
    11. QUESTIONS PAGE STYLES
    ───────────────────────────────────────────────────────────── */
@@ -1567,6 +1546,12 @@ body {
 /* ─────────────────────────────────────────────────────────────
    13. RESPONSIVE MEDIA QUERIES
    ───────────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .rotation-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 @media (max-width: 600px) {
   body { padding: 8px 8px 48px; }
   .desktop { gap: 14px; }
@@ -1576,13 +1561,14 @@ body {
   .rotation-grid { grid-template-columns: 1fr 1fr; }
   .xp-titlebar .title-text { font-size: 11px; }
   .admin-table th:last-child, .admin-table td:last-child { display: none; }
+  .admin-table th:nth-child(5),
+  .admin-table td:nth-child(5) { display: none; }
   .taskbar {
     flex-wrap: wrap;
     justify-content: flex-start;
     padding: 0 4px;
     gap: 4px;
   }
-  .taskbar-items { display: none; }
   .taskbar-start {
     padding: 3px 8px;
     font-size: 12px;
@@ -1596,6 +1582,7 @@ body {
     font-size: 14px;
     padding: 2px 6px;
   }
+  .meta-form-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 400px) {
   .hero-avatar { font-size: 48px; }
