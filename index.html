@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marchel — Website 🎣</title>
+  <meta name="description" content="Horario semanal de streams de Marchel, el pescador VTuber." />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Favicon emoji trick -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎣</text></svg>" />
+</head>
+<body>
+
+<!-- ============================================================
+     DESKTOP
+     ============================================================ -->
+<div class="desktop">
+  
+  <!-- ── Desktop Icons ── -->
+  <div class="desktop-icons">
+    <a href="about.html" class="desktop-icon">
+      <div class="icon-img">👤</div>
+      About Me
+    </a>
+    <a href="#schedule" class="desktop-icon">
+      <div class="icon-img">📅</div>
+      Horario
+    </a>
+    <a href="#rotation" class="desktop-icon">
+      <div class="icon-img">🎮</div>
+      Juegos en Rotación
+    </a>
+    <a href="#stream" class="desktop-icon">
+      <div class="icon-img">🔴</div>
+      Stream
+    </a>
+    <a href="#yt" class="desktop-icon">
+      <div class="icon-img">📺</div>
+      Videos
+    </a>
+    <a href="#yt-vod" class="desktop-icon">
+      <div class="icon-img">📼</div>
+      VODs
+    </a>
+  </div>
+
+  <!-- ============================================================
+       HERO WINDOW — "Marchel.exe"
+       ============================================================ -->
+  <section id="hero" class="xp-window hero-window">
+      <!-- Title Bar -->
+      <div class="xp-titlebar">
+        <div class="title-left">
+          <span class="title-icon">🎣</span>
+          <span class="title-text">Marchel.exe — Pescador VTuber</span>
+        </div>
+        <div class="xp-window-btns">
+          <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
+          <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+          <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+        </div>
+      </div>
+  
+      <!-- Content -->
+      <div class="xp-content">
+        <!-- Decorative doodles -->
+        <span class="doodle doodle-1">🐠</span>
+        <span class="doodle doodle-2">✨</span>
+        <span class="doodle doodle-3">🌊</span>
+        <span class="doodle doodle-4">🪝</span>
+  
+        <!-- MSN Messenger–style profile picture -->
+        <div class="msn-profile-wrap">
+          <div class="msn-frame" id="profile-pic-frame">
+            <!-- Filled by script.js with the imgur image; fallback shown if no URL -->
+            <div class="msn-fallback" id="profile-pic-fallback">🎣</div>
+          </div>
+          <div class="msn-display-name" id="msn-display-name">Marchel ✦ Online</div>
+        </div>
+  
+        <h1 class="hero-name" id="hero-name">Marchel</h1>
+        <p class="hero-tagline" id="hero-tagline">🎣 El pescador de los mares digitales</p>
+  
+        <!-- Social Badges -->
+        <div class="social-row" id="social-row">
+          <!-- Rendered by script.js -->
+        </div>
+      </div>
+  
+      <!-- Status Bar -->
+<!--      <div class="xp-statusbar">-->
+<!--        <div class="status-item">-->
+<!--          <span class="status-dot"></span>-->
+<!--          <span id="stream-count">cargando...</span>-->
+<!--        </div>-->
+<!--        <div class="status-item">-->
+<!--          <span id="last-updated">📅 Actualizado: —</span>-->
+<!--        </div>-->
+<!--      </div>-->
+  </section>
+  <!-- ============================================================
+       SCHEDULE WINDOW — "Horario Semanal"
+       ============================================================ -->
+  <section id="schedule" class="xp-window schedule-window">
+    <!-- Title Bar -->
+    <div class="xp-titlebar">
+      <div class="title-left">
+        <span class="title-icon">📅</span>
+        <span class="title-text">Horario Semanal — Semana Actual</span>
+      </div>
+      <div class="xp-window-btns">
+        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+      </div>
+    </div>
+
+    <!-- Menu Bar -->
+    <div class="xp-menubar">
+      <span>Archivo</span>
+      <span>Ver</span>
+      <span>Ayuda</span>
+    </div>
+
+    <!-- Schedule Table -->
+    <div class="xp-content">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>📆 Día</th>
+            <th>⏰ Hora</th>
+            <th>🎮 Contenido</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="schedule-body">
+          <!-- Rendered by script.js -->
+          <tr>
+            <td colspan="4" style="text-align:center;padding:20px;color:#888;font-style:italic;">
+              🎣 Pescando el horario...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Legend bar -->
+    <div class="xp-statusbar" style="flex-wrap:wrap;gap:6px;padding:6px 10px;">
+<!--      <span style="font-weight:700;color:#444;font-size:11px;margin-right:4px;">Leyenda:</span>-->
+<!--      <span class="tag tag-stream-longo">Stream Longo</span>-->
+<!--      <span class="tag tag-stream-shorti">Stream Shorti</span>-->
+<!--      <span class="tag tag-colab">Colab</span>-->
+<!--      <span class="tag tag-video">Nuevo Video</span>-->
+<!--      <span class="tag tag-off">Off</span>-->
+      <div class="status-item">
+        <span class="status-dot"></span>
+        <span id="stream-count">cargando...</span>
+      </div>
+      <div class="status-item">
+        <span id="last-updated">📅 Actualizado: —</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ROTATION GAMES WINDOW — "Juegos en Rotación"
+       ============================================================ -->
+  <section id="rotation" class="xp-window rotation-window">
+    <!-- Title Bar -->
+    <div class="xp-titlebar">
+      <div class="title-left">
+        <span class="title-icon">🎮</span>
+        <span class="title-text">Juegos en Rotación — Temporada Actual</span>
+      </div>
+      <div class="xp-window-btns">
+        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+      </div>
+    </div>
+
+    <div class="xp-content">
+      <div class="rotation-grid" id="rotation-grid">
+        <!-- Rendered by script.js -->
+      </div>
+    </div>
+
+    <div class="xp-statusbar">
+      <div class="status-item">
+        🐟 Estos son los juegos que Marchel está jugando actualmente
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+      STREAM WINDOW
+       ============================================================ -->
+  <section id="stream" class="xp-window stream-window">
+    <!-- Title Bar -->
+    <div class="xp-titlebar">
+      <div class="title-left">
+        <span class="title-icon"> <img src="https://cdn.simpleicons.org/twitch/6441A5" width="16" height="16" alt="Twitch" style="display: inline-block; vertical-align: middle;"> </span>
+        <span class="title-text">Stream - twitch.tv/marchel_cc</span>
+      </div>
+      <div class="xp-window-btns">
+        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+      </div>
+    </div>
+
+    <div class="xp-content stream">
+      <iframe
+              id="twitch-embed"
+              src="about:blank"
+              height="480"
+              width="854"
+              allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ============================================================
+      LAST VIDEO WINDOW
+       ============================================================ -->
+  <section id="yt" class="xp-window stream-window">
+    <!-- Title Bar -->
+    <div class="xp-titlebar">
+      <div class="title-left">
+        <span class="title-icon"> <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16" height="16" alt="YouTube" style="display: inline-block; vertical-align: middle;"> </span>
+        <span class="title-text">Mi video más reciente en YouTube!</span>
+      </div>
+      <div class="xp-window-btns">
+        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+      </div>
+    </div>
+
+    <div class="xp-content yt-video">
+      <iframe
+              id="youtube-embed"
+              src="about:blank"
+              height="480"
+              width="854"
+              allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ============================================================
+      LAST VOD WINDOW
+       ============================================================ -->
+  <section id="yt-vod" class="xp-window stream-window">
+    <!-- Title Bar -->
+    <div class="xp-titlebar">
+      <div class="title-left">
+        <span class="title-icon"> <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16" height="16" alt="YouTube" style="display: inline-block; vertical-align: middle;"> </span>
+        <span class="title-text">Ve mi VOD más reciente, por si te perdiste el stream!</span>
+      </div>
+      <div class="xp-window-btns">
+        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+      </div>
+    </div>
+
+    <div class="xp-content yt-video">
+      <iframe
+              id="youtube-vod-embed"
+              src="about:blank"
+              height="480"
+              width="854"
+              allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+  
+</div><!-- /desktop -->
+
+<!-- ============================================================
+     TASKBAR
+     ============================================================ -->
+<div class="taskbar">
+  <a href="index.html" class="taskbar-start">🟢 Inicio</a>
+
+  <div class="taskbar-items">
+    <a href="admin.html" class="taskbar-item">⚙️</a>
+  </div>
+
+  <div class="taskbar-clock-wrap">
+    <span id="timezone-label"></span>
+    <div class="taskbar-clock" id="taskbar-clock">00:00</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script src="script.js"></script>
+
+</body>
+</html>

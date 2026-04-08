@@ -1,0 +1,117 @@
+{
+  "vtuber":               "Marchel",
+  "tagline":              "🎣 Tu pescador chileno de confianza que ama los Kiwis!",
+  "lastUpdated":          "08-04-2026",
+  "profilePic":           "https://i.imgur.com/IsyBjDJ.png",
+  "youtubeLatestVideoId": "PV5krnUGmPU",
+  "youtubeLatestVODId":   "VIIVQ2ldytQ",
+  "schedule": [
+    {
+      "id": 1,
+      "day": "Lunes",
+      "time": null,
+      "game": "Descanso",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
+    },
+    {
+      "id": 2,
+      "day": "Martes",
+      "time": "18:30",
+      "game": "Continuamos con Final Fantasy X!",
+      "imageUrl": "https://i.imgur.com/fqVJUzA.png",
+      "tag": "Stream Longo",
+      "active": true
+    },
+    {
+      "id": 3,
+      "day": "Miércoles",
+      "time": "20:30",
+      "game": "Preparando el siguiente episodio de Fuera de la Caja",
+      "imageUrl": "https://i.imgur.com/GXqX6kG.png",
+      "tag": "Stream Shorti",
+      "active": true
+    },
+    {
+      "id": 4,
+      "day": "Jueves",
+      "time": "18:30",
+      "game": "Saldremos de la ciudad hoy?",
+      "imageUrl": "https://i.imgur.com/ehUOZPs.png",
+      "tag": "Stream Longo",
+      "active": true
+    },
+    {
+      "id": 5,
+      "day": "Viernes",
+      "time": null,
+      "game": "Descanso",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
+    },
+    {
+      "id": 6,
+      "day": "Sábado",
+      "time": "15:00",
+      "game": "Un poquito de riesgo de lluvia",
+      "imageUrl": "https://i.imgur.com/GYHWBvY.png",
+      "tag": "Stream Shorti",
+      "active": true
+    },
+    {
+      "id": 7,
+      "day": "Domingo",
+      "time": "15:00",
+      "game": "Una Marathon de chill",
+      "imageUrl": "https://i.imgur.com/7Gll12N.png",
+      "tag": "Stream Shorti",
+      "active": true
+    }
+  ],
+  "rotationGames": [
+    {
+      "id": 1,
+      "name": "Final Fantasy X",
+      "emoji": "",
+      "imageUrl": "https://i.imgur.com/lSfk03a.png",
+      "note": "Primera run, no spoilers"
+    },
+    {
+      "id": 2,
+      "name": "Hollow Knight",
+      "emoji": "",
+      "imageUrl": "https://i.imgur.com/1P1HTVa.png",
+      "note": "¿Qué pasa primero, sale GTA 6 o me paso Hollow Knight?"
+    },
+    {
+      "id": 3,
+      "name": "Risk of Rain 2",
+      "emoji": "",
+      "imageUrl": "https://i.imgur.com/GJOzHff.png",
+      "note": "Un poquito de riesgo de lluvia 🗿"
+    },
+    {
+      "id": 4,
+      "name": "Marathon",
+      "emoji": "🎮",
+      "imageUrl": "https://i.imgur.com/97GONwe.png",
+      "note": "¿Una maratón o qué?"
+    },
+    {
+      "id": 5,
+      "name": "Fuera de la Caja",
+      "emoji": "",
+      "imageUrl": "https://i.imgur.com/0p8oL32.png",
+      "note": "Nuevo invitado cada semana"
+    }
+  ],
+  "socials": {
+    "twitch":       "https://www.twitch.tv/marchel_cc",
+    "youtube":      "https://www.youtube.com/@Marchel-cc",
+    "youtubevods":  "https://www.youtube.com/@marchel-vods1",
+    "twitter":      "https://x.com/Marchel_cc",
+    "bsky":         "https://bsky.app/profile/marchelcc.bsky.social"
+  }
+}
