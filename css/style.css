@@ -40,8 +40,7 @@
   --bg1:            #CA995C;
   --bg2:            #BF4A3F;
 
-  --font-hand:     'Patrick Hand', 'Comic Neue', 'Segoe UI Emoji', cursive;
-  --font-ui:       'Segoe UI', Tahoma, 'Helvetica Neue', Roboto, Arial, sans-serif;
+  --font-ui:       'Tahoma', sans-serif;
 
   --shadow-win:     4px 4px 0 #00000044, 8px 8px 0 #00000022;
   --shadow-btn:     inset 1px 1px 0 #fff8, inset -1px -1px 0 #0004;
@@ -268,7 +267,7 @@ body {
 }
 
 .hero-name {
-  font-family: var(--font-hand);
+  font-family: var(--font-ui);
   font-size: 42px;
   font-weight: 700;
   color: var(--xp-blue-dark);
@@ -276,7 +275,7 @@ body {
   letter-spacing: 1px;
 }
 .hero-tagline {
-  font-family: var(--font-hand);
+  font-family: var(--font-ui);
   font-size: 16px;
   color: var(--green-dark);
   margin-top: 4px;
@@ -382,7 +381,7 @@ body {
   animation: pulse-dot 2s ease-in-out infinite;
 }
 .msn-display-name {
-  font-family: var(--font-hand);
+  font-family: var(--font-ui);
   font-size: 13px;
   color: var(--xp-blue-dark);
   background: #ffffff99;
@@ -432,7 +431,7 @@ body {
   vertical-align: middle;
 }
 .td-day {
-  font-family: var(--font-hand);
+  font-family: var(--font-ui);
   font-size: 16px;
   font-weight: 700;
   color: var(--xp-blue-dark);
@@ -476,7 +475,7 @@ body {
   content: ' ←hoy';
   font-size: 11px;
   color: var(--day-highlight);
-  font-family: var(--font-hand);
+  font-family: var(--font-ui);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -531,7 +530,7 @@ body {
   filter: drop-shadow(1px 2px 2px #0003);
 }
 .game-card .game-name {
-  font-family: var(--font-hand);
+  font-family: var(--font-ui);
   font-size: 15px;
   font-weight: 700;
   color: var(--xp-blue-dark);
@@ -757,7 +756,7 @@ body {
   margin-top: 0.2rem;
 }
 .section-title {
-  font-family: var(--font-hand, 'Kalam', cursive);
+  font-family: var(--font-ui, 'Kalam', cursive);
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--green-dark, #3E7D3A);
@@ -868,7 +867,7 @@ body {
 }
 .login-avatar { font-size: 48px; line-height: 1; filter: drop-shadow(2px 3px 4px #0004); }
 .login-title {
-  font-family: var(--font-hand);
+  font-family: var(--font-ui);
   font-size: 22px;
   font-weight: 700;
   color: var(--xp-blue-dark);
@@ -1130,7 +1129,7 @@ body {
 .toast.show { opacity: 1; transform: translateY(0); }
 
 .admin-section-title {
-  font-family: var(--font-hand);
+  font-family: var(--font-ui);
   font-size: 18px;
   color: var(--xp-blue-dark);
   margin-bottom: 10px;
@@ -1416,7 +1415,7 @@ body {
 
 /* Admin previews & helpers */
 .admin-section-title {
-  font-family: var(--font-hand);
+  font-family: var(--font-ui);
   font-size: 18px;
   color: var(--xp-blue-dark);
   margin-bottom: 10px;
