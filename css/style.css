@@ -1128,6 +1128,208 @@ body {
 }
 .toast.show { opacity: 1; transform: translateY(0); }
 
+.admin-section-title {
+  font-family: var(--font-hand);
+  font-size: 18px;
+  color: var(--xp-blue-dark);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.admin-notice {
+  background: #FFF8D0;
+  border: 2px solid #D4A017;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #7A5A00;
+  margin: 12px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.admin-notice strong { color: #5A3A00; }
+.tab-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--xp-btn-border);
+  background: var(--xp-win-bg);
+  padding: 0 8px;
+  position: relative;
+  z-index: 1;
+}
+.tab {
+  padding: 6px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-ui);
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  color: #444;
+  margin-bottom: -2px;
+  background: var(--beige-dark);
+  margin-right: 4px;
+  transition: background 0.1s;
+}
+.tab:hover { background: var(--beige); }
+.tab.active { background: var(--cream); border-color: var(--xp-btn-border); color: var(--xp-blue-dark); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* Meta/info form */
+.meta-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 12px;
+}
+.meta-form-grid label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 3px;
+}
+.meta-form-grid input {
+  width: 100%;
+  border: 1px solid #AAA;
+  padding: 5px 8px;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: inset 1px 1px 2px #0002;
+}
+.meta-form-grid input:focus {
+  outline: 2px solid var(--xp-blue);
+  outline-offset: -1px;
+}
+.meta-form-grid .full-span { grid-column: 1 / -1; }
+
+/* Rotation admin */
+.rotation-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  padding: 12px;
+}
+.rotation-admin-card {
+  background: var(--beige);
+  border: 1px solid var(--xp-btn-border);
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rotation-admin-card label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.rotation-admin-card input {
+  border: 1px solid #AAA;
+  padding: 4px 6px;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  background: #fff;
+  border-radius: 2px;
+  width: 100%;
+}
+.rotation-admin-card .card-preview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  background: var(--cream);
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+}
+.card-preview img {
+  width: 32px; height: 32px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Admin table logo preview */
+.logo-preview-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.logo-preview-cell img {
+  width: 26px; height: 26px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  flex-shrink: 0;
+}
+.logo-preview-cell input { flex: 1; }
+
+/* JSON preview */
+.json-preview {
+  background: #1a1a2e;
+  color: #7EC8E3;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  padding: 14px;
+  border-radius: 4px;
+  overflow: auto;
+  max-height: 300px;
+  line-height: 1.5;
+  white-space: pre;
+}
+
+/* Active toggle */
+.active-toggle {
+  width: 16px; height: 16px;
+  cursor: pointer;
+  accent-color: var(--xp-blue);
+}
+
+/* Profile pic preview (admin) */
+.profile-pic-preview-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  background: var(--beige);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.profile-pic-preview-wrap .mini-frame {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--xp-blue);
+  background: var(--beige-dark);
+  flex-shrink: 0;
+}
+.profile-pic-preview-wrap .mini-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.profile-pic-preview-wrap .mini-frame .mini-fallback {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+
+@media (max-width: 600px) {
+  .meta-form-grid { grid-template-columns: 1fr; }
+  .admin-table th:nth-child(5),
+  .admin-table td:nth-child(5) { display: none; }
+}
+
 /* ─────────────────────────────────────────────────────────────
    11. QUESTIONS PAGE STYLES
    ───────────────────────────────────────────────────────────── */
