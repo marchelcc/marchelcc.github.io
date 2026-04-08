@@ -5,7 +5,7 @@ let QUESTIONS = null;
 // cargar JSON
 async function loadQuestions() {
     try {
-        const res = await fetch('questions.json?nocache=' + Date.now());
+        const res = await fetch('data/questions.json?nocache=' + Date.now());
         QUESTIONS = await res.json();
         renderTable();
     } catch (err) {

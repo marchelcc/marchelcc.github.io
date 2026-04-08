@@ -49,7 +49,7 @@ function convertChileTimeToLocal(timeStr) {
 // ── Fetch schedule data ──────────────────────────────────────
 async function loadSchedule() {
   try {
-    const res = await fetch('schedule.json?nocache=' + Date.now());
+    const res = await fetch('data/schedule.json?nocache=' + Date.now());
     if (!res.ok) throw new Error('No se pudo cargar schedule.json');
     return await res.json();
   } catch (err) {

@@ -129,7 +129,7 @@ document.getElementById('token-input').addEventListener('keydown', e => {
    ───────────────────────────────────────────────────────────── */
 async function loadData() {
     try {
-        const res  = await fetch('schedule.json?nocache=' + Date.now());
+        const res  = await fetch('data/schedule.json?nocache=' + Date.now());
         const data = await res.json();
 
         state.vtuber        = data.vtuber      || 'Marchel';
@@ -423,7 +423,7 @@ function exportJson() {
     const blob = new Blob([json], { type: 'application/json' });
     const url  = URL.createObjectURL(blob);
     const a    = document.createElement('a');
-    a.href = url; a.download = 'schedule.json'; a.click();
+    a.href = url; a.download = 'data/schedule.json'; a.click();
     URL.revokeObjectURL(url);
     showToast('💾 schedule.json descargado correctamente');
     setStatus('✅ JSON exportado');
