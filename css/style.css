@@ -634,7 +634,6 @@ body {
   font-family: var(--font-ui);
   font-weight: 600;
   text-shadow: 1px 1px 1px #0005;
-  display: flex;
   align-items: center;
   gap: 2px;
   text-decoration: none;
@@ -645,12 +644,14 @@ body {
   background: #1A3A8888;
   border: 1px solid #2A5AB0;
   border-radius: 3px;
-  padding: 3px 10px;
+  padding: 2px 5px ;
   font-size: 16px;
   font-weight: 400;
   color: #fff;
   text-shadow: 0 0 8px #8af4;
   white-space: nowrap;
+  align-content: center;
+  align-items: center;
 }
 .taskbar-clock:hover { background: linear-gradient(180deg, #5A90E0 0%, #3A6AC0 100%); }
 .taskbar-clock-wrap {
