@@ -9,13 +9,17 @@
 </head>
 <body>
 
+<!-- Drag cover — blocks iframes during window drag -->
+<div id="wm-drag-cover"></div>
+
 <!-- ============================================================
-     LOGIN OVERLAY — shown until GitHub token is verified
+     LOGIN OVERLAY — shown until GitHub token is verified.
+     This is NOT an xp-window managed by the WM; it's a full-screen
+     overlay that disappears after authentication.
      ============================================================ -->
 <div class="login-overlay" id="login-overlay">
   <div class="login-window">
 
-    <!-- Title bar -->
     <div class="xp-titlebar">
       <div class="title-left">
         <span class="title-icon">🔒</span>
@@ -27,7 +31,6 @@
     </div>
 
     <div class="login-body">
-      <!-- Icon + title -->
       <div class="login-icon-row">
         <div class="login-avatar">🎣</div>
         <div>
@@ -36,7 +39,6 @@
         </div>
       </div>
 
-      <!-- Info hint -->
       <div class="login-hint">
         🔑 Ingresa tu <strong>GitHub Personal Access Token</strong> para acceder.<br>
         Solo la cuenta <strong>marchelcc</strong> tiene acceso.<br>
@@ -46,24 +48,21 @@
         (scope mínimo: solo lectura de usuario).
       </div>
 
-      <!-- Error message -->
       <div class="login-error" id="login-error">
         ❌ <span id="login-error-msg">Token incorrecto o cuenta no autorizada.</span>
       </div>
 
-      <!-- Token input -->
       <div class="login-field">
         <label for="token-input">🔑 GitHub Personal Access Token</label>
         <input
-                type="password"
-                id="token-input"
-                placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-                autocomplete="off"
-                spellcheck="false"
+          type="password"
+          id="token-input"
+          placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+          autocomplete="off"
+          spellcheck="false"
         />
       </div>
 
-      <!-- Buttons -->
       <div class="login-btn-row">
         <a href="index.html" class="xp-button">← Volver</a>
         <button class="xp-button primary" id="login-btn" onclick="doLogin()">
@@ -72,7 +71,6 @@
       </div>
     </div>
 
-    <!-- Status bar -->
     <div class="xp-statusbar">
       <div class="status-item" id="login-status-bar">
         <span class="status-dot" style="background:#aaa;"></span>
@@ -83,11 +81,13 @@
 </div>
 
 <!-- ============================================================
-     ADMIN DESKTOP (hidden until logged in)
+     DESKTOP CANVAS — hidden until logged in.
+     The WM registers the admin window on init(), but won't open it
+     automatically (no data-autoopen). showAdminPanel() calls WM.open().
      ============================================================ -->
 <div class="desktop" id="admin-desktop" style="display:none;">
 
-  <!-- ── Desktop Icons ── -->
+  <!-- Desktop Icons -->
   <div class="desktop-icons">
     <a href="index.html" class="desktop-icon">
       <div class="icon-img">🌐</div>
@@ -97,14 +97,26 @@
       <div class="icon-img">👤</div>
       About Me
     </a>
+    <button class="desktop-icon" data-open="admin">
+      <div class="icon-img">⚙️</div>
+      Admin
+    </button>
   </div>
 
   <!-- ============================================================
-       ADMIN WINDOW
+       WINDOW: Admin Panel
+       No data-autoopen — opened programmatically by showAdminPanel()
+       after GitHub token authentication.
        ============================================================ -->
-  <div class="xp-window" id="admin-window">
-
-    <!-- Title Bar -->
+  <div
+    id="admin-window"
+    class="xp-window"
+    data-wid="admin"
+    data-title="Admin Panel"
+    data-icon="⚙️"
+    data-w="920"
+    data-h="640"
+  >
     <div class="xp-titlebar">
       <div class="title-left">
         <span class="title-icon">⚙️</span>
@@ -117,20 +129,17 @@
       </div>
     </div>
 
-    <!-- Menu Bar -->
     <div class="xp-menubar">
       <span>Archivo</span>
       <span>Editar</span>
       <span>Herramientas</span>
     </div>
 
-    <!-- Session banner -->
     <div class="session-banner" id="session-banner">
       <span>✅ Sesión activa — <span id="session-user">marchelcc</span></span>
       <button class="logout-btn" onclick="doLogout()">🔒 Cerrar sesión</button>
     </div>
 
-    <!-- Toolbar -->
     <div class="admin-toolbar">
       <button class="xp-button success" onclick="addScheduleRow()">➕ Agregar día</button>
       <div class="xp-separator"></div>
@@ -142,7 +151,6 @@
       <a href="index.html" class="xp-button">🌐 Ver sitio</a>
     </div>
 
-    <!-- Admin Notice -->
     <div style="padding:0 12px;position:relative;z-index:1;">
       <div class="admin-notice">
         <span style="font-size:18px;">ℹ️</span>
@@ -154,7 +162,6 @@
       </div>
     </div>
 
-    <!-- Tabs -->
     <div class="tab-bar">
       <div class="tab active" onclick="switchTab('tab-schedule', this)">📅 Horario</div>
       <div class="tab" onclick="switchTab('tab-rotation', this)">🎮 Rotación</div>
@@ -162,29 +169,23 @@
       <div class="tab" onclick="switchTab('tab-json', this)">{ } JSON</div>
     </div>
 
-    <!-- ── Tab: Horario ── -->
     <div id="tab-schedule" class="tab-panel active"
          style="padding:12px;position:relative;z-index:1;background:var(--cream);">
       <p class="admin-section-title">📅 Horario semanal</p>
       <div style="overflow-x:auto;">
         <table class="admin-table" id="schedule-admin-table">
           <thead>
-          <tr>
-            <th>On</th>
-            <th>Día</th>
-            <th>Hora</th>
-            <th>Juego / Contenido</th>
-            <th>Logo (imgur URL)</th>
-            <th>Tag</th>
-            <th>🗑️</th>
-          </tr>
+            <tr>
+              <th>On</th><th>Día</th><th>Hora</th>
+              <th>Juego / Contenido</th><th>Logo (imgur URL)</th>
+              <th>Tag</th><th>🗑️</th>
+            </tr>
           </thead>
           <tbody id="schedule-admin-body"></tbody>
         </table>
       </div>
     </div>
 
-    <!-- ── Tab: Rotation ── -->
     <div id="tab-rotation" class="tab-panel"
          style="background:var(--cream);position:relative;z-index:1;">
       <div style="padding:12px;">
@@ -199,16 +200,12 @@
       </div>
     </div>
 
-    <!-- ── Tab: Info / Fotos ── -->
     <div id="tab-meta" class="tab-panel"
          style="background:var(--cream);position:relative;z-index:1;padding:12px;">
       <p class="admin-section-title">⚙️ Información del canal y fotos de perfil</p>
-
-      <!-- Profile pic preview -->
       <div class="profile-pic-preview-wrap" id="profile-pic-admin-preview">
         <div class="mini-frame">
           <div class="mini-fallback" id="profile-mini-fallback">🎣</div>
-          <!-- img injected by JS -->
         </div>
         <div>
           <div style="font-size:13px;font-weight:700;color:var(--xp-blue-dark);margin-bottom:4px;">
@@ -219,11 +216,9 @@
           </div>
         </div>
       </div>
-
       <div class="meta-form-grid" id="meta-form"></div>
     </div>
 
-    <!-- ── Tab: JSON ── -->
     <div id="tab-json" class="tab-panel"
          style="padding:12px;background:var(--cream);position:relative;z-index:1;">
       <p class="admin-section-title">{ } Vista previa del JSON generado</p>
@@ -231,15 +226,13 @@
         Descarga este archivo y reemplázalo en tu repo
         <strong>marchelcc/marchel-website</strong> como <code>schedule.json</code>.
       </p>
-      <pre class="json-preview" id="json-preview-content">
-Haz clic en la pestaña "{ } JSON" o en "Ver JSON" para actualizar.</pre>
+      <pre class="json-preview" id="json-preview-content">Haz clic en "{ } JSON" o en "Ver JSON" para actualizar.</pre>
       <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
         <button class="xp-button primary" onclick="exportJson()">💾 Descargar schedule.json</button>
         <button class="xp-button" onclick="copyJson()">📋 Copiar al portapapeles</button>
       </div>
     </div>
 
-    <!-- Status Bar -->
     <div class="xp-statusbar">
       <div class="status-item">
         <span class="status-dot"></span>
@@ -248,22 +241,21 @@ Haz clic en la pestaña "{ } JSON" o en "Ver JSON" para actualizar.</pre>
       <div class="status-item" id="admin-count-status">—</div>
     </div>
 
-  </div><!-- /xp-window -->
-  
-</div><!-- /desktop -->
+  </div><!-- /xp-window#admin-window -->
 
-<!-- Toast -->
+</div><!-- /desktop#admin-desktop -->
+
+<!-- Toast notification -->
 <div class="toast" id="toast"></div>
 
 <!-- Taskbar -->
 <div class="taskbar">
   <a href="index.html" class="taskbar-start">🟢 Inicio</a>
-
+  <div class="taskbar-windows" id="taskbar-windows"></div>
   <div class="taskbar-items">
-    <a href="admin.html" class="taskbar-item">⚙️</a>
-    <a href="questions.html" class="taskbar-item">❓</a>
+    <a href="admin.html"     class="taskbar-item" title="Admin">⚙️</a>
+    <a href="questions.html" class="taskbar-item" title="Preguntas">❓</a>
   </div>
-
   <div class="taskbar-clock-wrap">
     <span id="timezone-label"></span>
     <div class="taskbar-clock" id="taskbar-clock">00:00</div>
@@ -271,9 +263,114 @@ Haz clic en la pestaña "{ } JSON" o en "Ver JSON" para actualizar.</pre>
 </div>
 
 <!-- ============================================================
-     ADMIN SCRIPT
+     SCRIPTS
+     script.js  → WM + schedule rendering (WM.init runs on DOMContentLoaded)
+     admin.js   → login auth + CRUD logic
+     The auth functions below live inline so they can call WM.open()
+     directly without a circular dependency on admin.js load order.
      ============================================================ -->
 <script src="js/script.js"></script>
+<script>
+/* ── Inline auth shim ────────────────────────────────────────
+   Handles login/logout and shows the desktop + opens the admin
+   window via the WM once credentials are verified.
+   All CRUD logic (addScheduleRow, exportJson, etc.) lives in admin.js.
+   ──────────────────────────────────────────────────────────── */
+
+const ALLOWED_GITHUB_USER = 'marchelcc';
+const SESSION_KEY         = 'marchel_admin_token';
+
+/* ── Auto-login if a valid session token already exists ── */
+(function checkSession() {
+  const token = sessionStorage.getItem(SESSION_KEY);
+  const user  = sessionStorage.getItem('marchel_admin_user');
+  if (token && user) showAdminPanel(user);
+})();
+
+/* ── Login ── */
+async function doLogin() {
+  const input  = document.getElementById('token-input');
+  const btn    = document.getElementById('login-btn');
+  const errEl  = document.getElementById('login-error');
+  const errMsg = document.getElementById('login-error-msg');
+  const bar    = document.getElementById('login-status-bar');
+  const token  = input.value.trim();
+
+  if (!token) {
+    showLoginError('Por favor ingresa tu GitHub Personal Access Token.');
+    shakeInput(input); return;
+  }
+
+  btn.innerHTML = '<span class="login-spinner"></span> Verificando...';
+  btn.disabled  = true;
+  errEl.classList.remove('show');
+  bar.innerHTML = '🔄 Conectando con GitHub API...';
+
+  try {
+    const res = await fetch('https://api.github.com/user', {
+      headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' }
+    });
+    if (!res.ok) throw new Error(res.status === 401
+      ? 'Token inválido. Verifica que copiaste el token completo.'
+      : `Error de GitHub API: ${res.status}`);
+
+    const user = await res.json();
+    if (user.login.toLowerCase() !== ALLOWED_GITHUB_USER.toLowerCase()) {
+      throw new Error(`Cuenta "${user.login}" no tiene acceso. Solo marchelcc puede entrar.`);
+    }
+
+    sessionStorage.setItem(SESSION_KEY, token);
+    sessionStorage.setItem('marchel_admin_user', user.login);
+    showAdminPanel(user.login);
+
+  } catch (err) {
+    showLoginError(err.message);
+    btn.innerHTML = '🔓 Entrar';
+    btn.disabled  = false;
+    shakeInput(input);
+    bar.innerHTML = '❌ Fallo de autenticación';
+  }
+}
+
+/* ── Show the desktop canvas and open the admin window via WM ── */
+function showAdminPanel(username) {
+  document.getElementById('login-overlay').style.display = 'none';
+
+  /* Show the desktop canvas (was display:none) */
+  const desktop = document.getElementById('admin-desktop');
+  desktop.style.display = 'block';
+
+  /* Update session label */
+  const userEl = document.getElementById('session-user');
+  if (userEl) userEl.textContent = username;
+
+  /* Ask the WM to open and position the admin window */
+  if (typeof WM !== 'undefined') {
+    WM.open('admin');
+  }
+}
+
+/* ── Logout ── */
+function doLogout() {
+  sessionStorage.removeItem(SESSION_KEY);
+  sessionStorage.removeItem('marchel_admin_user');
+  window.location.reload();
+}
+
+/* ── Helpers ── */
+function showLoginError(msg) {
+  const errEl  = document.getElementById('login-error');
+  const errMsg = document.getElementById('login-error-msg');
+  errMsg.textContent = msg;
+  errEl.classList.add('show');
+}
+function shakeInput(input) {
+  input.classList.add('error');
+  setTimeout(() => input.classList.remove('error'), 600);
+}
+document.getElementById('token-input')
+  ?.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+</script>
 <script src="js/admin.js"></script>
 
 </body>

@@ -1,89 +1,103 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Question Generator.exe</title>
-
-    <!-- TU CSS -->
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Question Generator.exe</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⁉️</text></svg>" />
 </head>
-
 <body>
+
+<!-- Drag cover — blocks iframes during window drag -->
+<div id="wm-drag-cover"></div>
+
 <div class="desktop">
 
-    <!-- ── Desktop Icons ── -->
-    <div class="desktop-icons">
-        <a href="index.html" class="desktop-icon">
-            <div class="icon-img">🌐</div>
-            Main Page
-        </a>
-        <a href="about.html" class="desktop-icon">
-            <div class="icon-img">👤</div>
-            About Me
-        </a>
-    </div>
-    
-    <section id="questions">
-    <!-- 🪟 WINDOW -->
-        <div class="xp-window">
-            <div class="xp-titlebar">
-                <div class="title-left">
-                    <span class="title-icon">⁉️</span>
-                    <span class="title-text">Question Generator.exe</span>
-                </div>
-                <div class="xp-window-btns">
-                    <button class="xp-btn-win xp-btn-min">_</button>
-                    <button class="xp-btn-win xp-btn-max">▢</button>
-                    <button class="xp-btn-win xp-btn-close">✕</button>
-                </div>
-            </div>
-    
-            <div class="xp-content">
-    
-                <!-- BOTONES -->
-                <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
-                    <button id="generate" class="xp-button primary">🎲 Generar preguntas</button>
-                    <button id="chaos" class="xp-button danger">💣 Caós</button>
-                </div>
-    
-                <!-- TABLA -->
-                <table class="admin-table">
-                    <thead>
-                    <tr>
-                        <th>Minecraft</th>
-                        <th>Contenido</th>
-                        <th>Reflexivas</th>
-                    </tr>
-                    </thead>
-                    <tbody id="table-body"></tbody>
-                </table>
-    
-                <!-- RESULTADO -->
-                <div style="margin-top:16px;">
-                    <div class="admin-section-title">📝 Selección actual</div>
-                    <ul id="output"></ul>
-                </div>
-    
-            </div>
-        </div>
-    </section>
-</div>
+  <!-- ── Desktop Icons ── -->
+  <div class="desktop-icons">
+    <a href="index.html" class="desktop-icon">
+      <div class="icon-img">🌐</div>
+      Main Page
+    </a>
+    <a href="about.html" class="desktop-icon">
+      <div class="icon-img">👤</div>
+      About Me
+    </a>
+    <button class="desktop-icon" data-open="questions">
+      <div class="icon-img">⁉️</div>
+      Preguntas
+    </button>
+  </div>
 
-<!-- ============================================================
-     TASKBAR
-     ============================================================ -->
+  <!-- ============================================================
+       WINDOW: Question Generator
+       ============================================================ -->
+  <section
+    id="questions-section"
+    class="xp-window"
+    data-wid="questions"
+    data-title="Question Generator"
+    data-icon="⁉️"
+    data-autoopen
+    data-w="700"
+    data-h="550"
+  >
+    <div class="xp-titlebar">
+      <div class="title-left">
+        <span class="title-icon">⁉️</span>
+        <span class="title-text">Question Generator.exe</span>
+      </div>
+      <div class="xp-window-btns">
+        <button class="xp-btn-win xp-btn-min">_</button>
+        <button class="xp-btn-win xp-btn-max">▢</button>
+        <button class="xp-btn-win xp-btn-close">✕</button>
+      </div>
+    </div>
+
+    <div class="xp-content">
+
+      <!-- Buttons -->
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+        <button id="generate" class="xp-button primary">🎲 Generar preguntas</button>
+        <button id="chaos"    class="xp-button danger">💣 Caós</button>
+      </div>
+
+      <!-- Table -->
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Minecraft</th>
+            <th>Contenido</th>
+            <th>Reflexivas</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+
+      <!-- Result -->
+      <div style="margin-top:16px;">
+        <div class="admin-section-title">📝 Selección actual</div>
+        <ul id="output"></ul>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /desktop -->
+
+<!-- Taskbar -->
 <div class="taskbar">
-    <a href="index.html" class="taskbar-start">🟢 Inicio</a>
-
-    <div class="taskbar-items">
-        <a href="admin.html" class="taskbar-item">⚙️</a>
-        <a href="questions.html" class="taskbar-item">❓</a>
-    </div>
-
-    <div class="taskbar-clock-wrap">
-        <span id="timezone-label"></span>
-        <div class="taskbar-clock" id="taskbar-clock">00:00</div>
-    </div>
+  <a href="index.html" class="taskbar-start">🟢 Inicio</a>
+  <div class="taskbar-windows" id="taskbar-windows"></div>
+  <div class="taskbar-items">
+    <a href="admin.html"     class="taskbar-item" title="Admin">⚙️</a>
+    <a href="questions.html" class="taskbar-item" title="Preguntas">❓</a>
+  </div>
+  <div class="taskbar-clock-wrap">
+    <span id="timezone-label"></span>
+    <div class="taskbar-clock" id="taskbar-clock">00:00</div>
+  </div>
 </div>
 
 <script src="js/script.js"></script>

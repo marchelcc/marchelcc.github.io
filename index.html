@@ -6,152 +6,155 @@
   <title>Marchel — Website 🎣</title>
   <meta name="description" content="Horario semanal de streams de Marchel, el pescador VTuber." />
   <link rel="stylesheet" href="css/style.css" />
-  <!-- Favicon emoji trick -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎣</text></svg>" />
 </head>
 <body>
 
 <!-- ============================================================
-     DESKTOP
+     DRAG COVER
+     Transparent fixed overlay shown only while a window is being
+     dragged. Prevents Twitch/YT iframes from stealing mouse events.
+     ============================================================ -->
+<div id="wm-drag-cover"></div>
+
+<!-- ============================================================
+     DESKTOP CANVAS
+     Desktop: fixed full-viewport area above the taskbar.
+     Mobile:  reverts to a normal scrollable flex column via CSS.
      ============================================================ -->
 <div class="desktop">
-  
-  <!-- ── Desktop Icons ── -->
+
+  <!-- ── Desktop Icons ──────────────────────────────────────── -->
   <div class="desktop-icons">
+
+    <!-- External navigation: stays as a real link -->
     <a href="about.html" class="desktop-icon">
       <div class="icon-img">👤</div>
       About Me
     </a>
-    <a href="#schedule" class="desktop-icon">
+
+    <!-- Window openers: <button data-open="wid"> -->
+    <button class="desktop-icon" data-open="hero">
+      <div class="icon-img">🎣</div>
+      Usuario
+    </button>
+    <button class="desktop-icon" data-open="schedule">
       <div class="icon-img">📅</div>
       Horario
-    </a>
-    <a href="#rotation" class="desktop-icon">
+    </button>
+    <button class="desktop-icon" data-open="rotation">
       <div class="icon-img">🎮</div>
-      Juegos en Rotación
-    </a>
-    <a href="#stream" class="desktop-icon">
+      Juegos
+    </button>
+    <button class="desktop-icon" data-open="stream">
       <div class="icon-img">🔴</div>
       Stream
-    </a>
-    <a href="#yt" class="desktop-icon">
+    </button>
+    <button class="desktop-icon" data-open="yt">
       <div class="icon-img">📺</div>
       Videos
-    </a>
-    <a href="#yt-vod" class="desktop-icon">
+    </button>
+    <button class="desktop-icon" data-open="yt-vod">
       <div class="icon-img">📼</div>
       VODs
-    </a>
-  </div>
+    </button>
+
+  </div><!-- /desktop-icons -->
 
   <!-- ============================================================
-       HERO WINDOW — "Marchel.exe"
+       WINDOW: Hero — "Marchel.exe"
+       data-wid   → unique ID used by the Window Manager
+       data-title → short label shown in the taskbar button
+       data-icon  → emoji shown next to the label
        ============================================================ -->
-  <section id="hero" class="xp-window hero-window">
-      <!-- Title Bar -->
-      <div class="xp-titlebar">
-        <div class="title-left">
-          <span class="title-icon">🎣</span>
-          <span class="title-text">Marchel.exe — Pescador VTuber</span>
-        </div>
-        <div class="xp-window-btns">
-          <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
-          <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
-          <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
-        </div>
+  <section
+          id="hero"
+          class="xp-window hero-window"
+          data-wid="hero"
+          data-title="Marchel.exe"
+          data-icon="🎣"
+  >
+    <div class="xp-titlebar">
+      <div class="title-left">
+        <span class="title-icon">🎣</span>
+        <span class="title-text">Marchel.exe — Pescador VTuber</span>
       </div>
-  
-      <!-- Content -->
-      <div class="xp-content">
-        <!-- Decorative doodles -->
-        <span class="doodle doodle-1">🐠</span>
-        <span class="doodle doodle-2">✨</span>
-        <span class="doodle doodle-3">🌊</span>
-        <span class="doodle doodle-4">🪝</span>
-  
-        <!-- MSN Messenger–style profile picture -->
-        <div class="msn-profile-wrap">
-          <div class="msn-frame" id="profile-pic-frame">
-            <!-- Filled by script.js with the imgur image; fallback shown if no URL -->
-            <div class="msn-fallback" id="profile-pic-fallback">🎣</div>
-          </div>
-          <div class="msn-display-name" id="msn-display-name">Marchel ✦ Online</div>
-        </div>
-  
-        <h1 class="hero-name" id="hero-name">Marchel</h1>
-        <p class="hero-tagline" id="hero-tagline">🎣 El pescador de los mares digitales</p>
-  
-        <!-- Social Badges -->
-        <div class="social-row" id="social-row">
-          <!-- Rendered by script.js -->
-        </div>
+      <div class="xp-window-btns">
+        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
       </div>
-  
-      <!-- Status Bar -->
-<!--      <div class="xp-statusbar">-->
-<!--        <div class="status-item">-->
-<!--          <span class="status-dot"></span>-->
-<!--          <span id="stream-count">cargando...</span>-->
-<!--        </div>-->
-<!--        <div class="status-item">-->
-<!--          <span id="last-updated">📅 Actualizado: —</span>-->
-<!--        </div>-->
-<!--      </div>-->
+    </div>
+
+    <div class="xp-content">
+      <span class="doodle doodle-1">🐠</span>
+      <span class="doodle doodle-2">✨</span>
+      <span class="doodle doodle-3">🌊</span>
+      <span class="doodle doodle-4">🪝</span>
+
+      <div class="msn-profile-wrap">
+        <div class="msn-frame" id="profile-pic-frame">
+          <div class="msn-fallback" id="profile-pic-fallback">🎣</div>
+        </div>
+        <div class="msn-display-name" id="msn-display-name">Marchel ✦ Online</div>
+      </div>
+
+      <h1 class="hero-name" id="hero-name">Marchel</h1>
+      <p class="hero-tagline" id="hero-tagline">🎣 El pescador de los mares digitales</p>
+
+      <div class="social-row" id="social-row"><!-- rendered by script.js --></div>
+    </div>
   </section>
+
   <!-- ============================================================
-       SCHEDULE WINDOW — "Horario Semanal"
+       WINDOW: Schedule — "Horario Semanal"
        ============================================================ -->
-  <section id="schedule" class="xp-window schedule-window">
-    <!-- Title Bar -->
+  <section
+          id="schedule"
+          class="xp-window schedule-window"
+          data-wid="schedule"
+          data-title="Horario Semanal"
+          data-icon="📅"
+  >
     <div class="xp-titlebar">
       <div class="title-left">
         <span class="title-icon">📅</span>
         <span class="title-text">Horario Semanal — Semana Actual</span>
       </div>
       <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
         <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
       </div>
     </div>
 
-    <!-- Menu Bar -->
     <div class="xp-menubar">
       <span>Archivo</span>
       <span>Ver</span>
       <span>Ayuda</span>
     </div>
 
-    <!-- Schedule Table -->
     <div class="xp-content">
       <table class="schedule-table">
         <thead>
-          <tr>
-            <th>📆 Día</th>
-            <th>⏰ Hora</th>
-            <th>🎮 Contenido</th>
-            <th></th>
-          </tr>
+        <tr>
+          <th>📆 Día</th>
+          <th>⏰ Hora</th>
+          <th>🎮 Contenido</th>
+          <th></th>
+        </tr>
         </thead>
         <tbody id="schedule-body">
-          <!-- Rendered by script.js -->
-          <tr>
-            <td colspan="4" style="text-align:center;padding:20px;color:#888;font-style:italic;">
-              🎣 Pescando el horario...
-            </td>
-          </tr>
+        <tr>
+          <td colspan="4" style="text-align:center;padding:20px;color:#888;font-style:italic;">
+            🎣 Pescando el horario...
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Legend bar -->
     <div class="xp-statusbar" style="flex-wrap:wrap;gap:6px;padding:6px 10px;">
-<!--      <span style="font-weight:700;color:#444;font-size:11px;margin-right:4px;">Leyenda:</span>-->
-<!--      <span class="tag tag-stream-longo">Stream Longo</span>-->
-<!--      <span class="tag tag-stream-shorti">Stream Shorti</span>-->
-<!--      <span class="tag tag-colab">Colab</span>-->
-<!--      <span class="tag tag-video">Nuevo Video</span>-->
-<!--      <span class="tag tag-off">Off</span>-->
       <div class="status-item">
         <span class="status-dot"></span>
         <span id="stream-count">cargando...</span>
@@ -163,26 +166,29 @@
   </section>
 
   <!-- ============================================================
-       ROTATION GAMES WINDOW — "Juegos en Rotación"
+       WINDOW: Rotation Games — "Juegos en Rotación"
        ============================================================ -->
-  <section id="rotation" class="xp-window rotation-window">
-    <!-- Title Bar -->
+  <section
+          id="rotation"
+          class="xp-window rotation-window"
+          data-wid="rotation"
+          data-title="Juegos en Rotación"
+          data-icon="🎮"
+  >
     <div class="xp-titlebar">
       <div class="title-left">
         <span class="title-icon">🎮</span>
         <span class="title-text">Juegos en Rotación — Temporada Actual</span>
       </div>
       <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
         <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
       </div>
     </div>
 
     <div class="xp-content">
-      <div class="rotation-grid" id="rotation-grid">
-        <!-- Rendered by script.js -->
-      </div>
+      <div class="rotation-grid" id="rotation-grid"><!-- rendered by script.js --></div>
     </div>
 
     <div class="xp-statusbar">
@@ -193,111 +199,122 @@
   </section>
 
   <!-- ============================================================
-      STREAM WINDOW
+       WINDOW: Stream — Twitch embed
        ============================================================ -->
-  <section id="stream" class="xp-window stream-window">
-    <!-- Title Bar -->
+  <section
+          id="stream"
+          class="xp-window stream-window"
+          data-wid="stream"
+          data-title="Stream en vivo"
+          data-icon="🟣"
+  >
     <div class="xp-titlebar">
       <div class="title-left">
-        <span class="title-icon"> <img src="https://cdn.simpleicons.org/twitch/6441A5" width="16" height="16" alt="Twitch" style="display: inline-block; vertical-align: middle;"> </span>
-        <span class="title-text">Stream - twitch.tv/marchel_cc</span>
+        <span class="title-icon">
+          <img src="https://cdn.simpleicons.org/twitch/6441A5" width="16" height="16"
+               alt="Twitch" style="display:inline-block;vertical-align:middle;">
+        </span>
+        <span class="title-text">Stream — twitch.tv/marchel_cc</span>
       </div>
       <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
         <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
       </div>
     </div>
 
     <div class="xp-content stream">
-      <iframe
-              id="twitch-embed"
-              src="about:blank"
-              height="480"
-              width="854"
-              allowfullscreen>
-      </iframe>
+      <iframe id="twitch-embed" src="about:blank" allowfullscreen></iframe>
     </div>
   </section>
 
   <!-- ============================================================
-      LAST VIDEO WINDOW
+       WINDOW: YouTube — último video
        ============================================================ -->
-  <section id="yt" class="xp-window stream-window">
-    <!-- Title Bar -->
+  <section
+          id="yt"
+          class="xp-window stream-window"
+          data-wid="yt"
+          data-title="Último Video"
+          data-icon="📺"
+  >
     <div class="xp-titlebar">
       <div class="title-left">
-        <span class="title-icon"> <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16" height="16" alt="YouTube" style="display: inline-block; vertical-align: middle;"> </span>
+        <span class="title-icon">
+          <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16" height="16"
+               alt="YouTube" style="display:inline-block;vertical-align:middle;">
+        </span>
         <span class="title-text">Mi video más reciente en YouTube!</span>
       </div>
       <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
         <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
       </div>
     </div>
 
     <div class="xp-content yt-video">
-      <iframe
-              id="youtube-embed"
-              src="about:blank"
-              height="480"
-              width="854"
-              allowfullscreen>
-      </iframe>
+      <iframe id="youtube-embed" src="about:blank" allowfullscreen></iframe>
     </div>
   </section>
 
   <!-- ============================================================
-      LAST VOD WINDOW
+       WINDOW: YouTube VOD — último VOD
        ============================================================ -->
-  <section id="yt-vod" class="xp-window stream-window">
-    <!-- Title Bar -->
+  <section
+          id="yt-vod"
+          class="xp-window stream-window"
+          data-wid="yt-vod"
+          data-title="Último VOD"
+          data-icon="📼"
+  >
     <div class="xp-titlebar">
       <div class="title-left">
-        <span class="title-icon"> <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16" height="16" alt="YouTube" style="display: inline-block; vertical-align: middle;"> </span>
-        <span class="title-text">Ve mi VOD más reciente, por si te perdiste el stream!</span>
+        <span class="title-icon">
+          <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16" height="16"
+               alt="YouTube" style="display:inline-block;vertical-align:middle;">
+        </span>
+        <span class="title-text">VOD más reciente — ¡por si te perdiste el stream!</span>
       </div>
       <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
         <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
       </div>
     </div>
 
     <div class="xp-content yt-video">
-      <iframe
-              id="youtube-vod-embed"
-              src="about:blank"
-              height="480"
-              width="854"
-              allowfullscreen>
-      </iframe>
+      <iframe id="youtube-vod-embed" src="about:blank" allowfullscreen></iframe>
     </div>
   </section>
-  
+
 </div><!-- /desktop -->
 
 <!-- ============================================================
      TASKBAR
      ============================================================ -->
 <div class="taskbar">
+
+  <!-- Start button -->
   <a href="index.html" class="taskbar-start">🟢 Inicio</a>
 
+  <!-- Dynamic window buttons — WM.updateTaskbar() populates this -->
+  <div class="taskbar-windows" id="taskbar-windows"></div>
+
+  <!-- Static utility links (always present) -->
   <div class="taskbar-items">
-    <a href="admin.html" class="taskbar-item">⚙️</a>
-    <a href="questions.html" class="taskbar-item">❓</a>
+    <a href="admin.html"     class="taskbar-item" title="Panel Admin">⚙️</a>
+    <a href="questions.html" class="taskbar-item" title="Preguntas">❓</a>
   </div>
 
+  <!-- Timezone + clock -->
   <div class="taskbar-clock-wrap">
     <span id="timezone-label"></span>
     <div class="taskbar-clock" id="taskbar-clock">00:00</div>
   </div>
-</div>
 
-<!-- ============================================================
-     SCRIPTS
-     ============================================================ -->
+</div><!-- /taskbar -->
+
 <script src="js/script.js"></script>
 
 </body>
