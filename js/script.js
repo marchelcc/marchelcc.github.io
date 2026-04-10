@@ -3,7 +3,7 @@
    Repo: marchel-cc/marchel-website (GitHub Pages)
 
    Sections:
-     1. Window Manager (WM)  — floating, draggable XP windows
+     1. Window Manager (WM)  — floating, draggable XP Windows
      2. Data loading          — fetch schedule.json
      3. Rendering             — schedule, rotation, profile pic, socials
      4. Embed setup           — Twitch, YouTube
@@ -57,7 +57,7 @@ const WM = (() => {
     /* Register every [data-wid] window */
     document.querySelectorAll('.xp-window[data-wid]').forEach(el => {
       const wid   = el.dataset.wid;
-      const defs  = DEFAULTS[wid] || { w: 620, h: 460 };
+      const defs  = DEFAULTS[wid] || { w: 720, h: 550 };
       /* Allow per-element size overrides via data-w / data-h */
       const defW  = parseInt(el.dataset.w) || defs.w;
       const defH  = parseInt(el.dataset.h) || defs.h;
@@ -616,7 +616,6 @@ function startClock() {
   setInterval(tick, 30_000);
 }
 
-
 /* ════════════════════════════════════════════════════════════
    7. BOOT
    ════════════════════════════════════════════════════════════ */
@@ -649,4 +648,5 @@ document.addEventListener('DOMContentLoaded', () => {
   init();             // load and render schedule data
   startClock();       // taskbar clock
   setupTwitchEmbed(); // Twitch player
+
 });

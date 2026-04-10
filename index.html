@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Marchel — Website 🎣</title>
-  <meta name="description" content="Horario semanal de streams de Marchel, el pescador VTuber." />
+  <meta name="description" content="Página web de Marchel, horario semanal, juegos en rotación, últimos videos, y otras cositas más!" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎣</text></svg>" />
 </head>
@@ -28,10 +28,10 @@
   <div class="desktop-icons">
 
     <!-- External navigation: stays as a real link -->
-    <a href="about.html" class="desktop-icon">
-      <div class="icon-img">👤</div>
-      About Me
-    </a>
+<!--    <a href="about.html" class="desktop-icon">-->
+<!--      <div class="icon-img">👤</div>-->
+<!--      About Me-->
+<!--    </a>-->
 
     <!-- Window openers: <button data-open="wid"> -->
     <button class="desktop-icon" data-open="hero">
@@ -73,11 +73,14 @@
           data-wid="hero"
           data-title="Marchel.exe"
           data-icon="🎣"
+          data-w="750"
+          data-h="950"
+          data-autoopen
   >
     <div class="xp-titlebar">
       <div class="title-left">
         <span class="title-icon">🎣</span>
-        <span class="title-text">Marchel.exe — Pescador VTuber</span>
+        <span class="title-text">Marchel.exe — VTuber Pescador</span>
       </div>
       <div class="xp-window-btns">
         <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
@@ -87,10 +90,6 @@
     </div>
 
     <div class="xp-content">
-      <span class="doodle doodle-1">🐠</span>
-      <span class="doodle doodle-2">✨</span>
-      <span class="doodle doodle-3">🌊</span>
-      <span class="doodle doodle-4">🪝</span>
 
       <div class="msn-profile-wrap">
         <div class="msn-frame" id="profile-pic-frame">
@@ -100,9 +99,72 @@
       </div>
 
       <h1 class="hero-name" id="hero-name">Marchel</h1>
-      <p class="hero-tagline" id="hero-tagline">🎣 El pescador de los mares digitales</p>
+      <p class="hero-tagline" id="hero-tagline">🎣 Tu pescador chileno de confianza que ama los Kiwis!</p>
 
       <div class="social-row" id="social-row"><!-- rendered by script.js --></div>
+    
+      <div class="aboutme-enhanced">
+
+        <div class="bio-card">
+          <p class="bio-text">
+            🎣 <strong>¡Buenas!</strong> Soy <strong>Marchel</strong>, un creador de contenido que hace streams en
+            <img src="https://cdn.simpleicons.org/twitch/6441A5" width="16" height="16" alt="Twitch" style="display:inline-block;vertical-align:middle;">
+            <strong>Twitch</strong> y
+            <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16" height="16" alt="YouTube" style="display:inline-block;vertical-align:middle;">
+            <strong>YouTube</strong>, además de subir videos editados. Empecé en <strong>2015</strong> en otro canal grabando contenido variado,
+            principalmente minijuegos de
+            <img src="https://i.imgur.com/GXqX6kG.png" width="16" height="16" alt="Minecraft" style="display:inline-block;vertical-align:middle;">
+            <strong>Minecraft</strong>.
+            Ya en <strong>2019</strong> comencé a hacer streams en Twitch, y desde entonces no he parado de conocer
+            gente increíble y compartir partidas.
+          </p>
+          <p class="bio-text" style="margin-top:12px;">
+            Actualmente me dedico principalmente a hacer <strong>streams semanales</strong> de varios jueguitos, rotándolos semanal o mensualmente.
+            También intento subir videos semanales usando extractos de streams o series grabadas offline 🎣✨
+          </p>
+        </div>
+
+        <div class="platforms-row">
+          <a href="https://www.twitch.tv/marchel_cc" class="platform-badge twitch-badge" target="_blank" rel="noopener">
+            <img src="https://cdn.simpleicons.org/twitch/9146FF" alt="Twitch" width="20" height="20"> Marchel_cc
+          </a>
+          <a href="https://www.youtube.com/@Marchel-cc" class="platform-badge youtube-badge" target="_blank" rel="noopener">
+            <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube" width="20" height="20"> Marchel-cc
+          </a>
+          <a href="https://x.com/Marchel_cc" class="platform-badge twitter-badge" target="_blank" rel="noopener">
+            <img src="https://cdn.simpleicons.org/x/1DA1F2" alt="X" width="20" height="20"> @marchel_cc
+          </a>
+          <a href="https://bsky.app/profile/marchelcc.bsky.social" class="platform-badge bsky-badge" target="_blank" rel="noopener">
+            <img src="https://cdn.simpleicons.org/bluesky/1185FE" alt="Bluesky" width="20" height="20"> marchelcc
+          </a>
+        </div>
+
+        <div class="games-showcase">
+          <div class="section-title">🎲 Juegos Favoritos 🐟</div>
+          <div class="games-flex">
+            <div class="game-item"><img src="https://i.imgur.com/fqVJUzA.png" alt="Final Fantasy X" width="20" height="20"> Final Fantasy X</div>
+            <div class="game-item"><img src="https://i.imgur.com/GYHWBvY.png" alt="Risk of Rain 2" width="20" height="20"> Risk of Rain 2</div>
+            <div class="game-item"><img src="https://i.imgur.com/cyIl69X.png" alt="Going Medieval" width="20" height="20"> Going Medieval</div>
+            <div class="game-item"><img src="https://i.imgur.com/eYTyoa8.png" alt="Deadlock" width="20" height="20"> Deadlock</div>
+            <div class="game-item"><img src="https://i.imgur.com/Eafk0PK.png" alt="Signalis" width="20" height="20"> SIGNALIS</div>
+            <div class="game-item"><img src="https://i.imgur.com/7Gll12N.png" alt="Marathon 2026" width="20" height="20"> Marathon (2026)</div>
+            <div class="game-item"><img src="https://i.imgur.com/GXqX6kG.png" alt="Minecraft" width="20" height="20"> Minecraft</div>
+            <div class="game-item"><img src="https://i.imgur.com/q42StlY.png" alt="Kirby" width="20" height="20"> Kirby Planet Robobot</div>
+          </div>
+          <p style="font-size:0.9rem;margin-top:10px;color:#6f5a3a;font-style:italic;background:#f9f3e0;display:inline-block;padding:4px 12px;border-radius:20px;">
+            🎣 + muchos otros indies y party games
+          </p>
+          <p style="font-size:0.9rem;margin-top:10px;color:#6f5a3a;font-style:italic;background:#f9f3e0;display:inline-block;padding:4px 12px;border-radius:20px;">
+            Streams cada semana, consulta el horario en <a href="https://marchelcc.github.io/marchel-website/" target="_blank">mi sitio web</a>!
+          </p>
+        </div>
+
+        <div class="aboutme-highlight">
+          <span>🐟✨</span>
+          <span style="font-size:15px;">Siempre estoy buscando mejorar mi contenido, ya sea mejorando miniaturas, formatos de videos; o buscando otros VTubers para colaborar, o dinámicas para hacer en directo! 🎣🌊</span>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -287,7 +349,99 @@
       <iframe id="youtube-vod-embed" src="about:blank" allowfullscreen></iframe>
     </div>
   </section>
+  
+  <!-- ============================================================
+     WINDOW: Discord — Widget oficial
+     ============================================================ -->
+  <section
+          id="discord"
+          class="xp-window discord-window"
+          data-wid="discord"
+          data-title="Discord - Comunidad"
+          data-icon="💬"
+          data-w="380"
+          data-h="540"
+          data-autoopen
+  >
+    <div class="xp-titlebar">
+      <div class="title-left">
+        <span class="title-icon">💬</span>
+        <span class="title-text">Servidor de Discord</span>
+      </div>
+      <div class="xp-window-btns">
+        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+      </div>
+    </div>
+    <div class="xp-content discord-iframe-wrapper">
+      <iframe
+              src="https://discord.com/widget?id=1444033799095844887&theme=light"
+              width="100%"
+              height="100%"
+              allowtransparency="true"
+              frameborder="0"
+              sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+      </iframe>
+    </div>
+    <div class="xp-statusbar">
+      <div class="status-item">✨ Conecta con la comunidad pescadora</div>
+    </div>
+  </section>
 
+  <!-- ============================================================
+       WINDOW: Question Generator
+       ============================================================ -->
+  <section
+          id="questions-section"
+          class="xp-window"
+          data-wid="questions"
+          data-title="Question Generator"
+          data-icon="⁉️"
+          data-w="700"
+          data-h="550"
+  >
+    <div class="xp-titlebar">
+      <div class="title-left">
+        <span class="title-icon">⁉️</span>
+        <span class="title-text">Question Generator.exe</span>
+      </div>
+      <div class="xp-window-btns">
+        <button class="xp-btn-win xp-btn-min">_</button>
+        <button class="xp-btn-win xp-btn-max">▢</button>
+        <button class="xp-btn-win xp-btn-close">✕</button>
+      </div>
+    </div>
+
+    <div class="xp-content">
+
+      <!-- Buttons -->
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+        <button id="generate" class="xp-button primary">🎲 Generar preguntas</button>
+        <button id="chaos"    class="xp-button danger">💣 Caós</button>
+      </div>
+
+      <!-- Table -->
+      <table class="admin-table">
+        <thead>
+        <tr>
+          <th>Minecraft</th>
+          <th>Contenido</th>
+          <th>Reflexivas</th>
+        </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+
+      <!-- Result -->
+      <div style="margin-top:16px;">
+        <div class="admin-section-title">📝 Selección actual</div>
+        <ul id="output"></ul>
+      </div>
+
+    </div>
+  </section>
+  
 </div><!-- /desktop -->
 
 <!-- ============================================================
@@ -303,8 +457,9 @@
 
   <!-- Static utility links (always present) -->
   <div class="taskbar-items">
+    <button class="desktop-icon taskbar-item" data-open="discord" title="Discord">💬</button>
+    <button class="desktop-icon taskbar-item" data-open="questions" title="Preguntas">❓</button>
     <a href="admin.html"     class="taskbar-item" title="Panel Admin">⚙️</a>
-    <a href="questions.html" class="taskbar-item" title="Preguntas">❓</a>
   </div>
 
   <!-- Timezone + clock -->
@@ -315,6 +470,7 @@
 
 </div><!-- /taskbar -->
 
+<script src="js/questions.js"></script>
 <script src="js/script.js"></script>
 
 </body>
