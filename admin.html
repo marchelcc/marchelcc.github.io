@@ -93,14 +93,6 @@
       <div class="icon-img">🌐</div>
       Main Page
     </a>
-    <a href="about.html" class="desktop-icon">
-      <div class="icon-img">👤</div>
-      About Me
-    </a>
-    <button class="desktop-icon" data-open="admin">
-      <div class="icon-img">⚙️</div>
-      Admin
-    </button>
   </div>
 
   <!-- ============================================================
@@ -114,8 +106,9 @@
     data-wid="admin"
     data-title="Admin Panel"
     data-icon="⚙️"
-    data-w="920"
-    data-h="640"
+    data-w="1800"
+    data-h="850"
+    data-autoopen
   >
     <div class="xp-titlebar">
       <div class="title-left">
@@ -270,107 +263,6 @@
      directly without a circular dependency on admin.js load order.
      ============================================================ -->
 <script src="js/script.js"></script>
-<script>
-/* ── Inline auth shim ────────────────────────────────────────
-   Handles login/logout and shows the desktop + opens the admin
-   window via the WM once credentials are verified.
-   All CRUD logic (addScheduleRow, exportJson, etc.) lives in admin.js.
-   ──────────────────────────────────────────────────────────── */
-
-const ALLOWED_GITHUB_USER = 'marchelcc';
-const SESSION_KEY         = 'marchel_admin_token';
-
-/* ── Auto-login if a valid session token already exists ── */
-(function checkSession() {
-  const token = sessionStorage.getItem(SESSION_KEY);
-  const user  = sessionStorage.getItem('marchel_admin_user');
-  if (token && user) showAdminPanel(user);
-})();
-
-/* ── Login ── */
-async function doLogin() {
-  const input  = document.getElementById('token-input');
-  const btn    = document.getElementById('login-btn');
-  const errEl  = document.getElementById('login-error');
-  const errMsg = document.getElementById('login-error-msg');
-  const bar    = document.getElementById('login-status-bar');
-  const token  = input.value.trim();
-
-  if (!token) {
-    showLoginError('Por favor ingresa tu GitHub Personal Access Token.');
-    shakeInput(input); return;
-  }
-
-  btn.innerHTML = '<span class="login-spinner"></span> Verificando...';
-  btn.disabled  = true;
-  errEl.classList.remove('show');
-  bar.innerHTML = '🔄 Conectando con GitHub API...';
-
-  try {
-    const res = await fetch('https://api.github.com/user', {
-      headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' }
-    });
-    if (!res.ok) throw new Error(res.status === 401
-      ? 'Token inválido. Verifica que copiaste el token completo.'
-      : `Error de GitHub API: ${res.status}`);
-
-    const user = await res.json();
-    if (user.login.toLowerCase() !== ALLOWED_GITHUB_USER.toLowerCase()) {
-      throw new Error(`Cuenta "${user.login}" no tiene acceso. Solo marchelcc puede entrar.`);
-    }
-
-    sessionStorage.setItem(SESSION_KEY, token);
-    sessionStorage.setItem('marchel_admin_user', user.login);
-    showAdminPanel(user.login);
-
-  } catch (err) {
-    showLoginError(err.message);
-    btn.innerHTML = '🔓 Entrar';
-    btn.disabled  = false;
-    shakeInput(input);
-    bar.innerHTML = '❌ Fallo de autenticación';
-  }
-}
-
-/* ── Show the desktop canvas and open the admin window via WM ── */
-function showAdminPanel(username) {
-  document.getElementById('login-overlay').style.display = 'none';
-
-  /* Show the desktop canvas (was display:none) */
-  const desktop = document.getElementById('admin-desktop');
-  desktop.style.display = 'block';
-
-  /* Update session label */
-  const userEl = document.getElementById('session-user');
-  if (userEl) userEl.textContent = username;
-
-  /* Ask the WM to open and position the admin window */
-  if (typeof WM !== 'undefined') {
-    WM.open('admin');
-  }
-}
-
-/* ── Logout ── */
-function doLogout() {
-  sessionStorage.removeItem(SESSION_KEY);
-  sessionStorage.removeItem('marchel_admin_user');
-  window.location.reload();
-}
-
-/* ── Helpers ── */
-function showLoginError(msg) {
-  const errEl  = document.getElementById('login-error');
-  const errMsg = document.getElementById('login-error-msg');
-  errMsg.textContent = msg;
-  errEl.classList.add('show');
-}
-function shakeInput(input) {
-  input.classList.add('error');
-  setTimeout(() => input.classList.remove('error'), 600);
-}
-document.getElementById('token-input')
-  ?.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
-</script>
 <script src="js/admin.js"></script>
 
 </body>

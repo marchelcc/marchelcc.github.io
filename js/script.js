@@ -458,7 +458,7 @@ function renderSchedule(schedule) {
     const tagClass = TAG_CLASS_MAP[item.tag] || 'tag-stream-longo';
 
     if (!item.active)                           tr.classList.add('inactive');
-    if (dayIndex === todayIndex && item.active) tr.classList.add('today');
+    if (dayIndex === todayIndex)                tr.classList.add('today');
 
     /* Convert Chile time to user's local time */
     let formattedTime = '—';
@@ -554,7 +554,7 @@ function renderMeta(data) {
   }
 
   const tzEl = document.getElementById('timezone-label');
-  if (tzEl) tzEl.textContent = `🌍 Tu zona: ${getUserTimezone()}`;
+  if (tzEl) tzEl.textContent = `🌍 ${getUserTimezone()}`;
 }
 
 /* ── Staggered row entrance animation ── */
