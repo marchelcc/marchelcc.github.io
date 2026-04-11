@@ -1,10 +1,9 @@
 {
-  "vtuber":               "Marchel",
-  "tagline":              "🎣 Tu pescador chileno de confianza que ama los Kiwis!",
-  "lastUpdated":          "08-04-2026",
-  "profilePic":           "https://i.imgur.com/IsyBjDJ.png",
+  "vtuber": "Marchel",
+  "tagline": "🎣 Tu pescador chileno de confianza que ama los Kiwis!",
+  "lastUpdated": "11-04-2026",
+  "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
-  "youtubeLatestVODId":   "VIIVQ2ldytQ",
   "schedule": [
     {
       "id": 1,
@@ -93,13 +92,6 @@
       "note": "Un poquito de riesgo de lluvia 🗿"
     },
     {
-      "id": 4,
-      "name": "Marathon",
-      "emoji": "🎮",
-      "imageUrl": "https://i.imgur.com/97GONwe.png",
-      "note": "¿Una maratón o qué?"
-    },
-    {
       "id": 5,
       "name": "Fuera de la Caja",
       "emoji": "",
@@ -108,10 +100,10 @@
     }
   ],
   "socials": {
-    "twitch":       "https://www.twitch.tv/marchel_cc",
-    "youtube":      "https://www.youtube.com/@Marchel-cc",
-    "youtubevods":  "https://www.youtube.com/@marchel-vods1",
-    "twitter":      "https://x.com/Marchel_cc",
-    "bsky":         "https://bsky.app/profile/marchelcc.bsky.social"
+    "twitch": "https://www.twitch.tv/marchel_cc",
+    "youtube": "https://www.youtube.com/@Marchel-cc",
+    "youtubevods": "https://www.youtube.com/@marchel-vods1",
+    "twitter": "https://x.com/Marchel_cc",
+    "bsky": "https://bsky.app/profile/marchelcc.bsky.social"
   }
 }
