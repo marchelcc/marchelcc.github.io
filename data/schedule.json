@@ -1,9 +1,10 @@
 {
   "vtuber": "Marchel",
   "tagline": "🎣 Tu pescador chileno de confianza que ama los Kiwis!",
-  "lastUpdated": "11-04-2026",
+  "lastUpdated": "2026-04-11",
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
+  "youtubeLatestVODId": "VIIVQ2ldytQ",
   "schedule": [
     {
       "id": 1,
@@ -53,18 +54,18 @@
     {
       "id": 6,
       "day": "Sábado",
-      "time": "15:00",
-      "game": "Un poquito de riesgo de lluvia",
-      "imageUrl": "https://i.imgur.com/GYHWBvY.png",
-      "tag": "Stream Shorti",
-      "active": true
+      "time": null,
+      "game": "",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
     },
     {
       "id": 7,
       "day": "Domingo",
       "time": "15:00",
-      "game": "Una Marathon de chill",
-      "imageUrl": "https://i.imgur.com/7Gll12N.png",
+      "game": "Un poquito de riesgo de lluvia",
+      "imageUrl": "https://i.imgur.com/GYHWBvY.png",
       "tag": "Stream Shorti",
       "active": true
     }

@@ -310,14 +310,42 @@ body {
   transition: background 0.15s, border-color 0.15s;
 }
 
-.desktop-icon.taskbar-item {
-  flex-direction: row;
-  width: auto;
-  padding: 0 8px;
-  background: transparent;
-  border: none;
-  gap: 5px;
+/* ── taskbar-icon-btn — icon buttons that live IN the taskbar.
+   Match win-task-btn visually so the taskbar looks consistent. ── */
+.taskbar-icon-btn {
+  background: linear-gradient(180deg, var(--win-task-btn-start) 0%, var(--win-task-btn-end) 100%);
+  border: 1px solid var(--win-task-btn-border);
+  border-radius: 3px;
+  padding: 0 10px;
+  height: 26px;
+  min-width: 32px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  text-shadow: 1px 1px 1px #0005;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 1px 1px 0 var(--win-task-btn-shadow);
+  white-space: nowrap;
+  transition: background 0.1s;
+  flex-shrink: 0;
   text-decoration: none;
+  /* Override any desktop-icon bleed */
+  width: auto;
+  flex-direction: row;
+  gap: 0;
+  text-shadow: none;
+}
+.taskbar-icon-btn:hover {
+  background: linear-gradient(180deg, var(--win-task-btn-hover-start) 0%, var(--win-task-btn-hover-end) 100%);
+  filter: none;
+}
+.taskbar-icon-btn.wm-focused {
+  background: linear-gradient(180deg, var(--win-task-focused-start) 0%, var(--win-task-focused-end) 100%);
+  border-color: var(--win-task-focused-border);
+  box-shadow: inset 2px 2px 3px var(--win-task-focused-shadow);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -336,7 +364,6 @@ body {
   flex-direction: column;
   min-width: 300px;
   min-height: 140px;
-  will-change: left, top;
 }
 
 .xp-window.wm-open {
@@ -1652,7 +1679,6 @@ body {
    ───────────────────────────────────────────────────────────── */
 .discord-window .xp-content.discord-iframe-wrapper {
   padding: 0;
-  background: var(--discord-iframe-bg);
   display: flex;
   flex-direction: column;
 }
@@ -1661,11 +1687,116 @@ body {
   height: 100%;
   border: none;
   display: block;
-  background: var(--discord-iframe-bg);
 }
-.discord-window iframe[src*="theme=dark"] {
-  background: var(--discord-dark-bg);
+
+/* ─────────────────────────────────────────────────────────────
+   17. GITHUB REPOS WINDOW
+   ───────────────────────────────────────────────────────────── */
+.repos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  padding: 4px 2px;
 }
+
+.repo-card {
+  background: var(--cream);
+  border: 2px solid var(--xp-btn-border);
+  border-radius: 6px;
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  box-shadow: 2px 2px 0 var(--brown-soft);
+  position: relative;
+}
+.repo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 3px 5px 0 var(--brown-soft);
+  border-color: var(--xp-blue-light);
+}
+
+.repo-card-name {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--xp-blue);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  word-break: break-word;
+}
+.repo-card-name .repo-icon { font-size: 15px; flex-shrink: 0; }
+
+.repo-card-desc {
+  font-size: 12px;
+  color: #555;
+  line-height: 1.4;
+  flex: 1;
+  /* clamp to 3 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.repo-card-desc.empty { color: #aaa; font-style: italic; }
+
+.repo-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.repo-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #444;
+}
+.repo-lang-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1px solid #0002;
+}
+
+.repo-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  color: #666;
+}
+
+.repo-topic {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  background: var(--xp-blue-light);
+  color: var(--xp-blue-dark);
+  border: 1px solid var(--xp-blue-light);
+}
+
+/* Loading / error states */
+.repos-loading, .repos-error {
+  text-align: center;
+  padding: 40px 20px;
+  color: #888;
+  font-style: italic;
+  font-size: 13px;
+}
+.repos-error { color: #c00; }
+
+/* Language colour map — set via inline style on the dot */
 
 /* ─────────────────────────────────────────────────────────────
    16. RESPONSIVE MEDIA QUERIES
@@ -1718,6 +1849,7 @@ body {
   .xp-titlebar { cursor: default; }
   #wm-drag-cover { display: none !important; }
   .taskbar-windows { display: none; }
+  .taskbar-icon-btn { display: none; }
   .taskbar-item[data-open="questions"],
   .desktop-icon[data-open="questions"] {
     display: none;
@@ -1741,6 +1873,7 @@ body {
   .taskbar-start { padding: 3px 8px; font-size: 12px; }
   .taskbar-clock-wrap { order: unset; margin-left: auto; gap: 4px; }
   .taskbar-clock { font-size: 14px; padding: 2px 6px; }
+  .repos-grid { grid-template-columns: 1fr; }
   .meta-form-grid { grid-template-columns: 1fr; }
   .discord-window .xp-content.discord-iframe-wrapper {
     min-height: 420px;

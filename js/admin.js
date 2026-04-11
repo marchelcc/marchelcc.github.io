@@ -15,6 +15,7 @@ let state = {
     lastUpdated: new Date().toISOString().slice(0,10),
     profilePic: '',
     youtubeLatestVideoId: '',
+    youtubeLatestVODId: '',
     schedule: [],
     rotationGames: [],
     socials: {}
@@ -137,6 +138,7 @@ async function loadData() {
         state.lastUpdated   = data.lastUpdated || new Date().toISOString().slice(0,10);
         state.profilePic    = data.profilePic  || '';
         state.youtubeLatestVideoId = data.youtubeLatestVideoId || '';
+        state.youtubeLatestVODId   = data.youtubeLatestVODId   || '';
         state.schedule      = data.schedule      || [];
         state.rotationGames = data.rotationGames || [];
         state.socials       = data.socials       || {};
@@ -278,8 +280,13 @@ function renderMetaForm() {
       <input type="text" value="${state.youtubeLatestVideoId || ''}"
         placeholder="Ej: dQw4w9WgXcQ"
         onchange="state.youtubeLatestVideoId = this.value" />
-  
-      <label>YouTube VODs URL</label>
+
+      <label style="margin-top:8px;">📼 Último VOD de YouTube (ID)</label>
+      <input type="text" value="${state.youtubeLatestVODId || ''}"
+        placeholder="Ej: rHJ6IgUTu1k"
+        onchange="state.youtubeLatestVODId = this.value" />
+
+      <label style="margin-top:8px;">YouTube VODs URL</label>
       <input type="url" value="${state.socials.youtubevods || ''}"
         placeholder="https://www.youtube.com/@marchel-vods1"
         onchange="state.socials.youtubevods = this.value" />

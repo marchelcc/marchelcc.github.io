@@ -39,6 +39,28 @@ const WM = (() => {
     'stream':   { w: 900,  h: 560 },
     'yt':       { w: 900,  h: 560 },
     'yt-vod':   { w: 900,  h: 560 },
+    'discord':  { w: 500,  h: 600 },
+    'github':   { w: 780,  h: 560 },
+    'questions':{ w: 700,  h: 550 },
+  };
+
+  /* ── Pinned placement — overrides cascade for specific windows.
+     Each entry is a function (vw, vh, winW, winH) → { x, y }.
+     Only used on first open when w.x === null. ── */
+  const MARGIN = 16; // px gap from screen edges
+  const ICON_COL = 84; // px width of desktop icon column on the left
+
+  const PINNED = {
+    /* Hero: left side, vertically centred, clear of the icon column */
+    'hero': (vw, vh, ww, wh) => ({
+      x: ICON_COL + MARGIN,
+      y: Math.max(MARGIN, Math.round((vh - wh) / 2)),
+    }),
+    /* Discord: right side, same vertical centre as hero */
+    'discord': (vw, vh, ww, wh) => ({
+      x: Math.max(0, vw - ww - MARGIN),
+      y: Math.max(MARGIN, Math.round((vh - wh) / 2)),
+    }),
   };
 
   /* ── Per-window runtime state ── */
@@ -88,9 +110,14 @@ const WM = (() => {
       if (titlebar) attachDrag(wid, titlebar);
     });
 
-    /* Desktop icon buttons */
-    document.querySelectorAll('button.desktop-icon[data-open]').forEach(btn => {
-      btn.addEventListener('click', () => open(btn.dataset.open));
+    /* Any button with data-open — desktop icons AND taskbar icon buttons */
+    document.querySelectorAll('button[data-open]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const wid = btn.dataset.open;
+        open(wid);
+        /* Sync focused style on taskbar-icon-btn immediately */
+        syncTaskbarIconBtn(wid);
+      });
     });
 
     /* Auto-open any window that has the data-autoopen attribute.
@@ -115,17 +142,26 @@ const WM = (() => {
       return;
     }
 
-    /* First-time placement: cascade from centre of viewport */
+    /* First-time placement */
     if (w.x === null && !isMobile()) {
       const vw = window.innerWidth;
-      const vh = window.innerHeight - 36;  // subtract taskbar
+      const vh = window.innerHeight - 36;  // subtract taskbar height
       w.w = Math.min(w.w, vw - 60);
       w.h = Math.min(w.h, vh - 40);
-      const cx = Math.round((vw - w.w) / 2) + cascade * 28;
-      const cy = Math.round((vh - w.h) / 2) + cascade * 28;
-      w.x = Math.max(0, Math.min(cx, vw - w.w - 8));
-      w.y = Math.max(0, Math.min(cy, vh - w.h - 8));
-      cascade = (cascade + 1) % 9;
+
+      if (PINNED[wid]) {
+        /* Use the pinned layout function for this window */
+        const pos = PINNED[wid](vw, vh, w.w, w.h);
+        w.x = Math.max(0, Math.min(pos.x, vw - w.w - 8));
+        w.y = Math.max(0, Math.min(pos.y, vh - w.h - 8));
+      } else {
+        /* Default: cascade from centre */
+        const cx = Math.round((vw - w.w) / 2) + cascade * 28;
+        const cy = Math.round((vh - w.h) / 2) + cascade * 28;
+        w.x = Math.max(0, Math.min(cx, vw - w.w - 8));
+        w.y = Math.max(0, Math.min(cy, vh - w.h - 8));
+        cascade = (cascade + 1) % 9;
+      }
     }
 
     w.state = 'open';
@@ -252,6 +288,7 @@ const WM = (() => {
     w.el.style.zIndex = ++zTop;
     focused = wid;
     updateTaskbar();
+    syncTaskbarIconBtn(wid);
   }
 
   /* ────────────────────────────────────────────────────────
@@ -430,6 +467,16 @@ const WM = (() => {
     if (!btn) return;
     const isOpen = wins[wid]?.state !== 'closed';
     btn.classList.toggle('icon-active', isOpen);
+  }
+
+  /* Sync the wm-focused class on taskbar-icon-btn buttons
+     so they visually indicate which window is active. */
+  function syncTaskbarIconBtn(wid) {
+    document.querySelectorAll('.taskbar-icon-btn[data-open]').forEach(btn => {
+      const isThisOne = btn.dataset.open === wid;
+      const winOpen   = wins[btn.dataset.open]?.state === 'open';
+      btn.classList.toggle('wm-focused', isThisOne && winOpen);
+    });
   }
 
   /* Public API */
@@ -690,6 +737,112 @@ function startClock() {
 }
 
 /* ════════════════════════════════════════════════════════════
+   6.5 GITHUB REPOS WINDOW
+   ════════════════════════════════════════════════════════════ */
+
+/* Language → hex colour (subset of GitHub's palette) */
+const LANG_COLOURS = {
+  'JavaScript':  '#f1e05a',
+  'TypeScript':  '#3178c6',
+  'Python':      '#3572A5',
+  'HTML':        '#e34c26',
+  'CSS':         '#563d7c',
+  'Vue':         '#41b883',
+  'Svelte':      '#ff3e00',
+  'Rust':        '#dea584',
+  'Go':          '#00ADD8',
+  'Java':        '#b07219',
+  'C#':          '#178600',
+  'C++':         '#f34b7d',
+  'C':           '#555555',
+  'Shell':       '#89e051',
+  'Ruby':        '#701516',
+  'PHP':         '#4F5D95',
+  'Kotlin':      '#A97BFF',
+  'Swift':       '#F05138',
+  'Dart':        '#00B4AB',
+  'Lua':         '#000080',
+};
+
+async function fetchAndRenderGithubRepos() {
+  const container = document.getElementById('repos-grid');
+  if (!container) return;
+
+  const GITHUB_USER = 'marchelcc';
+
+  container.innerHTML = '<div class="repos-loading">🐙 Cargando repositorios...</div>';
+
+  try {
+    const res = await fetch(
+        `https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=12&type=owner`,
+        { headers: { 'Accept': 'application/vnd.github+json' } }
+    );
+
+    if (!res.ok) throw new Error(`GitHub API: ${res.status}`);
+
+    const repos = await res.json();
+
+    /* Filter out forks (optional — remove the filter to show all) */
+    const ownRepos = repos.filter(r => !r.fork);
+
+    if (ownRepos.length === 0) {
+      container.innerHTML = '<div class="repos-loading">No se encontraron repositorios públicos.</div>';
+      return;
+    }
+
+    container.innerHTML = '';
+
+    ownRepos.forEach(repo => {
+      const langColour = LANG_COLOURS[repo.language] || '#999';
+      const desc = repo.description
+          ? repo.description
+          : null;
+
+      /* Topics (up to 3) */
+      const topicTags = (repo.topics || []).slice(0, 3)
+          .map(t => `<span class="repo-topic">${t}</span>`)
+          .join('');
+
+      /* Build card */
+      const card = document.createElement('a');
+      card.className  = 'repo-card';
+      card.href       = repo.html_url;
+      card.target     = '_blank';
+      card.rel        = 'noopener';
+      card.title      = repo.full_name;
+
+      card.innerHTML = `
+        <div class="repo-card-name">
+          <span class="repo-icon">📁</span>
+          ${repo.name}
+        </div>
+        <div class="repo-card-desc${desc ? '' : ' empty'}">
+          ${desc ? desc : 'Sin descripción'}
+        </div>
+        <div class="repo-card-meta">
+          ${repo.language ? `
+            <span class="repo-lang">
+              <span class="repo-lang-dot" style="background:${langColour}"></span>
+              ${repo.language}
+            </span>` : ''}
+          ${repo.stargazers_count > 0 ? `
+            <span class="repo-stat">⭐ ${repo.stargazers_count}</span>` : ''}
+          ${repo.forks_count > 0 ? `
+            <span class="repo-stat">🍴 ${repo.forks_count}</span>` : ''}
+          ${topicTags}
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+
+  } catch (err) {
+    console.error('GitHub repos error:', err);
+    container.innerHTML = `<div class="repos-error">⚠️ No se pudieron cargar los repos.<br><small>${err.message}</small></div>`;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
    7. BOOT
    ════════════════════════════════════════════════════════════ */
 
@@ -722,4 +875,16 @@ document.addEventListener('DOMContentLoaded', () => {
   startClock();       // taskbar clock
   setupTwitchEmbed(); // Twitch player
 
+  /* Lazy-load GitHub repos the first time the github window is opened */
+  let reposFetched = false;
+  const githubDesktopBtn = document.querySelector('button[data-open="github"]');
+  const githubTaskbarBtn = document.querySelector('.taskbar-icon-btn[data-open="github"]');
+  const triggerRepoFetch = () => {
+    if (!reposFetched) {
+      reposFetched = true;
+      fetchAndRenderGithubRepos();
+    }
+  };
+  githubDesktopBtn?.addEventListener('click', triggerRepoFetch);
+  githubTaskbarBtn?.addEventListener('click', triggerRepoFetch);
 });

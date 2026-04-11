@@ -58,6 +58,10 @@
       <div class="icon-img">📼</div>
       VODs
     </button>
+    <button class="desktop-icon" data-open="github">
+      <div class="icon-img">🐙</div>
+      Herramientas Dessarrolladas
+    </button>
 
   </div><!-- /desktop-icons -->
 
@@ -259,6 +263,37 @@
       </div>
     </div>
   </section>
+  
+  <!-- ============================================================
+         WINDOW: Github — "Herramientas Desarrolladas"
+         ============================================================ -->
+  <section
+          id="github-section"
+          class="xp-window"
+          data-wid="github"
+          data-title="GitHub Repos"
+          data-icon="🐙"
+  >
+    <div class="xp-titlebar">
+      <div class="title-left">
+        <span class="title-icon">🐙</span>
+        <span class="title-text">GitHub — marchel-cc</span>
+      </div>
+      <div class="xp-window-btns">
+        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+      </div>
+    </div>
+    <div class="xp-content">
+      <div class="repos-grid" id="repos-grid">
+        <!-- Populated by fetchAndRenderGithubRepos() on first open -->
+      </div>
+    </div>
+    <div class="xp-statusbar">
+      <div class="status-item">🐙 Herramientas Desarrolladas por marchel-cc</div>
+    </div>
+  </section>
 
   <!-- ============================================================
        WINDOW: Stream — Twitch embed
@@ -457,8 +492,8 @@
 
   <!-- Static utility links (always present) -->
   <div class="taskbar-items">
-    <button class="desktop-icon taskbar-item" data-open="discord" title="Discord">💬</button>
-    <button class="desktop-icon taskbar-item" data-open="questions" title="Preguntas">❓</button>
+    <button class="taskbar-icon-btn" data-open="discord" title="Discord">💬</button>
+    <button class="taskbar-icon-btn" data-open="questions" title="Preguntas">❓</button>
     <a href="admin.html"     class="taskbar-item" title="Panel Admin">⚙️</a>
   </div>
 
