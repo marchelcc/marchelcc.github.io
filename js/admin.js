@@ -278,6 +278,12 @@ function renderMetaForm() {
       <input type="text" value="${state.youtubeLatestVideoId || ''}"
         placeholder="Ej: dQw4w9WgXcQ"
         onchange="state.youtubeLatestVideoId = this.value" />
+  
+      <label>YouTube VODs URL</label>
+      <input type="url" value="${state.socials.youtubevods || ''}"
+        placeholder="https://www.youtube.com/@marchel-vods1"
+        onchange="state.socials.youtubevods = this.value" />
+   
       <div style="font-size:10px; color:#666; margin-top:2px;">
         El ID es la parte después de <code>watch?v=</code> en la URL del video. Ejemplo: de <code>https://www.youtube.com/watch?v=ABC123</code> el ID es <code>ABC123</code>.
       </div>
@@ -293,12 +299,6 @@ function renderMetaForm() {
       <input type="url" value="${state.socials.youtube || ''}"
         placeholder="https://www.youtube.com/@Marchel-cc"
         onchange="state.socials.youtube = this.value" />
-    </div>
-    <div>
-      <label>YouTube VODs URL</label>
-      <input type="url" value="${state.socials.youtubevods || ''}"
-        placeholder="https://www.youtube.com/@marchel-vods1"
-        onchange="state.socials.youtubevods = this.value" />
     </div>
     <div>
       <label>Twitter / X URL</label>
@@ -467,7 +467,7 @@ function updateStatus() {
     const total  = state.schedule.length;
     const active = state.schedule.filter(s => s.active).length;
     document.getElementById('admin-count-status').textContent =
-        `${total} días · ${active} activos · ${state.rotationGames.length} en rotación`;
+        `${active} días activos / ${total} días   · ${state.rotationGames.length} juegos en rotación`;
 }
 
 /* ─────────────────────────────────────────────────────────────

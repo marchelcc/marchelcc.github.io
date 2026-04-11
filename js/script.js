@@ -74,11 +74,11 @@ const WM = (() => {
 
       /* Title-bar buttons */
       el.querySelector('.xp-btn-close')
-        ?.addEventListener('click', e => { e.stopPropagation(); close(wid); });
+          ?.addEventListener('click', e => { e.stopPropagation(); close(wid); });
       el.querySelector('.xp-btn-min')
-        ?.addEventListener('click', e => { e.stopPropagation(); minimize(wid); });
+          ?.addEventListener('click', e => { e.stopPropagation(); minimize(wid); });
       el.querySelector('.xp-btn-max')
-        ?.addEventListener('click', e => { e.stopPropagation(); toggleMax(wid); });
+          ?.addEventListener('click', e => { e.stopPropagation(); toggleMax(wid); });
 
       /* Clicking anywhere on the window body brings it to front */
       el.addEventListener('mousedown', () => focus(wid), true);
@@ -159,25 +159,58 @@ const WM = (() => {
   }
 
   /* ────────────────────────────────────────────────────────
-     MINIMIZE
+     MINIMIZE  — animate window shrinking toward its taskbar button
      ──────────────────────────────────────────────────────── */
   function minimize(wid) {
     const w = wins[wid];
     if (!w || w.state !== 'open') return;
 
-    w.el.style.transition = 'opacity .1s, transform .1s';
+    /* Grab the taskbar button rect NOW — it still exists while state is 'open' */
+    const taskBtn = document.querySelector(`.win-task-btn[data-wid="${wid}"]`);
+    const winRect  = w.el.getBoundingClientRect();
+
+    /* Target: center of the taskbar button, or bottom-centre of screen */
+    let targetX, targetY;
+    if (taskBtn) {
+      const r = taskBtn.getBoundingClientRect();
+      targetX = r.left + r.width  / 2;
+      targetY = r.top  + r.height / 2;
+    } else {
+      targetX = window.innerWidth  / 2;
+      targetY = window.innerHeight - 18;
+    }
+
+    /* Translate from window centre to target */
+    const winCX = winRect.left + winRect.width  / 2;
+    const winCY = winRect.top  + winRect.height / 2;
+    const dx = targetX - winCX;
+    const dy = targetY - winCY;
+
+    /* Scale: window shrinks to roughly the button's size */
+    const scaleX = taskBtn
+        ? Math.min(taskBtn.offsetWidth  / winRect.width,  0.15)
+        : 0.08;
+    const scaleY = taskBtn
+        ? Math.min(taskBtn.offsetHeight / winRect.height, 0.10)
+        : 0.04;
+
+    /* Animate */
+    w.el.style.transformOrigin = 'center center';
+    w.el.style.transition = 'opacity 0.22s ease-in, transform 0.22s cubic-bezier(0.4,0,1,1)';
     w.el.style.opacity    = '0';
-    w.el.style.transform  = 'scale(0.88) translateY(16px)';
+    w.el.style.transform  = `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})`;
 
     setTimeout(() => {
-      w.el.style.transition = '';
-      w.el.style.opacity    = '';
-      w.el.style.transform  = '';
+      /* Clear inline animation styles */
+      w.el.style.transition      = '';
+      w.el.style.opacity         = '';
+      w.el.style.transform       = '';
+      w.el.style.transformOrigin = '';
       w.el.classList.remove('wm-open', 'wm-focused');
       w.state = 'minimized';
       if (focused === wid) focused = null;
       updateTaskbar();
-    }, 110);
+    }, 230);
   }
 
   /* ────────────────────────────────────────────────────────
@@ -320,23 +353,63 @@ const WM = (() => {
       if (w.state === 'closed') return;
 
       const btn = document.createElement('button');
-      btn.className   = 'win-task-btn';
-      btn.title       = w.title;
-      btn.innerHTML   =
-        `<span>${w.icon}</span><span class="btn-label">${w.title}</span>`;
+      btn.className      = 'win-task-btn';
+      btn.dataset.wid    = wid;   /* needed by minimize() to find this button */
+      btn.title          = w.title;
+      btn.innerHTML      =
+          `<span>${w.icon}</span><span class="btn-label">${w.title}</span>`;
 
-      if (w.state === 'minimized')       btn.classList.add('wm-minimized');
-      if (wid === focused && w.state === 'open') btn.classList.add('wm-focused');
+      if (w.state === 'minimized')                 btn.classList.add('wm-minimized');
+      if (wid === focused && w.state === 'open')   btn.classList.add('wm-focused');
 
       btn.addEventListener('click', () => {
         if (w.state === 'minimized') {
-          /* Restore minimized window */
+          /* ── Restore: fly window UP from the taskbar button ── */
+
+          /* Capture button rect BEFORE rebuilding the taskbar */
+          const btnRect = btn.getBoundingClientRect();
+
+          /* Make the window visible at its saved position */
           w.state = 'open';
           applyGeom(wid);
           w.el.classList.add('wm-open');
+
+          /* Window rect now that it's positioned */
+          const winRect = w.el.getBoundingClientRect();
+          const winCX   = winRect.left + winRect.width  / 2;
+          const winCY   = winRect.top  + winRect.height / 2;
+          const btnCX   = btnRect.left + btnRect.width  / 2;
+          const btnCY   = btnRect.top  + btnRect.height / 2;
+
+          /* Start transform: window appears tiny at button position */
+          const dx  = btnCX - winCX;
+          const dy  = btnCY - winCY;
+          const sx  = Math.max(btn.offsetWidth  / winRect.width,  0.05);
+          const sy  = Math.max(btn.offsetHeight / winRect.height, 0.04);
+
+          w.el.style.transformOrigin = 'center center';
+          w.el.style.transition      = 'none';
+          w.el.style.transform       = `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`;
+          w.el.style.opacity         = '0';
+
+          /* Force reflow so browser registers the starting state */
+          w.el.getBoundingClientRect();
+
+          /* Animate to natural position */
+          w.el.style.transition = 'opacity 0.2s ease-out, transform 0.2s cubic-bezier(0,0,0.2,1)';
+          w.el.style.transform  = '';
+          w.el.style.opacity    = '';
+
+          /* Clean up transition properties once animation is done */
+          setTimeout(() => {
+            w.el.style.transition      = '';
+            w.el.style.transformOrigin = '';
+          }, 220);
+
           focus(wid);
           updateTaskbar();
           syncIconState(wid);
+
         } else if (wid === focused) {
           /* Click on the focused window's button → minimize it */
           minimize(wid);
@@ -465,19 +538,19 @@ function renderSchedule(schedule) {
     if (item.time != null) {
       const local = convertChileTimeToLocal(item.time);
       formattedTime =
-        String(local.getHours()).padStart(2, '0') + ':' +
-        String(local.getMinutes()).padStart(2, '0');
+          String(local.getHours()).padStart(2, '0') + ':' +
+          String(local.getMinutes()).padStart(2, '0');
     }
 
     /* Game logo if an imgur URL is provided */
     const hasLogo = item.imageUrl && item.imageUrl.trim() && !item.imageUrl.includes('your-');
     const gameCell = hasLogo
-      ? `<div class="game-logo-wrap">
+        ? `<div class="game-logo-wrap">
            <img class="game-logo" src="${item.imageUrl}" alt="${item.game}"
                 onerror="this.style.display='none'">
            <span>${item.game}</span>
          </div>`
-      : `<span>${item.game}</span>`;
+        : `<span>${item.game}</span>`;
 
     tr.innerHTML = `
       <td class="td-day">${item.day}</td>
@@ -501,9 +574,9 @@ function renderRotation(games) {
 
     const hasLogo  = game.imageUrl && game.imageUrl.trim() && !game.imageUrl.includes('your-');
     const logoHtml = hasLogo
-      ? `<img class="game-card-logo" src="${game.imageUrl}" alt="${game.name}"
+        ? `<img class="game-card-logo" src="${game.imageUrl}" alt="${game.name}"
               onerror="this.outerHTML='<span class=\\'game-card-emoji-fallback\\'>${game.emoji}</span>'">`
-      : `<span class="game-card-emoji-fallback">${game.emoji}</span>`;
+        : `<span class="game-card-emoji-fallback">${game.emoji}</span>`;
 
     card.innerHTML = `
       ${logoHtml}
@@ -609,8 +682,8 @@ function startClock() {
   const tick = () => {
     const n = new Date();
     el.textContent =
-      String(n.getHours()).padStart(2, '0') + ':' +
-      String(n.getMinutes()).padStart(2, '0');
+        String(n.getHours()).padStart(2, '0') + ':' +
+        String(n.getMinutes()).padStart(2, '0');
   };
   tick();
   setInterval(tick, 30_000);

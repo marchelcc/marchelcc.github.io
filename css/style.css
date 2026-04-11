@@ -223,8 +223,6 @@
   --update-badge-color: #888;
   --xp-inset-border-light: #888;
   --xp-inset-border-dark: #fff;
-  --discord-iframe-bg: #ECE9D8;
-  --discord-dark-bg: #2C2F33;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -360,6 +358,19 @@ body {
   from { opacity: 0; transform: scale(0.94); }
   to   { opacity: 1; transform: scale(1); }
 }
+
+/* Wave decoration pinned to the VISUAL bottom of the hero window.
+   Lives on the window element (position:fixed), not the scrollable
+   content, so it never moves when the user scrolls. */
+.hero-window::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40'%3E%3Cpath d='M0 20 Q50 0 100 20 Q150 40 200 20 Q250 0 300 20 Q350 40 400 20 L400 40 L0 40Z' fill='%235B9DC8' opacity='0.3'/%3E%3C/svg%3E") repeat-x bottom / 400px;
+  pointer-events: none;
+  z-index: 2;  /* above xp-content but below any z-indexed children */
+}
 .xp-window::before {
   content: '';
   position: absolute;
@@ -448,7 +459,7 @@ body {
 #admin-window .xp-content {
   flex: 1;
   overflow-y: auto;
-  min-height: 0; 
+  min-height: 0;
 }
 
 .xp-menubar {
@@ -483,8 +494,8 @@ body {
   position: relative;
   z-index: 1;
   flex-shrink: 0;
-  height: auto;            
-  min-height: 0;           
+  height: auto;
+  min-height: 0;
   line-height: normal;
   margin-top: 0;
 }
@@ -505,16 +516,11 @@ body {
   padding: 24px 20px;
   text-align: center;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;  /* scroll when content taller than window */
 }
-.hero-window .xp-content::before {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 40px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40'%3E%3Cpath d='M0 20 Q50 0 100 20 Q150 40 200 20 Q250 0 300 20 Q350 40 400 20 L400 40 L0 40Z' fill='%235B9DC8' opacity='0.3'/%3E%3C/svg%3E") repeat-x bottom / 400px;
-  pointer-events: none;
-}
+/* Wave is now on the window element itself (::after) so it always
+   sits at the VISUAL bottom regardless of scroll position */
 
 .hero-avatar {
   font-size: 64px;
@@ -1479,7 +1485,7 @@ body {
 .tab:hover { background: var(--beige); }
 .tab.active { background: var(--tab-active-bg); border-color: var(--tab-active-border); color: var(--tab-active-color); }
 .tab-panel { display: none; }
-.tab-panel.active { display: block; }
+.tab-panel.active { display: block; overflow-y: auto;}
 
 .meta-form-grid {
   display: grid;
@@ -1495,6 +1501,7 @@ body {
   letter-spacing: 0.5px;
   display: block;
   margin-bottom: 3px;
+  margin-top: 15px;
 }
 .meta-form-grid input {
   width: 100%;
