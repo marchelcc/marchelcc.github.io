@@ -1736,11 +1736,10 @@ body {
   color: #555;
   line-height: 1.4;
   flex: 1;
-  /* clamp to 3 lines */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  overflow: hidden;
+  overflow-y: auto;
 }
 .repo-card-desc.empty { color: #aaa; font-style: italic; }
 
@@ -1777,16 +1776,15 @@ body {
 
 .repo-topic {
   display: inline-block;
-  padding: 1px 7px;
+  padding: 2px 7px;
   border-radius: 20px;
   font-size: 10px;
   font-weight: 600;
-  background: var(--xp-blue-light);
+  background: var(--cream);
   color: var(--xp-blue-dark);
-  border: 1px solid var(--xp-blue-light);
+  border: 2px solid var(--xp-blue-dark);
 }
 
-/* Loading / error states */
 .repos-loading, .repos-error {
   text-align: center;
   padding: 40px 20px;
@@ -1883,7 +1881,6 @@ body {
     min-height: 380px;
   }
 }
-
 
 @media (max-width: 540px) {
   .platforms-row { flex-direction: column; align-items: stretch; }
