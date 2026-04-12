@@ -63,11 +63,11 @@
     {
       "id": 7,
       "day": "Domingo",
-      "time": "15:00",
+      "time": null,
       "game": "Un poquito de riesgo de lluvia",
       "imageUrl": "https://i.imgur.com/GYHWBvY.png",
       "tag": "Stream Shorti",
-      "active": true
+      "active": null
     }
   ],
   "rotationGames": [
