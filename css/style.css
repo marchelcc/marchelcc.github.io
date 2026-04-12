@@ -772,6 +772,22 @@ body {
   font-family: var(--font-ui);
 }
 
+/* ── Multi-slot days: extra slots share the day cell via rowspan ── */
+/* The second+ slot row has no top border — visually joined to the first */
+.schedule-table tbody tr.slot-extra {
+  border-top: none;
+  border-bottom: 1px dashed var(--beige-dark);
+}
+/* A fine divider above the extra time/game/tag cells to separate slots */
+.schedule-table tbody tr.slot-extra td {
+  border-top: 1px dotted var(--xp-btn-border);
+  padding-top: 8px;
+}
+/* The day cell rowspan spans the full group — give it a left accent */
+.schedule-table tbody tr.today .td-day[rowspan] {
+  border-left: none; /* border-left is on the tr, not the td */
+}
+
 /* ─────────────────────────────────────────────────────────────
    7. ROTATION GAMES WINDOW (index)
    ───────────────────────────────────────────────────────────── */
@@ -1381,6 +1397,46 @@ body {
 .admin-table input:focus, .admin-table select:focus {
   outline: 2px solid var(--admin-table-input-focus);
   outline-offset: -1px;
+}
+
+/* ── Admin table column helpers (replaces inline styles on td) ── */
+.admin-col-active {
+  text-align: center;
+  width: 36px;
+}
+.admin-col-actions {
+  white-space: nowrap;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 4px 6px;
+}
+/* Small action buttons inside the schedule table */
+.admin-slot-btn {
+  padding: 3px 7px;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+/* Hint text used in rotation and JSON tabs */
+.admin-hint-text {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+/* Profile pic preview text inside meta tab */
+.profile-pic-preview-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--xp-blue-dark);
+  margin-bottom: 4px;
+}
+.profile-pic-preview-hint {
+  font-size: 11px;
+  color: #888;
+  font-style: italic;
 }
 
 .rotation-admin-grid {

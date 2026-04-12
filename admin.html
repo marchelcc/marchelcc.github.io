@@ -108,7 +108,7 @@
     data-icon="⚙️"
     data-w="850"
     data-h="550"
-    data-autoopen
+    data-autoopen=""
   >
     <div class="xp-titlebar">
       <div class="title-left">
@@ -171,7 +171,7 @@
             <tr>
               <th>On</th><th>Día</th><th>Hora</th>
               <th>Juego / Contenido</th><th>Logo (imgur URL)</th>
-              <th>Tag</th><th>🗑️</th>
+              <th>Tag</th><th>Acciones</th>
             </tr>
           </thead>
           <tbody id="schedule-admin-body"></tbody>
@@ -183,7 +183,7 @@
          style="background:var(--cream);position:relative;z-index:1;">
       <div style="padding:12px;">
         <p class="admin-section-title">🎮 Juegos en rotación</p>
-        <p style="font-size:12px;color:#888;margin-bottom:12px;font-style:italic;">
+        <p class="admin-hint-text">
           Máximo recomendado: 4 juegos. Pega URLs de imgur para las imágenes de portada.
         </p>
       </div>
@@ -201,10 +201,10 @@
           <div class="mini-fallback" id="profile-mini-fallback">🎣</div>
         </div>
         <div>
-          <div style="font-size:13px;font-weight:700;color:var(--xp-blue-dark);margin-bottom:4px;">
+          <div class="profile-pic-preview-title">
             Vista previa de foto de perfil
           </div>
-          <div style="font-size:11px;color:#888;font-style:italic;">
+          <div class="profile-pic-preview-hint">
             Sube tu foto a imgur.com y pega el enlace directo abajo
           </div>
         </div>
@@ -215,7 +215,7 @@
     <div id="tab-json" class="tab-panel"
          style="padding:12px;background:var(--cream);position:relative;z-index:1;">
       <p class="admin-section-title">{ } Vista previa del JSON generado</p>
-      <p style="font-size:12px;color:#888;margin-bottom:10px;font-style:italic;">
+      <p class="admin-hint-text">
         Descarga este archivo y reemplázalo en tu repo
         <strong>marchelcc/marchel-website</strong> como <code>schedule.json</code>.
       </p>
@@ -247,7 +247,6 @@
   <div class="taskbar-windows" id="taskbar-windows"></div>
   <div class="taskbar-items">
     <a href="admin.html"     class="taskbar-item" title="Admin">⚙️</a>
-    <a href="questions.html" class="taskbar-item" title="Preguntas">❓</a>
   </div>
   <div class="taskbar-clock-wrap">
     <span id="timezone-label"></span>

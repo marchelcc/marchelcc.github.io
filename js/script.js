@@ -572,41 +572,66 @@ function renderSchedule(schedule) {
   const todayIndex = new Date().getDay();   // 0 = Sunday
   tbody.innerHTML  = '';
 
-  schedule.forEach(item => {
-    const tr       = document.createElement('tr');
+  /* Group consecutive entries by day so we can rowspan the day cell.
+     We walk the flat array and track when the day changes. */
+  let i = 0;
+  while (i < schedule.length) {
+    const item     = schedule[i];
     const dayIndex = DAY_TO_INDEX[item.day] ?? -1;
-    const tagClass = TAG_CLASS_MAP[item.tag] || 'tag-stream-longo';
+    const isToday  = dayIndex === todayIndex;
 
-    if (!item.active)                           tr.classList.add('inactive');
-    if (dayIndex === todayIndex)                tr.classList.add('today');
+    /* Count how many consecutive entries share this day */
+    let slotCount = 1;
+    while (
+      i + slotCount < schedule.length &&
+      schedule[i + slotCount].day === item.day
+    ) slotCount++;
 
-    /* Convert Chile time to user's local time */
-    let formattedTime = '—';
-    if (item.time != null) {
-      const local = convertChileTimeToLocal(item.time);
-      formattedTime =
+    /* Render each slot for this day */
+    for (let s = 0; s < slotCount; s++) {
+      const slot     = schedule[i + s];
+      const tagClass = TAG_CLASS_MAP[slot.tag] || 'tag-stream-longo';
+      const tr       = document.createElement('tr');
+
+      if (!slot.active) tr.classList.add('inactive');
+      if (isToday)      tr.classList.add('today');
+      if (s > 0)        tr.classList.add('slot-extra'); /* not the first slot of the day */
+
+      /* Convert Chile time to user's local time */
+      let formattedTime = '—';
+      if (slot.time != null) {
+        const local = convertChileTimeToLocal(slot.time);
+        formattedTime =
           String(local.getHours()).padStart(2, '0') + ':' +
           String(local.getMinutes()).padStart(2, '0');
+      }
+
+      /* Game logo */
+      const hasLogo  = slot.imageUrl && slot.imageUrl.trim() && !slot.imageUrl.includes('your-');
+      const gameCell = hasLogo
+        ? `<div class="game-logo-wrap">
+             <img class="game-logo" src="${slot.imageUrl}" alt="${slot.game}"
+                  onerror="this.style.display='none'">
+             <span>${slot.game}</span>
+           </div>`
+        : `<span>${slot.game}</span>`;
+
+      /* Day cell: only on the FIRST slot, with rowspan to cover all slots */
+      const dayCellHtml = s === 0
+        ? `<td class="td-day" rowspan="${slotCount}">${slot.day}</td>`
+        : ''; /* subsequent slots: day cell is covered by rowspan */
+
+      tr.innerHTML = `
+        ${dayCellHtml}
+        <td class="td-time">${formattedTime}</td>
+        <td class="td-game">${gameCell}</td>
+        <td class="td-tag"><span class="tag ${tagClass}">${slot.tag}</span></td>
+      `;
+      tbody.appendChild(tr);
     }
 
-    /* Game logo if an imgur URL is provided */
-    const hasLogo = item.imageUrl && item.imageUrl.trim() && !item.imageUrl.includes('your-');
-    const gameCell = hasLogo
-        ? `<div class="game-logo-wrap">
-           <img class="game-logo" src="${item.imageUrl}" alt="${item.game}"
-                onerror="this.style.display='none'">
-           <span>${item.game}</span>
-         </div>`
-        : `<span>${item.game}</span>`;
-
-    tr.innerHTML = `
-      <td class="td-day">${item.day}</td>
-      <td class="td-time">${formattedTime}</td>
-      <td class="td-game">${gameCell}</td>
-      <td class="td-tag"><span class="tag ${tagClass}">${item.tag}</span></td>
-    `;
-    tbody.appendChild(tr);
-  });
+    i += slotCount; /* jump past all slots we just rendered */
+  }
 }
 
 /* ── Rotation games grid ── */

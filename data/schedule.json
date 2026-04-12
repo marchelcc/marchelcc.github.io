@@ -1,7 +1,7 @@
 {
   "vtuber": "Marchel",
   "tagline": "🎣 Tu pescador chileno de confianza que ama los Kiwis!",
-  "lastUpdated": "2026-04-11",
+  "lastUpdated": "2026-04-12",
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
   "youtubeLatestVODId": "VIIVQ2ldytQ",
@@ -9,6 +9,24 @@
     {
       "id": 1,
       "day": "Lunes",
+      "time": "14:00",
+      "game": "Final Fantasy X VOD #2",
+      "imageUrl": "https://i.imgur.com/fqVJUzA.png",
+      "tag": "Nuevo Video",
+      "active": true
+    },
+    {
+      "id": 2,
+      "day": "Martes",
+      "time": "18:45",
+      "game": "Un poquito de riesgo de lluvia",
+      "imageUrl": "https://i.imgur.com/GYHWBvY.png",
+      "tag": "Stream Longo",
+      "active": true
+    },
+    {
+      "id": 3,
+      "day": "Miércoles",
       "time": null,
       "game": "Descanso",
       "imageUrl": "",
@@ -16,30 +34,12 @@
       "active": false
     },
     {
-      "id": 2,
-      "day": "Martes",
-      "time": "18:30",
-      "game": "Continuamos con Final Fantasy X!",
-      "imageUrl": "https://i.imgur.com/fqVJUzA.png",
-      "tag": "Stream Longo",
-      "active": true
-    },
-    {
-      "id": 3,
-      "day": "Miércoles",
-      "time": "20:30",
-      "game": "Preparando el siguiente episodio de Fuera de la Caja",
-      "imageUrl": "https://i.imgur.com/GXqX6kG.png",
-      "tag": "Stream Shorti",
-      "active": true
-    },
-    {
       "id": 4,
       "day": "Jueves",
-      "time": "19:10",
-      "game": "Saldremos de la ciudad hoy?",
-      "imageUrl": "https://i.imgur.com/ehUOZPs.png",
-      "tag": "Stream Longo",
+      "time": "18:45",
+      "game": "Probemos el Core Keeper",
+      "imageUrl": "https://i.imgur.com/UTTGH5f.png",
+      "tag": "Stream Shorti",
       "active": true
     },
     {
@@ -54,20 +54,20 @@
     {
       "id": 6,
       "day": "Sábado",
-      "time": null,
-      "game": "",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "15:30",
+      "game": "Volvemos a la Fantasia Final manin, entramos en el templo de la jungle?",
+      "imageUrl": "https://i.imgur.com/fqVJUzA.png",
+      "tag": "Stream Shorti",
+      "active": true
     },
     {
       "id": 7,
       "day": "Domingo",
       "time": null,
-      "game": "Un poquito de riesgo de lluvia",
-      "imageUrl": "https://i.imgur.com/GYHWBvY.png",
-      "tag": "Stream Shorti",
-      "active": null
+      "game": "Descanso",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
     }
   ],
   "rotationGames": [
@@ -77,13 +77,6 @@
       "emoji": "",
       "imageUrl": "https://i.imgur.com/lSfk03a.png",
       "note": "Primera run, no spoilers"
-    },
-    {
-      "id": 2,
-      "name": "Hollow Knight",
-      "emoji": "",
-      "imageUrl": "https://i.imgur.com/1P1HTVa.png",
-      "note": "¿Qué pasa primero, sale GTA 6 o me paso Hollow Knight?"
     },
     {
       "id": 3,

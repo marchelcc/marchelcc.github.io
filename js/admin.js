@@ -176,33 +176,39 @@ function renderScheduleAdmin() {
             `<option value="${t}" ${t === item.tag ? 'selected' : ''}>${t}</option>`
         ).join('');
 
-        const logoSrc = item.imageUrl || '';
+        const logoSrc    = item.imageUrl || '';
         const imgPreview = logoSrc && !logoSrc.includes('your-')
             ? `<img src="${logoSrc}" onerror="this.style.display='none'" />`
             : '';
+        const timeVal = item.time ?? '';
 
         tr.innerHTML = `
-      <td style="text-align:center;">
-        <input type="checkbox" class="active-toggle" ${item.active ? 'checked' : ''}
-          onchange="updateScheduleField(${idx}, 'active', this.checked)" />
-       </td>
-       <td><select onchange="updateScheduleField(${idx}, 'day', this.value)">${dayOpts}</select></td>
-       <td><input type="text" value="${item.time}" placeholder="19:00"
-            onchange="updateScheduleField(${idx}, 'time', this.value)" /></td>
-       <td><input type="text" value="${item.game}" placeholder="Nombre del juego"
-            onchange="updateScheduleField(${idx}, 'game', this.value)" /></td>
-       <td>
-        <div class="logo-preview-cell">
-          ${imgPreview}
-          <input type="url" value="${logoSrc}"
-            placeholder="https://i.imgur.com/..."
-            onchange="updateScheduleField(${idx}, 'imageUrl', this.value); refreshLogoPreview(this)" />
-        </div>
-       </td>
-       <td><select onchange="updateScheduleField(${idx}, 'tag', this.value)">${tagOpts}</select></td>
-       <td><button class="xp-button danger" onclick="removeScheduleRow(${idx})"
-            style="padding:3px 8px;font-size:11px;">🗑️</button></td>
-    `;
+          <td class="admin-col-active">
+            <input type="checkbox" class="active-toggle" ${item.active ? 'checked' : ''}
+              onchange="updateScheduleField(${idx}, 'active', this.checked)" />
+          </td>
+          <td><select onchange="updateScheduleField(${idx}, 'day', this.value)">${dayOpts}</select></td>
+          <td><input type="text" value="${timeVal}" placeholder="19:00"
+               onchange="updateScheduleField(${idx}, 'time', this.value || null)" /></td>
+          <td><input type="text" value="${item.game || ''}" placeholder="Nombre del juego"
+               onchange="updateScheduleField(${idx}, 'game', this.value)" /></td>
+          <td>
+            <div class="logo-preview-cell">
+              ${imgPreview}
+              <input type="url" value="${logoSrc}"
+                placeholder="https://i.imgur.com/..."
+                onchange="updateScheduleField(${idx}, 'imageUrl', this.value); refreshLogoPreview(this)" />
+            </div>
+          </td>
+          <td><select onchange="updateScheduleField(${idx}, 'tag', this.value)">${tagOpts}</select></td>
+          <td class="admin-col-actions">
+            <button class="xp-button success admin-slot-btn"
+              title="Agregar otro slot para este mismo día"
+              onclick="addSlotAfter(${idx})">+⏰</button>
+            <button class="xp-button danger admin-slot-btn"
+              onclick="removeScheduleRow(${idx})">🗑️</button>
+          </td>
+        `;
         tbody.appendChild(tr);
     });
 }
@@ -387,10 +393,25 @@ function addScheduleRow() {
     state.schedule.push({
         id: scheduleIdCounter++,
         day: 'Lunes', time: '19:00',
-        game: 'Nuevo stream', imageUrl: '', tag: 'Stream Largo', active: true
+        game: 'Nuevo stream', imageUrl: '', tag: 'Stream Longo', active: true
     });
     renderScheduleAdmin();
     setStatus('✅ Fila agregada');
+}
+
+/* Add a second (or third…) time slot right below the row at idx,
+   inheriting the same day so they appear grouped in the public view. */
+function addSlotAfter(idx) {
+    const sourceDay = state.schedule[idx]?.day || 'Lunes';
+    const newSlot = {
+        id: scheduleIdCounter++,
+        day: sourceDay, time: '21:00',
+        game: 'Nuevo slot', imageUrl: '', tag: 'Stream Shorti', active: true
+    };
+    /* Insert immediately after idx so it renders right below */
+    state.schedule.splice(idx + 1, 0, newSlot);
+    renderScheduleAdmin();
+    setStatus(`✅ Slot extra añadido para ${sourceDay}`);
 }
 function removeScheduleRow(idx) {
     state.schedule.splice(idx, 1);
