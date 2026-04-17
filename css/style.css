@@ -1942,6 +1942,7 @@ body {
   .platforms-row { flex-direction: column; align-items: stretch; }
   .platform-badge { justify-content: center; }
   .games-flex { justify-content: center; }
+  .repos-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 400px) {
@@ -1949,4 +1950,5 @@ body {
   .hero-name { font-size: 24px; }
   .schedule-table { font-size: 12px; }
   .td-time { font-size: 16px; }
+  .repos-grid { grid-template-columns: 1fr; }
 }
