@@ -1,7 +1,7 @@
 {
   "vtuber": "Marchel",
   "tagline": "🎣 Tu pescador chileno de confianza que ama los Kiwis!",
-  "lastUpdated": "2026-04-16",
+  "lastUpdated": "2026-04-22",
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
   "youtubeLatestVODId": "KOxarymARas",
@@ -9,24 +9,6 @@
     {
       "id": 1,
       "day": "Lunes",
-      "time": "14:00",
-      "game": "Final Fantasy X VOD #2",
-      "imageUrl": "https://i.imgur.com/fqVJUzA.png",
-      "tag": "Nuevo Video",
-      "active": true
-    },
-    {
-      "id": 2,
-      "day": "Martes",
-      "time": "18:45",
-      "game": "Un poquito de riesgo de lluvia",
-      "imageUrl": "https://i.imgur.com/GYHWBvY.png",
-      "tag": "Stream Longo",
-      "active": true
-    },
-    {
-      "id": 3,
-      "day": "Miércoles",
       "time": null,
       "game": "Descanso",
       "imageUrl": "",
@@ -34,11 +16,29 @@
       "active": false
     },
     {
+      "id": 2,
+      "day": "Martes",
+      "time": null,
+      "game": "Descanso",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
+    },
+    {
+      "id": 3,
+      "day": "Miércoles",
+      "time": "18:45",
+      "game": "Un poquito de Core Keeper",
+      "imageUrl": "https://i.imgur.com/UTTGH5f.png",
+      "tag": "Stream Shorti",
+      "active": true
+    },
+    {
       "id": 4,
       "day": "Jueves",
       "time": "18:45",
-      "game": "Probemos el Core Keeper",
-      "imageUrl": "https://i.imgur.com/UTTGH5f.png",
+      "game": "Volvemos a la Fantasia Final manin, entramos en el templo de la jungle?",
+      "imageUrl": "https://i.imgur.com/fqVJUzA.png",
       "tag": "Stream Shorti",
       "active": true
     },
@@ -55,8 +55,8 @@
       "id": 6,
       "day": "Sábado",
       "time": "15:30",
-      "game": "Volvemos a la Fantasia Final manin, entramos en el templo de la jungle?",
-      "imageUrl": "https://i.imgur.com/fqVJUzA.png",
+      "game": "Hay riesgo de lluvia",
+      "imageUrl": "https://i.imgur.com/GYHWBvY.png",
       "tag": "Stream Shorti",
       "active": true
     },
@@ -74,23 +74,30 @@
     {
       "id": 1,
       "name": "Final Fantasy X",
-      "emoji": "",
+      "emoji": "⚔️",
       "imageUrl": "https://i.imgur.com/lSfk03a.png",
       "note": "Primera run, no spoilers"
     },
     {
       "id": 3,
       "name": "Risk of Rain 2",
-      "emoji": "",
+      "emoji": "🌧️",
       "imageUrl": "https://i.imgur.com/GJOzHff.png",
       "note": "Un poquito de riesgo de lluvia 🗿"
     },
     {
       "id": 5,
+      "name": "Core Keeper",
+      "emoji": "🔵",
+      "imageUrl": "https://i.imgur.com/BGOgcCM.png",
+      "note": "Qué pasaría si Minecraft y Terraria tuvieran un hijo"
+    },
+    {
+      "id": 100,
       "name": "Fuera de la Caja",
-      "emoji": "",
+      "emoji": "📦",
       "imageUrl": "https://i.imgur.com/0p8oL32.png",
-      "note": "Nuevo invitado cada semana"
+      "note": "Nuevo invitado cada capítulo"
     }
   ],
   "socials": {
