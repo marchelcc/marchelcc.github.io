@@ -1,7 +1,7 @@
 {
   "vtuber": "Marchel",
   "tagline": "🎣 Tu pescador chileno de confianza que ama los Kiwis!",
-  "lastUpdated": "2026-04-22",
+  "lastUpdated": "2026-04-27",
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
   "youtubeLatestVODId": "KOxarymARas",
@@ -18,16 +18,16 @@
     {
       "id": 2,
       "day": "Martes",
-      "time": null,
-      "game": "Descanso",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "16:30",
+      "game": "Coromon, no Pokémon 🗿",
+      "imageUrl": "https://i.imgur.com/Sxuu7nk.png",
+      "tag": "Stream Longo",
+      "active": true
     },
     {
       "id": 3,
       "day": "Miércoles",
-      "time": "18:45",
+      "time": "17:45",
       "game": "Un poquito de Core Keeper",
       "imageUrl": "https://i.imgur.com/UTTGH5f.png",
       "tag": "Stream Shorti",
@@ -36,20 +36,20 @@
     {
       "id": 4,
       "day": "Jueves",
-      "time": "18:45",
-      "game": "Volvemos a la Fantasia Final manin, entramos en el templo de la jungle?",
+      "time": "17:45",
+      "game": "Mi viejo se convirtio en monstruo y mi tío me rapto",
       "imageUrl": "https://i.imgur.com/fqVJUzA.png",
-      "tag": "Stream Shorti",
+      "tag": "Stream Longo",
       "active": true
     },
     {
       "id": 5,
       "day": "Viernes",
-      "time": null,
-      "game": "Descanso",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "19:00",
+      "game": "Devuelta al happy place",
+      "imageUrl": "https://i.imgur.com/GYHWBvY.png",
+      "tag": "Stream Shorti",
+      "active": true
     },
     {
       "id": 6,
@@ -57,47 +57,47 @@
       "time": null,
       "game": "Descanso",
       "imageUrl": null,
-      "tag": null,
-      "active": null
+      "tag": "Off",
+      "active": false
     },
     {
       "id": 7,
       "day": "Domingo",
-      "time": "15:30",
-      "game": "Hay riesgo de lluvia",
-      "imageUrl": "https://i.imgur.com/GYHWBvY.png",
-      "tag": "Stream Shorti",
-      "active": true
+      "time": null,
+      "game": "Descanso",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
     }
   ],
   "rotationGames": [
     {
       "id": 1,
-      "name": "Final Fantasy X",
-      "emoji": "⚔️",
-      "imageUrl": "https://i.imgur.com/lSfk03a.png",
-      "note": "Primera run, no spoilers"
-    },
-    {
-      "id": 2,
       "name": "Risk of Rain 2",
       "emoji": "🌧️",
       "imageUrl": "https://i.imgur.com/GJOzHff.png",
       "note": "Un poquito de riesgo de lluvia 🗿"
     },
     {
-      "id": 3,
+      "id": 2,
       "name": "Core Keeper",
       "emoji": "🔵",
       "imageUrl": "https://i.imgur.com/BGOgcCM.png",
       "note": "Qué pasaría si Minecraft y Terraria tuvieran un hijo"
     },
     {
+      "id": 3,
+      "name": "Final Fantasy X",
+      "emoji": "⚔️",
+      "imageUrl": "https://i.imgur.com/lSfk03a.png",
+      "note": "Primera run, no spoilers"
+    },
+    {
       "id": 4,
-      "name": "Fuera de la Caja",
-      "emoji": "📦",
-      "imageUrl": "https://i.imgur.com/0p8oL32.png",
-      "note": "Nuevo invitado cada capítulo"
+      "name": "Coromon",
+      "emoji": "🐫",
+      "imageUrl": "https://i.imgur.com/JAXUyUn.png",
+      "note": "Como Pokémon, pero sin ser Pokémon"
     }
   ],
   "socials": {

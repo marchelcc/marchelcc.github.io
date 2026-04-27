@@ -425,8 +425,10 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
+  min-width: 0;
+  flex: 1;
 }
-.xp-titlebar .title-icon { font-size: 14px; }
+.xp-titlebar .title-icon { font-size: 14px; flex-shrink: 0; }
 .xp-titlebar .title-text {
   font-family: var(--font-ui);
   font-size: 12px;
@@ -434,6 +436,9 @@ body {
   color: #fff;
   text-shadow: 1px 1px 2px var(--black-strong);
   letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .xp-window-btns {
@@ -461,7 +466,7 @@ body {
 .xp-btn-close:hover { background: linear-gradient(180deg, var(--btn-close-hover-start) 0%, var(--btn-close-hover-end) 100%); }
 
 .xp-content {
-  padding: 16px;
+  padding: 16px 18px;
   position: relative;
   z-index: 1;
   flex: 1;
@@ -511,7 +516,7 @@ body {
 .xp-statusbar {
   background: var(--xp-win-bg);
   border-top: 2px solid var(--status-border);
-  padding: 3px 10px;
+  padding: 4px 12px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -522,7 +527,7 @@ body {
   z-index: 1;
   flex-shrink: 0;
   height: auto;
-  min-height: 0;
+  min-height: 24px;
   line-height: normal;
   margin-top: 0;
 }
@@ -540,11 +545,11 @@ body {
    ───────────────────────────────────────────────────────────── */
 .hero-window .xp-content {
   background: linear-gradient(135deg, var(--green-light) 0%, var(--beige) 60%, var(--water-blue) 100%);
-  padding: 24px 20px;
+  padding: 24px 20px 48px;
   text-align: center;
   position: relative;
   overflow-x: hidden;
-  overflow-y: auto;  /* scroll when content taller than window */
+  overflow-y: auto;
 }
 /* Wave is now on the window element itself (::after) so it always
    sits at the VISUAL bottom regardless of scroll position */
@@ -570,13 +575,16 @@ body {
   color: var(--xp-blue-dark);
   text-shadow: 2px 2px 0 var(--hero-text-shadow), 3px 3px 0 var(--hero-text-shadow2);
   letter-spacing: 1px;
+  margin-top: 4px;
 }
 .hero-tagline {
   font-family: var(--font-ui);
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
   color: var(--green-dark);
-  margin-top: 4px;
+  margin-top: 6px;
+  margin-bottom: 2px;
+  line-height: 1.5;
 }
 
 .doodle {
@@ -598,8 +606,8 @@ body {
   display: flex;
   gap: 8px;
   justify-content: center;
-  margin-top: 14px;
-  margin-bottom: 14px;
+  margin-top: 12px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
 }
 .social-badge {
@@ -695,9 +703,12 @@ body {
 .schedule-window .xp-content {
   padding: 12px;
   background: var(--cream);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .schedule-table {
   width: 100%;
+  min-width: 380px;
   border-collapse: collapse;
   font-family: var(--font-ui);
 }
@@ -706,7 +717,7 @@ body {
   color: #fff;
 }
 .schedule-table th {
-  padding: 8px 12px;
+  padding: 10px 14px;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -722,28 +733,31 @@ body {
 .schedule-table tbody tr:hover { background: var(--schedule-row-hover); }
 .schedule-table tbody tr.inactive { opacity: 0.45; }
 .schedule-table td {
-  padding: 10px 12px;
+  padding: 12px 14px;
   font-size: 14px;
   vertical-align: middle;
 }
 .td-day {
   font-family: var(--font-ui);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--xp-blue-dark);
   white-space: nowrap;
 }
 .td-time {
   font-family: var(--font-ui);
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 600;
   color: var(--green-dark);
   white-space: nowrap;
+  letter-spacing: -0.5px;
 }
 .td-game {
   font-weight: 600;
   color: #2a2a2a;
+  line-height: 1.4;
 }
-.td-tag { text-align: right; }
+.td-tag { text-align: right; white-space: nowrap; }
 
 .tag {
   display: inline-block;
@@ -762,14 +776,22 @@ body {
 .tag-off            { color: var(--tag-off);     background: var(--tag-bg-off); }
 
 .schedule-table tbody tr.today {
-  background: linear-gradient(90deg, var(--today-bg-start), var(--cream));
+  background: linear-gradient(90deg, #FFF6D0, var(--cream));
   border-left: 4px solid var(--today-border);
+  box-shadow: inset 3px 0 0 var(--day-highlight);
 }
 .schedule-table tbody tr.today .td-day::after {
   content: ' ←hoy';
-  font-size: 11px;
+  font-size: 10px;
   color: var(--today-border);
   font-family: var(--font-ui);
+  font-weight: 700;
+  background: #e8efff;
+  border: 1px solid var(--xp-blue-light);
+  border-radius: 8px;
+  padding: 1px 5px;
+  margin-left: 4px;
+  vertical-align: middle;
 }
 
 /* ── Multi-slot days: extra slots share the day cell via rowspan ── */
@@ -793,16 +815,17 @@ body {
    ───────────────────────────────────────────────────────────── */
 .rotation-window .xp-content {
   background: var(--cream);
-  padding: 16px;
+  padding: 16px 16px 20px;
 }
 .rotation-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 14px;
 }
 
 .game-card {
-  height: 200px;
+  min-height: 160px;
+  height: auto;
   width: 100%;
   background: var(--beige);
   border: 2px solid var(--xp-btn-border);
@@ -832,7 +855,7 @@ body {
 .game-card .game-emoji {
   font-size: 32px;
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   filter: drop-shadow(1px 2px 2px #0003);
 }
 .game-card .game-name {
@@ -840,12 +863,14 @@ body {
   font-size: 15px;
   font-weight: 700;
   color: var(--xp-blue-dark);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  line-height: 1.3;
 }
 .game-card .game-note {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--brown-soft);
   font-style: italic;
+  line-height: 1.4;
 }
 
 .game-logo-wrap {
@@ -1038,24 +1063,23 @@ body {
 .aboutme-enhanced {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.4rem;
 }
 .bio-card {
   background: var(--aboutme-bg-card);
   border-radius: 16px;
-  padding: 1rem 1.2rem;
+  padding: 1.1rem 1.3rem;
   border-left: 6px solid var(--aboutme-border-left);
   box-shadow: 2px 2px 6px var(--aboutme-shadow);
 }
 .bio-text {
   font-family: var(--font-ui);
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.65;
   color: var(--bio-text);
   margin: 0;
-  text-align: justify;
+  text-align: left;
   hyphens: auto;
-  lang: es;
 }
 .bio-text strong {
   color: var(--xp-blue-dark);
@@ -1107,21 +1131,21 @@ body {
 }
 .section-title {
   font-family: var(--font-ui, 'Kalam', cursive);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--section-title-color);
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
   border-bottom: 2px dashed var(--section-title-border);
-  padding-bottom: 4px;
+  padding-bottom: 6px;
 }
 .games-flex {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.9rem;
-  margin-top: 6px;
+  gap: 0.75rem;
+  margin-top: 8px;
 }
 .game-item {
   background: var(--game-item-bg);
@@ -1861,94 +1885,203 @@ body {
   }
 }
 
+/* ── Tablet (769px → 1199px): tighter window defaults ── */
+@media (min-width: 769px) and (max-width: 1199px) {
+  .xp-window {
+    max-width: calc(100vw - 24px);
+  }
+}
+
 @media (max-width: 768px) {
+  /* ── Body & scroll ── */
   body {
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 8px 8px 52px;
+    padding: 0 0 56px; /* leave room for taskbar */
+    background-attachment: scroll;
   }
+
+  /* ── Desktop layout → vertical stack ── */
   .desktop {
     position: static;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 0;
     overflow: visible;
     bottom: auto;
+    padding: 8px 8px 0;
   }
+
+  /* ── Desktop icons → horizontal pill row ── */
   .desktop-icons {
     position: static;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
+    padding: 8px 0 4px;
+    justify-content: flex-start;
   }
-  .xp-window,
+  .desktop-icon {
+    width: 56px;
+    font-size: 10px;
+    padding: 4px 2px;
+  }
+  .desktop-icon .icon-img {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+
+  /* ── Windows → hidden by default; shown only when toggled ── */
+  .xp-window {
+    display: none;
+  }
   .xp-window.wm-open {
+    display: none; /* desktop wm-open has no meaning on mobile */
+  }
+  .xp-window.wm-mobile-open {
     position: static !important;
     display: flex !important;
     flex-direction: column;
-    width: auto !important;
+    width: 100% !important;
     height: auto !important;
     min-height: unset;
-    box-shadow: var(--shadow-win);
+    box-shadow: 0 2px 8px #0003, 0 1px 0 #ffffff44;
     border-radius: var(--radius-win);
     animation: none !important;
     will-change: auto;
+    margin-bottom: 10px;
   }
-  .xp-window.wm-maximized {
+  .xp-window.wm-mobile-open.wm-maximized {
     border-radius: var(--radius-win);
   }
   .xp-window:not(.wm-focused) .xp-titlebar {
     background: var(--xp-titlebar);
   }
   .xp-titlebar { cursor: default; }
+  .xp-titlebar .title-text { font-size: 12px; }
+
+  .desktop-icon.icon-active .icon-img {
+    background: #3a66ccaa;
+    border-color: #aabbffcc;
+    box-shadow: 0 0 0 2px #4a7fee88;
+  }
   #wm-drag-cover { display: none !important; }
   .taskbar-windows { display: none; }
   .taskbar-icon-btn { display: none; }
   .taskbar-item[data-open="questions"],
-  .desktop-icon[data-open="questions"] {
-    display: none;
+  .desktop-icon[data-open="questions"] { display: none; }
+  .xp-window[data-wid="questions"] { display: none !important; }
+
+  /* ── Content areas ── */
+  .xp-content {
+    padding: 12px 14px;
   }
-  .xp-window[data-wid="questions"] {
-    display: none !important;
+  .hero-window .xp-content {
+    padding: 20px 16px 48px;
   }
+  .schedule-window .xp-content {
+    padding: 10px;
+    overflow-x: auto;
+  }
+  .rotation-window .xp-content {
+    padding: 12px;
+  }
+
+  /* ── Schedule table ── */
+  .schedule-table {
+    font-size: 13px;
+    min-width: 360px;
+  }
+  .schedule-table th,
+  .schedule-table td {
+    padding: 9px 10px;
+  }
+  /* Hide tag column on small screens — keep it readable */
+  .schedule-table th:nth-child(4),
+  .schedule-table td:nth-child(4) { display: none; }
+  .td-time { font-size: 18px; }
+  .td-day { font-size: 13px; }
+
+  /* ── Hero ── */
+  .hero-name { font-size: 28px; }
+  .hero-tagline { font-size: 14px; }
+  .msn-frame { width: 76px; height: 76px; }
+
+  /* ── Rotation grid ── */
+  .rotation-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .game-card { padding: 12px 10px; }
+  .game-card-logo { height: 80px; }
+
+  /* ── Status bar ── */
+  .xp-statusbar {
+    font-size: 10px;
+    padding: 4px 8px;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .xp-statusbar .status-item {
+    padding-right: 6px;
+  }
+
+  /* ── Embeds ── */
   .xp-content.stream iframe,
   .xp-content.yt-video iframe {
-    min-height: 220px;
-    height: 55vw;
+    min-height: 200px;
+    height: 56vw;
   }
-  .hero-name { font-size: 30px; }
-  .schedule-table th, .schedule-table td { padding: 8px; }
-  .schedule-table th:nth-child(4), .schedule-table td:nth-child(4) { display: none; }
-  .rotation-grid { grid-template-columns: 1fr 1fr; }
-  .xp-titlebar .title-text { font-size: 11px; }
-  .admin-table th:last-child, .admin-table td:last-child { display: none; }
-  .admin-table th:nth-child(5), .admin-table td:nth-child(5) { display: none; }
-  .taskbar { flex-wrap: wrap; justify-content: flex-start; padding: 0 4px; gap: 4px; }
-  .taskbar-start { padding: 3px 8px; font-size: 12px; }
-  .taskbar-clock-wrap { order: unset; margin-left: auto; gap: 4px; }
-  .taskbar-clock { font-size: 14px; padding: 2px 6px; }
+
+  /* ── Taskbar ── */
+  .taskbar {
+    height: auto;
+    min-height: 40px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 4px 6px;
+    gap: 6px;
+  }
+  .taskbar-start { padding: 4px 10px; font-size: 12px; border-radius: 10px; }
+  .taskbar-items { gap: 4px; }
+  .taskbar-clock-wrap { margin-left: auto; gap: 4px; }
+  .taskbar-clock { font-size: 13px; padding: 3px 7px; }
+  #timezone-label { font-size: 10px; padding: 3px 5px; }
+
+  /* ── Admin ── */
   .repos-grid { grid-template-columns: 1fr; }
   .meta-form-grid { grid-template-columns: 1fr; }
-  .discord-window .xp-content.discord-iframe-wrapper {
-    min-height: 420px;
-  }
-  .discord-window iframe {
-    height: 100%;
-    min-height: 380px;
-  }
+  .admin-table th:last-child, .admin-table td:last-child { display: none; }
+  .admin-table th:nth-child(5), .admin-table td:nth-child(5) { display: none; }
+
+  /* ── Discord ── */
+  .discord-window .xp-content.discord-iframe-wrapper { min-height: 400px; }
+  .discord-window iframe { height: 100%; min-height: 360px; }
+
+  /* ── Bio card ── */
+  .bio-text { font-size: 0.9rem; line-height: 1.6; }
+  .aboutme-enhanced { gap: 1rem; }
+  .bio-card { padding: 0.9rem 1rem; }
+  .platforms-row { gap: 8px; padding: 0.75rem; }
 }
 
 @media (max-width: 540px) {
+  .desktop { padding: 6px 6px 0; }
   .platforms-row { flex-direction: column; align-items: stretch; }
   .platform-badge { justify-content: center; }
   .games-flex { justify-content: center; }
   .repos-grid { grid-template-columns: 1fr; }
+  .rotation-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hero-name { font-size: 26px; }
+  .xp-window { border-radius: 6px; }
 }
 
 @media (max-width: 400px) {
-  .hero-avatar { font-size: 48px; }
-  .hero-name { font-size: 24px; }
+  .hero-name { font-size: 22px; }
+  .hero-tagline { font-size: 13px; }
   .schedule-table { font-size: 12px; }
   .td-time { font-size: 16px; }
   .repos-grid { grid-template-columns: 1fr; }
+  .game-card { padding: 10px 8px; }
+  .game-card-logo { height: 64px; }
+  .games-flex { gap: 0.5rem; }
+  .game-item { font-size: 0.8rem; padding: 5px 10px 5px 8px; }
 }

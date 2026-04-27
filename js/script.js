@@ -120,10 +120,13 @@ const WM = (() => {
       });
     });
 
-    /* Auto-open any window that has the data-autoopen attribute.
-       Falls back to 'hero' if nothing is marked (safety net). */
+    /* Auto-open windows on load.
+       Desktop: open all [data-autoopen] windows (hero, schedule, discord).
+       Mobile:  open only hero and schedule so the page isn't overwhelming. */
     const autoOpenEls = document.querySelectorAll('.xp-window[data-wid][data-autoopen]');
-    if (autoOpenEls.length > 0) {
+    if (isMobile()) {
+      ['hero', 'schedule'].forEach(wid => { if (wins[wid]) open(wid); });
+    } else if (autoOpenEls.length > 0) {
       autoOpenEls.forEach(el => open(el.dataset.wid));
     } else if (wins['hero']) {
       open('hero');
@@ -137,6 +140,26 @@ const WM = (() => {
     const w = wins[wid];
     if (!w) return;
 
+    /* ── Mobile: toggle the window on/off in the page flow ── */
+    if (isMobile()) {
+      const isOpen = w.el.classList.contains('wm-mobile-open');
+      if (isOpen) {
+        /* Close: collapse the window */
+        w.el.classList.remove('wm-mobile-open', 'wm-open');
+        w.state = 'closed';
+      } else {
+        /* Open: reveal the window and scroll it into view */
+        w.el.classList.add('wm-mobile-open', 'wm-open');
+        w.state = 'open';
+        setTimeout(() => {
+          w.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 40);
+      }
+      syncIconState(wid);
+      return;
+    }
+
+    /* ── Desktop: already open → just focus it ── */
     if (w.state === 'open') {
       focus(wid);
       return;
@@ -178,6 +201,13 @@ const WM = (() => {
   function close(wid) {
     const w = wins[wid];
     if (!w || w.state === 'closed') return;
+
+    if (isMobile()) {
+      w.el.classList.remove('wm-mobile-open', 'wm-open');
+      w.state = 'closed';
+      syncIconState(wid);
+      return;
+    }
 
     /* Quick scale-down animation */
     w.el.style.transition = 'opacity .12s, transform .12s';
@@ -465,8 +495,11 @@ const WM = (() => {
   function syncIconState(wid) {
     const btn = document.querySelector(`button.desktop-icon[data-open="${wid}"]`);
     if (!btn) return;
-    const isOpen = wins[wid]?.state !== 'closed';
-    btn.classList.toggle('icon-active', isOpen);
+    const w = wins[wid];
+    const isOpen = isMobile()
+        ? w?.el.classList.contains('wm-mobile-open')
+        : w?.state !== 'closed';
+    btn.classList.toggle('icon-active', !!isOpen);
   }
 
   /* Sync the wm-focused class on taskbar-icon-btn buttons
@@ -480,7 +513,7 @@ const WM = (() => {
   }
 
   /* Public API */
-  return { init, open, close, minimize, focus };
+  return { init, open, close, minimize, focus, _isMobile: isMobile };
 
 })(); /* end WM */
 
@@ -583,9 +616,9 @@ function renderSchedule(schedule) {
     /* Count how many consecutive entries share this day */
     let slotCount = 1;
     while (
-      i + slotCount < schedule.length &&
-      schedule[i + slotCount].day === item.day
-    ) slotCount++;
+        i + slotCount < schedule.length &&
+        schedule[i + slotCount].day === item.day
+        ) slotCount++;
 
     /* Render each slot for this day */
     for (let s = 0; s < slotCount; s++) {
@@ -602,24 +635,24 @@ function renderSchedule(schedule) {
       if (slot.time != null) {
         const local = convertChileTimeToLocal(slot.time);
         formattedTime =
-          String(local.getHours()).padStart(2, '0') + ':' +
-          String(local.getMinutes()).padStart(2, '0');
+            String(local.getHours()).padStart(2, '0') + ':' +
+            String(local.getMinutes()).padStart(2, '0');
       }
 
       /* Game logo */
       const hasLogo  = slot.imageUrl && slot.imageUrl.trim() && !slot.imageUrl.includes('your-');
       const gameCell = hasLogo
-        ? `<div class="game-logo-wrap">
+          ? `<div class="game-logo-wrap">
              <img class="game-logo" src="${slot.imageUrl}" alt="${slot.game}"
                   onerror="this.style.display='none'">
              <span>${slot.game}</span>
            </div>`
-        : `<span>${slot.game}</span>`;
+          : `<span>${slot.game}</span>`;
 
       /* Day cell: only on the FIRST slot, with rowspan to cover all slots */
       const dayCellHtml = s === 0
-        ? `<td class="td-day" rowspan="${slotCount}">${slot.day}</td>`
-        : ''; /* subsequent slots: day cell is covered by rowspan */
+          ? `<td class="td-day" rowspan="${slotCount}">${slot.day}</td>`
+          : ''; /* subsequent slots: day cell is covered by rowspan */
 
       tr.innerHTML = `
         ${dayCellHtml}
@@ -899,6 +932,26 @@ document.addEventListener('DOMContentLoaded', () => {
   init();             // load and render schedule data
   startClock();       // taskbar clock
   setupTwitchEmbed(); // Twitch player
+
+  /* On resize from mobile → desktop, clean up mobile-open classes so the
+     desktop WM takes over cleanly. Vice-versa: collapse all windows. */
+  let lastMobile = WM._isMobile();
+  window.addEventListener('resize', () => {
+    const nowMobile = WM._isMobile();
+    if (nowMobile === lastMobile) return;
+    lastMobile = nowMobile;
+
+    document.querySelectorAll('.xp-window[data-wid]').forEach(el => {
+      if (nowMobile) {
+        /* Switched to mobile — desktop WM classes no longer apply */
+        el.classList.remove('wm-open', 'wm-focused', 'wm-maximized');
+        el.style.cssText = '';
+      } else {
+        /* Switched to desktop — remove mobile class */
+        el.classList.remove('wm-mobile-open');
+      }
+    });
+  }, { passive: true });
 
   /* Lazy-load GitHub repos the first time the github window is opened */
   let reposFetched = false;
