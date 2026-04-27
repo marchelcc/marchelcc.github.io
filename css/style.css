@@ -382,8 +382,20 @@ body {
   background: linear-gradient(180deg, var(--grey-titlebar) 0%, var(--grey-titlebar-mid) 40%, var(--grey-titlebar-end) 100%);
 }
 @keyframes wm-open {
-  from { opacity: 0; transform: scale(0.94); }
-  to   { opacity: 1; transform: scale(1); }
+  0%   { opacity: 0; transform: scale(0.93) translateY(6px); }
+  70%  { opacity: 1; transform: scale(1.01) translateY(-1px); }
+  100% { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+/* Mobile window animations */
+@keyframes mobile-win-open {
+  0%   { opacity: 0; transform: scaleY(0.88) translateY(-8px); transform-origin: top center; }
+  70%  { opacity: 1; transform: scaleY(1.01) translateY(1px);  transform-origin: top center; }
+  100% { opacity: 1; transform: scaleY(1)    translateY(0);    transform-origin: top center; }
+}
+@keyframes mobile-win-close {
+  from { opacity: 1; transform: scaleY(1)    translateY(0);    transform-origin: top center; }
+  to   { opacity: 0; transform: scaleY(0.88) translateY(-6px); transform-origin: top center; }
 }
 
 /* Wave decoration pinned to the VISUAL bottom of the hero window.
@@ -744,6 +756,7 @@ body {
   color: var(--xp-blue-dark);
   white-space: nowrap;
 }
+.schedule-table th:nth-child(2) { min-width: 96px; }
 .td-time {
   font-family: var(--font-ui);
   font-size: 22px;
@@ -751,6 +764,7 @@ body {
   color: var(--green-dark);
   white-space: nowrap;
   letter-spacing: -0.5px;
+  min-width: 96px;
 }
 .td-game {
   font-weight: 600;
@@ -1948,9 +1962,25 @@ body {
     min-height: unset;
     box-shadow: 0 2px 8px #0003, 0 1px 0 #ffffff44;
     border-radius: var(--radius-win);
-    animation: none !important;
-    will-change: auto;
+    animation: mobile-win-open 0.25s cubic-bezier(0.2, 0, 0.2, 1) both;
+    will-change: transform, opacity;
     margin-bottom: 10px;
+  }
+  /* Closing animation — wm-mobile-open is removed first, this keeps the
+     element visible and animates it out, then JS removes this class too */
+  .xp-window.wm-mobile-closing {
+    position: static !important;
+    display: flex !important;
+    flex-direction: column;
+    width: 100% !important;
+    height: auto !important;
+    min-height: unset;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px #0003;
+    border-radius: var(--radius-win);
+    overflow: hidden;
+    pointer-events: none;
+    animation: mobile-win-close 0.2s ease-in both;
   }
   .xp-window.wm-mobile-open.wm-maximized {
     border-radius: var(--radius-win);

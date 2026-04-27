@@ -144,9 +144,15 @@ const WM = (() => {
     if (isMobile()) {
       const isOpen = w.el.classList.contains('wm-mobile-open');
       if (isOpen) {
-        /* Close: collapse the window */
-        w.el.classList.remove('wm-mobile-open', 'wm-open');
-        w.state = 'closed';
+        /* Remove the open class first so its fill-mode stops holding the element.
+           wm-mobile-closing keeps display:flex alive during the exit animation. */
+        w.el.classList.remove('wm-mobile-open');
+        w.el.classList.add('wm-mobile-closing');
+        setTimeout(() => {
+          w.el.classList.remove('wm-open', 'wm-mobile-closing');
+          w.state = 'closed';
+          syncIconState(wid);
+        }, 200);
       } else {
         /* Open: reveal the window and scroll it into view */
         w.el.classList.add('wm-mobile-open', 'wm-open');
@@ -154,8 +160,8 @@ const WM = (() => {
         setTimeout(() => {
           w.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 40);
+        syncIconState(wid);
       }
-      syncIconState(wid);
       return;
     }
 
@@ -203,16 +209,23 @@ const WM = (() => {
     if (!w || w.state === 'closed') return;
 
     if (isMobile()) {
-      w.el.classList.remove('wm-mobile-open', 'wm-open');
-      w.state = 'closed';
-      syncIconState(wid);
+      w.el.classList.remove('wm-mobile-open');
+      w.el.classList.add('wm-mobile-closing');
+      setTimeout(() => {
+        w.el.classList.remove('wm-open', 'wm-mobile-closing');
+        w.state = 'closed';
+        syncIconState(wid);
+      }, 200);
       return;
     }
 
-    /* Quick scale-down animation */
-    w.el.style.transition = 'opacity .12s, transform .12s';
+    /* Cancel any running open animation so the transition can take over */
+    w.el.style.animation = 'none';
+    w.el.getBoundingClientRect(); /* force reflow — lets the browser register the cleared animation */
+
+    w.el.style.transition = 'opacity 0.15s ease-in, transform 0.15s ease-in';
     w.el.style.opacity    = '0';
-    w.el.style.transform  = 'scale(0.9)';
+    w.el.style.transform  = 'scale(0.88) translateY(6px)';
 
     setTimeout(() => {
       w.el.style.cssText = '';          // clear all inline styles
@@ -261,6 +274,8 @@ const WM = (() => {
         : 0.04;
 
     /* Animate */
+    w.el.style.animation       = 'none';  /* cancel wm-open fill so transition can fire */
+    w.el.getBoundingClientRect();          /* force reflow */
     w.el.style.transformOrigin = 'center center';
     w.el.style.transition = 'opacity 0.22s ease-in, transform 0.22s cubic-bezier(0.4,0,1,1)';
     w.el.style.opacity    = '0';
