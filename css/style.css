@@ -905,7 +905,10 @@ body {
 }
 .game-card-logo {
   width: 100%;
-  height: 100px;
+  max-width: 150px;
+  min-width: 120px;
+  max-height: 120px;
+  min-height: 80px;
   object-fit: contain;
   border-radius: 8px;
   border: 2px solid var(--xp-btn-border);
@@ -913,6 +916,7 @@ body {
   margin: 0 auto 6px;
   display: block;
   box-shadow: 2px 2px 0 var(--brown-soft);
+  padding: 10px;
 }
 .game-card-emoji-fallback {
   font-size: 40px;

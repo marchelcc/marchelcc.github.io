@@ -451,7 +451,7 @@ function exportJson() {
     const blob = new Blob([json], { type: 'application/json' });
     const url  = URL.createObjectURL(blob);
     const a    = document.createElement('a');
-    a.href = url; a.download = 'data/schedule.json'; a.click();
+    a.href = url; a.download = 'schedule.json'; a.click();
     URL.revokeObjectURL(url);
     showToast('💾 schedule.json descargado correctamente');
     setStatus('✅ JSON exportado');
