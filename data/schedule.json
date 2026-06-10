@@ -1,7 +1,7 @@
 {
   "vtuber": "Marchel",
   "tagline": "🎣 Tu pescador chileno de confianza que ama los Kiwis!",
-  "lastUpdated": "2026-04-28",
+  "lastUpdated": "2026-06-10",
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
   "youtubeLatestVODId": "KOxarymARas",
@@ -18,38 +18,38 @@
     {
       "id": 2,
       "day": "Martes",
-      "time": "16:30",
-      "game": "Coromon, no Pokémon 🗿",
-      "imageUrl": "https://i.imgur.com/Sxuu7nk.png",
-      "tag": "Stream Longo",
-      "active": true
+      "time": null,
+      "game": "Descanso",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
     },
     {
       "id": 3,
       "day": "Miércoles",
-      "time": "17:45",
-      "game": "Un poquito de Core Keeper",
-      "imageUrl": "https://i.imgur.com/UTTGH5f.png",
+      "time": null,
+      "game": "Volvemos o/",
+      "imageUrl": "",
       "tag": "Stream Shorti",
       "active": true
     },
     {
       "id": 4,
       "day": "Jueves",
-      "time": "17:45",
-      "game": "Amaze amaze amaze, Grace y Rocky salvarán las estrellas",
-      "imageUrl": "https://i.imgur.com/M2NLh4p.png",
-      "tag": "Stream Longo",
-      "active": true
+      "time": null,
+      "game": "Descanso",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
     },
     {
       "id": 5,
       "day": "Viernes",
-      "time": "19:00",
-      "game": "Devuelta al happy place",
-      "imageUrl": "https://i.imgur.com/GYHWBvY.png",
-      "tag": "Stream Shorti",
-      "active": true
+      "time": null,
+      "game": "Descanso",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
     },
     {
       "id": 6,
