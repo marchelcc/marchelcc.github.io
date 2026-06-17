@@ -1,7 +1,7 @@
 {
   "vtuber": "Marchel",
   "tagline": "🎣 Tu pescador chileno de confianza que ama los Kiwis!",
-  "lastUpdated": "2026-06-10",
+  "lastUpdated": "2026-06-17",
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
   "youtubeLatestVODId": "KOxarymARas",
@@ -27,20 +27,20 @@
     {
       "id": 3,
       "day": "Miércoles",
-      "time": null,
-      "game": "Volvemos o/",
-      "imageUrl": "",
+      "time": "20:45",
+      "game": "Empezamos el Rework!",
+      "imageUrl": "https://i.imgur.com/nDyD7Fn.png",
       "tag": "Stream Shorti",
       "active": true
     },
     {
       "id": 4,
       "day": "Jueves",
-      "time": null,
-      "game": "Descanso",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "19:00",
+      "game": "Over the Hill con Muuyal!",
+      "imageUrl": "https://i.imgur.com/LSZyC3s.png",
+      "tag": "Stream Longo",
+      "active": true
     },
     {
       "id": 5,
