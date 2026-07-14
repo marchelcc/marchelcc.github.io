@@ -198,16 +198,17 @@
          style="padding:12px;position:relative;z-index:1;background:var(--cream);">
       <p class="admin-section-title">📚 Backlog de juegos</p>
       <p class="admin-hint-text">
-        Esto edita <code>backlog.json</code> (estado, HLTB, notas). Las horas jugadas se llenan
-        solas desde Steam si le pones el <strong>App ID</strong> correcto (búscalo en la URL de la
-        página de la tienda de Steam del juego, ej. store.steampowered.com/app/<strong>632360</strong>/...).
+        Esto edita <code>backlog.json</code> (estado, HLTB, notas). Para juegos de <strong>Steam</strong>,
+        las horas se llenan solas si le pones el <strong>App ID</strong> correcto (búscalo en la URL de la
+        tienda, ej. store.steampowered.com/app/<strong>632360</strong>/...). Para <strong>GOG</strong> u otras
+        plataformas, no hay forma de automatizarlo — ingresa las horas jugadas a mano en la columna correspondiente.
       </p>
       <div style="overflow-x:auto;">
         <table class="admin-table" id="backlog-admin-table">
           <thead>
           <tr>
-            <th>Juego</th><th>Portada URL</th><th>Steam App ID</th>
-            <th>Estado</th><th>HLTB (h)</th><th>Nota</th><th>Acciones</th>
+            <th>Juego</th><th>Portada URL</th><th>Plataforma</th><th>Steam App ID</th>
+            <th>Estado</th><th>HLTB (h)</th><th>Horas jugadas</th><th>Nota</th><th>Acciones</th>
           </tr>
           </thead>
           <tbody id="backlog-admin-body"></tbody>

@@ -37,6 +37,11 @@ const BACKLOG_STATUS_OPTIONS = [
     { value: 'completado', label: '✅ Completado' },
     { value: 'platino',    label: '💯 100%' },
 ];
+const BACKLOG_PLATFORM_OPTIONS = [
+    { value: 'steam', label: '🟦 Steam' },
+    { value: 'gog',   label: '🟪 GOG' },
+    { value: 'otro',  label: '🎮 Otro' },
+];
 
 /* ─────────────────────────────────────────────────────────────
    AUTH — GITHUB TOKEN LOGIN
@@ -469,11 +474,16 @@ function renderBacklogAdmin() {
         const statusOpts = BACKLOG_STATUS_OPTIONS.map(s =>
             `<option value="${s.value}" ${s.value === game.status ? 'selected' : ''}>${s.label}</option>`
         ).join('');
+        const platformOpts = BACKLOG_PLATFORM_OPTIONS.map(p =>
+            `<option value="${p.value}" ${p.value === game.platform ? 'selected' : ''}>${p.label}</option>`
+        ).join('');
 
         const logoSrc    = game.imageUrl || '';
         const imgPreview = logoSrc && !logoSrc.includes('your-')
             ? `<img src="${logoSrc}" onerror="this.style.display='none'" />`
             : '';
+
+        const isSteam = game.platform === 'steam';
 
         tr.innerHTML = `
           <td><input type="text" value="${game.name || ''}" placeholder="Nombre del juego"
@@ -486,11 +496,16 @@ function renderBacklogAdmin() {
                 onchange="updateBacklogField(${idx}, 'imageUrl', this.value); refreshLogoPreview(this)" />
             </div>
           </td>
+          <td><select onchange="updateBacklogField(${idx}, 'platform', this.value); renderBacklogAdmin();">${platformOpts}</select></td>
           <td><input type="number" value="${game.appid ?? ''}" placeholder="632360" style="width:90px;"
+               ${isSteam ? '' : 'disabled title="Solo aplica para plataforma Steam"'}
                onchange="updateBacklogField(${idx}, 'appid', this.value ? Number(this.value) : null)" /></td>
           <td><select onchange="updateBacklogField(${idx}, 'status', this.value)">${statusOpts}</select></td>
           <td><input type="number" value="${game.hltb ?? ''}" placeholder="12" style="width:70px;"
                onchange="updateBacklogField(${idx}, 'hltb', this.value ? Number(this.value) : null)" /></td>
+          <td><input type="number" value="${game.hoursPlayed ?? ''}" placeholder="18" style="width:70px;"
+               ${isSteam ? 'disabled title="Se llena automático desde Steam"' : ''}
+               onchange="updateBacklogField(${idx}, 'hoursPlayed', this.value ? Number(this.value) : null)" /></td>
           <td><input type="text" value="${game.note || ''}" placeholder="Nota opcional"
                onchange="updateBacklogField(${idx}, 'note', this.value)" /></td>
           <td class="admin-col-actions">
@@ -506,8 +521,8 @@ function updateBacklogField(idx, field, value) { backlogState[idx][field] = valu
 
 function addBacklogGame() {
     backlogState.push({
-        id: backlogIdCounter++, name: 'Nuevo Juego', appid: null,
-        status: 'backlog', hltb: null, note: '', imageUrl: ''
+        id: backlogIdCounter++, name: 'Nuevo Juego', appid: null, platform: 'otro',
+        status: 'backlog', hltb: null, hoursPlayed: null, note: '', imageUrl: ''
     });
     renderBacklogAdmin();
     setStatus('✅ Juego agregado al backlog');

@@ -4,8 +4,10 @@
       "id": 1,
       "name": "Risk of Rain 2",
       "appid": 632360,
+      "platform": "steam",
       "status": "completado",
       "hltb": 12,
+      "hoursPlayed": null,
       "note": "Un poquito de riesgo de lluvia 🗿",
       "imageUrl": "https://i.imgur.com/GJOzHff.png"
     },
@@ -13,8 +15,10 @@
       "id": 2,
       "name": "Core Keeper",
       "appid": 1621690,
+      "platform": "steam",
       "status": "jugando",
       "hltb": 35,
+      "hoursPlayed": null,
       "note": "Qué pasaría si Minecraft y Terraria tuvieran un hijo",
       "imageUrl": "https://i.imgur.com/BGOgcCM.png"
     },
@@ -22,17 +26,21 @@
       "id": 3,
       "name": "Final Fantasy X",
       "appid": null,
+      "platform": "otro",
       "status": "jugando",
       "hltb": 39,
+      "hoursPlayed": 18,
       "note": "Primera run, no spoilers",
       "imageUrl": "https://i.imgur.com/lSfk03a.png"
     },
     {
       "id": 4,
       "name": "Coromon",
-      "appid": 1218110,
+      "appid": null,
+      "platform": "gog",
       "status": "backlog",
       "hltb": 25,
+      "hoursPlayed": null,
       "note": "Como Pokémon, pero sin ser Pokémon",
       "imageUrl": "https://i.imgur.com/JAXUyUn.png"
     },
@@ -40,8 +48,10 @@
       "id": 5,
       "name": "No Man's Sky",
       "appid": 275850,
+      "platform": "steam",
       "status": "pausado",
       "hltb": 30,
+      "hoursPlayed": null,
       "note": "Amaze amaze amaze, Grace y Rocky salvarán las estrellas",
       "imageUrl": "https://i.imgur.com/c8uKrEB.png"
     }
