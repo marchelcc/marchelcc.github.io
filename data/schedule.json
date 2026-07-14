@@ -27,20 +27,20 @@
     {
       "id": 3,
       "day": "Miércoles",
-      "time": "20:45",
-      "game": "Empezamos el Rework!",
-      "imageUrl": "https://i.imgur.com/nDyD7Fn.png",
-      "tag": "Stream Shorti",
-      "active": true
+      "time": null,
+      "game": "Descanso",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
     },
     {
       "id": 4,
       "day": "Jueves",
-      "time": "19:00",
-      "game": "Over the Hill con Muuyal!",
-      "imageUrl": "https://i.imgur.com/LSZyC3s.png",
-      "tag": "Stream Longo",
-      "active": true
+      "time": null,
+      "game": "Descanso",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
     },
     {
       "id": 5,
@@ -72,39 +72,10 @@
   ],
   "rotationGames": [
     {
-      "id": 1,
-      "name": "Risk of Rain 2",
-      "emoji": "🌧️",
-      "imageUrl": "https://i.imgur.com/GJOzHff.png",
-      "note": "Un poquito de riesgo de lluvia 🗿"
-    },
-    {
-      "id": 2,
-      "name": "Core Keeper",
-      "emoji": "🔵",
-      "imageUrl": "https://i.imgur.com/BGOgcCM.png",
-      "note": "Qué pasaría si Minecraft y Terraria tuvieran un hijo"
-    },
-    {
-      "id": 3,
-      "name": "Final Fantasy X",
-      "emoji": "⚔️",
-      "imageUrl": "https://i.imgur.com/lSfk03a.png",
-      "note": "Primera run, no spoilers"
-    },
-    {
-      "id": 4,
-      "name": "Coromon",
-      "emoji": "🐫",
-      "imageUrl": "https://i.imgur.com/JAXUyUn.png",
-      "note": "Como Pokémon, pero sin ser Pokémon"
-    },
-    {
-      "id": 5,
-      "name": "No Man's Sky",
-      "emoji": "🚀",
-      "imageUrl": "https://i.imgur.com/c8uKrEB.png",
-      "note": "Amaze amaze amaze, Grace y Rocky salvarán las estrellas"
+      "id": null,
+      "name": null,
+      "imageUrl": null,
+      "note": null
     }
   ],
   "socials": {
