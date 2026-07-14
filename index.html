@@ -28,10 +28,10 @@
   <div class="desktop-icons">
 
     <!-- External navigation: stays as a real link -->
-<!--    <a href="about.html" class="desktop-icon">-->
-<!--      <div class="icon-img">👤</div>-->
-<!--      About Me-->
-<!--    </a>-->
+    <!--    <a href="about.html" class="desktop-icon">-->
+    <!--      <div class="icon-img">👤</div>-->
+    <!--      About Me-->
+    <!--    </a>-->
 
     <!-- Window openers: <button data-open="wid"> -->
     <button class="desktop-icon" data-open="hero">
@@ -45,6 +45,10 @@
     <button class="desktop-icon" data-open="rotation">
       <div class="icon-img">🎮</div>
       Juegos
+    </button>
+    <button class="desktop-icon" data-open="backlog">
+      <div class="icon-img">📚</div>
+      Backlog
     </button>
     <button class="desktop-icon" data-open="stream">
       <div class="icon-img">🔴</div>
@@ -64,6 +68,7 @@
     </button>
 
   </div><!-- /desktop-icons -->
+
 
   <!-- ============================================================
        WINDOW: Hero — "Marchel.exe"
@@ -106,7 +111,7 @@
       <p class="hero-tagline" id="hero-tagline">🎣 Tu pescador chileno de confianza que ama los Kiwis!</p>
 
       <div class="social-row" id="social-row"><!-- rendered by script.js --></div>
-    
+
       <div class="aboutme-enhanced">
 
         <div class="bio-card">
@@ -264,7 +269,51 @@
       </div>
     </div>
   </section>
-  
+
+  <!-- ============================================================
+       WINDOW: Backlog — "Historial de Juegos"
+       ============================================================ -->
+  <section
+          id="backlog"
+          class="xp-window backlog-window"
+          data-wid="backlog"
+          data-title="Backlog de Juegos"
+          data-icon="📚"
+          data-w="760"
+          data-h="560"
+  >
+    <div class="xp-titlebar">
+      <div class="title-left">
+        <span class="title-icon">📚</span>
+        <span class="title-text">Backlog — ¿Qué he jugado?</span>
+      </div>
+      <div class="xp-window-btns">
+        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
+        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+      </div>
+    </div>
+
+    <div class="backlog-filter-bar" id="backlog-filter-bar">
+      <button class="backlog-filter active" data-filter="all">🗂️ Todos</button>
+      <button class="backlog-filter" data-filter="jugando">🎮 Jugando</button>
+      <button class="backlog-filter" data-filter="backlog">📥 Backlog</button>
+      <button class="backlog-filter" data-filter="pausado">⏸️ Pausado</button>
+      <button class="backlog-filter" data-filter="dropeado">🗑️ Dropeado</button>
+      <button class="backlog-filter" data-filter="completado">✅ Completado</button>
+      <button class="backlog-filter" data-filter="platino">💯 100%</button>
+    </div>
+
+    <div class="xp-content backlog-content">
+      <div class="backlog-grid" id="backlog-grid"><!-- rendered by script.js --></div>
+    </div>
+
+    <div class="xp-statusbar">
+      <div class="status-item" id="backlog-count-status">—</div>
+      <div class="status-item" id="backlog-updated-status">—</div>
+    </div>
+  </section>
+
   <!-- ============================================================
          WINDOW: Github — "Herramientas Desarrolladas"
          ============================================================ -->
@@ -385,7 +434,7 @@
       <iframe id="youtube-vod-embed" src="about:blank" allowfullscreen></iframe>
     </div>
   </section>
-  
+
   <!-- ============================================================
      WINDOW: Discord — Widget oficial
      ============================================================ -->
@@ -425,59 +474,7 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       WINDOW: Question Generator
-       ============================================================ -->
-  <section
-          id="questions-section"
-          class="xp-window"
-          data-wid="questions"
-          data-title="Question Generator"
-          data-icon="⁉️"
-          data-w="700"
-          data-h="550"
-  >
-    <div class="xp-titlebar">
-      <div class="title-left">
-        <span class="title-icon">⁉️</span>
-        <span class="title-text">Question Generator.exe</span>
-      </div>
-      <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min">_</button>
-        <button class="xp-btn-win xp-btn-max">▢</button>
-        <button class="xp-btn-win xp-btn-close">✕</button>
-      </div>
-    </div>
 
-    <div class="xp-content">
-
-      <!-- Buttons -->
-      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
-        <button id="generate" class="xp-button primary">🎲 Generar preguntas</button>
-        <button id="chaos"    class="xp-button danger">💣 Caós</button>
-      </div>
-
-      <!-- Table -->
-      <table class="admin-table">
-        <thead>
-        <tr>
-          <th>Minecraft</th>
-          <th>Contenido</th>
-          <th>Reflexivas</th>
-        </tr>
-        </thead>
-        <tbody id="table-body"></tbody>
-      </table>
-
-      <!-- Result -->
-      <div style="margin-top:16px;">
-        <div class="admin-section-title">📝 Selección actual</div>
-        <ul id="output"></ul>
-      </div>
-
-    </div>
-  </section>
-  
 </div><!-- /desktop -->
 
 <!-- ============================================================
@@ -494,7 +491,7 @@
   <!-- Static utility links (always present) -->
   <div class="taskbar-items">
     <button class="taskbar-icon-btn" data-open="discord" title="Discord">💬</button>
-    <button class="taskbar-icon-btn" data-open="questions" title="Preguntas">❓</button>
+    <button class="taskbar-icon-btn" data-open="backlog" title="Backlog">📚</button>
     <a href="admin.html"     class="taskbar-item" title="Panel Admin">⚙️</a>
   </div>
 
@@ -506,7 +503,6 @@
 
 </div><!-- /taskbar -->
 
-<script src="js/questions.js"></script>
 <script src="js/script.js"></script>
 
 </body>

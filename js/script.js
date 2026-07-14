@@ -41,7 +41,7 @@ const WM = (() => {
     'yt-vod':   { w: 900,  h: 560 },
     'discord':  { w: 500,  h: 600 },
     'github':   { w: 780,  h: 560 },
-    'questions':{ w: 700,  h: 550 },
+    'backlog':  { w: 760,  h: 560 },
   };
 
   /* ── Pinned placement — overrides cascade for specific windows.
@@ -582,6 +582,32 @@ async function loadSchedule() {
 }
 
 
+/* Manual backlog data — status, HLTB, notas (editado en el admin) */
+async function loadBacklog() {
+  try {
+    const res = await fetch('data/backlog.json?nocache=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    return data.games || [];
+  } catch (err) {
+    console.error('Error cargando backlog.json:', err);
+    return [];
+  }
+}
+
+/* Auto-generated Steam playtime — actualizado por GitHub Action */
+async function loadBacklogSteam() {
+  try {
+    const res = await fetch('data/backlog-steam.json?nocache=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return await res.json();
+  } catch (err) {
+    /* No es un error crítico — el sitio funciona sin datos de Steam */
+    console.warn('backlog-steam.json no disponible aún:', err.message);
+    return null;
+  }
+}
+
 /* ════════════════════════════════════════════════════════════
    4. RENDERING
    ════════════════════════════════════════════════════════════ */
@@ -704,6 +730,115 @@ function renderRotation(games) {
       <div class="game-note">${game.note}</div>
     `;
     grid.appendChild(card);
+  });
+}
+
+/* ── Backlog de juegos ── */
+const BACKLOG_STATUS_CONFIG = {
+  'backlog':    { label: '📥 Backlog',    cls: 'status-backlog'    },
+  'jugando':    { label: '🎮 Jugando',    cls: 'status-jugando'    },
+  'pausado':    { label: '⏸️ Pausado',    cls: 'status-pausado'    },
+  'dropeado':   { label: '🗑️ Dropeado',   cls: 'status-dropeado'   },
+  'completado': { label: '✅ Completado', cls: 'status-completado' },
+  'platino':    { label: '💯 100%',       cls: 'status-platino'    },
+};
+
+function minutesToHours(min) {
+  if (!min && min !== 0) return null;
+  return Math.round((min / 60) * 10) / 10; // 1 decimal
+}
+
+let BACKLOG_DATA = []; // combinación de backlog.json + backlog-steam.json, cacheada para los filtros
+
+function renderBacklog(manualGames, steamData) {
+  const grid = document.getElementById('backlog-grid');
+  if (!grid) return;
+
+  /* Fusiona cada entrada manual con las horas de Steam (si hay appid y datos) */
+  BACKLOG_DATA = manualGames.map(game => {
+    const steamEntry = (game.appid && steamData?.games)
+        ? steamData.games[game.appid]
+        : null;
+
+    const playedHours = steamEntry
+        ? minutesToHours(steamEntry.playtimeForeverMinutes)
+        : (game.hoursPlayed ?? null);
+
+    const coverUrl = game.imageUrl && game.imageUrl.trim()
+        ? game.imageUrl
+        : (steamEntry?.headerUrl || '');
+
+    return { ...game, playedHours, coverUrl, steamLinked: !!steamEntry };
+  });
+
+  const updEl = document.getElementById('backlog-updated-status');
+  if (updEl) {
+    updEl.textContent = steamData?.updated
+        ? `🔄 Steam actualizado: ${new Date(steamData.updated).toLocaleDateString()}`
+        : '🔄 Steam: sin conectar';
+  }
+
+  drawBacklogCards('all');
+}
+
+function drawBacklogCards(filter) {
+  const grid = document.getElementById('backlog-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  const list = filter === 'all'
+      ? BACKLOG_DATA
+      : BACKLOG_DATA.filter(g => g.status === filter);
+
+  if (list.length === 0) {
+    grid.innerHTML = `<div class="backlog-empty">🎣 Nada por aquí todavía...</div>`;
+  }
+
+  list.forEach(game => {
+    const cfg = BACKLOG_STATUS_CONFIG[game.status] || BACKLOG_STATUS_CONFIG['backlog'];
+    const card = document.createElement('div');
+    card.className = 'backlog-card';
+
+    const coverHtml = game.coverUrl
+        ? `<img class="backlog-cover" src="${game.coverUrl}" alt="${game.name}" onerror="this.style.display='none'">`
+        : `<div class="backlog-cover backlog-cover-fallback">🎮</div>`;
+
+    const hoursHtml = game.playedHours != null
+        ? `<span class="backlog-stat">⏱️ ${game.playedHours}h jugadas</span>`
+        : `<span class="backlog-stat backlog-stat-muted">⏱️ Sin horas registradas</span>`;
+
+    const hltbHtml = game.hltb
+        ? `<span class="backlog-stat">🎯 HLTB: ~${game.hltb}h</span>`
+        : '';
+
+    card.innerHTML = `
+      ${coverHtml}
+      <div class="backlog-card-body">
+        <div class="backlog-card-name">${game.name}</div>
+        <span class="backlog-status-tag ${cfg.cls}">${cfg.label}</span>
+        <div class="backlog-stats-row">
+          ${hoursHtml}
+          ${hltbHtml}
+        </div>
+        ${game.note ? `<div class="backlog-note">${game.note}</div>` : ''}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  const countEl = document.getElementById('backlog-count-status');
+  if (countEl) countEl.textContent = `🐟 ${list.length} juego${list.length === 1 ? '' : 's'}`;
+}
+
+function setupBacklogFilters() {
+  const bar = document.getElementById('backlog-filter-bar');
+  if (!bar) return;
+  bar.querySelectorAll('.backlog-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      bar.querySelectorAll('.backlog-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      drawBacklogCards(btn.dataset.filter);
+    });
   });
 }
 
@@ -940,6 +1075,11 @@ async function init() {
   setupYoutubeVODEmbed(data.youtubeLatestVODId);
 
   setTimeout(animateRows, 150);
+
+  /* Backlog: independiente de schedule.json — no bloquea si falla */
+  const [manualGames, steamData] = await Promise.all([loadBacklog(), loadBacklogSteam()]);
+  renderBacklog(manualGames, steamData);
+  setupBacklogFilters();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

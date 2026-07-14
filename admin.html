@@ -55,11 +55,11 @@
       <div class="login-field">
         <label for="token-input">🔑 GitHub Personal Access Token</label>
         <input
-          type="password"
-          id="token-input"
-          placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-          autocomplete="off"
-          spellcheck="false"
+                type="password"
+                id="token-input"
+                placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+                autocomplete="off"
+                spellcheck="false"
         />
       </div>
 
@@ -101,14 +101,14 @@
        after GitHub token authentication.
        ============================================================ -->
   <div
-    id="admin-window"
-    class="xp-window"
-    data-wid="admin"
-    data-title="Admin Panel"
-    data-icon="⚙️"
-    data-w="850"
-    data-h="550"
-    data-autoopen=""
+          id="admin-window"
+          class="xp-window"
+          data-wid="admin"
+          data-title="Admin Panel"
+          data-icon="⚙️"
+          data-w="850"
+          data-h="550"
+          data-autoopen=""
   >
     <div class="xp-titlebar">
       <div class="title-left">
@@ -158,6 +158,7 @@
     <div class="tab-bar">
       <div class="tab active" onclick="switchTab('tab-schedule', this)">📅 Horario</div>
       <div class="tab" onclick="switchTab('tab-rotation', this)">🎮 Rotación</div>
+      <div class="tab" onclick="switchTab('tab-backlog', this)">📚 Backlog</div>
       <div class="tab" onclick="switchTab('tab-meta', this)">⚙️ Info / Fotos</div>
       <div class="tab" onclick="switchTab('tab-json', this)">{ } JSON</div>
     </div>
@@ -168,11 +169,11 @@
       <div style="overflow-x:auto;">
         <table class="admin-table" id="schedule-admin-table">
           <thead>
-            <tr>
-              <th>On</th><th>Día</th><th>Hora</th>
-              <th>Juego / Contenido</th><th>Logo (imgur URL)</th>
-              <th>Tag</th><th>Acciones</th>
-            </tr>
+          <tr>
+            <th>On</th><th>Día</th><th>Hora</th>
+            <th>Juego / Contenido</th><th>Logo (imgur URL)</th>
+            <th>Tag</th><th>Acciones</th>
+          </tr>
           </thead>
           <tbody id="schedule-admin-body"></tbody>
         </table>
@@ -190,6 +191,31 @@
       <div class="rotation-admin-grid" id="rotation-admin-grid"></div>
       <div style="padding:0 12px 12px;">
         <button class="xp-button success" onclick="addRotationGame()">➕ Agregar juego</button>
+      </div>
+    </div>
+
+    <div id="tab-backlog" class="tab-panel"
+         style="padding:12px;position:relative;z-index:1;background:var(--cream);">
+      <p class="admin-section-title">📚 Backlog de juegos</p>
+      <p class="admin-hint-text">
+        Esto edita <code>backlog.json</code> (estado, HLTB, notas). Las horas jugadas se llenan
+        solas desde Steam si le pones el <strong>App ID</strong> correcto (búscalo en la URL de la
+        página de la tienda de Steam del juego, ej. store.steampowered.com/app/<strong>632360</strong>/...).
+      </p>
+      <div style="overflow-x:auto;">
+        <table class="admin-table" id="backlog-admin-table">
+          <thead>
+          <tr>
+            <th>Juego</th><th>Portada URL</th><th>Steam App ID</th>
+            <th>Estado</th><th>HLTB (h)</th><th>Nota</th><th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody id="backlog-admin-body"></tbody>
+        </table>
+      </div>
+      <div style="margin-top:10px;">
+        <button class="xp-button success" onclick="addBacklogGame()">➕ Agregar juego</button>
+        <button class="xp-button primary" onclick="exportBacklogJson()">💾 Exportar backlog.json</button>
       </div>
     </div>
 

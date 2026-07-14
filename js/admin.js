@@ -26,6 +26,18 @@ let rotationIdCounter = 100;
 const TAG_OPTIONS = ['Stream Longo', 'Stream Shorti','Colab','Nuevo Video','Off'];
 const DAY_OPTIONS = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
 
+/* ── Backlog de juegos: estado separado, vive en backlog.json ── */
+let backlogState = [];
+let backlogIdCounter = 100;
+const BACKLOG_STATUS_OPTIONS = [
+    { value: 'backlog',    label: '📥 Backlog' },
+    { value: 'jugando',    label: '🎮 Jugando' },
+    { value: 'pausado',    label: '⏸️ Pausado' },
+    { value: 'dropeado',   label: '🗑️ Dropeado' },
+    { value: 'completado', label: '✅ Completado' },
+    { value: 'platino',    label: '💯 100%' },
+];
+
 /* ─────────────────────────────────────────────────────────────
    AUTH — GITHUB TOKEN LOGIN
    Calls api.github.com/user with the token and checks
@@ -149,6 +161,18 @@ async function loadData() {
     } catch (err) {
         setStatus('⚠️ No se pudo cargar schedule.json');
         console.error(err);
+    }
+
+    /* backlog.json es un archivo aparte — si falla, no bloquea el resto del panel */
+    try {
+        const res  = await fetch('data/backlog.json?nocache=' + Date.now());
+        const data = await res.json();
+        backlogState = data.games || [];
+        renderBacklogAdmin();
+    } catch (err) {
+        console.warn('No se pudo cargar backlog.json (¿todavía no existe?):', err);
+        backlogState = [];
+        renderBacklogAdmin();
     }
 }
 
@@ -431,6 +455,79 @@ function removeRotationGame(idx) {
     state.rotationGames.splice(idx, 1);
     renderRotationAdmin();
     setStatus('🗑️ Juego eliminado');
+}
+
+/* ── Backlog table ── */
+function renderBacklogAdmin() {
+    const tbody = document.getElementById('backlog-admin-body');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    backlogState.forEach((game, idx) => {
+        const tr = document.createElement('tr');
+
+        const statusOpts = BACKLOG_STATUS_OPTIONS.map(s =>
+            `<option value="${s.value}" ${s.value === game.status ? 'selected' : ''}>${s.label}</option>`
+        ).join('');
+
+        const logoSrc    = game.imageUrl || '';
+        const imgPreview = logoSrc && !logoSrc.includes('your-')
+            ? `<img src="${logoSrc}" onerror="this.style.display='none'" />`
+            : '';
+
+        tr.innerHTML = `
+          <td><input type="text" value="${game.name || ''}" placeholder="Nombre del juego"
+               onchange="updateBacklogField(${idx}, 'name', this.value)" /></td>
+          <td>
+            <div class="logo-preview-cell">
+              ${imgPreview}
+              <input type="url" value="${logoSrc}"
+                placeholder="https://..."
+                onchange="updateBacklogField(${idx}, 'imageUrl', this.value); refreshLogoPreview(this)" />
+            </div>
+          </td>
+          <td><input type="number" value="${game.appid ?? ''}" placeholder="632360" style="width:90px;"
+               onchange="updateBacklogField(${idx}, 'appid', this.value ? Number(this.value) : null)" /></td>
+          <td><select onchange="updateBacklogField(${idx}, 'status', this.value)">${statusOpts}</select></td>
+          <td><input type="number" value="${game.hltb ?? ''}" placeholder="12" style="width:70px;"
+               onchange="updateBacklogField(${idx}, 'hltb', this.value ? Number(this.value) : null)" /></td>
+          <td><input type="text" value="${game.note || ''}" placeholder="Nota opcional"
+               onchange="updateBacklogField(${idx}, 'note', this.value)" /></td>
+          <td class="admin-col-actions">
+            <button class="xp-button danger admin-slot-btn"
+              onclick="removeBacklogGame(${idx})">🗑️</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+function updateBacklogField(idx, field, value) { backlogState[idx][field] = value; }
+
+function addBacklogGame() {
+    backlogState.push({
+        id: backlogIdCounter++, name: 'Nuevo Juego', appid: null,
+        status: 'backlog', hltb: null, note: '', imageUrl: ''
+    });
+    renderBacklogAdmin();
+    setStatus('✅ Juego agregado al backlog');
+}
+
+function removeBacklogGame(idx) {
+    backlogState.splice(idx, 1);
+    renderBacklogAdmin();
+    setStatus('🗑️ Juego eliminado del backlog');
+}
+
+function exportBacklogJson() {
+    const json = JSON.stringify({ games: backlogState }, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = 'backlog.json'; a.click();
+    URL.revokeObjectURL(url);
+    showToast('💾 backlog.json descargado correctamente');
+    setStatus('✅ backlog.json exportado');
 }
 
 /* ─────────────────────────────────────────────────────────────

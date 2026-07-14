@@ -926,6 +926,126 @@ body {
 }
 
 /* ─────────────────────────────────────────────────────────────
+   7.5 BACKLOG WINDOW (index)
+   ───────────────────────────────────────────────────────────── */
+.backlog-window .xp-content { background: var(--cream); padding: 14px 16px 20px; }
+
+.backlog-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--beige);
+  border-bottom: 1.5px solid var(--xp-btn-border);
+}
+.backlog-filter {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 14px;
+  border: 1.5px solid var(--xp-btn-border);
+  background: var(--cream);
+  color: #444;
+  cursor: pointer;
+  transition: background .15s, color .15s, transform .1s;
+}
+.backlog-filter:hover { transform: translateY(-1px); }
+.backlog-filter.active {
+  background: var(--xp-blue);
+  border-color: var(--xp-blue-dark, var(--xp-btn-border));
+  color: #fff;
+}
+
+.backlog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.backlog-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 30px;
+  color: #888;
+  font-style: italic;
+}
+
+.backlog-card {
+  background: var(--beige);
+  border: 2px solid var(--xp-btn-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 2px 2px 0 var(--game-card-shadow);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.backlog-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 4px 6px 0 var(--game-card-shadow);
+  border-color: var(--game-card-border-hover);
+}
+.backlog-cover {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  display: block;
+  background: var(--beige-dark);
+}
+.backlog-cover-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+.backlog-card-body { padding: 10px 12px 12px; }
+.backlog-card-name {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--xp-blue-dark);
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+.backlog-status-tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1.5px solid currentColor;
+  margin-bottom: 6px;
+}
+.status-backlog    { color: #6b6b6b; background: #eaeaea; }
+.status-jugando    { color: #2060B0; background: #e3f0ff; }
+.status-pausado    { color: #b8860b; background: #fff3d6; }
+.status-dropeado   { color: #b02020; background: #ffe3e3; }
+.status-completado { color: #2a8a3a; background: #e2f7e5; }
+.status-platino    { color: #7a3fc4; background: #f1e6ff; }
+
+.backlog-stats-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+.backlog-stat {
+  font-size: 11.5px;
+  color: var(--brown-soft);
+  font-weight: 600;
+}
+.backlog-stat-muted { color: #aaa; font-weight: 400; font-style: italic; }
+.backlog-note {
+  font-size: 11.5px;
+  color: #6f5a3a;
+  font-style: italic;
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+@media (max-width: 768px) {
+  .backlog-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ─────────────────────────────────────────────────────────────
    8. STREAM & YOUTUBE EMBEDS
    ───────────────────────────────────────────────────────────── */
 .stream-window iframe {
