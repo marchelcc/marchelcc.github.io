@@ -1,638 +1,1139 @@
+/* ============================================================
+   MARCHEL WEBSITE — js/script.js
+   Repo: marchel-cc/marchel-website (GitHub Pages)
+
+   Sections:
+     1. Window Manager (WM)  — floating, draggable XP Windows
+     2. Data loading          — fetch schedule.json
+     3. Rendering             — schedule, rotation, profile pic, socials
+     4. Embed setup           — Twitch, YouTube
+     5. Clock & meta
+     6. Boot
+   ============================================================ */
+
 'use strict';
 
-/* ─────────────────────────────────────────────────────────────
-   CONFIG
-   ───────────────────────────────────────────────────────────── */
-const ALLOWED_GITHUB_USER = 'marchelcc';
-const SESSION_KEY         = 'marchel_admin_token';
+/* ════════════════════════════════════════════════════════════
+   1. WINDOW MANAGER
+   ════════════════════════════════════════════════════════════
 
-/* ─────────────────────────────────────────────────────────────
-   IN-MEMORY STATE
-   ───────────────────────────────────────────────────────────── */
-let state = {
-  vtuber: 'Marchel',
-  tagline: '🎣 El pescador de los mares digitales',
-  lastUpdated: new Date().toISOString().slice(0,10),
-  profilePic: '',
-  youtubeLatestVideoId: '',
-  youtubeLatestVODId: '',
-  schedule: [],
-  rotationGames: [],
-  socials: {}
-};
-let scheduleIdCounter = 100;
-let rotationIdCounter = 100;
+   Each floating window is a <section class="xp-window" data-wid="...">
+   The WM reads data-wid / data-title / data-icon from each element.
 
-const TAG_OPTIONS = ['Stream Longo', 'Stream Shorti','Colab','Nuevo Video','Off'];
-const DAY_OPTIONS = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+   Window states:  'closed'  →  hidden (display:none, no taskbar btn)
+                   'open'    →  visible, positioned, focusable, draggable
+                   'minimized' → hidden but still in taskbar
 
-/* ── Backlog de juegos: estado separado, vive en backlog.json ── */
-let backlogState = [];
-let backlogIdCounter = 100;
-const BACKLOG_STATUS_OPTIONS = [
-  { value: 'backlog',    label: '📥 Backlog' },
-  { value: 'jugando',    label: '🎮 Jugando' },
-  { value: 'pausado',    label: '⏸️ Pausado' },
-  { value: 'dropeado',   label: '🗑️ Dropeado' },
-  { value: 'completado', label: '✅ Completado' },
-  { value: 'platino',    label: '💯 100%' },
-];
-const BACKLOG_PLATFORM_OPTIONS = [
-  { value: 'steam', label: '🟦 Steam' },
-  { value: 'gog',   label: '🟪 GOG' },
-  { value: 'otro',  label: '🎮 Otro' },
-];
+   On desktop (>768px): windows float as fixed overlays, are draggable.
+   On mobile  (≤768px): CSS reverts everything to normal page flow —
+                         the WM skips all positioning/drag logic.
+*/
 
-/* ─────────────────────────────────────────────────────────────
-   AUTH — GITHUB TOKEN LOGIN
-   Calls api.github.com/user with the token and checks
-   that the returned login === ALLOWED_GITHUB_USER.
-   The token is stored in sessionStorage (clears on tab close).
-   ───────────────────────────────────────────────────────────── */
-async function doLogin() {
-  const input  = document.getElementById('token-input');
-  const btn    = document.getElementById('login-btn');
-  const errEl  = document.getElementById('login-error');
-  const errMsg = document.getElementById('login-error-msg');
-  const bar    = document.getElementById('login-status-bar');
-  const token  = input.value.trim();
+const WM = (() => {
 
-  if (!token) {
-    showLoginError('Por favor ingresa tu GitHub Personal Access Token.');
-    input.classList.add('error');
-    setTimeout(() => input.classList.remove('error'), 600);
-    return;
-  }
+  /* ── Default size for each window (px) ── */
+  const DEFAULTS = {
+    'hero':     { w: 440,  h: 500 },
+    'schedule': { w: 680,  h: 480 },
+    'rotation': { w: 680,  h: 400 },
+    'stream':   { w: 900,  h: 560 },
+    'yt':       { w: 900,  h: 560 },
+    'yt-vod':   { w: 900,  h: 560 },
+    'discord':  { w: 500,  h: 600 },
+    'github':   { w: 780,  h: 560 },
+    'backlog':  { w: 760,  h: 560 },
+  };
 
-  // Loading state
-  btn.innerHTML = '<span class="login-spinner"></span> Verificando...';
-  btn.disabled  = true;
-  errEl.classList.remove('show');
-  bar.innerHTML = '🔄 Conectando con GitHub API...';
+  /* ── Pinned placement — overrides cascade for specific windows.
+     Each entry is a function (vw, vh, winW, winH) → { x, y }.
+     Only used on first open when w.x === null. ── */
+  const MARGIN = 16; // px gap from screen edges
+  const ICON_COL = 84; // px width of desktop icon column on the left
 
-  try {
-    const res = await fetch('https://api.github.com/user', {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/vnd.github+json'
-      }
+  const PINNED = {
+    /* Hero: left side, vertically centred, clear of the icon column */
+    'hero': (vw, vh, ww, wh) => ({
+      x: ICON_COL + MARGIN,
+      y: Math.max(MARGIN, Math.round((vh - wh) / 2)),
+    }),
+    /* Discord: right side, same vertical centre as hero */
+    'discord': (vw, vh, ww, wh) => ({
+      x: Math.max(0, vw - ww - MARGIN),
+      y: Math.max(MARGIN, Math.round((vh - wh) / 2)),
+    }),
+  };
+
+  /* ── Per-window runtime state ── */
+  // wins[wid] = { el, title, icon, state, x, y, w, h, savedGeom }
+  const wins     = {};
+  let   zTop     = 200;     // always-incrementing z-index counter
+  let   focused  = null;    // currently focused wid
+  let   cascade  = 0;       // offset counter for initial placement
+
+  const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+
+  /* ────────────────────────────────────────────────────────
+     INIT  — call once on DOMContentLoaded
+     ──────────────────────────────────────────────────────── */
+  function init() {
+    /* Register every [data-wid] window */
+    document.querySelectorAll('.xp-window[data-wid]').forEach(el => {
+      const wid   = el.dataset.wid;
+      const defs  = DEFAULTS[wid] || { w: 720, h: 550 };
+      /* Allow per-element size overrides via data-w / data-h */
+      const defW  = parseInt(el.dataset.w) || defs.w;
+      const defH  = parseInt(el.dataset.h) || defs.h;
+
+      wins[wid] = {
+        el,
+        title:     el.dataset.title || wid,
+        icon:      el.dataset.icon  || '🪟',
+        state:     'closed',
+        x: null, y: null,
+        w: defW, h: defH,
+        savedGeom: null,
+      };
+
+      /* Title-bar buttons */
+      el.querySelector('.xp-btn-close')
+          ?.addEventListener('click', e => { e.stopPropagation(); close(wid); });
+      el.querySelector('.xp-btn-min')
+          ?.addEventListener('click', e => { e.stopPropagation(); minimize(wid); });
+      el.querySelector('.xp-btn-max')
+          ?.addEventListener('click', e => { e.stopPropagation(); toggleMax(wid); });
+
+      /* Clicking anywhere on the window body brings it to front */
+      el.addEventListener('mousedown', () => focus(wid), true);
+
+      /* Drag handle = title bar */
+      const titlebar = el.querySelector('.xp-titlebar');
+      if (titlebar) attachDrag(wid, titlebar);
     });
 
-    if (!res.ok) {
-      throw new Error(res.status === 401
-          ? 'Token inválido. Verifica que copiaste el token completo.'
-          : `Error de GitHub API: ${res.status}`);
+    /* Any button with data-open — desktop icons AND taskbar icon buttons */
+    document.querySelectorAll('button[data-open]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const wid = btn.dataset.open;
+        open(wid);
+        /* Sync focused style on taskbar-icon-btn immediately */
+        syncTaskbarIconBtn(wid);
+      });
+    });
+
+    /* Auto-open windows on load.
+       Desktop: open all [data-autoopen] windows (hero, schedule, discord).
+       Mobile:  open only hero and schedule so the page isn't overwhelming. */
+    const autoOpenEls = document.querySelectorAll('.xp-window[data-wid][data-autoopen]');
+    if (isMobile()) {
+      ['hero', 'schedule'].forEach(wid => { if (wins[wid]) open(wid); });
+    } else if (autoOpenEls.length > 0) {
+      autoOpenEls.forEach(el => open(el.dataset.wid));
+    } else if (wins['hero']) {
+      open('hero');
+    }
+  }
+
+  /* ────────────────────────────────────────────────────────
+     OPEN  — open or restore a window
+     ──────────────────────────────────────────────────────── */
+  function open(wid) {
+    const w = wins[wid];
+    if (!w) return;
+
+    /* ── Mobile: toggle the window on/off in the page flow ── */
+    if (isMobile()) {
+      const isOpen = w.el.classList.contains('wm-mobile-open');
+      if (isOpen) {
+        /* Remove the open class first so its fill-mode stops holding the element.
+           wm-mobile-closing keeps display:flex alive during the exit animation. */
+        w.el.classList.remove('wm-mobile-open');
+        w.el.classList.add('wm-mobile-closing');
+        setTimeout(() => {
+          w.el.classList.remove('wm-open', 'wm-mobile-closing');
+          w.state = 'closed';
+          syncIconState(wid);
+        }, 200);
+      } else {
+        /* Open: reveal the window and scroll it into view */
+        w.el.classList.add('wm-mobile-open', 'wm-open');
+        w.state = 'open';
+        setTimeout(() => {
+          w.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 40);
+        syncIconState(wid);
+      }
+      return;
     }
 
-    const user = await res.json();
-
-    if (user.login.toLowerCase() !== ALLOWED_GITHUB_USER.toLowerCase()) {
-      throw new Error(`Cuenta "${user.login}" no tiene acceso. Solo marchelcc puede entrar.`);
+    /* ── Desktop: already open → just focus it ── */
+    if (w.state === 'open') {
+      focus(wid);
+      return;
     }
 
-    // ✅ Success — store token in sessionStorage and show admin
-    sessionStorage.setItem(SESSION_KEY, token);
-    sessionStorage.setItem('marchel_admin_user', user.login);
-    showAdminPanel(user.login);
+    /* First-time placement */
+    if (w.x === null && !isMobile()) {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight - 36;  // subtract taskbar height
+      w.w = Math.min(w.w, vw - 60);
+      w.h = Math.min(w.h, vh - 40);
 
-  } catch (err) {
-    showLoginError(err.message);
-    btn.innerHTML = '🔓 Entrar';
-    btn.disabled  = false;
-    input.classList.add('error');
-    setTimeout(() => input.classList.remove('error'), 600);
-    bar.innerHTML = '❌ Fallo de autenticación';
+      if (PINNED[wid]) {
+        /* Use the pinned layout function for this window */
+        const pos = PINNED[wid](vw, vh, w.w, w.h);
+        w.x = Math.max(0, Math.min(pos.x, vw - w.w - 8));
+        w.y = Math.max(0, Math.min(pos.y, vh - w.h - 8));
+      } else {
+        /* Default: cascade from centre */
+        const cx = Math.round((vw - w.w) / 2) + cascade * 28;
+        const cy = Math.round((vh - w.h) / 2) + cascade * 28;
+        w.x = Math.max(0, Math.min(cx, vw - w.w - 8));
+        w.y = Math.max(0, Math.min(cy, vh - w.h - 8));
+        cascade = (cascade + 1) % 9;
+      }
+    }
+
+    w.state = 'open';
+    applyGeom(wid);    // sets left/top/width/height
+    w.el.classList.add('wm-open');
+    focus(wid);
+    updateTaskbar();
+    syncIconState(wid);
   }
-}
 
-function showLoginError(msg) {
-  const errEl  = document.getElementById('login-error');
-  const errMsg = document.getElementById('login-error-msg');
-  errMsg.textContent = msg;
-  errEl.classList.add('show');
-}
+  /* ────────────────────────────────────────────────────────
+     CLOSE
+     ──────────────────────────────────────────────────────── */
+  function close(wid) {
+    const w = wins[wid];
+    if (!w || w.state === 'closed') return;
 
-function showAdminPanel(username) {
-  document.getElementById('login-overlay').style.display   = 'none';
-  document.getElementById('admin-desktop').style.display   = 'flex';
-  document.getElementById('session-user').textContent      = username;
+    if (isMobile()) {
+      w.el.classList.remove('wm-mobile-open');
+      w.el.classList.add('wm-mobile-closing');
+      setTimeout(() => {
+        w.el.classList.remove('wm-open', 'wm-mobile-closing');
+        w.state = 'closed';
+        syncIconState(wid);
+      }, 200);
+      return;
+    }
 
-  loadData();
-}
+    /* Cancel any running open animation so the transition can take over */
+    w.el.style.animation = 'none';
+    w.el.getBoundingClientRect(); /* force reflow — lets the browser register the cleared animation */
 
-function doLogout() {
-  sessionStorage.removeItem(SESSION_KEY);
-  sessionStorage.removeItem('marchel_admin_user');
-  window.location.reload();
-}
+    w.el.style.transition = 'opacity 0.15s ease-in, transform 0.15s ease-in';
+    w.el.style.opacity    = '0';
+    w.el.style.transform  = 'scale(0.88) translateY(6px)';
 
-// Allow pressing Enter in the token field
-document.getElementById('token-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doLogin();
-});
-
-/* ─────────────────────────────────────────────────────────────
-   AUTO-LOGIN if session token already exists
-   ───────────────────────────────────────────────────────────── */
-(function checkSession() {
-  const token = sessionStorage.getItem(SESSION_KEY);
-  const user  = sessionStorage.getItem('marchel_admin_user');
-  if (token && user) {
-    showAdminPanel(user);
+    setTimeout(() => {
+      w.el.style.cssText = '';          // clear all inline styles
+      w.el.classList.remove('wm-open', 'wm-focused', 'wm-maximized');
+      w.state = 'closed';
+      if (focused === wid) focused = null;
+      updateTaskbar();
+      syncIconState(wid);
+    }, 130);
   }
-})();
 
-/* ─────────────────────────────────────────────────────────────
-   LOAD DATA
-   ───────────────────────────────────────────────────────────── */
-async function loadData() {
+  /* ────────────────────────────────────────────────────────
+     MINIMIZE  — animate window shrinking toward its taskbar button
+     ──────────────────────────────────────────────────────── */
+  function minimize(wid) {
+    const w = wins[wid];
+    if (!w || w.state !== 'open') return;
+
+    /* Grab the taskbar button rect NOW — it still exists while state is 'open' */
+    const taskBtn = document.querySelector(`.win-task-btn[data-wid="${wid}"]`);
+    const winRect  = w.el.getBoundingClientRect();
+
+    /* Target: center of the taskbar button, or bottom-centre of screen */
+    let targetX, targetY;
+    if (taskBtn) {
+      const r = taskBtn.getBoundingClientRect();
+      targetX = r.left + r.width  / 2;
+      targetY = r.top  + r.height / 2;
+    } else {
+      targetX = window.innerWidth  / 2;
+      targetY = window.innerHeight - 18;
+    }
+
+    /* Translate from window centre to target */
+    const winCX = winRect.left + winRect.width  / 2;
+    const winCY = winRect.top  + winRect.height / 2;
+    const dx = targetX - winCX;
+    const dy = targetY - winCY;
+
+    /* Scale: window shrinks to roughly the button's size */
+    const scaleX = taskBtn
+        ? Math.min(taskBtn.offsetWidth  / winRect.width,  0.15)
+        : 0.08;
+    const scaleY = taskBtn
+        ? Math.min(taskBtn.offsetHeight / winRect.height, 0.10)
+        : 0.04;
+
+    /* Animate */
+    w.el.style.animation       = 'none';  /* cancel wm-open fill so transition can fire */
+    w.el.getBoundingClientRect();          /* force reflow */
+    w.el.style.transformOrigin = 'center center';
+    w.el.style.transition = 'opacity 0.22s ease-in, transform 0.22s cubic-bezier(0.4,0,1,1)';
+    w.el.style.opacity    = '0';
+    w.el.style.transform  = `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})`;
+
+    setTimeout(() => {
+      /* Clear inline animation styles */
+      w.el.style.transition      = '';
+      w.el.style.opacity         = '';
+      w.el.style.transform       = '';
+      w.el.style.transformOrigin = '';
+      w.el.classList.remove('wm-open', 'wm-focused');
+      w.state = 'minimized';
+      if (focused === wid) focused = null;
+      updateTaskbar();
+    }, 230);
+  }
+
+  /* ────────────────────────────────────────────────────────
+     TOGGLE MAXIMISE
+     ──────────────────────────────────────────────────────── */
+  function toggleMax(wid) {
+    const w = wins[wid];
+    if (!w || w.state !== 'open') return;
+
+    if (w.el.classList.contains('wm-maximized')) {
+      /* Restore */
+      w.el.classList.remove('wm-maximized');
+      if (w.savedGeom) {
+        Object.assign(w, w.savedGeom);
+        w.savedGeom = null;
+      }
+      applyGeom(wid);
+    } else {
+      /* Maximise */
+      w.savedGeom = { x: w.x, y: w.y, w: w.w, h: w.h };
+      w.el.classList.add('wm-maximized');
+    }
+    focus(wid);
+  }
+
+  /* ────────────────────────────────────────────────────────
+     FOCUS  — bring window to front
+     ──────────────────────────────────────────────────────── */
+  function focus(wid) {
+    const w = wins[wid];
+    if (!w || w.state === 'closed') return;
+
+    /* Un-focus previous */
+    if (focused && focused !== wid && wins[focused]) {
+      wins[focused].el.classList.remove('wm-focused');
+    }
+
+    w.el.classList.add('wm-focused');
+    w.el.style.zIndex = ++zTop;
+    focused = wid;
+    updateTaskbar();
+    syncTaskbarIconBtn(wid);
+  }
+
+  /* ────────────────────────────────────────────────────────
+     APPLY GEOMETRY  — write left/top/width/height to style
+     (skipped on mobile — CSS controls layout there)
+     ──────────────────────────────────────────────────────── */
+  function applyGeom(wid) {
+    if (isMobile()) return;
+    const w = wins[wid];
+    if (!w || w.el.classList.contains('wm-maximized')) return;
+    w.el.style.left   = w.x + 'px';
+    w.el.style.top    = w.y + 'px';
+    w.el.style.width  = w.w + 'px';
+    w.el.style.height = w.h + 'px';
+  }
+
+  /* ────────────────────────────────────────────────────────
+     DRAG  — attach mouse/touch drag to a window's title bar
+     ──────────────────────────────────────────────────────── */
+  function attachDrag(wid, titlebar) {
+    const cover = document.getElementById('wm-drag-cover');
+    let dragging = false;
+    let ox, oy, startX, startY;   // origin mouse + origin window coords
+
+    /* ── Mouse ── */
+    titlebar.addEventListener('mousedown', e => {
+      if (e.target.closest('.xp-window-btns')) return;  // ignore buttons
+      if (isMobile()) return;
+      const w = wins[wid];
+      if (!w || w.el.classList.contains('wm-maximized')) return;
+
+      dragging = true;
+      ox = e.clientX;  oy = e.clientY;
+      startX = w.x;    startY = w.y;
+
+      if (cover) cover.style.display = 'block';   // block iframes
+      focus(wid);
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', e => {
+      if (!dragging) return;
+      moveWindow(wid, e.clientX - ox, e.clientY - oy, startX, startY);
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging = false;
+      if (cover) cover.style.display = 'none';
+    });
+
+    /* ── Touch (tablets / touch-screen desktops) ── */
+    titlebar.addEventListener('touchstart', e => {
+      if (e.target.closest('.xp-window-btns')) return;
+      if (isMobile()) return;
+      const w = wins[wid];
+      if (!w || w.el.classList.contains('wm-maximized')) return;
+
+      const t = e.touches[0];
+      dragging = true;
+      ox = t.clientX;  oy = t.clientY;
+      startX = w.x;    startY = w.y;
+      focus(wid);
+    }, { passive: true });
+
+    document.addEventListener('touchmove', e => {
+      if (!dragging) return;
+      const t = e.touches[0];
+      moveWindow(wid, t.clientX - ox, t.clientY - oy, startX, startY);
+    }, { passive: true });
+
+    document.addEventListener('touchend', () => { dragging = false; });
+  }
+
+  /* Shared move logic — clamps window so it can't go fully off-screen */
+  function moveWindow(wid, dx, dy, startX, startY) {
+    const w  = wins[wid];
+    if (!w) return;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight - 36;
+
+    /* Allow dragging partially off-screen but keep ≥80px visible */
+    w.x = Math.max(-(w.w - 80), Math.min(startX + dx, vw - 80));
+    w.y = Math.max(0,            Math.min(startY + dy, vh - 30));
+
+    w.el.style.left = w.x + 'px';
+    w.el.style.top  = w.y + 'px';
+  }
+
+  /* ────────────────────────────────────────────────────────
+     TASKBAR  — rebuild the #taskbar-windows button strip
+     ──────────────────────────────────────────────────────── */
+  function updateTaskbar() {
+    const bar = document.getElementById('taskbar-windows');
+    if (!bar) return;
+    bar.innerHTML = '';
+
+    Object.entries(wins).forEach(([wid, w]) => {
+      if (w.state === 'closed') return;
+
+      const btn = document.createElement('button');
+      btn.className      = 'win-task-btn';
+      btn.dataset.wid    = wid;   /* needed by minimize() to find this button */
+      btn.title          = w.title;
+      btn.innerHTML      =
+          `<span>${w.icon}</span><span class="btn-label">${w.title}</span>`;
+
+      if (w.state === 'minimized')                 btn.classList.add('wm-minimized');
+      if (wid === focused && w.state === 'open')   btn.classList.add('wm-focused');
+
+      btn.addEventListener('click', () => {
+        if (w.state === 'minimized') {
+          /* ── Restore: fly window UP from the taskbar button ── */
+
+          /* Capture button rect BEFORE rebuilding the taskbar */
+          const btnRect = btn.getBoundingClientRect();
+
+          /* Make the window visible at its saved position */
+          w.state = 'open';
+          applyGeom(wid);
+          w.el.classList.add('wm-open');
+
+          /* Window rect now that it's positioned */
+          const winRect = w.el.getBoundingClientRect();
+          const winCX   = winRect.left + winRect.width  / 2;
+          const winCY   = winRect.top  + winRect.height / 2;
+          const btnCX   = btnRect.left + btnRect.width  / 2;
+          const btnCY   = btnRect.top  + btnRect.height / 2;
+
+          /* Start transform: window appears tiny at button position */
+          const dx  = btnCX - winCX;
+          const dy  = btnCY - winCY;
+          const sx  = Math.max(btn.offsetWidth  / winRect.width,  0.05);
+          const sy  = Math.max(btn.offsetHeight / winRect.height, 0.04);
+
+          w.el.style.transformOrigin = 'center center';
+          w.el.style.transition      = 'none';
+          w.el.style.transform       = `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`;
+          w.el.style.opacity         = '0';
+
+          /* Force reflow so browser registers the starting state */
+          w.el.getBoundingClientRect();
+
+          /* Animate to natural position */
+          w.el.style.transition = 'opacity 0.2s ease-out, transform 0.2s cubic-bezier(0,0,0.2,1)';
+          w.el.style.transform  = '';
+          w.el.style.opacity    = '';
+
+          /* Clean up transition properties once animation is done */
+          setTimeout(() => {
+            w.el.style.transition      = '';
+            w.el.style.transformOrigin = '';
+          }, 220);
+
+          focus(wid);
+          updateTaskbar();
+          syncIconState(wid);
+
+        } else if (wid === focused) {
+          /* Click on the focused window's button → minimize it */
+          minimize(wid);
+        } else {
+          focus(wid);
+        }
+      });
+
+      bar.appendChild(btn);
+    });
+  }
+
+  /* ────────────────────────────────────────────────────────
+     ICON STATE SYNC  — highlight desktop icon when its window is open
+     ──────────────────────────────────────────────────────── */
+  function syncIconState(wid) {
+    const btn = document.querySelector(`button.desktop-icon[data-open="${wid}"]`);
+    if (!btn) return;
+    const w = wins[wid];
+    const isOpen = isMobile()
+        ? w?.el.classList.contains('wm-mobile-open')
+        : w?.state !== 'closed';
+    btn.classList.toggle('icon-active', !!isOpen);
+  }
+
+  /* Sync the wm-focused class on taskbar-icon-btn buttons
+     so they visually indicate which window is active. */
+  function syncTaskbarIconBtn(wid) {
+    document.querySelectorAll('.taskbar-icon-btn[data-open]').forEach(btn => {
+      const isThisOne = btn.dataset.open === wid;
+      const winOpen   = wins[btn.dataset.open]?.state === 'open';
+      btn.classList.toggle('wm-focused', isThisOne && winOpen);
+    });
+  }
+
+  /* Public API */
+  return { init, open, close, minimize, focus, _isMobile: isMobile };
+
+})(); /* end WM */
+
+
+/* ════════════════════════════════════════════════════════════
+   2. CONFIG & HELPERS
+   ════════════════════════════════════════════════════════════ */
+
+const CHILE_TZ = 'America/Santiago';
+
+const DAY_TO_INDEX = {
+  'Domingo': 0, 'Lunes': 1, 'Martes': 2,
+  'Miércoles': 3, 'Jueves': 4, 'Viernes': 5, 'Sábado': 6,
+};
+
+const TAG_CLASS_MAP = {
+  'Stream Longo':  'tag-stream-longo',
+  'Stream Shorti': 'tag-stream-shorti',
+  'Colab':         'tag-colab',
+  'Nuevo Video':   'tag-video',
+  'Off':           'tag-off',
+};
+
+function getUserTimezone() {
+  return Intl.DateTimeFormat().resolvedOptions().timeZone;
+}
+
+/* Convert a Chile clock time (HH:MM string) to the user's local time */
+function convertChileTimeToLocal(timeStr) {
+  const [hours, minutes] = timeStr.split(':').map(Number);
+  const now       = new Date();
+  const chileNow  = new Date(now.toLocaleString('en-US', { timeZone: CHILE_TZ }));
+  chileNow.setHours(hours, minutes, 0, 0);
+  return new Date(chileNow.toLocaleString('en-US'));
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   3. DATA LOADING
+   ════════════════════════════════════════════════════════════ */
+
+async function loadSchedule() {
   try {
-    const res  = await fetch('data/schedule.json?nocache=' + Date.now());
-    const data = await res.json();
-
-    state.vtuber        = data.vtuber      || 'Marchel';
-    state.tagline       = data.tagline     || '';
-    state.lastUpdated   = data.lastUpdated || new Date().toISOString().slice(0,10);
-    state.profilePic    = data.profilePic  || '';
-    state.youtubeLatestVideoId = data.youtubeLatestVideoId || '';
-    state.youtubeLatestVODId   = data.youtubeLatestVODId   || '';
-    state.schedule      = data.schedule      || [];
-    state.rotationGames = data.rotationGames || [];
-    state.socials       = data.socials       || {};
-
-    renderAll();
-    updateStatus();
-    setStatus('✅ schedule.json cargado correctamente');
+    const res = await fetch('data/schedule.json?nocache=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return await res.json();
   } catch (err) {
-    setStatus('⚠️ No se pudo cargar schedule.json');
-    console.error(err);
+    console.error('Error cargando schedule.json:', err);
+    return null;
   }
+}
 
-  /* backlog.json es un archivo aparte — si falla, no bloquea el resto del panel */
+
+/* Manual backlog data — status, HLTB, notas (editado en el admin) */
+async function loadBacklog() {
   try {
-    const res  = await fetch('data/backlog.json?nocache=' + Date.now());
+    const res = await fetch('data/backlog.json?nocache=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    backlogState = data.games || [];
-    renderBacklogAdmin();
+    return data.games || [];
   } catch (err) {
-    console.warn('No se pudo cargar backlog.json (¿todavía no existe?):', err);
-    backlogState = [];
-    renderBacklogAdmin();
+    console.error('Error cargando backlog.json:', err);
+    return [];
   }
 }
 
-/* ─────────────────────────────────────────────────────────────
-   RENDER ALL TABS
-   ───────────────────────────────────────────────────────────── */
-function renderAll() {
-  renderScheduleAdmin();
-  renderRotationAdmin();
-  renderMetaForm();
+/* Auto-generated Steam playtime — actualizado por GitHub Action */
+async function loadBacklogSteam() {
+  try {
+    const res = await fetch('data/backlog-steam.json?nocache=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return await res.json();
+  } catch (err) {
+    /* No es un error crítico — el sitio funciona sin datos de Steam */
+    console.warn('backlog-steam.json no disponible aún:', err.message);
+    return null;
+  }
 }
 
-/* ── Schedule table ── */
-function renderScheduleAdmin() {
-  const tbody = document.getElementById('schedule-admin-body');
-  tbody.innerHTML = '';
+/* ════════════════════════════════════════════════════════════
+   4. RENDERING
+   ════════════════════════════════════════════════════════════ */
 
-  state.schedule.forEach((item, idx) => {
-    const tr = document.createElement('tr');
+/* ── Profile pic (MSN / XP account-picture style) ── */
+function renderProfilePic(profilePic, vtuberName) {
+  const frame    = document.getElementById('profile-pic-frame');
+  const fallback = document.getElementById('profile-pic-fallback');
+  const nameEl   = document.getElementById('msn-display-name');
+  const heroName = document.getElementById('hero-name');
 
-    const dayOpts = DAY_OPTIONS.map(d =>
-        `<option value="${d}" ${d === item.day ? 'selected' : ''}>${d}</option>`
-    ).join('');
-    const tagOpts = TAG_OPTIONS.map(t =>
-        `<option value="${t}" ${t === item.tag ? 'selected' : ''}>${t}</option>`
-    ).join('');
+  if (nameEl   && vtuberName) nameEl.textContent   = `${vtuberName} ✦ Online`;
+  if (heroName && vtuberName) heroName.textContent  = vtuberName;
+  if (!frame) return;
 
-    const logoSrc    = item.imageUrl || '';
-    const imgPreview = logoSrc && !logoSrc.includes('your-')
-        ? `<img src="${logoSrc}" onerror="this.style.display='none'" />`
-        : '';
-    const timeVal = item.time ?? '';
+  if (profilePic && profilePic.trim() && !profilePic.includes('your-profile-pic')) {
+    const img   = document.createElement('img');
+    img.alt     = vtuberName || 'VTuber';
+    img.src     = profilePic;
+    img.style.display = 'none';
+    img.onload  = () => { if (fallback) fallback.style.display = 'none'; img.style.display = 'block'; };
+    img.onerror = () => img.remove();
+    frame.appendChild(img);
 
-    tr.innerHTML = `
-          <td class="admin-col-active">
-            <input type="checkbox" class="active-toggle" ${item.active ? 'checked' : ''}
-              onchange="updateScheduleField(${idx}, 'active', this.checked)" />
-          </td>
-          <td><select onchange="updateScheduleField(${idx}, 'day', this.value)">${dayOpts}</select></td>
-          <td><input type="text" value="${timeVal}" placeholder="19:00"
-               onchange="updateScheduleField(${idx}, 'time', this.value || null)" /></td>
-          <td><input type="text" value="${item.game || ''}" placeholder="Nombre del juego"
-               onchange="updateScheduleField(${idx}, 'game', this.value)" /></td>
-          <td>
-            <div class="logo-preview-cell">
-              ${imgPreview}
-              <input type="url" value="${logoSrc}"
-                placeholder="https://i.imgur.com/..."
-                onchange="updateScheduleField(${idx}, 'imageUrl', this.value); refreshLogoPreview(this)" />
-            </div>
-          </td>
-          <td><select onchange="updateScheduleField(${idx}, 'tag', this.value)">${tagOpts}</select></td>
-          <td class="admin-col-actions">
-            <button class="xp-button success admin-slot-btn"
-              title="Agregar otro slot para este mismo día"
-              onclick="addSlotAfter(${idx})">+⏰</button>
-            <button class="xp-button danger admin-slot-btn"
-              onclick="removeScheduleRow(${idx})">🗑️</button>
-          </td>
-        `;
-    tbody.appendChild(tr);
-  });
+    const dot = document.createElement('div');
+    dot.className = 'msn-status';
+    frame.appendChild(dot);
+  }
 }
 
-/* ── Rotation cards ── */
-function renderRotationAdmin() {
-  const grid = document.getElementById('rotation-admin-grid');
+/* ── Weekly schedule table ── */
+function renderSchedule(schedule) {
+  const tbody = document.getElementById('schedule-body');
+  if (!tbody) return;
+
+  const todayIndex = new Date().getDay();   // 0 = Sunday
+  tbody.innerHTML  = '';
+
+  /* Group consecutive entries by day so we can rowspan the day cell.
+     We walk the flat array and track when the day changes. */
+  let i = 0;
+  while (i < schedule.length) {
+    const item     = schedule[i];
+    const dayIndex = DAY_TO_INDEX[item.day] ?? -1;
+    const isToday  = dayIndex === todayIndex;
+
+    /* Count how many consecutive entries share this day */
+    let slotCount = 1;
+    while (
+        i + slotCount < schedule.length &&
+        schedule[i + slotCount].day === item.day
+        ) slotCount++;
+
+    /* Render each slot for this day */
+    for (let s = 0; s < slotCount; s++) {
+      const slot     = schedule[i + s];
+      const tagClass = TAG_CLASS_MAP[slot.tag] || 'tag-stream-longo';
+      const tr       = document.createElement('tr');
+
+      if (!slot.active) tr.classList.add('inactive');
+      if (isToday)      tr.classList.add('today');
+      if (s > 0)        tr.classList.add('slot-extra'); /* not the first slot of the day */
+
+      /* Convert Chile time to user's local time */
+      let formattedTime = '—';
+      if (slot.time != null) {
+        const local = convertChileTimeToLocal(slot.time);
+        formattedTime =
+            String(local.getHours()).padStart(2, '0') + ':' +
+            String(local.getMinutes()).padStart(2, '0');
+      }
+
+      /* Game logo */
+      const hasLogo  = slot.imageUrl && slot.imageUrl.trim() && !slot.imageUrl.includes('your-');
+      const gameCell = hasLogo
+          ? `<div class="game-logo-wrap">
+             <img class="game-logo" src="${slot.imageUrl}" alt="${slot.game}"
+                  onerror="this.style.display='none'">
+             <span>${slot.game}</span>
+           </div>`
+          : `<span>${slot.game}</span>`;
+
+      /* Day cell: only on the FIRST slot, with rowspan to cover all slots */
+      const dayCellHtml = s === 0
+          ? `<td class="td-day" rowspan="${slotCount}">${slot.day}</td>`
+          : ''; /* subsequent slots: day cell is covered by rowspan */
+
+      tr.innerHTML = `
+        ${dayCellHtml}
+        <td class="td-time">${formattedTime}</td>
+        <td class="td-game">${gameCell}</td>
+        <td class="td-tag"><span class="tag ${tagClass}">${slot.tag}</span></td>
+      `;
+      tbody.appendChild(tr);
+    }
+
+    i += slotCount; /* jump past all slots we just rendered */
+  }
+}
+
+/* ── Rotation games grid ── */
+function renderRotation(games) {
+  const grid = document.getElementById('rotation-grid');
+  if (!grid) return;
   grid.innerHTML = '';
 
-  state.rotationGames.forEach((game, idx) => {
-    const card = document.createElement('div');
-    card.className = 'rotation-admin-card';
+  games.forEach(game => {
+    const card     = document.createElement('div');
+    card.className = 'game-card';
 
-    const logoSrc = game.imageUrl || '';
-    const hasLogo = logoSrc && !logoSrc.includes('your-');
+    const hasLogo  = game.imageUrl && game.imageUrl.trim() && !game.imageUrl.includes('your-');
+    const logoHtml = hasLogo
+        ? `<img class="game-card-logo" src="${game.imageUrl}" alt="${game.name}"
+              onerror="this.outerHTML='<span class=\\'game-card-emoji-fallback\\'>${game.emoji}</span>'">`
+        : `<span class="game-card-emoji-fallback">${game.emoji}</span>`;
 
     card.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <strong style="font-size:13px;">Juego ${idx+1}</strong>
-        <button class="xp-button danger" onclick="removeRotationGame(${idx})"
-          style="padding:2px 8px;font-size:11px;">🗑️ Quitar</button>
-      </div>
-      <div class="card-preview">
-        <img id="rot-preview-${idx}"
-          src="${hasLogo ? logoSrc : ''}"
-          style="${hasLogo ? '' : 'display:none'}"
-          onerror="this.style.display='none'"
-          alt="preview" />
-        <span>${hasLogo ? game.name : (game.emoji + ' ' + game.name)}</span>
-      </div>
-      <label>Emoji (fallback)</label>
-      <input type="text" value="${game.emoji}" placeholder="🎮"
-        onchange="updateRotationField(${idx}, 'emoji', this.value)" />
-      <label>Nombre del juego</label>
-      <input type="text" value="${game.name}" placeholder="Stardew Valley"
-        onchange="updateRotationField(${idx}, 'name', this.value)" />
-      <label>Logo imgur URL</label>
-      <input type="url" value="${logoSrc}" placeholder="https://i.imgur.com/..."
-        onchange="updateRotationField(${idx}, 'imageUrl', this.value); updateRotPreview(${idx}, this.value)" />
-      <label>Nota / descripción</label>
-      <input type="text" value="${game.note}" placeholder="Farm arc activo"
-        onchange="updateRotationField(${idx}, 'note', this.value)" />
+      ${logoHtml}
+      <div class="game-name">${game.name}</div>
+      <div class="game-note">${game.note}</div>
     `;
     grid.appendChild(card);
   });
 }
 
-/* ── Meta form (info general + profile pic + YouTube ID) ── */
-function renderMetaForm() {
-  const form = document.getElementById('meta-form');
-  const picSrc = state.profilePic || '';
-  const hasRealPic = picSrc && !picSrc.includes('your-profile-pic');
+/* ── Backlog de juegos ── */
+const BACKLOG_STATUS_CONFIG = {
+  'backlog':    { label: '📥 Backlog',    cls: 'status-backlog'    },
+  'jugando':    { label: '🎮 Jugando',    cls: 'status-jugando'    },
+  'pausado':    { label: '⏸️ Pausado',    cls: 'status-pausado'    },
+  'dropeado':   { label: '🗑️ Dropeado',   cls: 'status-dropeado'   },
+  'completado': { label: '✅ Completado', cls: 'status-completado' },
+  'platino':    { label: '💯 100%',       cls: 'status-platino'    },
+};
 
-  form.innerHTML = `
-    <div class="full-span">
-      <label>URL de foto de perfil (imgur, formato 1:1)</label>
-      <input type="url" value="${picSrc}"
-        placeholder="https://i.imgur.com/tu-foto-de-perfil.png"
-        oninput="state.profilePic = this.value; updateProfilePicPreview(this.value)" />
-    </div>
-    <div>
-      <label>Nombre del VTuber</label>
-      <input type="text" value="${state.vtuber}" onchange="state.vtuber = this.value" />
-    </div>
-    <div>
-      <label>Tagline</label>
-      <input type="text" value="${state.tagline}" onchange="state.tagline = this.value" />
-    </div>
-    <div>
-      <label>Fecha de actualización</label>
-      <input type="date" value="${state.lastUpdated}" onchange="state.lastUpdated = this.value" />
-    </div>
-    <div class="full-span">
-      <label>🎬 Último video de YouTube (ID)</label>
-      <input type="text" value="${state.youtubeLatestVideoId || ''}"
-        placeholder="Ej: dQw4w9WgXcQ"
-        onchange="state.youtubeLatestVideoId = this.value" />
+const BACKLOG_PLATFORM_CONFIG = {
+  'steam': { label: '🟦 Steam', cls: 'platform-steam' },
+  'gog':   { label: '🟪 GOG',   cls: 'platform-gog'   },
+  'otro':  { label: '🎮 Otro',  cls: 'platform-otro'  },
+};
 
-      <label style="margin-top:8px;">📼 Último VOD de YouTube (ID)</label>
-      <input type="text" value="${state.youtubeLatestVODId || ''}"
-        placeholder="Ej: rHJ6IgUTu1k"
-        onchange="state.youtubeLatestVODId = this.value" />
-
-      <label style="margin-top:8px;">YouTube VODs URL</label>
-      <input type="url" value="${state.socials.youtubevods || ''}"
-        placeholder="https://www.youtube.com/@marchel-vods1"
-        onchange="state.socials.youtubevods = this.value" />
-   
-      <div style="font-size:10px; color:#666; margin-top:2px;">
-        El ID es la parte después de <code>watch?v=</code> en la URL del video. Ejemplo: de <code>https://www.youtube.com/watch?v=ABC123</code> el ID es <code>ABC123</code>.
-      </div>
-    </div>
-    <div>
-      <label>Twitch URL</label>
-      <input type="url" value="${state.socials.twitch || ''}"
-        placeholder="https://www.twitch.tv/marchel_cc"
-        onchange="state.socials.twitch = this.value" />
-    </div>
-    <div>
-      <label>YouTube URL</label>
-      <input type="url" value="${state.socials.youtube || ''}"
-        placeholder="https://www.youtube.com/@Marchel-cc"
-        onchange="state.socials.youtube = this.value" />
-    </div>
-    <div>
-      <label>Twitter / X URL</label>
-      <input type="url" value="${state.socials.twitter || ''}"
-        placeholder="https://x.com/Marchel_cc"
-        onchange="state.socials.twitter = this.value" />
-    </div>
-    <div>
-      <label>BlueSky URL</label>
-      <input type="url" value="${state.socials.bsky || ''}"
-        placeholder="https://bsky.app/profile/marchelcc.bsky.social"
-        onchange="state.socials.bsky = this.value" />
-    </div>
-  `;
-
-  // Seed the preview
-  if (hasRealPic) updateProfilePicPreview(picSrc);
+function minutesToHours(min) {
+  if (!min && min !== 0) return null;
+  return Math.round((min / 60) * 10) / 10; // 1 decimal
 }
 
-/* ── Live profile pic preview in admin ── */
-function updateProfilePicPreview(url) {
-  const frame    = document.querySelector('.profile-pic-preview-wrap .mini-frame');
-  const fallback = document.getElementById('profile-mini-fallback');
-  if (!frame) return;
+let BACKLOG_DATA = []; // combinación de backlog.json + backlog-steam.json, cacheada para los filtros
 
-  // Remove any old img
-  const old = frame.querySelector('img');
-  if (old) old.remove();
-  if (fallback) fallback.style.display = 'flex';
+function renderBacklog(manualGames, steamData) {
+  const grid = document.getElementById('backlog-grid');
+  if (!grid) return;
 
-  if (!url || url.includes('your-')) return;
+  /* Fusiona cada entrada manual con las horas de Steam (si hay appid y datos) */
+  BACKLOG_DATA = manualGames.map(game => {
+    const steamEntry = (game.appid && steamData?.games)
+        ? steamData.games[game.appid]
+        : null;
 
-  const img = document.createElement('img');
-  img.src = url;
-  img.alt = 'Profile preview';
-  img.style.display = 'none';
-  img.onload = () => {
-    if (fallback) fallback.style.display = 'none';
-    img.style.display = 'block';
-  };
-  img.onerror = () => img.remove();
-  frame.appendChild(img);
-}
+    /* Prioridad: horas automáticas de Steam > horas manuales del admin */
+    const playedHours = steamEntry
+        ? minutesToHours(steamEntry.playtimeForeverMinutes)
+        : (game.hoursPlayed ?? null);
+    const hoursAreManual = !steamEntry && game.hoursPlayed != null;
 
-/* ── Live logo preview helpers ── */
-function refreshLogoPreview(inputEl) {
-  const cell = inputEl.closest('.logo-preview-cell');
-  if (!cell) return;
-  let img = cell.querySelector('img');
-  const url = inputEl.value.trim();
-  if (!url) { if (img) img.remove(); return; }
-  if (!img) {
-    img = document.createElement('img');
-    img.onerror = () => img.style.display = 'none';
-    cell.prepend(img);
+    const coverUrl = game.imageUrl && game.imageUrl.trim()
+        ? game.imageUrl
+        : (steamEntry?.headerUrl || '');
+
+    return { ...game, playedHours, coverUrl, steamLinked: !!steamEntry, hoursAreManual };
+  });
+
+  const updEl = document.getElementById('backlog-updated-status');
+  if (updEl) {
+    updEl.textContent = steamData?.updated
+        ? `🔄 Steam actualizado: ${new Date(steamData.updated).toLocaleDateString()}`
+        : '🔄 Steam: sin conectar';
   }
-  img.src = url;
-  img.style.display = 'block';
+
+  drawBacklogCards('all');
 }
 
-function updateRotPreview(idx, url) {
-  const img = document.getElementById(`rot-preview-${idx}`);
-  if (!img) return;
-  if (!url) { img.style.display = 'none'; return; }
-  img.src = url;
-  img.style.display = 'block';
-}
+function drawBacklogCards(filter) {
+  const grid = document.getElementById('backlog-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
 
-/* ─────────────────────────────────────────────────────────────
-   FIELD UPDATERS
-   ───────────────────────────────────────────────────────────── */
-function updateScheduleField(idx, field, value) { state.schedule[idx][field] = value; }
-function updateRotationField(idx, field, value)  { state.rotationGames[idx][field] = value; }
+  const list = filter === 'all'
+      ? BACKLOG_DATA
+      : BACKLOG_DATA.filter(g => g.status === filter);
 
-/* ─────────────────────────────────────────────────────────────
-   ADD / REMOVE
-   ───────────────────────────────────────────────────────────── */
-function addScheduleRow() {
-  state.schedule.push({
-    id: scheduleIdCounter++,
-    day: 'Lunes', time: '19:00',
-    game: 'Nuevo stream', imageUrl: '', tag: 'Stream Longo', active: true
-  });
-  renderScheduleAdmin();
-  setStatus('✅ Fila agregada');
-}
+  if (list.length === 0) {
+    grid.innerHTML = `<div class="backlog-empty">🎣 Nada por aquí todavía...</div>`;
+  }
 
-/* Add a second (or third…) time slot right below the row at idx,
-   inheriting the same day so they appear grouped in the public view. */
-function addSlotAfter(idx) {
-  const sourceDay = state.schedule[idx]?.day || 'Lunes';
-  const newSlot = {
-    id: scheduleIdCounter++,
-    day: sourceDay, time: '21:00',
-    game: 'Nuevo slot', imageUrl: '', tag: 'Stream Shorti', active: true
-  };
-  /* Insert immediately after idx so it renders right below */
-  state.schedule.splice(idx + 1, 0, newSlot);
-  renderScheduleAdmin();
-  setStatus(`✅ Slot extra añadido para ${sourceDay}`);
-}
-function removeScheduleRow(idx) {
-  state.schedule.splice(idx, 1);
-  renderScheduleAdmin();
-  setStatus('🗑️ Fila eliminada');
-}
-function addRotationGame() {
-  state.rotationGames.push({
-    id: rotationIdCounter++, name: 'Nuevo Juego',
-    emoji: '🎮', imageUrl: '', note: 'Descripción'
-  });
-  renderRotationAdmin();
-  switchTab('tab-rotation', document.querySelectorAll('.tab')[1]);
-  setStatus('✅ Juego agregado');
-}
-function removeRotationGame(idx) {
-  state.rotationGames.splice(idx, 1);
-  renderRotationAdmin();
-  setStatus('🗑️ Juego eliminado');
-}
+  list.forEach(game => {
+    const cfg = BACKLOG_STATUS_CONFIG[game.status] || BACKLOG_STATUS_CONFIG['backlog'];
+    const card = document.createElement('div');
+    card.className = 'backlog-card';
 
-/* ── Backlog table ── */
-function renderBacklogAdmin() {
-  const tbody = document.getElementById('backlog-admin-body');
-  if (!tbody) return;
-  tbody.innerHTML = '';
+    const coverHtml = game.coverUrl
+        ? `<img class="backlog-cover" src="${game.coverUrl}" alt="${game.name}" onerror="this.style.display='none'">`
+        : `<div class="backlog-cover backlog-cover-fallback">🎮</div>`;
 
-  backlogState.forEach((game, idx) => {
-    const tr = document.createElement('tr');
+    const hoursHtml = game.playedHours != null
+        ? `<span class="backlog-stat">⏱️ ${game.playedHours}h jugadas${game.hoursAreManual ? ' (manual)' : ''}</span>`
+        : `<span class="backlog-stat backlog-stat-muted">⏱️ Sin horas registradas</span>`;
 
-    const statusOpts = BACKLOG_STATUS_OPTIONS.map(s =>
-        `<option value="${s.value}" ${s.value === game.status ? 'selected' : ''}>${s.label}</option>`
-    ).join('');
-    const platformOpts = BACKLOG_PLATFORM_OPTIONS.map(p =>
-        `<option value="${p.value}" ${p.value === game.platform ? 'selected' : ''}>${p.label}</option>`
-    ).join('');
-
-    const logoSrc    = game.imageUrl || '';
-    const imgPreview = logoSrc && !logoSrc.includes('your-')
-        ? `<img src="${logoSrc}" onerror="this.style.display='none'" />`
+    const hltbHtml = game.hltb
+        ? `<span class="backlog-stat">🎯 HLTB: ~${game.hltb}h</span>`
         : '';
 
-    const isSteam = game.platform === 'steam';
+    const platCfg = BACKLOG_PLATFORM_CONFIG[game.platform] || null;
+    const platformHtml = platCfg
+        ? `<span class="backlog-platform-tag ${platCfg.cls}">${platCfg.label}</span>`
+        : '';
 
-    tr.innerHTML = `
-          <td><input type="text" value="${game.name || ''}" placeholder="Nombre del juego"
-               onchange="updateBacklogField(${idx}, 'name', this.value)" /></td>
-          <td>
-            <div class="logo-preview-cell">
-              ${imgPreview}
-              <input type="url" value="${logoSrc}"
-                placeholder="https://..."
-                onchange="updateBacklogField(${idx}, 'imageUrl', this.value); refreshLogoPreview(this)" />
-            </div>
-          </td>
-          <td><select onchange="updateBacklogField(${idx}, 'platform', this.value); renderBacklogAdmin();">${platformOpts}</select></td>
-          <td><input type="number" value="${game.appid ?? ''}" placeholder="632360" style="width:90px;"
-               ${isSteam ? '' : 'disabled title="Solo aplica para plataforma Steam"'}
-               onchange="updateBacklogField(${idx}, 'appid', this.value ? Number(this.value) : null)" /></td>
-          <td><select onchange="updateBacklogField(${idx}, 'status', this.value)">${statusOpts}</select></td>
-          <td><input type="number" value="${game.hltb ?? ''}" placeholder="12" style="width:70px;"
-               onchange="updateBacklogField(${idx}, 'hltb', this.value ? Number(this.value) : null)" /></td>
-          <td><input type="number" value="${game.hoursPlayed ?? ''}" placeholder="18" style="width:70px;"
-               ${isSteam ? 'disabled title="Se llena automático desde Steam"' : ''}
-               onchange="updateBacklogField(${idx}, 'hoursPlayed', this.value ? Number(this.value) : null)" /></td>
-          <td><input type="text" value="${game.note || ''}" placeholder="Nota opcional"
-               onchange="updateBacklogField(${idx}, 'note', this.value)" /></td>
-          <td class="admin-col-actions">
-            <button class="xp-button danger admin-slot-btn"
-              onclick="removeBacklogGame(${idx})">🗑️</button>
-          </td>
-        `;
-    tbody.appendChild(tr);
+    card.innerHTML = `
+      ${coverHtml}
+      <div class="backlog-card-body">
+        <div class="backlog-card-name">${game.name}</div>
+        <div class="backlog-tags-row">
+          <span class="backlog-status-tag ${cfg.cls}">${cfg.label}</span>
+          ${platformHtml}
+        </div>
+        <div class="backlog-stats-row">
+          ${hoursHtml}
+          ${hltbHtml}
+        </div>
+        ${game.note ? `<div class="backlog-note">${game.note}</div>` : ''}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  const countEl = document.getElementById('backlog-count-status');
+  if (countEl) countEl.textContent = `🐟 ${list.length} juego${list.length === 1 ? '' : 's'}`;
+}
+
+function setupBacklogFilters() {
+  const bar = document.getElementById('backlog-filter-bar');
+  if (!bar) return;
+  bar.querySelectorAll('.backlog-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      bar.querySelectorAll('.backlog-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      drawBacklogCards(btn.dataset.filter);
+    });
   });
 }
 
-function updateBacklogField(idx, field, value) { backlogState[idx][field] = value; }
+/* ── Social badges ── */
+function renderSocials(socials) {
+  const row = document.getElementById('social-row');
+  if (!row || !socials) return;
 
-function addBacklogGame() {
-  backlogState.push({
-    id: backlogIdCounter++, name: 'Nuevo Juego', appid: null, platform: 'otro',
-    status: 'backlog', hltb: null, hoursPlayed: null, note: '', imageUrl: ''
+  const platforms = [
+    { key: 'twitch',  label: '🟣 Twitch',  cls: 'badge-twitch'  },
+    { key: 'youtube', label: '🔴 YouTube', cls: 'badge-yt'       },
+    { key: 'twitter', label: '🐦 Twitter', cls: 'badge-twitter'  },
+    { key: 'bsky',    label: '🦋 BlueSky', cls: 'badge-bsky'     },
+  ];
+
+  row.innerHTML = '';
+  platforms.forEach(p => {
+    if (!socials[p.key]) return;
+    const a       = document.createElement('a');
+    a.href        = socials[p.key];
+    a.target      = '_blank';
+    a.rel         = 'noopener';
+    a.className   = `social-badge ${p.cls}`;
+    a.textContent = p.label;
+    row.appendChild(a);
   });
-  renderBacklogAdmin();
-  setStatus('✅ Juego agregado al backlog');
 }
 
-function removeBacklogGame(idx) {
-  backlogState.splice(idx, 1);
-  renderBacklogAdmin();
-  setStatus('🗑️ Juego eliminado del backlog');
-}
+/* ── Tagline, status bar counts, timezone label ── */
+function renderMeta(data) {
+  const tagEl = document.getElementById('hero-tagline');
+  if (tagEl && data.tagline) tagEl.textContent = data.tagline;
 
-function exportBacklogJson() {
-  const json = JSON.stringify({ games: backlogState }, null, 2);
-  const blob = new Blob([json], { type: 'application/json' });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href = url; a.download = 'backlog.json'; a.click();
-  URL.revokeObjectURL(url);
-  showToast('💾 backlog.json descargado correctamente');
-  setStatus('✅ backlog.json exportado');
-}
+  const updEl = document.getElementById('last-updated');
+  if (updEl && data.lastUpdated) updEl.textContent = `📅 Actualizado: ${data.lastUpdated}`;
 
-/* ─────────────────────────────────────────────────────────────
-   JSON GENERATION & EXPORT
-   ───────────────────────────────────────────────────────────── */
-function buildJson() {
-  state.lastUpdated = new Date().toISOString().slice(0,10);
-  return JSON.stringify(state, null, 2);
-}
-
-function showJsonTab() {
-  document.getElementById('json-preview-content').textContent = buildJson();
-  switchTab('tab-json', document.querySelectorAll('.tab')[3]);
-}
-
-function exportJson() {
-  const json = buildJson();
-  const blob = new Blob([json], { type: 'application/json' });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href = url; a.download = 'schedule.json'; a.click();
-  URL.revokeObjectURL(url);
-  showToast('💾 schedule.json descargado correctamente');
-  setStatus('✅ JSON exportado');
-  document.getElementById('json-preview-content').textContent = json;
-}
-
-async function copyJson() {
-  try {
-    await navigator.clipboard.writeText(buildJson());
-    showToast('📋 JSON copiado al portapapeles');
-  } catch {
-    showToast('⚠️ No se pudo copiar — usa el botón de exportar');
+  const countEl = document.getElementById('stream-count');
+  if (countEl && data.schedule) {
+    const active = data.schedule.filter(s => s.active && s.tag !== 'Off').length;
+    countEl.textContent = `${active} streams esta semana`;
   }
+
+  const tzEl = document.getElementById('timezone-label');
+  if (tzEl) tzEl.textContent = `🌍 ${getUserTimezone()}`;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   TAB SWITCHING
-   ───────────────────────────────────────────────────────────── */
-function switchTab(panelId, tabEl) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  const panel = document.getElementById(panelId);
-  if (panel) panel.classList.add('active');
-  if (tabEl)  tabEl.classList.add('active');
-  if (panelId === 'tab-json') showJsonTab();
-}
-
-/* ─────────────────────────────────────────────────────────────
-   UI HELPERS
-   ───────────────────────────────────────────────────────────── */
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
-}
-function setStatus(msg) {
-  document.getElementById('admin-status').textContent = msg;
-}
-function updateStatus() {
-  const total  = state.schedule.length;
-  const active = state.schedule.filter(s => s.active).length;
-  document.getElementById('admin-count-status').textContent =
-      `${active} días activos / ${total} días   · ${state.rotationGames.length} juegos en rotación`;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   XP WINDOW BUTTONS (decorative)
-   ───────────────────────────────────────────────────────────── */
-document.querySelectorAll('.xp-btn-close').forEach(btn => {
-  btn.addEventListener('click', e => {
-    const win = e.target.closest('.xp-window');
-    if (!win) return;
-    win.style.transition = 'transform 0.2s, opacity 0.2s';
-    win.style.transform  = 'scale(0.97)';
-    win.style.opacity    = '0.6';
-    setTimeout(() => { win.style.transform = ''; win.style.opacity = ''; }, 300);
+/* ── Staggered row entrance animation ── */
+function animateRows() {
+  document.querySelectorAll('#schedule-body tr').forEach((row, i) => {
+    row.style.opacity    = '0';
+    row.style.transform  = 'translateX(-12px)';
+    row.style.transition = `opacity .3s ${i * 55}ms, transform .3s ${i * 55}ms`;
+    requestAnimationFrame(() => {
+      row.style.opacity   = '';
+      row.style.transform = '';
+    });
   });
-});
+}
 
-/* ─────────────────────────────────────────────────────────────
-   CLOCK
-   ───────────────────────────────────────────────────────────── */
-(function startClock() {
+
+/* ════════════════════════════════════════════════════════════
+   5. EMBED SETUP
+   ════════════════════════════════════════════════════════════ */
+
+function setupTwitchEmbed() {
+  const iframe = document.getElementById('twitch-embed');
+  if (!iframe) return;
+
+  const channel = 'marchel_cc';
+  let   parent  = window.location.hostname;
+  if (parent === '' || parent === 'localhost' || parent === '127.0.0.1') parent = 'localhost';
+
+  iframe.src = `https://player.twitch.tv/?channel=${channel}&parent=${parent}&autoplay=false&muted=false`;
+}
+
+function setupYoutubeEmbed(videoId) {
+  const iframe = document.getElementById('youtube-embed');
+  if (!iframe || !videoId) return;
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=0&modestbranding=1&rel=0`;
+}
+
+function setupYoutubeVODEmbed(vodId) {
+  const iframe = document.getElementById('youtube-vod-embed');
+  if (!iframe || !vodId) return;
+  iframe.src = `https://www.youtube.com/embed/${vodId}?autoplay=0&modestbranding=1&rel=0`;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   6. CLOCK
+   ════════════════════════════════════════════════════════════ */
+
+function startClock() {
   const el = document.getElementById('taskbar-clock');
   if (!el) return;
-  function tick() {
+  const tick = () => {
     const n = new Date();
-    el.textContent = String(n.getHours()).padStart(2,'0') + ':' + String(n.getMinutes()).padStart(2,'0');
+    el.textContent =
+        String(n.getHours()).padStart(2, '0') + ':' +
+        String(n.getMinutes()).padStart(2, '0');
+  };
+  tick();
+  setInterval(tick, 30_000);
+}
+
+/* ════════════════════════════════════════════════════════════
+   6.5 GITHUB REPOS WINDOW
+   ════════════════════════════════════════════════════════════ */
+
+/* Language → hex colour (subset of GitHub's palette) */
+const LANG_COLOURS = {
+  'JavaScript':  '#f1e05a',
+  'TypeScript':  '#3178c6',
+  'Python':      '#3572A5',
+  'HTML':        '#e34c26',
+  'CSS':         '#563d7c',
+  'Vue':         '#41b883',
+  'Svelte':      '#ff3e00',
+  'Rust':        '#dea584',
+  'Go':          '#00ADD8',
+  'Java':        '#b07219',
+  'C#':          '#178600',
+  'C++':         '#f34b7d',
+  'C':           '#555555',
+  'Shell':       '#89e051',
+  'Ruby':        '#701516',
+  'PHP':         '#4F5D95',
+  'Kotlin':      '#A97BFF',
+  'Swift':       '#F05138',
+  'Dart':        '#00B4AB',
+  'Lua':         '#000080',
+};
+
+async function fetchAndRenderGithubRepos() {
+  const container = document.getElementById('repos-grid');
+  if (!container) return;
+
+  const GITHUB_USER = 'marchelcc';
+
+  container.innerHTML = '<div class="repos-loading">🐙 Cargando repositorios...</div>';
+
+  try {
+    const res = await fetch(
+        `https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=12&type=owner`,
+        { headers: { 'Accept': 'application/vnd.github+json' } }
+    );
+
+    if (!res.ok) throw new Error(`GitHub API: ${res.status}`);
+
+    const repos = await res.json();
+
+    /* Filter out forks (optional — remove the filter to show all) */
+    const ownRepos = repos.filter(r => !r.fork);
+
+    if (ownRepos.length === 0) {
+      container.innerHTML = '<div class="repos-loading">No se encontraron repositorios públicos.</div>';
+      return;
+    }
+
+    container.innerHTML = '';
+
+    ownRepos.forEach(repo => {
+      const langColour = LANG_COLOURS[repo.language] || '#999';
+      const desc = repo.description
+          ? repo.description
+          : null;
+
+      /* Topics (up to 3) */
+      const topicTags = (repo.topics || []).slice(0, 3)
+          .map(t => `<span class="repo-topic">${t}</span>`)
+          .join('');
+
+      /* Build card */
+      const card = document.createElement('a');
+      card.className  = 'repo-card';
+      card.href       = repo.html_url;
+      card.target     = '_blank';
+      card.rel        = 'noopener';
+      card.title      = repo.full_name;
+
+      card.innerHTML = `
+        <div class="repo-card-name">
+          <span class="repo-icon">📁</span>
+          ${repo.name}
+        </div>
+        <div class="repo-card-desc${desc ? '' : ' empty'}">
+          ${desc ? desc : 'Sin descripción'}
+        </div>
+        <div class="repo-card-meta">
+          ${repo.language ? `
+            <span class="repo-lang">
+              <span class="repo-lang-dot" style="background:${langColour}"></span>
+              ${repo.language}
+            </span>` : ''}
+          ${repo.stargazers_count > 0 ? `
+            <span class="repo-stat">⭐ ${repo.stargazers_count}</span>` : ''}
+          ${repo.forks_count > 0 ? `
+            <span class="repo-stat">🍴 ${repo.forks_count}</span>` : ''}
+          ${topicTags}
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+
+  } catch (err) {
+    console.error('GitHub repos error:', err);
+    container.innerHTML = `<div class="repos-error">⚠️ No se pudieron cargar los repos.<br><small>${err.message}</small></div>`;
   }
-  tick(); setInterval(tick, 30000);
-})();
+}
+
+/* ════════════════════════════════════════════════════════════
+   7. BOOT
+   ════════════════════════════════════════════════════════════ */
+
+async function init() {
+  const data = await loadSchedule();
+
+  if (!data) {
+    const tbody = document.getElementById('schedule-body');
+    if (tbody) tbody.innerHTML = `
+      <tr><td colspan="4" style="text-align:center;padding:20px;color:#c00;">
+        ⚠️ No se pudo cargar schedule.json
+      </td></tr>`;
+    return;
+  }
+
+  renderProfilePic(data.profilePic,  data.vtuber);
+  renderMeta(data);
+  renderSchedule(data.schedule       || []);
+  renderRotation(data.rotationGames  || []);
+  renderSocials(data.socials         || {});
+  setupYoutubeEmbed(data.youtubeLatestVideoId);
+  setupYoutubeVODEmbed(data.youtubeLatestVODId);
+
+  setTimeout(animateRows, 150);
+
+  /* Backlog: independiente de schedule.json — no bloquea si falla */
+  const [manualGames, steamData] = await Promise.all([loadBacklog(), loadBacklogSteam()]);
+  renderBacklog(manualGames, steamData);
+  setupBacklogFilters();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  WM.init();          // start window manager; opens hero window by default
+  init();             // load and render schedule data
+  startClock();       // taskbar clock
+  setupTwitchEmbed(); // Twitch player
+
+  /* On resize from mobile → desktop, clean up mobile-open classes so the
+     desktop WM takes over cleanly. Vice-versa: collapse all windows. */
+  let lastMobile = WM._isMobile();
+  window.addEventListener('resize', () => {
+    const nowMobile = WM._isMobile();
+    if (nowMobile === lastMobile) return;
+    lastMobile = nowMobile;
+
+    document.querySelectorAll('.xp-window[data-wid]').forEach(el => {
+      if (nowMobile) {
+        /* Switched to mobile — desktop WM classes no longer apply */
+        el.classList.remove('wm-open', 'wm-focused', 'wm-maximized');
+        el.style.cssText = '';
+      } else {
+        /* Switched to desktop — remove mobile class */
+        el.classList.remove('wm-mobile-open');
+      }
+    });
+  }, { passive: true });
+
+  /* Lazy-load GitHub repos the first time the github window is opened */
+  let reposFetched = false;
+  const githubDesktopBtn = document.querySelector('button[data-open="github"]');
+  const githubTaskbarBtn = document.querySelector('.taskbar-icon-btn[data-open="github"]');
+  const triggerRepoFetch = () => {
+    if (!reposFetched) {
+      reposFetched = true;
+      fetchAndRenderGithubRepos();
+    }
+  };
+  githubDesktopBtn?.addEventListener('click', triggerRepoFetch);
+  githubTaskbarBtn?.addEventListener('click', triggerRepoFetch);
+});
