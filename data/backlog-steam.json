@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-14T10:53:18.108Z",
+  "updated": "2026-07-15T10:57:48.165Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -760,7 +760,7 @@
     "431960": {
       "name": "Wallpaper Engine",
       "playtimeForeverMinutes": 1803,
-      "playtime2WeeksMinutes": 9,
+      "playtime2WeeksMinutes": 8,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/431960/72edaed9d748c6cf7397ffb1c83f0b837b9ebd9d.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/431960/header.jpg"
     },
@@ -942,7 +942,7 @@
     "553850": {
       "name": "HELLDIVERS™ 2",
       "playtimeForeverMinutes": 2693,
-      "playtime2WeeksMinutes": 20,
+      "playtime2WeeksMinutes": 0,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/553850/c3dff088e090f81d6e3d88eabbb67732647c69cf.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/553850/header.jpg"
     },
@@ -1530,7 +1530,7 @@
     "1165990": {
       "name": "Kiln",
       "playtimeForeverMinutes": 287,
-      "playtime2WeeksMinutes": 15,
+      "playtime2WeeksMinutes": 0,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1165990/e01c95235426ffbf8a577abe14ee7a2e258638d0.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1165990/header.jpg"
     },
@@ -1838,7 +1838,7 @@
     "1422450": {
       "name": "Deadlock",
       "playtimeForeverMinutes": 1290,
-      "playtime2WeeksMinutes": 24,
+      "playtime2WeeksMinutes": 0,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg"
     },
@@ -1886,8 +1886,8 @@
     },
     "1462040": {
       "name": "FINAL FANTASY VII REMAKE INTERGRADE",
-      "playtimeForeverMinutes": 130,
-      "playtime2WeeksMinutes": 130,
+      "playtimeForeverMinutes": 367,
+      "playtime2WeeksMinutes": 367,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1462040/3cf19bc8fa3bc953d68a9b46b0a7555839188da0.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1462040/header.jpg"
     },
@@ -1978,7 +1978,7 @@
     "1617400": {
       "name": "The Bazaar",
       "playtimeForeverMinutes": 496,
-      "playtime2WeeksMinutes": 2,
+      "playtime2WeeksMinutes": 0,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1617400/9fa251921f007cfa0f074b3a548f083cb3150d1c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1617400/header.jpg"
     },
@@ -2934,13 +2934,6 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4128260/cc96b1a760e4aafef7a407f25e3d1c70475808cb.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4128260/header.jpg"
     },
-    "4148250": {
-      "name": "Echoes of Aincrad DEMO Version",
-      "playtimeForeverMinutes": 92,
-      "playtime2WeeksMinutes": 92,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4148250/d0b4b065f7785d784219db974f80a19827313973.jpg",
-      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4148250/header.jpg"
-    },
     "4195600": {
       "name": "AFK Journey",
       "playtimeForeverMinutes": 29,
@@ -2979,7 +2972,7 @@
     "4621180": {
       "name": "Ascenders: Beyond the Peak Demo",
       "playtimeForeverMinutes": 155,
-      "playtime2WeeksMinutes": 27,
+      "playtime2WeeksMinutes": 0,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4621180/2bc3ea14e4cf5f27e9bf44ef66c2ebdd2bb59673.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4621180/header.jpg"
     },
