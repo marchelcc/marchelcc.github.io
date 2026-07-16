@@ -764,12 +764,6 @@ function minutesToHours(min) {
   return Math.round((min / 60) * 10) / 10; // 1 decimal
 }
 
-function formatLastPlayed(unixSeconds) {
-  if (!unixSeconds) return null;
-  const d = new Date(unixSeconds * 1000);
-  return d.toLocaleDateString('es-CL', { day: 'numeric', month: 'short' });
-}
-
 let BACKLOG_DATA = [];       // combinación de backlog.json + backlog-steam.json, cacheada para los filtros
 let BACKLOG_VIEW = 'library'; // 'library' | 'list'
 
@@ -797,13 +791,14 @@ function renderBacklog(manualGames, steamData) {
 
     const coverUrl = game.imageUrl && game.imageUrl.trim()
         ? game.imageUrl
+        : (steamEntry?.libraryUrl || '');
+    
+    const capsuleUrl = game.capsuleUrl && game.capsuleUrl.trim()
+        ? game.capsuleUrl
         : (steamEntry?.headerUrl || '');
-
-    const lastPlayed = steamEntry ? formatLastPlayed(steamEntry.lastPlayedUnix) : null;
-
+    
     return {
-      ...game, playedHours, coverUrl, steamLinked: !!steamEntry, hoursAreManual,
-      lastPlayed,
+      ...game, playedHours, coverUrl, capsuleUrl, steamLinked: !!steamEntry, hoursAreManual,
       achievements: steamAch || raAch || null,
       achievementsSource: steamAch ? 'steam' : (raAch ? 'retro' : null)
     };
@@ -872,7 +867,16 @@ function backlogCoverHtml(game, extraClass) {
       ? `<img class="${extraClass}" src="${game.coverUrl}" alt="${game.name}"
             onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'${extraClass} backlog-cover-fallback',textContent:'🎮'}))">`
       : `<div class="${extraClass} backlog-cover-fallback">🎮</div>`;
+
 }
+
+function backlogHeaderHtml(game, extraClass) {
+  return game.coverUrl
+      ? `<img class="${extraClass}" src="${game.capsuleUrl}" alt="${game.name}"
+            onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'${extraClass} backlog-cover-fallback',textContent:'🎮'}))">`
+      : `<div class="${extraClass} backlog-cover-fallback">🎮</div>`;
+}
+
 
 /* ── Vista Biblioteca: portadas verticales tipo estantería ── */
 function buildBacklogLibraryCard(game) {
@@ -901,12 +905,8 @@ function buildBacklogListRow(game) {
       ? `${game.playedHours}h en registro${game.hoursAreManual ? ' (manual)' : ''}`
       : 'Sin horas registradas';
 
-  const lastPlayedHtml = game.lastPlayed
-      ? `<div class="backlog-row-lastplayed">Última vez: ${game.lastPlayed}</div>`
-      : '';
-
   const hltbHtml = game.hltb
-      ? `<div class="backlog-row-hltb">🎯 HLTB estimado: ~${game.hltb}h</div>`
+      ? `<div class="backlog-row-hltb">🎯 HLTB: ~${game.hltb}h</div>`
       : '';
 
   let achievementsHtml = '';
@@ -943,7 +943,7 @@ function buildBacklogListRow(game) {
 
   row.innerHTML = `
     <div class="backlog-row-top">
-      ${backlogCoverHtml(game, 'backlog-row-cover')}
+      ${backlogHeaderHtml(game, 'backlog-row-cover')}
       <div class="backlog-row-info">
         <div class="backlog-row-name">${game.name}</div>
         <div class="backlog-row-tags">
@@ -951,9 +951,7 @@ function buildBacklogListRow(game) {
           ${platCfg ? `<span class="backlog-platform-tag ${platCfg.cls}">${platCfg.label}</span>` : ''}
         </div>
         <div class="backlog-row-hours">${hoursText}</div>
-        ${lastPlayedHtml}
         ${hltbHtml}
-        ${game.note ? `<div class="backlog-row-note">${game.note}</div>` : ''}
       </div>
     </div>
     ${achievementsHtml}
@@ -1005,7 +1003,7 @@ function setupBacklogFilters() {
       btn.addEventListener('click', () => {
         toggle.querySelectorAll('.backlog-view-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        BACKLOG_VIEW = btn.dataset.view;
+        BACKLOG_VIEW = btn.dataset.view; 
         drawBacklog();
       });
     });

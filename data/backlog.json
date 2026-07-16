@@ -8,7 +8,8 @@
       "status": "completado",
       "hltb": 12,
       "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/GJOzHff.png",
+      "imageUrl": "https://i.imgur.com/6vQWDGc.png",
+      "capsuleUrl": null,
       "raGameId": null
     },
     {
@@ -19,29 +20,32 @@
       "status": "jugando",
       "hltb": 35,
       "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/BGOgcCM.png",
+      "imageUrl": "https://i.imgur.com/MfeDAw6.png",
+      "capsuleUrl": null,
       "raGameId": null
     },
     {
       "id": 3,
       "name": "Final Fantasy X/X-2 HD Remaster",
-      "appid": "259870",
+      "appid": 359870,
       "platform": "steam",
       "status": "jugando",
       "hltb": 39,
       "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/lSfk03a.png",
+      "imageUrl": "https://i.imgur.com/CyVrZxs.png",
+      "capsuleUrl": null,
       "raGameId": null
     },
     {
       "id": 4,
       "name": "Coromon",
-      "appid": null,
+      "appid": 	1218210,
       "platform": "gog",
       "status": "backlog",
       "hltb": 25,
-      "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/JAXUyUn.png",
+      "hoursPlayed": 1,
+      "imageUrl": "https://i.imgur.com/8lg8oK7.png",
+      "capsuleUrl": "https://i.imgur.com/9prYOPm.png",
       "raGameId": null
     },
     {
@@ -52,8 +56,8 @@
       "status": "pausado",
       "hltb": 30,
       "hoursPlayed": null,
-      "note": "Amaze amaze amaze, Grace y Rocky salvarán las estrellas",
-      "imageUrl": "https://i.imgur.com/c8uKrEB.png",
+      "imageUrl": "https://i.imgur.com/3cYzANC.png",
+      "capsuleUrl": null,
       "raGameId": null
     }
   ]
