@@ -833,7 +833,7 @@ body {
 }
 .rotation-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 14px;
 }
 
@@ -1091,7 +1091,7 @@ body {
 /* ── Vista Biblioteca: portadas verticales ── */
 .backlog-view-library {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 14px;
 }
 .backlog-lib-card { display: flex; flex-direction: column; cursor: default; }
@@ -1173,18 +1173,6 @@ body {
   font-weight: 600;
   color: #4a4136;
 }
-.backlog-row-hltb {
-  font-size: 11.5px;
-  color: var(--brown-soft);
-  margin-top: 1px;
-}
-.backlog-row-note {
-  font-size: 11.5px;
-  color: #6f5a3a;
-  font-style: italic;
-  margin-top: 4px;
-  line-height: 1.35;
-}
 
 .backlog-achievements {
   margin-top: 10px;
@@ -1243,7 +1231,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  .backlog-view-library { grid-template-columns: repeat(2, 1fr); }
   .backlog-body { flex-direction: column; }
   .backlog-sidebar {
     width: auto;
@@ -1262,6 +1249,27 @@ body {
     padding: 4px 10px;
   }
   .backlog-sidebar-divider { display: none; }
+
+  /* ── Toolbar: crumb + toggle se envuelven en vez de desbordar ── */
+  .backlog-toolbar {
+    flex-wrap: wrap;
+    row-gap: 6px;
+  }
+  .backlog-toolbar-crumb { font-size: 11.5px; }
+
+  /* ── Fila de la vista Lista: portada arriba, info abajo (no 250px fijos) ── */
+  .backlog-row-top { flex-direction: column; }
+  .backlog-row-cover {
+    width: 100%;
+    aspect-ratio: 2.6 / 1;
+  }
+  .backlog-row-cover.backlog-cover-fallback { width: 100%; height: auto; aspect-ratio: 2.6 / 1; }
+}
+
+@media (max-width: 480px) {
+  .backlog-view-library { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+  .backlog-lib-name { font-size: 11.5px; }
+  .backlog-ach-icon, .backlog-ach-more { width: 28px; height: 28px; }
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -2237,9 +2245,7 @@ body {
    16. RESPONSIVE MEDIA QUERIES
    ───────────────────────────────────────────────────────────── */
 @media (min-width: 768px) {
-  .rotation-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  /* rotation-grid ya usa auto-fill — sin override necesario aquí */
 }
 
 /* ── Tablet (769px → 1199px): tighter window defaults ── */
@@ -2382,7 +2388,7 @@ body {
   .msn-frame { width: 76px; height: 76px; }
 
   /* ── Rotation grid ── */
-  .rotation-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .rotation-grid { gap: 10px; }
   .game-card { padding: 12px 10px; }
   .game-card-logo { height: 80px; }
 
@@ -2442,7 +2448,7 @@ body {
   .platform-badge { justify-content: center; }
   .games-flex { justify-content: center; }
   .repos-grid { grid-template-columns: 1fr; }
-  .rotation-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .rotation-grid { gap: 8px; }
   .hero-name { font-size: 26px; }
   .xp-window { border-radius: 6px; }
 }

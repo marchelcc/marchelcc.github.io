@@ -38,9 +38,12 @@ const BACKLOG_STATUS_OPTIONS = [
     { value: 'platino',    label: '💯 100%' },
 ];
 const BACKLOG_PLATFORM_OPTIONS = [
-    { value: 'steam', label: '🟦 Steam' },
-    { value: 'gog',   label: '🟪 GOG' },
-    { value: 'otro',  label: '🎮 Otro' },
+    { value: 'steam',   label: '🟦 Steam' },
+    { value: 'gog',     label: '🟪 GOG' },
+    { value: 'epic',    label: '⬛ Epic Games' },
+    { value: 'retro',   label: '🕹️ Retro / Emulado' },
+    { value: 'consola', label: '🎮 Consola' },
+    { value: 'otro',    label: '🎮 Otro' },
 ];
 
 /* ─────────────────────────────────────────────────────────────
@@ -483,6 +486,11 @@ function renderBacklogAdmin() {
             ? `<img src="${logoSrc}" onerror="this.style.display='none'" />`
             : '';
 
+        const capsuleSrc     = game.capsuleUrl || '';
+        const capsulePreview = capsuleSrc && !capsuleSrc.includes('your-')
+            ? `<img src="${capsuleSrc}" onerror="this.style.display='none'" />`
+            : '';
+
         const isSteam = game.platform === 'steam';
 
         tr.innerHTML = `
@@ -492,22 +500,29 @@ function renderBacklogAdmin() {
             <div class="logo-preview-cell">
               ${imgPreview}
               <input type="url" value="${logoSrc}"
-                placeholder="https://..."
+                placeholder="https://... (portada vertical)"
                 onchange="updateBacklogField(${idx}, 'imageUrl', this.value); refreshLogoPreview(this)" />
+            </div>
+          </td>
+          <td>
+            <div class="logo-preview-cell">
+              ${capsulePreview}
+              <input type="url" value="${capsuleSrc}"
+                placeholder="https://... (capsule horizontal, vista lista)"
+                onchange="updateBacklogField(${idx}, 'capsuleUrl', this.value); refreshLogoPreview(this)" />
             </div>
           </td>
           <td><select onchange="updateBacklogField(${idx}, 'platform', this.value); renderBacklogAdmin();">${platformOpts}</select></td>
           <td><input type="number" value="${game.appid ?? ''}" placeholder="632360" style="width:90px;"
                ${isSteam ? '' : 'disabled title="Solo aplica para plataforma Steam"'}
                onchange="updateBacklogField(${idx}, 'appid', this.value ? Number(this.value) : null)" /></td>
+          <td><input type="number" value="${game.raGameId ?? ''}" placeholder="14402" style="width:80px;"
+               title="ID del juego en RetroAchievements.org (busca el juego ahí, es el número en la URL)"
+               onchange="updateBacklogField(${idx}, 'raGameId', this.value ? Number(this.value) : null)" /></td>
           <td><select onchange="updateBacklogField(${idx}, 'status', this.value)">${statusOpts}</select></td>
-          <td><input type="number" value="${game.hltb ?? ''}" placeholder="12" style="width:70px;"
-               onchange="updateBacklogField(${idx}, 'hltb', this.value ? Number(this.value) : null)" /></td>
           <td><input type="number" value="${game.hoursPlayed ?? ''}" placeholder="18" style="width:70px;"
                ${isSteam ? 'disabled title="Se llena automático desde Steam"' : ''}
                onchange="updateBacklogField(${idx}, 'hoursPlayed', this.value ? Number(this.value) : null)" /></td>
-          <td><input type="text" value="${game.note || ''}" placeholder="Nota opcional"
-               onchange="updateBacklogField(${idx}, 'note', this.value)" /></td>
           <td class="admin-col-actions">
             <button class="xp-button danger admin-slot-btn"
               onclick="removeBacklogGame(${idx})">🗑️</button>
@@ -521,8 +536,8 @@ function updateBacklogField(idx, field, value) { backlogState[idx][field] = valu
 
 function addBacklogGame() {
     backlogState.push({
-        id: backlogIdCounter++, name: 'Nuevo Juego', appid: null, platform: 'otro',
-        status: 'backlog', hltb: null, hoursPlayed: null, note: '', imageUrl: ''
+        id: backlogIdCounter++, name: 'Nuevo Juego', appid: null, raGameId: null, platform: 'otro',
+        status: 'backlog', hoursPlayed: null, imageUrl: '', capsuleUrl: ''
     });
     renderBacklogAdmin();
     setStatus('✅ Juego agregado al backlog');

@@ -582,7 +582,7 @@ async function loadSchedule() {
 }
 
 
-/* Manual backlog data — status, HLTB, notas (editado en el admin) */
+/* Manual backlog data — status, plataforma, horas manuales (editado en el admin) */
 async function loadBacklog() {
   try {
     const res = await fetch('data/backlog.json?nocache=' + Date.now());
@@ -792,11 +792,11 @@ function renderBacklog(manualGames, steamData) {
     const coverUrl = game.imageUrl && game.imageUrl.trim()
         ? game.imageUrl
         : (steamEntry?.libraryUrl || '');
-    
+
     const capsuleUrl = game.capsuleUrl && game.capsuleUrl.trim()
         ? game.capsuleUrl
         : (steamEntry?.headerUrl || '');
-    
+
     return {
       ...game, playedHours, coverUrl, capsuleUrl, steamLinked: !!steamEntry, hoursAreManual,
       achievements: steamAch || raAch || null,
@@ -905,10 +905,6 @@ function buildBacklogListRow(game) {
       ? `${game.playedHours}h en registro${game.hoursAreManual ? ' (manual)' : ''}`
       : 'Sin horas registradas';
 
-  const hltbHtml = game.hltb
-      ? `<div class="backlog-row-hltb">🎯 HLTB: ~${game.hltb}h</div>`
-      : '';
-
   let achievementsHtml = '';
   if (game.achievements && game.achievements.total > 0) {
     const { unlocked, total, icons } = game.achievements;
@@ -951,7 +947,6 @@ function buildBacklogListRow(game) {
           ${platCfg ? `<span class="backlog-platform-tag ${platCfg.cls}">${platCfg.label}</span>` : ''}
         </div>
         <div class="backlog-row-hours">${hoursText}</div>
-        ${hltbHtml}
       </div>
     </div>
     ${achievementsHtml}
@@ -1003,7 +998,7 @@ function setupBacklogFilters() {
       btn.addEventListener('click', () => {
         toggle.querySelectorAll('.backlog-view-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        BACKLOG_VIEW = btn.dataset.view; 
+        BACKLOG_VIEW = btn.dataset.view;
         drawBacklog();
       });
     });
