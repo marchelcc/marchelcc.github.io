@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-16T06:31:24.110Z",
+  "updated": "2026-07-16T06:54:23.133Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -3204,7 +3204,7 @@
     "3241660": {
       "name": "R.E.P.O.",
       "playtimeForeverMinutes": 2834,
-      "playtime2WeeksMinutes": 127,
+      "playtime2WeeksMinutes": 104,
       "lastPlayedUnix": 1783052448,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3241660/b8bf4770408fc369e15cebd42e0026a27b67aaa8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3241660/header.jpg"
@@ -4955,5 +4955,6 @@
         }
       ]
     }
-  }
+  },
+  "retroAchievements": {}
 }
