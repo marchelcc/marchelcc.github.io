@@ -8,7 +8,6 @@
       "status": "completado",
       "hltb": 12,
       "hoursPlayed": null,
-      "note": "Un poquito de riesgo de lluvia 🗿",
       "imageUrl": "https://i.imgur.com/GJOzHff.png",
       "raGameId": null
     },
@@ -20,19 +19,17 @@
       "status": "jugando",
       "hltb": 35,
       "hoursPlayed": null,
-      "note": "Qué pasaría si Minecraft y Terraria tuvieran un hijo",
       "imageUrl": "https://i.imgur.com/BGOgcCM.png",
       "raGameId": null
     },
     {
       "id": 3,
-      "name": "Final Fantasy X",
-      "appid": null,
-      "platform": "otro",
+      "name": "Final Fantasy X/X-2 HD Remaster",
+      "appid": "259870",
+      "platform": "steam",
       "status": "jugando",
       "hltb": 39,
-      "hoursPlayed": 18,
-      "note": "Primera run, no spoilers",
+      "hoursPlayed": null,
       "imageUrl": "https://i.imgur.com/lSfk03a.png",
       "raGameId": null
     },
@@ -44,7 +41,6 @@
       "status": "backlog",
       "hltb": 25,
       "hoursPlayed": null,
-      "note": "Como Pokémon, pero sin ser Pokémon",
       "imageUrl": "https://i.imgur.com/JAXUyUn.png",
       "raGameId": null
     },
