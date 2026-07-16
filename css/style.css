@@ -933,6 +933,7 @@ body {
 .backlog-filter-bar {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 6px;
   padding: 8px 12px;
   background: var(--beige);
@@ -957,54 +958,36 @@ body {
   color: #fff;
 }
 
-.backlog-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+.backlog-view-toggle {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+  background: var(--cream);
+  border: 1.5px solid var(--xp-btn-border);
+  border-radius: 14px;
+  padding: 2px;
 }
+.backlog-view-btn {
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: #555;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.backlog-view-btn.active { background: var(--xp-blue-dark); color: #fff; }
+
 .backlog-empty {
-  grid-column: 1 / -1;
   text-align: center;
   padding: 30px;
   color: #888;
   font-style: italic;
 }
 
-.backlog-card {
-  background: var(--beige);
-  border: 2px solid var(--xp-btn-border);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 2px 2px 0 var(--game-card-shadow);
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-}
-.backlog-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 4px 6px 0 var(--game-card-shadow);
-  border-color: var(--game-card-border-hover);
-}
-.backlog-cover {
-  width: 100%;
-  height: 90px;
-  object-fit: cover;
-  display: block;
-  background: var(--beige-dark);
-}
-.backlog-cover-fallback {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-}
-.backlog-card-body { padding: 10px 12px 12px; }
-.backlog-card-name {
-  font-family: var(--font-ui);
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--xp-blue-dark);
-  margin-bottom: 6px;
-  line-height: 1.25;
-}
 .backlog-status-tag {
   display: inline-block;
   font-size: 10.5px;
@@ -1012,7 +995,6 @@ body {
   padding: 2px 8px;
   border-radius: 20px;
   border: 1.5px solid currentColor;
-  margin-bottom: 6px;
 }
 .status-backlog    { color: #6b6b6b; background: #eaeaea; }
 .status-jugando    { color: #2060B0; background: #e3f0ff; }
@@ -1021,19 +1003,118 @@ body {
 .status-completado { color: #2a8a3a; background: #e2f7e5; }
 .status-platino    { color: #7a3fc4; background: #f1e6ff; }
 
-.backlog-stats-row {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-bottom: 4px;
+.backlog-platform-tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1.5px solid currentColor;
 }
-.backlog-stat {
-  font-size: 11.5px;
+.platform-steam { color: #2060B0; background: #e3f0ff; }
+.platform-gog   { color: #7a3fc4; background: #f1e6ff; }
+.platform-otro  { color: #6b6b6b; background: #eaeaea; }
+
+.backlog-cover-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--beige-dark);
+  font-size: 28px;
+}
+
+/* ── Vista Biblioteca: portadas verticales ── */
+.backlog-view-library {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.backlog-lib-card { display: flex; flex-direction: column; cursor: default; }
+.backlog-lib-cover-wrap {
+  position: relative;
+  border: 2px solid var(--xp-btn-border);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 2px 2px 0 var(--game-card-shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.backlog-lib-card:hover .backlog-lib-cover-wrap {
+  transform: translateY(-3px);
+  box-shadow: 4px 6px 0 var(--game-card-shadow);
+}
+.backlog-lib-cover {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+.backlog-lib-cover-wrap .backlog-cover-fallback { width: 100%; aspect-ratio: 3 / 4; font-size: 36px; }
+.backlog-lib-status {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  font-size: 9.5px;
+  padding: 2px 7px;
+  box-shadow: 1px 1px 0 #0002;
+}
+.backlog-lib-name {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 12.5px;
+  color: var(--xp-blue-dark);
+  margin-top: 6px;
+  line-height: 1.25;
+}
+.backlog-lib-hours {
+  font-size: 11px;
   color: var(--brown-soft);
   font-weight: 600;
 }
-.backlog-stat-muted { color: #aaa; font-weight: 400; font-style: italic; }
-.backlog-note {
+
+/* ── Vista Lista: estilo perfil de Steam, con logros ── */
+.backlog-view-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.backlog-list-row {
+  background: var(--beige);
+  border: 1.5px solid var(--xp-btn-border);
+  border-radius: 7px;
+  padding: 10px 12px;
+  box-shadow: 2px 2px 0 var(--game-card-shadow);
+}
+.backlog-row-top { display: flex; gap: 12px; align-items: flex-start; }
+.backlog-row-cover {
+  width: 64px;
+  height: 64px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1.5px solid var(--xp-btn-border);
+}
+.backlog-row-cover.backlog-cover-fallback { width: 64px; height: 64px; border-radius: 6px; flex-shrink: 0; }
+.backlog-row-info { flex: 1; min-width: 0; }
+.backlog-row-name {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--xp-blue-dark);
+  margin-bottom: 4px;
+}
+.backlog-row-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px; }
+.backlog-row-hours {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4a4136;
+}
+.backlog-row-lastplayed,
+.backlog-row-hltb {
+  font-size: 11.5px;
+  color: var(--brown-soft);
+  margin-top: 1px;
+}
+.backlog-row-note {
   font-size: 11.5px;
   color: #6f5a3a;
   font-style: italic;
@@ -1041,8 +1122,65 @@ body {
   line-height: 1.35;
 }
 
+.backlog-achievements {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--beige-dark);
+}
+.backlog-ach-none { font-size: 11.5px; color: #999; font-style: italic; }
+.backlog-ach-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #4a4136;
+  margin-bottom: 4px;
+}
+.backlog-ach-count { color: var(--brown-soft); font-weight: 600; }
+.backlog-ach-bar-track {
+  width: 100%;
+  height: 7px;
+  background: var(--beige-dark);
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid var(--xp-btn-border);
+}
+.backlog-ach-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7ac97e, #2a8a3a);
+}
+.backlog-ach-icons-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 7px;
+  flex-wrap: wrap;
+}
+.backlog-ach-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1.5px solid var(--xp-btn-border);
+}
+.backlog-ach-icon.backlog-ach-locked { filter: grayscale(1) brightness(0.75); opacity: 0.6; }
+.backlog-ach-more {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1.5px dashed var(--xp-btn-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #555;
+  background: var(--beige-dark);
+}
+
 @media (max-width: 768px) {
-  .backlog-grid { grid-template-columns: repeat(2, 1fr); }
+  .backlog-view-library { grid-template-columns: repeat(2, 1fr); }
+  .backlog-view-toggle { margin-left: 0; }
 }
 
 /* ─────────────────────────────────────────────────────────────

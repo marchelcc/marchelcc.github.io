@@ -302,10 +302,14 @@
       <button class="backlog-filter" data-filter="dropeado">🗑️ Dropeado</button>
       <button class="backlog-filter" data-filter="completado">✅ Completado</button>
       <button class="backlog-filter" data-filter="platino">💯 100%</button>
+      <div class="backlog-view-toggle" id="backlog-view-toggle">
+        <button class="backlog-view-btn active" data-view="library" title="Vista biblioteca">🖼️ Biblioteca</button>
+        <button class="backlog-view-btn" data-view="list" title="Vista lista">📋 Lista</button>
+      </div>
     </div>
 
     <div class="xp-content backlog-content">
-      <div class="backlog-grid" id="backlog-grid"><!-- rendered by script.js --></div>
+      <div class="backlog-grid backlog-view-library" id="backlog-grid"><!-- rendered by script.js --></div>
     </div>
 
     <div class="xp-statusbar">

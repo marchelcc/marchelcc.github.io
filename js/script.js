@@ -749,21 +749,33 @@ const BACKLOG_PLATFORM_CONFIG = {
   'otro':  { label: '🎮 Otro',  cls: 'platform-otro'  },
 };
 
+const BACKLOG_ACHIEVEMENT_PREVIEW_COUNT = 6; // cuántos íconos mostrar antes de "+N"
+
 function minutesToHours(min) {
   if (!min && min !== 0) return null;
   return Math.round((min / 60) * 10) / 10; // 1 decimal
 }
 
-let BACKLOG_DATA = []; // combinación de backlog.json + backlog-steam.json, cacheada para los filtros
+function formatLastPlayed(unixSeconds) {
+  if (!unixSeconds) return null;
+  const d = new Date(unixSeconds * 1000);
+  return d.toLocaleDateString('es-CL', { day: 'numeric', month: 'short' });
+}
+
+let BACKLOG_DATA = [];       // combinación de backlog.json + backlog-steam.json, cacheada para los filtros
+let BACKLOG_VIEW = 'library'; // 'library' | 'list'
 
 function renderBacklog(manualGames, steamData) {
   const grid = document.getElementById('backlog-grid');
   if (!grid) return;
 
-  /* Fusiona cada entrada manual con las horas de Steam (si hay appid y datos) */
+  /* Fusiona cada entrada manual con las horas/logros de Steam (si hay appid y datos) */
   BACKLOG_DATA = manualGames.map(game => {
     const steamEntry = (game.appid && steamData?.games)
         ? steamData.games[game.appid]
+        : null;
+    const achEntry = (game.appid && steamData?.achievements)
+        ? steamData.achievements[game.appid]
         : null;
 
     /* Prioridad: horas automáticas de Steam > horas manuales del admin */
@@ -776,7 +788,12 @@ function renderBacklog(manualGames, steamData) {
         ? game.imageUrl
         : (steamEntry?.headerUrl || '');
 
-    return { ...game, playedHours, coverUrl, steamLinked: !!steamEntry, hoursAreManual };
+    const lastPlayed = steamEntry ? formatLastPlayed(steamEntry.lastPlayedUnix) : null;
+
+    return {
+      ...game, playedHours, coverUrl, steamLinked: !!steamEntry, hoursAreManual,
+      lastPlayed, achievements: achEntry || null
+    };
   });
 
   const updEl = document.getElementById('backlog-updated-status');
@@ -786,12 +803,20 @@ function renderBacklog(manualGames, steamData) {
         : '🔄 Steam: sin conectar';
   }
 
-  drawBacklogCards('all');
+  drawBacklog(getActiveBacklogFilter());
 }
 
-function drawBacklogCards(filter) {
+function getActiveBacklogFilter() {
+  const activeBtn = document.querySelector('#backlog-filter-bar .backlog-filter.active');
+  return activeBtn ? activeBtn.dataset.filter : 'all';
+}
+
+function drawBacklog(filter) {
   const grid = document.getElementById('backlog-grid');
   if (!grid) return;
+
+  grid.classList.toggle('backlog-view-library', BACKLOG_VIEW === 'library');
+  grid.classList.toggle('backlog-view-list', BACKLOG_VIEW === 'list');
   grid.innerHTML = '';
 
   const list = filter === 'all'
@@ -800,62 +825,138 @@ function drawBacklogCards(filter) {
 
   if (list.length === 0) {
     grid.innerHTML = `<div class="backlog-empty">🎣 Nada por aquí todavía...</div>`;
+    updateBacklogCount(0);
+    return;
   }
 
   list.forEach(game => {
-    const cfg = BACKLOG_STATUS_CONFIG[game.status] || BACKLOG_STATUS_CONFIG['backlog'];
-    const card = document.createElement('div');
-    card.className = 'backlog-card';
-
-    const coverHtml = game.coverUrl
-        ? `<img class="backlog-cover" src="${game.coverUrl}" alt="${game.name}" onerror="this.style.display='none'">`
-        : `<div class="backlog-cover backlog-cover-fallback">🎮</div>`;
-
-    const hoursHtml = game.playedHours != null
-        ? `<span class="backlog-stat">⏱️ ${game.playedHours}h jugadas${game.hoursAreManual ? ' (manual)' : ''}</span>`
-        : `<span class="backlog-stat backlog-stat-muted">⏱️ Sin horas registradas</span>`;
-
-    const hltbHtml = game.hltb
-        ? `<span class="backlog-stat">🎯 HLTB: ~${game.hltb}h</span>`
-        : '';
-
-    const platCfg = BACKLOG_PLATFORM_CONFIG[game.platform] || null;
-    const platformHtml = platCfg
-        ? `<span class="backlog-platform-tag ${platCfg.cls}">${platCfg.label}</span>`
-        : '';
-
-    card.innerHTML = `
-      ${coverHtml}
-      <div class="backlog-card-body">
-        <div class="backlog-card-name">${game.name}</div>
-        <div class="backlog-tags-row">
-          <span class="backlog-status-tag ${cfg.cls}">${cfg.label}</span>
-          ${platformHtml}
-        </div>
-        <div class="backlog-stats-row">
-          ${hoursHtml}
-          ${hltbHtml}
-        </div>
-        ${game.note ? `<div class="backlog-note">${game.note}</div>` : ''}
-      </div>
-    `;
-    grid.appendChild(card);
+    grid.appendChild(BACKLOG_VIEW === 'library' ? buildBacklogLibraryCard(game) : buildBacklogListRow(game));
   });
 
+  updateBacklogCount(list.length);
+}
+
+function backlogCoverHtml(game, extraClass) {
+  return game.coverUrl
+      ? `<img class="${extraClass}" src="${game.coverUrl}" alt="${game.name}"
+            onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'${extraClass} backlog-cover-fallback',textContent:'🎮'}))">`
+      : `<div class="${extraClass} backlog-cover-fallback">🎮</div>`;
+}
+
+/* ── Vista Biblioteca: portadas verticales tipo estantería ── */
+function buildBacklogLibraryCard(game) {
+  const cfg = BACKLOG_STATUS_CONFIG[game.status] || BACKLOG_STATUS_CONFIG['backlog'];
+  const card = document.createElement('div');
+  card.className = 'backlog-lib-card';
+  card.innerHTML = `
+    <div class="backlog-lib-cover-wrap">
+      ${backlogCoverHtml(game, 'backlog-lib-cover')}
+      <span class="backlog-status-tag ${cfg.cls} backlog-lib-status">${cfg.label}</span>
+    </div>
+    <div class="backlog-lib-name">${game.name}</div>
+    <div class="backlog-lib-hours">${game.playedHours != null ? `⏱️ ${game.playedHours}h` : '—'}</div>
+  `;
+  return card;
+}
+
+/* ── Vista Lista: estilo perfil de Steam (horas, última vez, logros) ── */
+function buildBacklogListRow(game) {
+  const cfg      = BACKLOG_STATUS_CONFIG[game.status] || BACKLOG_STATUS_CONFIG['backlog'];
+  const platCfg  = BACKLOG_PLATFORM_CONFIG[game.platform] || null;
+  const row      = document.createElement('div');
+  row.className  = 'backlog-list-row';
+
+  const hoursText = game.playedHours != null
+      ? `${game.playedHours}h en registro${game.hoursAreManual ? ' (manual)' : ''}`
+      : 'Sin horas registradas';
+
+  const lastPlayedHtml = game.lastPlayed
+      ? `<div class="backlog-row-lastplayed">Última vez: ${game.lastPlayed}</div>`
+      : '';
+
+  const hltbHtml = game.hltb
+      ? `<div class="backlog-row-hltb">🎯 HLTB estimado: ~${game.hltb}h</div>`
+      : '';
+
+  let achievementsHtml = '';
+  if (game.achievements && game.achievements.total > 0) {
+    const { unlocked, total, icons } = game.achievements;
+    const pct = Math.round((unlocked / total) * 100);
+    const shown = (icons || []).slice(0, BACKLOG_ACHIEVEMENT_PREVIEW_COUNT);
+    const remaining = Math.max(0, total - shown.length);
+
+    const iconsHtml = shown.map(a => `
+      <img class="backlog-ach-icon ${a.achieved ? '' : 'backlog-ach-locked'}"
+           src="${a.icon}" alt="${a.name || ''}" title="${a.name || ''}" loading="lazy">
+    `).join('');
+
+    achievementsHtml = `
+      <div class="backlog-achievements">
+        <div class="backlog-ach-header">
+          <span>🏆 Logros</span>
+          <span class="backlog-ach-count">${unlocked} de ${total}</span>
+        </div>
+        <div class="backlog-ach-bar-track">
+          <div class="backlog-ach-bar-fill" style="width:${pct}%"></div>
+        </div>
+        <div class="backlog-ach-icons-row">
+          ${iconsHtml}
+          ${remaining > 0 ? `<div class="backlog-ach-more">+${remaining}</div>` : ''}
+        </div>
+      </div>
+    `;
+  } else if (game.platform === 'steam') {
+    achievementsHtml = `<div class="backlog-achievements backlog-ach-none">🏆 Este juego no tiene logros en Steam</div>`;
+  }
+
+  row.innerHTML = `
+    <div class="backlog-row-top">
+      ${backlogCoverHtml(game, 'backlog-row-cover')}
+      <div class="backlog-row-info">
+        <div class="backlog-row-name">${game.name}</div>
+        <div class="backlog-row-tags">
+          <span class="backlog-status-tag ${cfg.cls}">${cfg.label}</span>
+          ${platCfg ? `<span class="backlog-platform-tag ${platCfg.cls}">${platCfg.label}</span>` : ''}
+        </div>
+        <div class="backlog-row-hours">${hoursText}</div>
+        ${lastPlayedHtml}
+        ${hltbHtml}
+        ${game.note ? `<div class="backlog-row-note">${game.note}</div>` : ''}
+      </div>
+    </div>
+    ${achievementsHtml}
+  `;
+  return row;
+}
+
+function updateBacklogCount(n) {
   const countEl = document.getElementById('backlog-count-status');
-  if (countEl) countEl.textContent = `🐟 ${list.length} juego${list.length === 1 ? '' : 's'}`;
+  if (countEl) countEl.textContent = `🐟 ${n} juego${n === 1 ? '' : 's'}`;
 }
 
 function setupBacklogFilters() {
   const bar = document.getElementById('backlog-filter-bar');
   if (!bar) return;
+
   bar.querySelectorAll('.backlog-filter').forEach(btn => {
     btn.addEventListener('click', () => {
       bar.querySelectorAll('.backlog-filter').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      drawBacklogCards(btn.dataset.filter);
+      drawBacklog(btn.dataset.filter);
     });
   });
+
+  const toggle = document.getElementById('backlog-view-toggle');
+  if (toggle) {
+    toggle.querySelectorAll('.backlog-view-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        toggle.querySelectorAll('.backlog-view-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        BACKLOG_VIEW = btn.dataset.view;
+        drawBacklog(getActiveBacklogFilter());
+      });
+    });
+  }
 }
 
 /* ── Social badges ── */
