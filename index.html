@@ -279,8 +279,8 @@
           data-wid="backlog"
           data-title="Backlog de Juegos"
           data-icon="📚"
-          data-w="760"
-          data-h="560"
+          data-w="960"
+          data-h="600"
   >
     <div class="xp-titlebar">
       <div class="title-left">
@@ -294,22 +294,62 @@
       </div>
     </div>
 
-    <div class="backlog-filter-bar" id="backlog-filter-bar">
-      <button class="backlog-filter active" data-filter="all">🗂️ Todos</button>
-      <button class="backlog-filter" data-filter="jugando">🎮 Jugando</button>
-      <button class="backlog-filter" data-filter="backlog">📥 Backlog</button>
-      <button class="backlog-filter" data-filter="pausado">⏸️ Pausado</button>
-      <button class="backlog-filter" data-filter="dropeado">🗑️ Dropeado</button>
-      <button class="backlog-filter" data-filter="completado">✅ Completado</button>
-      <button class="backlog-filter" data-filter="platino">💯 100%</button>
-      <div class="backlog-view-toggle" id="backlog-view-toggle">
-        <button class="backlog-view-btn active" data-view="library" title="Vista biblioteca">🖼️ Biblioteca</button>
-        <button class="backlog-view-btn" data-view="list" title="Vista lista">📋 Lista</button>
-      </div>
-    </div>
+    <div class="backlog-body">
 
-    <div class="xp-content backlog-content">
-      <div class="backlog-grid backlog-view-library" id="backlog-grid"><!-- rendered by script.js --></div>
+      <!-- Sidebar tipo Explorer -->
+      <aside class="backlog-sidebar" id="backlog-sidebar">
+        <div class="backlog-sidebar-section-title">Estado</div>
+        <button class="backlog-sidebar-item active" data-filter-type="status" data-filter="all">
+          <span>🗂️ Todos</span><span class="backlog-sidebar-count" data-count-status="all">—</span>
+        </button>
+        <button class="backlog-sidebar-item" data-filter-type="status" data-filter="jugando">
+          <span>🎮 Jugando</span><span class="backlog-sidebar-count" data-count-status="jugando">—</span>
+        </button>
+        <button class="backlog-sidebar-item" data-filter-type="status" data-filter="completado">
+          <span>✅ Completados</span><span class="backlog-sidebar-count" data-count-status="completado">—</span>
+        </button>
+        <button class="backlog-sidebar-item" data-filter-type="status" data-filter="backlog">
+          <span>📥 Backlog</span><span class="backlog-sidebar-count" data-count-status="backlog">—</span>
+        </button>
+
+        <div class="backlog-sidebar-divider"></div>
+
+        <button class="backlog-sidebar-item backlog-sidebar-item-secondary" data-filter-type="status" data-filter="pausado">
+          <span>⏸️ Pausado</span><span class="backlog-sidebar-count" data-count-status="pausado">—</span>
+        </button>
+        <button class="backlog-sidebar-item backlog-sidebar-item-secondary" data-filter-type="status" data-filter="dropeado">
+          <span>🗑️ Dropeado</span><span class="backlog-sidebar-count" data-count-status="dropeado">—</span>
+        </button>
+        <button class="backlog-sidebar-item backlog-sidebar-item-secondary" data-filter-type="status" data-filter="platino">
+          <span>💯 100%</span><span class="backlog-sidebar-count" data-count-status="platino">—</span>
+        </button>
+
+        <div class="backlog-sidebar-section-title">Plataforma</div>
+        <button class="backlog-sidebar-item" data-filter-type="platform" data-filter="all">
+          <span>🗂️ Todas</span><span class="backlog-sidebar-count" data-count-platform="all">—</span>
+        </button>
+        <button class="backlog-sidebar-item" data-filter-type="platform" data-filter="pc">
+          <span>🖥️ PC</span><span class="backlog-sidebar-count" data-count-platform="pc">—</span>
+        </button>
+        <button class="backlog-sidebar-item" data-filter-type="platform" data-filter="otros">
+          <span>🎮 Otros</span><span class="backlog-sidebar-count" data-count-platform="otros">—</span>
+        </button>
+      </aside>
+
+      <!-- Contenido -->
+      <div class="backlog-main">
+        <div class="backlog-toolbar">
+          <div class="backlog-toolbar-crumb" id="backlog-crumb">🗂️ Todos los juegos</div>
+          <div class="backlog-view-toggle" id="backlog-view-toggle">
+            <button class="backlog-view-btn active" data-view="library" title="Vista biblioteca">🖼️ Biblioteca</button>
+            <button class="backlog-view-btn" data-view="list" title="Vista lista">📋 Lista</button>
+          </div>
+        </div>
+        <div class="xp-content backlog-content">
+          <div class="backlog-grid backlog-view-library" id="backlog-grid"><!-- rendered by script.js --></div>
+        </div>
+      </div>
+
     </div>
 
     <div class="xp-statusbar">
@@ -317,6 +357,7 @@
       <div class="status-item" id="backlog-updated-status">—</div>
     </div>
   </section>
+
 
   <!-- ============================================================
          WINDOW: Github — "Herramientas Desarrolladas"

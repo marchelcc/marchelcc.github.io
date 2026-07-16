@@ -12,6 +12,10 @@
 const API_KEY  = process.env.STEAM_API_KEY;
 const STEAM_ID = process.env.STEAM_ID;
 
+/* RetroAchievements es opcional — si no están configurados los secrets, se omite sin error */
+const RA_USERNAME = process.env.RA_USERNAME;
+const RA_API_KEY  = process.env.RA_API_KEY;
+
 if (!API_KEY || !STEAM_ID) {
   console.error('Faltan STEAM_API_KEY y/o STEAM_ID como variables de entorno.');
   process.exit(1);
@@ -36,18 +40,20 @@ async function safeJson(url) {
   try { return await res.json(); } catch { return null; }
 }
 
-/* Lee data/backlog.json del repo checkeado para saber qué appids necesitan logros */
-async function getTrackedAppIds() {
+/* Lee data/backlog.json del repo checkeado para saber qué appids/raGameIds necesitan logros */
+async function getTrackedIds() {
   const fs = await import('node:fs/promises');
   try {
     const raw = await fs.readFile('data/backlog.json', 'utf-8');
     const data = JSON.parse(raw);
-    return [...new Set((data.games || [])
-      .filter(g => g.platform === 'steam' && g.appid)
-      .map(g => g.appid))];
+    const games = data.games || [];
+    return {
+      appIds: [...new Set(games.filter(g => g.platform === 'steam' && g.appid).map(g => g.appid))],
+      raGameIds: [...new Set(games.filter(g => g.raGameId).map(g => g.raGameId))],
+    };
   } catch (err) {
     console.warn('No se pudo leer data/backlog.json, sin logros esta vez:', err.message);
-    return [];
+    return { appIds: [], raGameIds: [] };
   }
 }
 
@@ -85,6 +91,33 @@ async function fetchAchievementsForGame(appid) {
   return { total: merged.length, unlocked, icons: merged };
 }
 
+async function fetchRetroAchievementsForGame(gameId) {
+  const url = `https://retroachievements.org/API/API_GetGameInfoAndUserProgress.php` +
+    `?g=${gameId}&u=${RA_USERNAME}&y=${RA_API_KEY}`;
+  const data = await safeJson(url);
+  if (!data?.Achievements) return null;
+
+  const merged = Object.values(data.Achievements).map(a => {
+    const achieved = !!a.DateEarned;
+    return {
+      name: a.Title,
+      achieved,
+      unlocktime: achieved ? Date.parse(a.DateEarned + ' UTC') / 1000 : 0,
+      icon: `https://media.retroachievements.org/Badge/${a.BadgeName}${achieved ? '' : '_lock'}.png`,
+    };
+  });
+
+  merged.sort((a, b) => {
+    if (a.achieved !== b.achieved) return a.achieved ? -1 : 1;
+    return b.unlocktime - a.unlocktime;
+  });
+
+  const unlocked = merged.filter(a => a.achieved).length;
+  if (merged.length === 0) return null;
+
+  return { total: merged.length, unlocked, icons: merged };
+}
+
 async function main() {
   const ownedRes = await fetch(OWNED_GAMES_URL);
   if (!ownedRes.ok) {
@@ -97,7 +130,7 @@ async function main() {
     console.warn('⚠️  0 juegos recibidos — revisa que "Detalles del juego" sea público en tu perfil de Steam.');
   }
 
-  const out = { updated: new Date().toISOString(), games: {}, achievements: {} };
+  const out = { updated: new Date().toISOString(), games: {}, achievements: {}, retroAchievements: {} };
 
   for (const g of games) {
     out.games[g.appid] = {
@@ -112,8 +145,8 @@ async function main() {
     };
   }
 
-  const trackedAppIds = await getTrackedAppIds();
-  console.log(`🏆 Buscando logros para ${trackedAppIds.length} juego(s) trackeado(s) en backlog.json...`);
+  const { appIds: trackedAppIds, raGameIds: trackedRaGameIds } = await getTrackedIds();
+  console.log(`🏆 Buscando logros de Steam para ${trackedAppIds.length} juego(s) trackeado(s)...`);
 
   for (const appid of trackedAppIds) {
     try {
@@ -129,11 +162,30 @@ async function main() {
     }
   }
 
+  if (RA_USERNAME && RA_API_KEY && trackedRaGameIds.length > 0) {
+    console.log(`🕹️  Buscando logros de RetroAchievements para ${trackedRaGameIds.length} juego(s)...`);
+    for (const gameId of trackedRaGameIds) {
+      try {
+        const ach = await fetchRetroAchievementsForGame(gameId);
+        if (ach) {
+          out.retroAchievements[gameId] = ach;
+          console.log(`   ✓ RA game ${gameId}: ${ach.unlocked}/${ach.total} logros`);
+        } else {
+          console.log(`   – RA game ${gameId}: sin datos`);
+        }
+      } catch (err) {
+        console.warn(`   ⚠️  Error obteniendo logros de RA game ${gameId}:`, err.message);
+      }
+    }
+  } else if (trackedRaGameIds.length > 0) {
+    console.log('ℹ️  Hay juegos con raGameId pero no están configurados RA_USERNAME/RA_API_KEY — se omiten.');
+  }
+
   const fs = await import('node:fs/promises');
   await fs.mkdir('data', { recursive: true });
   await fs.writeFile('data/backlog-steam.json', JSON.stringify(out, null, 2) + '\n');
 
-  console.log(`✅ backlog-steam.json generado con ${games.length} juegos y logros de ${Object.keys(out.achievements).length} juego(s).`);
+  console.log(`✅ backlog-steam.json generado: ${games.length} juegos, ${Object.keys(out.achievements).length} con logros Steam, ${Object.keys(out.retroAchievements).length} con logros RA.`);
 }
 
 main().catch(err => {

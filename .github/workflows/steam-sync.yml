@@ -1,7 +1,8 @@
-name: Sync Steam Playtime
+name: Sync Steam & RetroAchievements
 
 # Corre todos los días a las 09:00 UTC (≈ 05:00 o 06:00 hora Chile según horario de verano)
 # y también se puede lanzar manualmente desde la pestaña "Actions" del repo.
+# RA_USERNAME / RA_API_KEY son opcionales: si no están configurados, simplemente se omiten los logros de RetroAchievements.
 on:
   schedule:
     - cron: '0 9 * * *'
@@ -22,10 +23,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Fetch Steam playtime
+      - name: Fetch Steam & RetroAchievements data
         env:
           STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
           STEAM_ID: ${{ secrets.STEAM_ID }}
+          RA_USERNAME: ${{ secrets.RA_USERNAME }}
+          RA_API_KEY: ${{ secrets.RA_API_KEY }}
         run: node scripts/fetch-steam.mjs
 
       - name: Commit updated data
@@ -33,5 +36,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/backlog-steam.json
-          git diff --staged --quiet || git commit -m "chore: actualizar horas de Steam [automated]"
+          git diff --staged --quiet || git commit -m "chore: hours and achievements updated [automated]"
           git push

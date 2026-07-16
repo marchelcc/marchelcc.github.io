@@ -41,7 +41,7 @@ const WM = (() => {
     'yt-vod':   { w: 900,  h: 560 },
     'discord':  { w: 500,  h: 600 },
     'github':   { w: 780,  h: 560 },
-    'backlog':  { w: 760,  h: 560 },
+    'backlog':  { w: 960,  h: 600 },
   };
 
   /* ── Pinned placement — overrides cascade for specific windows.
@@ -746,8 +746,16 @@ const BACKLOG_STATUS_CONFIG = {
 const BACKLOG_PLATFORM_CONFIG = {
   'steam': { label: '🟦 Steam', cls: 'platform-steam' },
   'gog':   { label: '🟪 GOG',   cls: 'platform-gog'   },
+  'epic':  { label: '⬛ Epic',  cls: 'platform-epic'  },
+  'retro': { label: '🕹️ Retro', cls: 'platform-retro' },
+  'consola': { label: '🎮 Consola', cls: 'platform-consola' },
   'otro':  { label: '🎮 Otro',  cls: 'platform-otro'  },
 };
+
+/* Al usuario promedio no le importa Steam vs GOG vs Epic — solo si es PC u otra cosa */
+function platformGroup(platform) {
+  return ['steam', 'gog', 'epic'].includes(platform) ? 'pc' : 'otros';
+}
 
 const BACKLOG_ACHIEVEMENT_PREVIEW_COUNT = 6; // cuántos íconos mostrar antes de "+N"
 
@@ -769,16 +777,19 @@ function renderBacklog(manualGames, steamData) {
   const grid = document.getElementById('backlog-grid');
   if (!grid) return;
 
-  /* Fusiona cada entrada manual con las horas/logros de Steam (si hay appid y datos) */
+  /* Fusiona cada entrada manual con horas/logros de Steam o de RetroAchievements */
   BACKLOG_DATA = manualGames.map(game => {
     const steamEntry = (game.appid && steamData?.games)
         ? steamData.games[game.appid]
         : null;
-    const achEntry = (game.appid && steamData?.achievements)
+    const steamAch = (game.appid && steamData?.achievements)
         ? steamData.achievements[game.appid]
         : null;
+    const raAch = (game.raGameId && steamData?.retroAchievements)
+        ? steamData.retroAchievements[game.raGameId]
+        : null;
 
-    /* Prioridad: horas automáticas de Steam > horas manuales del admin */
+    /* Prioridad de horas: automáticas de Steam > manuales del admin */
     const playedHours = steamEntry
         ? minutesToHours(steamEntry.playtimeForeverMinutes)
         : (game.hoursPlayed ?? null);
@@ -792,26 +803,45 @@ function renderBacklog(manualGames, steamData) {
 
     return {
       ...game, playedHours, coverUrl, steamLinked: !!steamEntry, hoursAreManual,
-      lastPlayed, achievements: achEntry || null
+      lastPlayed,
+      achievements: steamAch || raAch || null,
+      achievementsSource: steamAch ? 'steam' : (raAch ? 'retro' : null)
     };
   });
 
   const updEl = document.getElementById('backlog-updated-status');
   if (updEl) {
     updEl.textContent = steamData?.updated
-        ? `🔄 Steam actualizado: ${new Date(steamData.updated).toLocaleDateString()}`
-        : '🔄 Steam: sin conectar';
+        ? `🔄 Datos actualizados: ${new Date(steamData.updated).toLocaleDateString()}`
+        : '🔄 Sin conectar todavía';
   }
 
-  drawBacklog(getActiveBacklogFilter());
+  updateBacklogSidebarCounts();
+  drawBacklog();
 }
 
-function getActiveBacklogFilter() {
-  const activeBtn = document.querySelector('#backlog-filter-bar .backlog-filter.active');
-  return activeBtn ? activeBtn.dataset.filter : 'all';
+let backlogStatusFilter   = 'all';
+let backlogPlatformFilter = 'all';
+
+function updateBacklogSidebarCounts() {
+  const countFor = (status) => status === 'all'
+      ? BACKLOG_DATA.length
+      : BACKLOG_DATA.filter(g => g.status === status).length;
+
+  document.querySelectorAll('[data-count-status]').forEach(el => {
+    el.textContent = countFor(el.dataset.countStatus);
+  });
+
+  const platCountFor = (group) => group === 'all'
+      ? BACKLOG_DATA.length
+      : BACKLOG_DATA.filter(g => platformGroup(g.platform) === group).length;
+
+  document.querySelectorAll('[data-count-platform]').forEach(el => {
+    el.textContent = platCountFor(el.dataset.countPlatform);
+  });
 }
 
-function drawBacklog(filter) {
+function drawBacklog() {
   const grid = document.getElementById('backlog-grid');
   if (!grid) return;
 
@@ -819,9 +849,10 @@ function drawBacklog(filter) {
   grid.classList.toggle('backlog-view-list', BACKLOG_VIEW === 'list');
   grid.innerHTML = '';
 
-  const list = filter === 'all'
-      ? BACKLOG_DATA
-      : BACKLOG_DATA.filter(g => g.status === filter);
+  const list = BACKLOG_DATA.filter(g =>
+      (backlogStatusFilter === 'all' || g.status === backlogStatusFilter) &&
+      (backlogPlatformFilter === 'all' || platformGroup(g.platform) === backlogPlatformFilter)
+  );
 
   if (list.length === 0) {
     grid.innerHTML = `<div class="backlog-empty">🎣 Nada por aquí todavía...</div>`;
@@ -884,6 +915,7 @@ function buildBacklogListRow(game) {
     const pct = Math.round((unlocked / total) * 100);
     const shown = (icons || []).slice(0, BACKLOG_ACHIEVEMENT_PREVIEW_COUNT);
     const remaining = Math.max(0, total - shown.length);
+    const sourceLabel = game.achievementsSource === 'retro' ? '🕹️ RetroAchievements' : '🏆 Logros';
 
     const iconsHtml = shown.map(a => `
       <img class="backlog-ach-icon ${a.achieved ? '' : 'backlog-ach-locked'}"
@@ -893,7 +925,7 @@ function buildBacklogListRow(game) {
     achievementsHtml = `
       <div class="backlog-achievements">
         <div class="backlog-ach-header">
-          <span>🏆 Logros</span>
+          <span>${sourceLabel}</span>
           <span class="backlog-ach-count">${unlocked} de ${total}</span>
         </div>
         <div class="backlog-ach-bar-track">
@@ -905,8 +937,8 @@ function buildBacklogListRow(game) {
         </div>
       </div>
     `;
-  } else if (game.platform === 'steam') {
-    achievementsHtml = `<div class="backlog-achievements backlog-ach-none">🏆 Este juego no tiene logros en Steam</div>`;
+  } else if (game.platform === 'steam' || game.raGameId) {
+    achievementsHtml = `<div class="backlog-achievements backlog-ach-none">🏆 Sin datos de logros para este juego todavía</div>`;
   }
 
   row.innerHTML = `
@@ -934,17 +966,38 @@ function updateBacklogCount(n) {
   if (countEl) countEl.textContent = `🐟 ${n} juego${n === 1 ? '' : 's'}`;
 }
 
-function setupBacklogFilters() {
-  const bar = document.getElementById('backlog-filter-bar');
-  if (!bar) return;
+const BACKLOG_STATUS_CRUMBS = {
+  'all': '🗂️ Todos los juegos', 'jugando': '🎮 Jugando', 'completado': '✅ Completados',
+  'backlog': '📥 Backlog', 'pausado': '⏸️ Pausados', 'dropeado': '🗑️ Dropeados', 'platino': '💯 100%',
+};
+const BACKLOG_PLATFORM_CRUMBS = { 'pc': '🖥️ PC', 'otros': '🎮 Otros' };
 
-  bar.querySelectorAll('.backlog-filter').forEach(btn => {
-    btn.addEventListener('click', () => {
-      bar.querySelectorAll('.backlog-filter').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      drawBacklog(btn.dataset.filter);
+function updateBacklogCrumb() {
+  const crumbEl = document.getElementById('backlog-crumb');
+  if (!crumbEl) return;
+  const parts = [BACKLOG_STATUS_CRUMBS[backlogStatusFilter] || 'Todos'];
+  if (backlogPlatformFilter !== 'all') parts.push(BACKLOG_PLATFORM_CRUMBS[backlogPlatformFilter]);
+  crumbEl.textContent = parts.join(' · ');
+}
+
+function setupBacklogFilters() {
+  const sidebar = document.getElementById('backlog-sidebar');
+  if (sidebar) {
+    sidebar.querySelectorAll('.backlog-sidebar-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.dataset.filterType;
+        sidebar.querySelectorAll(`.backlog-sidebar-item[data-filter-type="${type}"]`)
+            .forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if (type === 'status') backlogStatusFilter = btn.dataset.filter;
+        else backlogPlatformFilter = btn.dataset.filter;
+
+        updateBacklogCrumb();
+        drawBacklog();
+      });
     });
-  });
+  }
 
   const toggle = document.getElementById('backlog-view-toggle');
   if (toggle) {
@@ -953,7 +1006,7 @@ function setupBacklogFilters() {
         toggle.querySelectorAll('.backlog-view-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         BACKLOG_VIEW = btn.dataset.view;
-        drawBacklog(getActiveBacklogFilter());
+        drawBacklog();
       });
     });
   }

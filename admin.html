@@ -199,15 +199,17 @@
       <p class="admin-section-title">📚 Backlog de juegos</p>
       <p class="admin-hint-text">
         Esto edita <code>backlog.json</code> (estado, HLTB, notas). Para juegos de <strong>Steam</strong>,
-        las horas se llenan solas si le pones el <strong>App ID</strong> correcto (búscalo en la URL de la
-        tienda, ej. store.steampowered.com/app/<strong>632360</strong>/...). Para <strong>GOG</strong> u otras
-        plataformas, no hay forma de automatizarlo — ingresa las horas jugadas a mano en la columna correspondiente.
+        las horas y logros se llenan solos si le pones el <strong>App ID</strong> correcto (búscalo en la URL de la
+        tienda, ej. store.steampowered.com/app/<strong>632360</strong>/...). Para juegos trackeados en
+        <strong>RetroAchievements.org</strong>, pon el <strong>RA Game ID</strong> (el número en la URL del juego
+        en ese sitio) y sus logros se traerán solos también. Para <strong>GOG, Epic</strong> u otras plataformas,
+        no hay forma de automatizarlo — ingresa las horas jugadas a mano en la columna correspondiente.
       </p>
       <div style="overflow-x:auto;">
         <table class="admin-table" id="backlog-admin-table">
           <thead>
           <tr>
-            <th>Juego</th><th>Portada URL</th><th>Plataforma</th><th>Steam App ID</th>
+            <th>Juego</th><th>Portada URL</th><th>Plataforma</th><th>Steam App ID</th><th>RA Game ID</th>
             <th>Estado</th><th>HLTB (h)</th><th>Horas jugadas</th><th>Nota</th><th>Acciones</th>
           </tr>
           </thead>
