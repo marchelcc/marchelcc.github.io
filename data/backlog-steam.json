@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-16T11:06:30.459Z",
+  "updated": "2026-07-17T10:54:23.954Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -805,8 +805,8 @@
     "365670": {
       "name": "Blender",
       "playtimeForeverMinutes": 9540,
-      "playtime2WeeksMinutes": 52,
-      "lastPlayedUnix": 1784160925,
+      "playtime2WeeksMinutes": 53,
+      "lastPlayedUnix": 1784234206,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/365670/48733cd333eea6e40711a1b9c6dde32ffe363ced.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/365670/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/365670/library_600x900_2x.jpg"
@@ -3604,7 +3604,7 @@
     "3241660": {
       "name": "R.E.P.O.",
       "playtimeForeverMinutes": 2834,
-      "playtime2WeeksMinutes": 104,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1783052448,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3241660/b8bf4770408fc369e15cebd42e0026a27b67aaa8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3241660/header.jpg",
