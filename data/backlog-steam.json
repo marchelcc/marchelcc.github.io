@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-18T10:24:38.055Z",
+  "updated": "2026-07-19T10:39:56.878Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -703,15 +703,6 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/311690/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/311690/library_600x900_2x.jpg"
     },
-    "312060": {
-      "name": "FINAL FANTASY XIV Online Free Trial",
-      "playtimeForeverMinutes": 10,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1765772349,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/312060/a5bc6107ed65e5b44bc2f5deae64a01a658a4c6a.jpg",
-      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/312060/header.jpg",
-      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/312060/library_600x900_2x.jpg"
-    },
     "312520": {
       "name": "Rain World",
       "playtimeForeverMinutes": 92,
@@ -804,9 +795,9 @@
     },
     "365670": {
       "name": "Blender",
-      "playtimeForeverMinutes": 9540,
+      "playtimeForeverMinutes": 9541,
       "playtime2WeeksMinutes": 53,
-      "lastPlayedUnix": 1784234206,
+      "lastPlayedUnix": 1784386807,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/365670/48733cd333eea6e40711a1b9c6dde32ffe363ced.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/365670/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/365670/library_600x900_2x.jpg"
@@ -1884,9 +1875,9 @@
     },
     "1085660": {
       "name": "Destiny 2",
-      "playtimeForeverMinutes": 98050,
-      "playtime2WeeksMinutes": 25,
-      "lastPlayedUnix": 1783283115,
+      "playtimeForeverMinutes": 98085,
+      "playtime2WeeksMinutes": 59,
+      "lastPlayedUnix": 1784420491,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1085660/fce050d63f0a2f8eb51b603c7f30bfca2a301549.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1085660/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1085660/library_600x900_2x.jpg"
@@ -2766,9 +2757,9 @@
     },
     "1850510": {
       "name": "TRIANGLE STRATEGY",
-      "playtimeForeverMinutes": 117,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1781421075,
+      "playtimeForeverMinutes": 183,
+      "playtime2WeeksMinutes": 66,
+      "lastPlayedUnix": 1784430627,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1850510/5659f640b875459146cbbd868e7323bb8aec2ed3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1850510/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1850510/library_600x900_2x.jpg"
