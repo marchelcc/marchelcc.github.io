@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-19T10:39:56.878Z",
+  "updated": "2026-07-20T11:53:03.627Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -795,9 +795,9 @@
     },
     "365670": {
       "name": "Blender",
-      "playtimeForeverMinutes": 9541,
-      "playtime2WeeksMinutes": 53,
-      "lastPlayedUnix": 1784386807,
+      "playtimeForeverMinutes": 9547,
+      "playtime2WeeksMinutes": 59,
+      "lastPlayedUnix": 1784519187,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/365670/48733cd333eea6e40711a1b9c6dde32ffe363ced.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/365670/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/365670/library_600x900_2x.jpg"
@@ -1876,7 +1876,7 @@
     "1085660": {
       "name": "Destiny 2",
       "playtimeForeverMinutes": 98085,
-      "playtime2WeeksMinutes": 59,
+      "playtime2WeeksMinutes": 34,
       "lastPlayedUnix": 1784420491,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1085660/fce050d63f0a2f8eb51b603c7f30bfca2a301549.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1085660/header.jpg",
