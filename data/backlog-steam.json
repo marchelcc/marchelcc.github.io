@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-24T11:07:25.022Z",
+  "updated": "2026-07-25T10:39:53.605Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -967,7 +967,7 @@
     "431960": {
       "name": "Wallpaper Engine",
       "playtimeForeverMinutes": 1803,
-      "playtime2WeeksMinutes": 6,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1783746975,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/431960/72edaed9d748c6cf7397ffb1c83f0b837b9ebd9d.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/431960/header.jpg",
@@ -3666,9 +3666,9 @@
     },
     "3513350": {
       "name": "Wuthering Waves",
-      "playtimeForeverMinutes": 54,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1757194040,
+      "playtimeForeverMinutes": 129,
+      "playtime2WeeksMinutes": 75,
+      "lastPlayedUnix": 1784959318,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3513350/645fa03b0cf2967e63dde224cc7ee9854d51e834.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3513350/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3513350/library_600x900_2x.jpg"
@@ -3781,6 +3781,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4128260/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4128260/library_600x900_2x.jpg"
     },
+    "4162040": {
+      "name": "Zenless Zone Zero",
+      "playtimeForeverMinutes": 25,
+      "playtime2WeeksMinutes": 25,
+      "lastPlayedUnix": 1784938774,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4162040/bbde5d7c68eb1173f5d7bbcaab38b34bf92080b9.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4162040/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4162040/library_600x900_2x.jpg"
+    },
     "4195600": {
       "name": "AFK Journey",
       "playtimeForeverMinutes": 29,
@@ -3807,6 +3816,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4335780/2aa6d01e0f2a94cf7691d754d7f1458a60bf0f5f.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4335780/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4335780/library_600x900_2x.jpg"
+    },
+    "4508340": {
+      "name": "NTE: Neverness to Everness",
+      "playtimeForeverMinutes": 31,
+      "playtime2WeeksMinutes": 31,
+      "lastPlayedUnix": 1784943664,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4508340/dce6e50a6da074b930bbd7703838ea6705e7fab8.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4508340/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4508340/library_600x900_2x.jpg"
     },
     "4556160": {
       "name": "Husk Protocol Playtest",
