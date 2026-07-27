@@ -1231,44 +1231,23 @@ body {
 }
 
 @media (max-width: 768px) {
-  .backlog-body { flex-direction: column; }
-  .backlog-sidebar {
-    width: auto;
-    display: flex;
-    flex-wrap: wrap;
-    border-right: none;
-    border-bottom: 1.5px solid var(--xp-btn-border);
-    padding: 8px;
-    gap: 4px;
-  }
-  .backlog-sidebar-section-title { width: 100%; padding: 4px 4px 2px; }
-  .backlog-sidebar-item {
-    width: auto;
-    border: 1.5px solid var(--xp-btn-border);
-    border-radius: 14px;
-    padding: 4px 10px;
-  }
-  .backlog-sidebar-divider { display: none; }
-
-  /* ── Toolbar: crumb + toggle se envuelven en vez de desbordar ── */
+  /* Sin filtros ni toggle en móvil — solo la lista completa */
+  .backlog-sidebar,
   .backlog-toolbar {
-    flex-wrap: wrap;
-    row-gap: 6px;
+    display: none;
   }
-  .backlog-toolbar-crumb { font-size: 11.5px; }
+  .backlog-body { flex-direction: column; }
 
-  /* ── Fila de la vista Lista: portada arriba, info abajo (no 250px fijos) ── */
+  /* ── Fila de la vista Lista: portada arriba, info abajo (misma proporción que en desktop) ── */
   .backlog-row-top { flex-direction: column; }
   .backlog-row-cover {
     width: 100%;
-    aspect-ratio: 2.6 / 1;
+    aspect-ratio: 2.15 / 1;
   }
-  .backlog-row-cover.backlog-cover-fallback { width: 100%; height: auto; aspect-ratio: 2.6 / 1; }
+  .backlog-row-cover.backlog-cover-fallback { width: 100%; height: auto; aspect-ratio: 2.15 / 1; }
 }
 
 @media (max-width: 480px) {
-  .backlog-view-library { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
-  .backlog-lib-name { font-size: 11.5px; }
   .backlog-ach-icon, .backlog-ach-more { width: 28px; height: 28px; }
 }
 

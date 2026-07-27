@@ -2,28 +2,28 @@
   "games": [
     {
       "id": 1,
-      "name": "Risk of Rain 2",
-      "appid": 632360,
+      "name": "Ascenders: Beyond the Peak",
+      "appid": 4621180,
       "platform": "steam",
-      "status": "completado",
+      "status": "pausado",
       "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/6vQWDGc.png",
-      "capsuleUrl": "https://i.imgur.com/LmNsADo.png",
+      "imageUrl": "https://i.imgur.com/BJ6w3FE.png",
+      "capsuleUrl": "https://i.imgur.com/i7Mv012.png",
       "raGameId": null
     },
     {
       "id": 2,
-      "name": "Core Keeper",
-      "appid": 1621690,
+      "name": "Delivery & Beyond",
+      "appid": 3376480,
       "platform": "steam",
-      "status": "jugando",
+      "status": "pausado",
       "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/MfeDAw6.png",
-      "capsuleUrl": "https://i.imgur.com/0eeX5oE.png",
+      "imageUrl": "https://i.imgur.com/UykJMmp.png",
+      "capsuleUrl": "https://i.imgur.com/ufCE0je.png",
       "raGameId": null
     },
     {
-      "id": 3,
+      "id": 10,
       "name": "Final Fantasy X/X-2 HD Remaster",
       "appid": 359870,
       "platform": "steam",
@@ -34,18 +34,29 @@
       "raGameId": null
     },
     {
-      "id": 4,
+      "id": 11,
+      "name": "Core Keeper",
+      "appid": 1621690,
+      "platform": "steam",
+      "status": "pausado",
+      "hoursPlayed": null,
+      "imageUrl": "https://i.imgur.com/MfeDAw6.png",
+      "capsuleUrl": "https://i.imgur.com/0eeX5oE.png",
+      "raGameId": null
+    },
+    {
+      "id": 12,
       "name": "Coromon",
       "appid": 1218210,
       "platform": "gog",
-      "status": "backlog",
+      "status": "pausado",
       "hoursPlayed": 1,
       "imageUrl": "https://i.imgur.com/8lg8oK7.png",
       "capsuleUrl": "https://i.imgur.com/9prYOPm.png",
       "raGameId": null
     },
     {
-      "id": 5,
+      "id": 13,
       "name": "No Man's Sky",
       "appid": 275850,
       "platform": "steam",
@@ -53,6 +64,72 @@
       "hoursPlayed": null,
       "imageUrl": "https://i.imgur.com/3cYzANC.png",
       "capsuleUrl": "https://i.imgur.com/BFGYnU7.png",
+      "raGameId": null
+    },
+    {
+      "id": 14,
+      "name": "Risk of Rain 2",
+      "appid": 632360,
+      "platform": "steam",
+      "status": "completado",
+      "hoursPlayed": null,
+      "imageUrl": "https://i.imgur.com/6vQWDGc.png",
+      "capsuleUrl": "https://i.imgur.com/LmNsADo.png",
+      "raGameId": null
+    },
+    {
+      "id": 15,
+      "name": "SIGNALIS",
+      "appid": 1262350,
+      "platform": "steam",
+      "status": "pausado",
+      "hoursPlayed": null,
+      "imageUrl": null,
+      "capsuleUrl": null,
+      "raGameId": null
+    },
+    {
+      "id": 16,
+      "name": "Going Medieval",
+      "appid": 1029780,
+      "platform": "steam",
+      "status": "platino",
+      "hoursPlayed": null,
+      "imageUrl": null,
+      "capsuleUrl": null,
+      "raGameId": null
+    },
+    {
+      "id": 98,
+      "name": "Hollow Knight",
+      "appid": 367520,
+      "platform": "steam",
+      "status": "pausado",
+      "hoursPlayed": null,
+      "imageUrl": null,
+      "capsuleUrl": null,
+      "raGameId": null
+    },
+    {
+      "id": 99,
+      "name": "Kirby & the Forgotten Land",
+      "appid": null,
+      "platform": "consola",
+      "status": "completado",
+      "hoursPlayed": 17,
+      "imageUrl": "https://i.imgur.com/Dgt7vTh.png",
+      "capsuleUrl": "https://i.imgur.com/JZdENVM.png",
+      "raGameId": null
+    },
+    {
+      "id": 100,
+      "name": "Minecraft",
+      "appid": null,
+      "platform": "otro",
+      "status": "completado",
+      "hoursPlayed": null,
+      "imageUrl": "https://i.imgur.com/E3fLUad.gif",
+      "capsuleUrl": "https://i.imgur.com/DbmNn3W.png",
       "raGameId": null
     }
   ]

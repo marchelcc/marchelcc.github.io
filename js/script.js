@@ -792,11 +792,11 @@ function renderBacklog(manualGames, steamData) {
     const coverUrl = game.imageUrl && game.imageUrl.trim()
         ? game.imageUrl
         : (steamEntry?.libraryUrl || '');
-
+    
     const capsuleUrl = game.capsuleUrl && game.capsuleUrl.trim()
         ? game.capsuleUrl
         : (steamEntry?.headerUrl || '');
-
+    
     return {
       ...game, playedHours, coverUrl, capsuleUrl, steamLinked: !!steamEntry, hoursAreManual,
       achievements: steamAch || raAch || null,
@@ -840,8 +840,12 @@ function drawBacklog() {
   const grid = document.getElementById('backlog-grid');
   if (!grid) return;
 
-  grid.classList.toggle('backlog-view-library', BACKLOG_VIEW === 'library');
-  grid.classList.toggle('backlog-view-list', BACKLOG_VIEW === 'list');
+  /* En móvil no hay sidebar ni toggle — siempre se muestra la lista completa */
+  const isNarrow = window.matchMedia('(max-width: 768px)').matches;
+  const effectiveView = isNarrow ? 'list' : BACKLOG_VIEW;
+
+  grid.classList.toggle('backlog-view-library', effectiveView === 'library');
+  grid.classList.toggle('backlog-view-list', effectiveView === 'list');
   grid.innerHTML = '';
 
   const list = BACKLOG_DATA.filter(g =>
@@ -856,7 +860,7 @@ function drawBacklog() {
   }
 
   list.forEach(game => {
-    grid.appendChild(BACKLOG_VIEW === 'library' ? buildBacklogLibraryCard(game) : buildBacklogListRow(game));
+    grid.appendChild(effectiveView === 'library' ? buildBacklogLibraryCard(game) : buildBacklogListRow(game));
   });
 
   updateBacklogCount(list.length);
@@ -998,7 +1002,7 @@ function setupBacklogFilters() {
       btn.addEventListener('click', () => {
         toggle.querySelectorAll('.backlog-view-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        BACKLOG_VIEW = btn.dataset.view;
+        BACKLOG_VIEW = btn.dataset.view; 
         drawBacklog();
       });
     });
@@ -1269,6 +1273,9 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.remove('wm-mobile-open');
       }
     });
+
+    /* El backlog cambia de vista (lista forzada en móvil) al cruzar el breakpoint */
+    if (typeof drawBacklog === 'function' && BACKLOG_DATA.length > 0) drawBacklog();
   }, { passive: true });
 
   /* Lazy-load GitHub repos the first time the github window is opened */
