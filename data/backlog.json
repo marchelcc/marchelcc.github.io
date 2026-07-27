@@ -2,6 +2,17 @@
   "games": [
     {
       "id": 1,
+      "name": "Easy Delivery Co.",
+      "appid": 3293010,
+      "platform": "steam",
+      "status": "jugando",
+      "hoursPlayed": null,
+      "imageUrl": "https://i.imgur.com/PW7ujnM.png",
+      "capsuleUrl": "https://i.imgur.com/mXpqQWK.png",
+      "raGameId": null
+    },
+    {
+      "id": 8,
       "name": "Ascenders: Beyond the Peak",
       "appid": 4621180,
       "platform": "steam",
@@ -12,7 +23,7 @@
       "raGameId": null
     },
     {
-      "id": 2,
+      "id": 9,
       "name": "Delivery & Beyond",
       "appid": 3376480,
       "platform": "steam",
