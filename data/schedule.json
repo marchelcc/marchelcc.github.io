@@ -1,25 +1,25 @@
 {
   "vtuber": "Marchel",
   "tagline": "🎣 Tu pescador chileno de confianza que ama los Kiwis!",
-  "lastUpdated": "2026-06-17",
+  "lastUpdated": "2026-07-27",
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
-  "youtubeLatestVODId": "KOxarymARas",
+  "youtubeLatestVODId": "oJN929lROT8",
   "schedule": [
     {
       "id": 1,
       "day": "Lunes",
-      "time": null,
-      "game": "Descanso",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "20:30",
+      "game": "Final Fantasy X",
+      "imageUrl": "https://i.imgur.com/fqVJUzA.png",
+      "tag": "Stream Longo",
+      "active": true
     },
     {
       "id": 2,
       "day": "Martes",
       "time": null,
-      "game": "Descanso",
+      "game": "-",
       "imageUrl": "",
       "tag": "Off",
       "active": false
@@ -27,17 +27,17 @@
     {
       "id": 3,
       "day": "Miércoles",
-      "time": null,
-      "game": "Descanso",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "20:30",
+      "game": "Easy Delivery Co.",
+      "imageUrl": "https://i.imgur.com/CEMTjFE.png",
+      "tag": "Stream Shorti",
+      "active": true
     },
     {
       "id": 4,
       "day": "Jueves",
       "time": null,
-      "game": "Descanso",
+      "game": "-",
       "imageUrl": "",
       "tag": "Off",
       "active": false
@@ -45,17 +45,17 @@
     {
       "id": 5,
       "day": "Viernes",
-      "time": null,
-      "game": "Descanso",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "20:30",
+      "game": "Minecraft",
+      "imageUrl": "https://i.imgur.com/GXqX6kG.png",
+      "tag": "Stream Longo",
+      "active": true
     },
     {
       "id": 6,
       "day": "Sábado",
       "time": null,
-      "game": "Descanso",
+      "game": "-",
       "imageUrl": null,
       "tag": "Off",
       "active": false
@@ -64,18 +64,10 @@
       "id": 7,
       "day": "Domingo",
       "time": null,
-      "game": "Descanso",
+      "game": "-",
       "imageUrl": "",
       "tag": "Off",
       "active": false
-    }
-  ],
-  "rotationGames": [
-    {
-      "id": null,
-      "name": null,
-      "imageUrl": null,
-      "note": null
     }
   ],
   "socials": {

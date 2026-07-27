@@ -824,6 +824,21 @@ body {
   border-left: none; /* border-left is on the tr, not the td */
 }
 
+.game-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.game-logo {
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  object-fit: contain;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
 /* ─────────────────────────────────────────────────────────────
    7. ROTATION GAMES WINDOW (index)
    ───────────────────────────────────────────────────────────── */
@@ -835,94 +850,6 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 14px;
-}
-
-.game-card {
-  min-height: 160px;
-  height: auto;
-  width: 100%;
-  background: var(--beige);
-  border: 2px solid var(--xp-btn-border);
-  border-radius: 8px;
-  padding: 14px 12px;
-  text-align: center;
-  cursor: default;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 2px 2px 0 var(--game-card-shadow);
-}
-.game-card::before {
-  content: '';
-  position: absolute;
-  inset: 3px;
-  border: 1px dashed var(--xp-btn-border);
-  border-radius: 5px;
-  pointer-events: none;
-  opacity: 0.4;
-}
-.game-card:hover {
-  transform: translateY(-4px) rotate(-1deg);
-  box-shadow: 4px 6px 0 var(--game-card-shadow);
-  border-color: var(--game-card-border-hover);
-}
-.game-card .game-emoji {
-  font-size: 32px;
-  display: block;
-  margin-bottom: 8px;
-  filter: drop-shadow(1px 2px 2px #0003);
-}
-.game-card .game-name {
-  font-family: var(--font-ui);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--xp-blue-dark);
-  margin-bottom: 6px;
-  line-height: 1.3;
-}
-.game-card .game-note {
-  font-size: 12px;
-  color: var(--brown-soft);
-  font-style: italic;
-  line-height: 1.4;
-}
-
-.game-logo-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.game-logo {
-  width: 50px;
-  height: 50px;
-  padding: 5px;
-  object-fit: contain;
-  border-radius: 6px;
-  border: 1.5px solid var(--xp-btn-border);
-  background: var(--beige-dark);
-  flex-shrink: 0;
-  box-shadow: 1px 1px 0 var(--brown-soft);
-}
-.game-card-logo {
-  width: 100%;
-  max-width: 150px;
-  min-width: 120px;
-  max-height: 120px;
-  min-height: 80px;
-  object-fit: contain;
-  border-radius: 8px;
-  border: 2px solid var(--xp-btn-border);
-  background: var(--beige-dark);
-  margin: 0 auto 6px;
-  display: block;
-  box-shadow: 2px 2px 0 var(--brown-soft);
-  padding: 10px;
-}
-.game-card-emoji-fallback {
-  font-size: 40px;
-  display: block;
-  margin-bottom: 6px;
-  filter: drop-shadow(1px 2px 2px #0003);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -1236,7 +1163,8 @@ body {
   .backlog-toolbar {
     display: none;
   }
-  .backlog-body { flex-direction: column; }
+  
+  .backlog-body { flex-direction: row; }
 
   /* ── Fila de la vista Lista: portada arriba, info abajo (misma proporción que en desktop) ── */
   .backlog-row-top { flex-direction: column; }
