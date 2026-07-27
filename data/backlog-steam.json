@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-22T11:14:42.439Z",
+  "updated": "2026-07-26T10:48:36.146Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -796,7 +796,7 @@
     "365670": {
       "name": "Blender",
       "playtimeForeverMinutes": 9547,
-      "playtime2WeeksMinutes": 59,
+      "playtime2WeeksMinutes": 9,
       "lastPlayedUnix": 1784519187,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/365670/48733cd333eea6e40711a1b9c6dde32ffe363ced.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/365670/header.jpg",
@@ -967,7 +967,7 @@
     "431960": {
       "name": "Wallpaper Engine",
       "playtimeForeverMinutes": 1803,
-      "playtime2WeeksMinutes": 6,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1783746975,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/431960/72edaed9d748c6cf7397ffb1c83f0b837b9ebd9d.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/431960/header.jpg",
@@ -1723,7 +1723,7 @@
     "986130": {
       "name": "Shadows of Doubt",
       "playtimeForeverMinutes": 834,
-      "playtime2WeeksMinutes": 105,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1783573166,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/986130/64dc4dc0a5502c03145b69ffe8ebcea7842031a8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/986130/header.jpg",
@@ -2424,9 +2424,9 @@
     },
     "1462040": {
       "name": "FINAL FANTASY VII REMAKE INTERGRADE",
-      "playtimeForeverMinutes": 457,
-      "playtime2WeeksMinutes": 457,
-      "lastPlayedUnix": 1784353804,
+      "playtimeForeverMinutes": 768,
+      "playtime2WeeksMinutes": 768,
+      "lastPlayedUnix": 1784872829,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1462040/3cf19bc8fa3bc953d68a9b46b0a7555839188da0.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1462040/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1462040/library_600x900_2x.jpg"
@@ -3531,9 +3531,9 @@
     },
     "3065800": {
       "name": "Marathon",
-      "playtimeForeverMinutes": 1484,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1780551690,
+      "playtimeForeverMinutes": 1489,
+      "playtime2WeeksMinutes": 4,
+      "lastPlayedUnix": 1784772091,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3065800/ac94c44cc0d83393f57578e5a122eac481e68933.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3065800/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3065800/library_600x900_2x.jpg"
@@ -3666,9 +3666,9 @@
     },
     "3513350": {
       "name": "Wuthering Waves",
-      "playtimeForeverMinutes": 54,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1757194040,
+      "playtimeForeverMinutes": 129,
+      "playtime2WeeksMinutes": 75,
+      "lastPlayedUnix": 1784959318,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3513350/645fa03b0cf2967e63dde224cc7ee9854d51e834.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3513350/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3513350/library_600x900_2x.jpg"
@@ -3694,7 +3694,7 @@
     "3583210": {
       "name": "Crashout Crew",
       "playtimeForeverMinutes": 30,
-      "playtime2WeeksMinutes": 30,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1783829379,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3583210/b9eab26444b35befe4e4c1a8c9cddf93d804241a.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3583210/header.jpg",
@@ -3781,6 +3781,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4128260/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4128260/library_600x900_2x.jpg"
     },
+    "4162040": {
+      "name": "Zenless Zone Zero",
+      "playtimeForeverMinutes": 25,
+      "playtime2WeeksMinutes": 25,
+      "lastPlayedUnix": 1784938774,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4162040/bbde5d7c68eb1173f5d7bbcaab38b34bf92080b9.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4162040/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4162040/library_600x900_2x.jpg"
+    },
     "4195600": {
       "name": "AFK Journey",
       "playtimeForeverMinutes": 29,
@@ -3807,6 +3816,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4335780/2aa6d01e0f2a94cf7691d754d7f1458a60bf0f5f.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4335780/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4335780/library_600x900_2x.jpg"
+    },
+    "4508340": {
+      "name": "NTE: Neverness to Everness",
+      "playtimeForeverMinutes": 61,
+      "playtime2WeeksMinutes": 61,
+      "lastPlayedUnix": 1785038685,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4508340/dce6e50a6da074b930bbd7703838ea6705e7fab8.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4508340/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4508340/library_600x900_2x.jpg"
     },
     "4556160": {
       "name": "Husk Protocol Playtest",
@@ -3838,7 +3856,7 @@
     "4907440": {
       "name": "Waltz & Jam Playtest",
       "playtimeForeverMinutes": 30,
-      "playtime2WeeksMinutes": 30,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1783827300,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4907440/4001e83c1f081f6aef638f8d8c2c12c9e60173fa.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4907440/header.jpg",
