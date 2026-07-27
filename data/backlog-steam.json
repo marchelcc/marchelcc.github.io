@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-27T01:03:54.219Z",
+  "updated": "2026-07-27T12:33:28.170Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -3621,9 +3621,9 @@
     },
     "3293010": {
       "name": "Easy Delivery Co.",
-      "playtimeForeverMinutes": 0,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": null,
+      "playtimeForeverMinutes": 117,
+      "playtime2WeeksMinutes": 117,
+      "lastPlayedUnix": 1785122286,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3293010/0260d6785cf1cab2aab9d490f42224f98bab9472.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3293010/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3293010/library_600x900_2x.jpg"
@@ -6864,6 +6864,78 @@
           "achieved": false,
           "unlocktime": 0,
           "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1621690/c75de8303cb8d84233a9fa60784a3d3e0daa76d2.jpg"
+        }
+      ]
+    },
+    "3293010": {
+      "total": 11,
+      "unlocked": 2,
+      "icons": [
+        {
+          "name": "fishing town",
+          "achieved": true,
+          "unlocktime": 1785119754,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3293010/3b0f9baef7469fdc9654f8ba6920d14d1d088a9c.jpg"
+        },
+        {
+          "name": "snowy peaks",
+          "achieved": true,
+          "unlocktime": 1785118085,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3293010/6f8e424b6e2d8f7a0d1a3d8c10b871380db701cf.jpg"
+        },
+        {
+          "name": "shutdown",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3293010/f2378e6979c726330b09146fe11b62aeb4ab4fd0.jpg"
+        },
+        {
+          "name": "reboot",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3293010/facf8906de682da867ad8c66cfae25b059ea332f.jpg"
+        },
+        {
+          "name": "restore",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3293010/b57a4446730ede05675da46d4ef9ffe4936a4dfc.jpg"
+        },
+        {
+          "name": "snowcats",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3293010/fa651e712962ea3978fbf2c22c012b06f5474cdb.jpg"
+        },
+        {
+          "name": "radio towers",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3293010/19e4ae0b3d9c0aae4cae7afcd3945a91c734bfdb.jpg"
+        },
+        {
+          "name": "tea",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3293010/318148f3775d5b6538c32d87c89ac656c86057ff.jpg"
+        },
+        {
+          "name": "birds",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3293010/c099dedc793e1e14f5165a729ef6c565a0153937.jpg"
+        },
+        {
+          "name": "duct tape",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3293010/71f0df1ab7d6798cbb32253729fb5a8d1639a190.jpg"
+        },
+        {
+          "name": "fish",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3293010/6c2f48d70f66f0788e1c4c3740c721b5d6bcb77d.jpg"
         }
       ]
     },
