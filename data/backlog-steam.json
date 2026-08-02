@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-01T10:45:10.917Z",
+  "updated": "2026-08-02T10:45:38.485Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -786,9 +786,9 @@
     },
     "360740": {
       "name": "Downwell",
-      "playtimeForeverMinutes": 19,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1769996727,
+      "playtimeForeverMinutes": 28,
+      "playtime2WeeksMinutes": 9,
+      "lastPlayedUnix": 1785642060,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/360740/b9b9c2f5cdf91b90e468d9140deceb80be3e0a06.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/360740/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/360740/library_600x900_2x.jpg"
@@ -1876,7 +1876,7 @@
     "1085660": {
       "name": "Destiny 2",
       "playtimeForeverMinutes": 98085,
-      "playtime2WeeksMinutes": 34,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1784420491,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1085660/fce050d63f0a2f8eb51b603c7f30bfca2a301549.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1085660/header.jpg",
@@ -2541,9 +2541,9 @@
     },
     "1617400": {
       "name": "The Bazaar",
-      "playtimeForeverMinutes": 496,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1782869049,
+      "playtimeForeverMinutes": 570,
+      "playtime2WeeksMinutes": 73,
+      "lastPlayedUnix": 1785656422,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1617400/9fa251921f007cfa0f074b3a548f083cb3150d1c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1617400/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1617400/library_600x900_2x.jpg"
@@ -2758,7 +2758,7 @@
     "1850510": {
       "name": "TRIANGLE STRATEGY",
       "playtimeForeverMinutes": 183,
-      "playtime2WeeksMinutes": 66,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1784430627,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1850510/5659f640b875459146cbbd868e7323bb8aec2ed3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1850510/header.jpg",
