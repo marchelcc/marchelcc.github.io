@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-02T10:45:38.485Z",
+  "updated": "2026-08-03T12:33:11.980Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -796,7 +796,7 @@
     "365670": {
       "name": "Blender",
       "playtimeForeverMinutes": 9547,
-      "playtime2WeeksMinutes": 6,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1784519187,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/365670/48733cd333eea6e40711a1b9c6dde32ffe363ced.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/365670/header.jpg",
@@ -3792,9 +3792,9 @@
     },
     "4162040": {
       "name": "Zenless Zone Zero",
-      "playtimeForeverMinutes": 25,
-      "playtime2WeeksMinutes": 25,
-      "lastPlayedUnix": 1784938774,
+      "playtimeForeverMinutes": 77,
+      "playtime2WeeksMinutes": 77,
+      "lastPlayedUnix": 1785727775,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4162040/23dbf9d8037561c6508d5307c57c9ffb78e66fca.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4162040/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4162040/library_600x900_2x.jpg"
@@ -3861,15 +3861,6 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4621180/2bc3ea14e4cf5f27e9bf44ef66c2ebdd2bb59673.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4621180/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4621180/library_600x900_2x.jpg"
-    },
-    "4907440": {
-      "name": "Waltz & Jam Playtest",
-      "playtimeForeverMinutes": 30,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1783827300,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4907440/4001e83c1f081f6aef638f8d8c2c12c9e60173fa.jpg",
-      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4907440/header.jpg",
-      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4907440/library_600x900_2x.jpg"
     }
   },
   "achievements": {
