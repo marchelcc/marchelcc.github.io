@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-07T10:06:11.400Z",
+  "updated": "2026-08-08T09:46:02.888Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1467,6 +1467,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/706220/61a2ca45ccfe2b0cafaaa2cf638ba3de87107c2d.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/706220/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/706220/library_600x900_2x.jpg"
+    },
+    "738520": {
+      "name": "Breathedge",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/738520/be75f36a24abb31bfbbf1220e801c61ed477c03a.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/738520/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/738520/library_600x900_2x.jpg"
     },
     "740240": {
       "name": "Snake Eyes Dungeon",
@@ -3676,7 +3685,7 @@
     "3513350": {
       "name": "Wuthering Waves",
       "playtimeForeverMinutes": 220,
-      "playtime2WeeksMinutes": 166,
+      "playtime2WeeksMinutes": 91,
       "lastPlayedUnix": 1785291138,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3513350/645fa03b0cf2967e63dde224cc7ee9854d51e834.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3513350/header.jpg",
@@ -3802,7 +3811,7 @@
     "4162040": {
       "name": "Zenless Zone Zero",
       "playtimeForeverMinutes": 77,
-      "playtime2WeeksMinutes": 77,
+      "playtime2WeeksMinutes": 51,
       "lastPlayedUnix": 1785727775,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4162040/23dbf9d8037561c6508d5307c57c9ffb78e66fca.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4162040/header.jpg",
@@ -3838,7 +3847,7 @@
     "4508340": {
       "name": "NTE: Neverness to Everness",
       "playtimeForeverMinutes": 242,
-      "playtime2WeeksMinutes": 240,
+      "playtime2WeeksMinutes": 210,
       "lastPlayedUnix": 1785554563,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4508340/dce6e50a6da074b930bbd7703838ea6705e7fab8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4508340/header.jpg",
