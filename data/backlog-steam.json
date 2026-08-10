@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-09T09:48:49.406Z",
+  "updated": "2026-08-10T10:24:37.712Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -3640,7 +3640,7 @@
     "3293010": {
       "name": "Easy Delivery Co.",
       "playtimeForeverMinutes": 233,
-      "playtime2WeeksMinutes": 233,
+      "playtime2WeeksMinutes": 116,
       "lastPlayedUnix": 1785380424,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3293010/0260d6785cf1cab2aab9d490f42224f98bab9472.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3293010/header.jpg",
