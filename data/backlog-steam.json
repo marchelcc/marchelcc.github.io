@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-10T10:24:37.712Z",
+  "updated": "2026-08-11T10:05:47.741Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -778,7 +778,7 @@
     "359870": {
       "name": "FINAL FANTASY X/X-2 HD Remaster",
       "playtimeForeverMinutes": 831,
-      "playtime2WeeksMinutes": 212,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1785212853,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/359870/86616d56239e83099e90940c8c9424489aee2ceb.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/359870/header.jpg",
@@ -1344,9 +1344,9 @@
     },
     "632360": {
       "name": "Risk of Rain 2",
-      "playtimeForeverMinutes": 3627,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1782410716,
+      "playtimeForeverMinutes": 3796,
+      "playtime2WeeksMinutes": 169,
+      "lastPlayedUnix": 1786436520,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/library_600x900_2x.jpg"
@@ -3847,7 +3847,7 @@
     "4508340": {
       "name": "NTE: Neverness to Everness",
       "playtimeForeverMinutes": 242,
-      "playtime2WeeksMinutes": 180,
+      "playtime2WeeksMinutes": 96,
       "lastPlayedUnix": 1785554563,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4508340/dce6e50a6da074b930bbd7703838ea6705e7fab8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4508340/header.jpg",
@@ -3871,14 +3871,14 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4608190/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4608190/library_600x900_2x.jpg"
     },
-    "4621180": {
-      "name": "Ascenders: Beyond the Peak Demo",
-      "playtimeForeverMinutes": 155,
+    "4739830": {
+      "name": "JOHN GLEEP Playtest",
+      "playtimeForeverMinutes": 0,
       "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1782871538,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4621180/2bc3ea14e4cf5f27e9bf44ef66c2ebdd2bb59673.jpg",
-      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4621180/header.jpg",
-      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4621180/library_600x900_2x.jpg"
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4739830/97062b069dd3d0faf58c23fd6cb7525dc3ba8d5a.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4739830/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4739830/library_600x900_2x.jpg"
     },
     "4809930": {
       "name": "WARDOGS Playtest",
