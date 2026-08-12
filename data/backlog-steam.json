@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-11T10:05:47.741Z",
+  "updated": "2026-08-12T10:15:03.897Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -3685,7 +3685,7 @@
     "3513350": {
       "name": "Wuthering Waves",
       "playtimeForeverMinutes": 220,
-      "playtime2WeeksMinutes": 91,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1785291138,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3513350/645fa03b0cf2967e63dde224cc7ee9854d51e834.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3513350/header.jpg",
@@ -3775,7 +3775,7 @@
     "3950020": {
       "name": "Duet Night Abyss",
       "playtimeForeverMinutes": 151,
-      "playtime2WeeksMinutes": 124,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1785305529,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3950020/780f9c68ea62b1f199a1322defed924e6ca077e1.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3950020/header.jpg",
@@ -3789,6 +3789,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4021750/8bcb68175f60db0299ddc26371e02b83f8af3670.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4021750/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4021750/library_600x900_2x.jpg"
+    },
+    "4059240": {
+      "name": "Gears of War: E-Day Multiplayer Beta",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4059240/53a324b2edd5bccb96e8e9e6066dad6820e1e809.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4059240/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4059240/library_600x900_2x.jpg"
     },
     "4069520": {
       "name": "Super Battle Golf",
