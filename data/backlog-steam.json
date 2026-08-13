@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-12T10:15:03.897Z",
+  "updated": "2026-08-13T10:16:30.663Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -429,7 +429,7 @@
       "playtimeForeverMinutes": 21,
       "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1704686546,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/218620/d7fc63389c7ddcbdd3d5de432eb2fd21a564ba6d.jpg",
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/218620/8fce45cbb0dee03e87cd30b96ac5e5c3d4b2c494.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/218620/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/218620/library_600x900_2x.jpg"
     },
@@ -1344,9 +1344,9 @@
     },
     "632360": {
       "name": "Risk of Rain 2",
-      "playtimeForeverMinutes": 3796,
-      "playtime2WeeksMinutes": 169,
-      "lastPlayedUnix": 1786436520,
+      "playtimeForeverMinutes": 3905,
+      "playtime2WeeksMinutes": 278,
+      "lastPlayedUnix": 1786599406,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/library_600x900_2x.jpg"
@@ -3640,7 +3640,7 @@
     "3293010": {
       "name": "Easy Delivery Co.",
       "playtimeForeverMinutes": 233,
-      "playtime2WeeksMinutes": 116,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1785380424,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3293010/0260d6785cf1cab2aab9d490f42224f98bab9472.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3293010/header.jpg",
@@ -4874,8 +4874,14 @@
     },
     "632360": {
       "total": 171,
-      "unlocked": 55,
+      "unlocked": 56,
       "icons": [
+        {
+          "name": "Engineer: Better With Friends",
+          "achieved": true,
+          "unlocktime": 1786594786,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/632360/c0635b86d62227a3b2852084a91f8a53e2d9a164.jpg"
+        },
         {
           "name": "Commando: Godspeed",
           "achieved": true,
@@ -5307,12 +5313,6 @@
           "achieved": false,
           "unlocktime": 0,
           "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/632360/6f5533c8ddc7add290bc7312898e6c6bd38c0ee7.jpg"
-        },
-        {
-          "name": "Engineer: Better With Friends",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/632360/320b4df5abb9d267e1b824197ad59a00610038ab.jpg"
         },
         {
           "name": "Engineer: Mastery",
