@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-13T10:16:30.663Z",
+  "updated": "2026-08-14T10:11:59.972Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -3856,7 +3856,7 @@
     "4508340": {
       "name": "NTE: Neverness to Everness",
       "playtimeForeverMinutes": 242,
-      "playtime2WeeksMinutes": 96,
+      "playtime2WeeksMinutes": 45,
       "lastPlayedUnix": 1785554563,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4508340/dce6e50a6da074b930bbd7703838ea6705e7fab8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4508340/header.jpg",
