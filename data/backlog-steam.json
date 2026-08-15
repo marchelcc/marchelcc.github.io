@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-14T10:11:59.972Z",
+  "updated": "2026-08-15T09:33:14.799Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -3808,6 +3808,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4069520/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4069520/library_600x900_2x.jpg"
     },
+    "4127570": {
+      "name": "Scramble Knights Online Playtest",
+      "playtimeForeverMinutes": 13,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": 1770792281,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4127570/b7085b94a9678d85434ae6830a0f24d9b8319490.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4127570/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4127570/library_600x900_2x.jpg"
+    },
     "4128260": {
       "name": "Highguard",
       "playtimeForeverMinutes": 564,
@@ -3856,7 +3865,7 @@
     "4508340": {
       "name": "NTE: Neverness to Everness",
       "playtimeForeverMinutes": 242,
-      "playtime2WeeksMinutes": 45,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1785554563,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4508340/dce6e50a6da074b930bbd7703838ea6705e7fab8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4508340/header.jpg",
