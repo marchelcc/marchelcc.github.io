@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-15T09:33:14.799Z",
+  "updated": "2026-08-16T09:34:34.519Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -787,7 +787,7 @@
     "360740": {
       "name": "Downwell",
       "playtimeForeverMinutes": 28,
-      "playtime2WeeksMinutes": 9,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1785642060,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/360740/b9b9c2f5cdf91b90e468d9140deceb80be3e0a06.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/360740/header.jpg",
@@ -1261,6 +1261,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/583950/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/583950/library_600x900_2x.jpg"
     },
+    "588650": {
+      "name": "Dead Cells",
+      "playtimeForeverMinutes": 88,
+      "playtime2WeeksMinutes": 88,
+      "lastPlayedUnix": 1786867063,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/588650/a431361e5dae5fd6ac2433064b62b2a37abc38f1.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/588650/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/588650/library_600x900_2x.jpg"
+    },
     "594650": {
       "name": "Hunt: Showdown 1896",
       "playtimeForeverMinutes": 873,
@@ -1701,6 +1710,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/945360/b82c3f46da8f3c918e1c9e0d18bd6fa8fcef6801.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/library_600x900_2x.jpg"
+    },
+    "945770": {
+      "name": "Dark Envoy",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/945770/d7450df915176cdbf0cfbf3b5bfa28575ad9c052.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/945770/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/945770/library_600x900_2x.jpg"
     },
     "961200": {
       "name": "Predecessor",
@@ -2296,6 +2314,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1359090/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1359090/library_600x900_2x.jpg"
     },
+    "1361510": {
+      "name": "Teenage Mutant Ninja Turtles: Shredder's Revenge",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1361510/42b5c6566f9141a08a11dc74b8b915c919410d2c.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1361510/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1361510/library_600x900_2x.jpg"
+    },
     "1363430": {
       "name": "Propagation VR",
       "playtimeForeverMinutes": 87,
@@ -2560,7 +2587,7 @@
     "1617400": {
       "name": "The Bazaar",
       "playtimeForeverMinutes": 570,
-      "playtime2WeeksMinutes": 73,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1785656422,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1617400/9fa251921f007cfa0f074b3a548f083cb3150d1c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1617400/header.jpg",
@@ -2962,6 +2989,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2067050/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2067050/library_600x900_2x.jpg"
     },
+    "2072450": {
+      "name": "Like a Dragon: Infinite Wealth",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2072450/b6deba4e44ec723fbc8ae733dbf9afd2ba758c60.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2072450/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2072450/library_600x900_2x.jpg"
+    },
     "2073850": {
       "name": "THE FINALS",
       "playtimeForeverMinutes": 373,
@@ -3007,6 +3043,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2078890/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2078890/library_600x900_2x.jpg"
     },
+    "2094910": {
+      "name": "Pile Up!",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2094910/774d6bfd5416d8a5a2a2e5c595d281bb9f6c4a90.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2094910/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2094910/library_600x900_2x.jpg"
+    },
     "2096610": {
       "name": "Crysis 3 Remastered",
       "playtimeForeverMinutes": 336,
@@ -3024,6 +3069,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2097570/95fb11fdc7275b083b8e6b4a9e58ba6a8a938e49.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2097570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2097570/library_600x900_2x.jpg"
+    },
+    "2106670": {
+      "name": "Gatekeeper",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2106670/69f1c4f815d5a15e31efec4b2f338e232d2230b7.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2106670/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2106670/library_600x900_2x.jpg"
     },
     "2134770": {
       "name": "SteamWorld Build",
@@ -3342,9 +3396,9 @@
     },
     "2767030": {
       "name": "Marvel Rivals",
-      "playtimeForeverMinutes": 312,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1770651233,
+      "playtimeForeverMinutes": 345,
+      "playtime2WeeksMinutes": 32,
+      "lastPlayedUnix": 1786846140,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2767030/839b4712925b95702ca56e0c4d399adf54f4d617.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/library_600x900_2x.jpg"
@@ -3420,6 +3474,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2868840/f92b09dab91f1d1738f72fe0dd9be18dcc2901f9.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2868840/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2868840/library_600x900_2x.jpg"
+    },
+    "2870340": {
+      "name": "Decktamer",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2870340/3018a3917f239af2ef89902714ad4a63ecc8fc6c.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2870340/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2870340/library_600x900_2x.jpg"
     },
     "2881650": {
       "name": "Content Warning",
@@ -3619,6 +3682,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3213920/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3213920/library_600x900_2x.jpg"
     },
+    "3238670": {
+      "name": "Conquest Dark",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3238670/01005edc8897fd17ab4bb517c6c6c0fad446d969.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3238670/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3238670/library_600x900_2x.jpg"
+    },
     "3241660": {
       "name": "R.E.P.O.",
       "playtimeForeverMinutes": 2834,
@@ -3792,9 +3864,9 @@
     },
     "4059240": {
       "name": "Gears of War: E-Day Multiplayer Beta",
-      "playtimeForeverMinutes": 0,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": null,
+      "playtimeForeverMinutes": 7,
+      "playtime2WeeksMinutes": 7,
+      "lastPlayedUnix": 1786846867,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4059240/53a324b2edd5bccb96e8e9e6066dad6820e1e809.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4059240/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4059240/library_600x900_2x.jpg"
@@ -3891,18 +3963,18 @@
     },
     "4739830": {
       "name": "JOHN GLEEP Playtest",
-      "playtimeForeverMinutes": 0,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": null,
+      "playtimeForeverMinutes": 100,
+      "playtime2WeeksMinutes": 100,
+      "lastPlayedUnix": 1786861942,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4739830/97062b069dd3d0faf58c23fd6cb7525dc3ba8d5a.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4739830/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4739830/library_600x900_2x.jpg"
     },
     "4809930": {
       "name": "WARDOGS Playtest",
-      "playtimeForeverMinutes": 10,
-      "playtime2WeeksMinutes": 10,
-      "lastPlayedUnix": 1785982429,
+      "playtimeForeverMinutes": 14,
+      "playtime2WeeksMinutes": 14,
+      "lastPlayedUnix": 1786846377,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4809930/6829090332535af8637c4b6e1dddf3ee8ec3d134.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4809930/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4809930/library_600x900_2x.jpg"
