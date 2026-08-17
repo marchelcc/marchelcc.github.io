@@ -595,14 +595,13 @@ async function loadBacklog() {
   }
 }
 
-/* Auto-generated Steam playtime — actualizado por GitHub Action */
+/* Auto-generated Steam playtime — updated by GitHub Action */
 async function loadBacklogSteam() {
   try {
     const res = await fetch('data/backlog-steam.json?nocache=' + Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
     return await res.json();
   } catch (err) {
-    /* No es un error crítico — el sitio funciona sin datos de Steam */
     console.warn('backlog-steam.json no disponible aún:', err.message);
     return null;
   }
@@ -733,7 +732,7 @@ function renderRotation(games) {
   });
 }
 
-/* ── Backlog de juegos ── */
+/* ── Games Backlog ── */
 const BACKLOG_STATUS_CONFIG = {
   'backlog':    { label: '📥 Backlog',    cls: 'status-backlog'    },
   'jugando':    { label: '🎮 Jugando',    cls: 'status-jugando'    },
@@ -752,26 +751,25 @@ const BACKLOG_PLATFORM_CONFIG = {
   'otro':  { label: '🎮 Otro',  cls: 'platform-otro'  },
 };
 
-/* Al usuario promedio no le importa Steam vs GOG vs Epic — solo si es PC u otra cosa */
 function platformGroup(platform) {
   return ['steam', 'gog', 'epic'].includes(platform) ? 'pc' : 'otros';
 }
 
-const BACKLOG_ACHIEVEMENT_PREVIEW_COUNT = 6; // cuántos íconos mostrar antes de "+N"
+const BACKLOG_ACHIEVEMENT_PREVIEW_COUNT = 6;
 
 function minutesToHours(min) {
   if (!min && min !== 0) return null;
   return Math.round((min / 60) * 10) / 10; // 1 decimal
 }
 
-let BACKLOG_DATA = [];       // combinación de backlog.json + backlog-steam.json, cacheada para los filtros
+let BACKLOG_DATA = [];       // combination of backlog.json and backlog-steam.json, cached for the filters
 let BACKLOG_VIEW = 'library'; // 'library' | 'list'
 
 function renderBacklog(manualGames, steamData) {
   const grid = document.getElementById('backlog-grid');
   if (!grid) return;
 
-  /* Fusiona cada entrada manual con horas/logros de Steam o de RetroAchievements */
+  /* Merge each manual entry with Steam or RetroAchievements hours/achievements */
   BACKLOG_DATA = manualGames.map(game => {
     const steamEntry = (game.appid && steamData?.games)
         ? steamData.games[game.appid]
@@ -783,7 +781,7 @@ function renderBacklog(manualGames, steamData) {
         ? steamData.retroAchievements[game.raGameId]
         : null;
 
-    /* Prioridad de horas: automáticas de Steam > manuales del admin */
+    /* Time priority: Steam's automatic settings > admin's manual settings */
     const playedHours = steamEntry
         ? minutesToHours(steamEntry.playtimeForeverMinutes)
         : (game.hoursPlayed ?? null);
@@ -840,7 +838,6 @@ function drawBacklog() {
   const grid = document.getElementById('backlog-grid');
   if (!grid) return;
 
-  /* En móvil no hay sidebar ni toggle — siempre se muestra la lista completa */
   const isNarrow = window.matchMedia('(max-width: 768px)').matches;
   const effectiveView = isNarrow ? 'list' : BACKLOG_VIEW;
 
@@ -882,7 +879,7 @@ function backlogHeaderHtml(game, extraClass) {
 }
 
 
-/* ── Vista Biblioteca: portadas verticales tipo estantería ── */
+/* ── Library View: Vertical, Bookshelf-Style Covers ── */
 function buildBacklogLibraryCard(game) {
   const cfg = BACKLOG_STATUS_CONFIG[game.status] || BACKLOG_STATUS_CONFIG['backlog'];
   const card = document.createElement('div');
@@ -898,7 +895,7 @@ function buildBacklogLibraryCard(game) {
   return card;
 }
 
-/* ── Vista Lista: estilo perfil de Steam (horas, última vez, logros) ── */
+/* ── List View: Steam Profile Style (hours, last played, achievements) ── */
 function buildBacklogListRow(game) {
   const cfg      = BACKLOG_STATUS_CONFIG[game.status] || BACKLOG_STATUS_CONFIG['backlog'];
   const platCfg  = BACKLOG_PLATFORM_CONFIG[game.platform] || null;
@@ -1243,7 +1240,7 @@ async function init() {
 
   setTimeout(animateRows, 150);
 
-  /* Backlog: independiente de schedule.json — no bloquea si falla */
+  /* Backlog: independent of schedule.json — does not block if it fails */
   const [manualGames, steamData] = await Promise.all([loadBacklog(), loadBacklogSteam()]);
   renderBacklog(manualGames, steamData);
   setupBacklogFilters();
@@ -1274,7 +1271,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    /* El backlog cambia de vista (lista forzada en móvil) al cruzar el breakpoint */
+    /* The backlog changes view (forced list on mobile) when crossing the breakpoint */
     if (typeof drawBacklog === 'function' && BACKLOG_DATA.length > 0) drawBacklog();
   }, { passive: true });
 
