@@ -765,6 +765,9 @@ function minutesToHours(min) {
 let BACKLOG_DATA = [];       // combination of backlog.json and backlog-steam.json, cached for the filters
 let BACKLOG_VIEW = 'library'; // 'library' | 'list'
 
+/* ── NUEVO: filtro de búsqueda por nombre ── */
+let backlogSearchTerm = '';
+
 function renderBacklog(manualGames, steamData) {
   const grid = document.getElementById('backlog-grid');
   if (!grid) return;
@@ -845,10 +848,13 @@ function drawBacklog() {
   grid.classList.toggle('backlog-view-list', effectiveView === 'list');
   grid.innerHTML = '';
 
-  const list = BACKLOG_DATA.filter(g =>
-      (backlogStatusFilter === 'all' || g.status === backlogStatusFilter) &&
-      (backlogPlatformFilter === 'all' || platformGroup(g.platform) === backlogPlatformFilter)
-  );
+  /* Filtro combinado: estado + plataforma + búsqueda por nombre */
+  const list = BACKLOG_DATA.filter(g => {
+    const matchStatus = backlogStatusFilter === 'all' || g.status === backlogStatusFilter;
+    const matchPlatform = backlogPlatformFilter === 'all' || platformGroup(g.platform) === backlogPlatformFilter;
+    const matchSearch = backlogSearchTerm === '' || g.name.toLowerCase().includes(backlogSearchTerm.toLowerCase());
+    return matchStatus && matchPlatform && matchSearch;
+  });
 
   if (list.length === 0) {
     grid.innerHTML = `<div class="backlog-empty">🎣 Nada por aquí todavía...</div>`;
@@ -971,6 +977,7 @@ function updateBacklogCrumb() {
   if (!crumbEl) return;
   const parts = [BACKLOG_STATUS_CRUMBS[backlogStatusFilter] || 'Todos'];
   if (backlogPlatformFilter !== 'all') parts.push(BACKLOG_PLATFORM_CRUMBS[backlogPlatformFilter]);
+  if (backlogSearchTerm) parts.push(`🔍 "${backlogSearchTerm}"`);
   crumbEl.textContent = parts.join(' · ');
 }
 
@@ -1002,6 +1009,16 @@ function setupBacklogFilters() {
         BACKLOG_VIEW = btn.dataset.view; 
         drawBacklog();
       });
+    });
+  }
+
+  /* ── Conectar el input de búsqueda ── */
+  const searchInput = document.querySelector('.backlog-search input[type="search"]');
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      backlogSearchTerm = searchInput.value.trim();
+      updateBacklogCrumb();
+      drawBacklog();
     });
   }
 }
