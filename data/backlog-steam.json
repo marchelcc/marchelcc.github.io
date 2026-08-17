@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-16T09:34:34.519Z",
+  "updated": "2026-08-17T09:51:07.357Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1353,9 +1353,9 @@
     },
     "632360": {
       "name": "Risk of Rain 2",
-      "playtimeForeverMinutes": 3905,
-      "playtime2WeeksMinutes": 278,
-      "lastPlayedUnix": 1786599406,
+      "playtimeForeverMinutes": 3909,
+      "playtime2WeeksMinutes": 282,
+      "lastPlayedUnix": 1786911182,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/library_600x900_2x.jpg"
@@ -3279,9 +3279,9 @@
     },
     "2537470": {
       "name": "Vultures - Scavengers of Death",
-      "playtimeForeverMinutes": 23,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1784317698,
+      "playtimeForeverMinutes": 75,
+      "playtime2WeeksMinutes": 52,
+      "lastPlayedUnix": 1786936885,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2537470/79ff80daa6d3248257de1287e7455dff6074fb72.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2537470/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2537470/library_600x900_2x.jpg"
@@ -3405,9 +3405,9 @@
     },
     "2784470": {
       "name": "9 Kings",
-      "playtimeForeverMinutes": 654,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1766723092,
+      "playtimeForeverMinutes": 676,
+      "playtime2WeeksMinutes": 21,
+      "lastPlayedUnix": 1786910804,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2784470/d1d0c590e82d977b24e1070a9ec1aeea9e4cd9f4.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2784470/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2784470/library_600x900_2x.jpg"
@@ -3882,9 +3882,9 @@
     },
     "4127570": {
       "name": "Scramble Knights Online Playtest",
-      "playtimeForeverMinutes": 13,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1770792281,
+      "playtimeForeverMinutes": 34,
+      "playtime2WeeksMinutes": 20,
+      "lastPlayedUnix": 1786933658,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4127570/b7085b94a9678d85434ae6830a0f24d9b8319490.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4127570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4127570/library_600x900_2x.jpg"
@@ -3901,7 +3901,7 @@
     "4162040": {
       "name": "Zenless Zone Zero",
       "playtimeForeverMinutes": 77,
-      "playtime2WeeksMinutes": 51,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1785727775,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4162040/23dbf9d8037561c6508d5307c57c9ffb78e66fca.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4162040/header.jpg",
