@@ -1,549 +1,504 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marchel — Website 🎣</title>
-  <meta name="description" content="Página web de Marchel, horario semanal, juegos en rotación, últimos videos, y otras cositas más!" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎣</text></svg>" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marchel — Website 🎣</title>
+    <meta name="description" content="Página web de Marchel, horario semanal, juegos en rotación, últimos videos, y otras cositas más!" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎣</text></svg>" />
+  </head>
 
-<!-- ============================================================
-     DRAG COVER
-     Transparent fixed overlay shown only while a window is being
-     dragged. Prevents Twitch/YT iframes from stealing mouse events.
-     ============================================================ -->
-<div id="wm-drag-cover"></div>
+  <body>
 
-<!-- ============================================================
-     DESKTOP CANVAS
-     Desktop: fixed full-viewport area above the taskbar.
-     Mobile:  reverts to a normal scrollable flex column via CSS.
-     ============================================================ -->
-<div class="desktop">
+    <div id="wm-drag-cover"></div>
 
-  <!-- ── Desktop Icons ──────────────────────────────────────── -->
-  <div class="desktop-icons">
+    <div class="desktop">
 
-    <!-- External navigation: stays as a real link -->
-    <!--    <a href="about.html" class="desktop-icon">-->
-    <!--      <div class="icon-img">👤</div>-->
-    <!--      About Me-->
-    <!--    </a>-->
+      <div class="desktop-icons">
 
-    <!-- Window openers: <button data-open="wid"> -->
-    <button class="desktop-icon" data-open="hero">
-      <div class="icon-img">🎣</div>
-      Usuario
-    </button>
-    <button class="desktop-icon" data-open="schedule">
-      <div class="icon-img">📅</div>
-      Horario
-    </button>
-    <button class="desktop-icon" data-open="backlog">
-      <div class="icon-img">📚</div>
-      Backlog
-    </button>
-    <button class="desktop-icon" data-open="stream">
-      <div class="icon-img">🔴</div>
-      Stream
-    </button>
-    <button class="desktop-icon" data-open="yt">
-      <div class="icon-img">📺</div>
-      Videos
-    </button>
-    <button class="desktop-icon" data-open="yt-vod">
-      <div class="icon-img">📼</div>
-      VODs
-    </button>
-    <button class="desktop-icon" data-open="github">
-      <div class="icon-img">🐙</div>
-      Herramientas Dessarrolladas
-    </button>
+        <button class="desktop-icon" data-open="hero">
+          <div class="icon-img">🎣</div>
+          Usuario
+        </button>
 
-  </div><!-- /desktop-icons -->
+        <button class="desktop-icon" data-open="schedule">
+          <div class="icon-img">📅</div>
+          Horario
+        </button>
 
+        <button class="desktop-icon" data-open="backlog">
+          <div class="icon-img">📚</div>
+          Backlog
+        </button>
 
-  <!-- ============================================================
-       WINDOW: Hero — "Marchel.exe"
-       data-wid   → unique ID used by the Window Manager
-       data-title → short label shown in the taskbar button
-       data-icon  → emoji shown next to the label
-       ============================================================ -->
-  <section
-          id="hero"
-          class="xp-window hero-window"
-          data-wid="hero"
-          data-title="Marchel.exe"
-          data-icon="🎣"
-          data-w="450"
-          data-h="650"
-          data-autoopen
-  >
-    <div class="xp-titlebar">
-      <div class="title-left">
-        <span class="title-icon">🎣</span>
-        <span class="title-text">Marchel.exe — VTuber Pescador</span>
-      </div>
-      <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
-        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
-      </div>
-    </div>
+        <button class="desktop-icon" data-open="stream">
+          <div class="icon-img">🔴</div>
+          Stream
+        </button>
 
-    <div class="xp-content">
+        <button class="desktop-icon" data-open="yt">
+          <div class="icon-img">📺</div>
+          Videos
+        </button>
 
-      <div class="msn-profile-wrap">
-        <div class="msn-frame" id="profile-pic-frame">
-          <div class="msn-fallback" id="profile-pic-fallback">🎣</div>
-        </div>
-        <div class="msn-display-name" id="msn-display-name">Marchel ✦ Online</div>
+        <button class="desktop-icon" data-open="yt-vod">
+          <div class="icon-img">📼</div>
+          VODs
+        </button>
+
+        <button class="desktop-icon" data-open="github">
+          <div class="icon-img">🐙</div>
+          Herramientas Dessarrolladas
+        </button>
+
       </div>
 
-      <h1 class="hero-name" id="hero-name">Marchel</h1>
-      <p class="hero-tagline" id="hero-tagline">🎣 Tu pescador chileno de confianza que ama los Kiwis!</p>
+      <section
+              id="hero"
+              class="xp-window hero-window"
+              data-wid="hero"
+              data-title="Marchel.exe"
+              data-icon="🎣"
+              data-w="450"
+              data-h="650"
+              data-autoopen
+      >
 
-      <div class="social-row" id="social-row"><!-- rendered by script.js --></div>
+        <div class="xp-titlebar">
 
-      <div class="aboutme-enhanced">
-
-        <div class="bio-card">
-          <p class="bio-text">
-            🎣 <strong>¡Buenas!</strong> Soy <strong>Marchel</strong>, un creador de contenido que hace streams en
-            <img src="https://cdn.simpleicons.org/twitch/6441A5" width="16" height="16" alt="Twitch" style="display:inline-block;vertical-align:middle;">
-            <strong>Twitch</strong> y
-            <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16" height="16" alt="YouTube" style="display:inline-block;vertical-align:middle;">
-            <strong>YouTube</strong>, además de subir videos editados. Empecé en <strong>2015</strong> en otro canal grabando contenido variado,
-            principalmente minijuegos de
-            <img src="https://i.imgur.com/GXqX6kG.png" width="16" height="16" alt="Minecraft" style="display:inline-block;vertical-align:middle;">
-            <strong>Minecraft</strong>.
-            Ya en <strong>2019</strong> comencé a hacer streams en Twitch, y desde entonces no he parado de conocer
-            gente increíble y compartir partidas.
-          </p>
-          <p class="bio-text" style="margin-top:12px;">
-            Actualmente me dedico principalmente a hacer <strong>streams semanales</strong> de varios jueguitos, rotándolos semanal o mensualmente.
-            También intento subir videos semanales usando extractos de streams o series grabadas offline 🎣✨
-          </p>
-        </div>
-
-        <div class="platforms-row">
-          <a href="https://www.twitch.tv/marchel_cc" class="platform-badge twitch-badge" target="_blank" rel="noopener">
-            <img src="https://cdn.simpleicons.org/twitch/9146FF" alt="Twitch" width="20" height="20"> Marchel_cc
-          </a>
-          <a href="https://www.youtube.com/@Marchel-cc" class="platform-badge youtube-badge" target="_blank" rel="noopener">
-            <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube" width="20" height="20"> Marchel-cc
-          </a>
-          <a href="https://x.com/Marchel_cc" class="platform-badge twitter-badge" target="_blank" rel="noopener">
-            <img src="https://cdn.simpleicons.org/x/1DA1F2" alt="X" width="20" height="20"> @marchel_cc
-          </a>
-          <a href="https://bsky.app/profile/marchelcc.bsky.social" class="platform-badge bsky-badge" target="_blank" rel="noopener">
-            <img src="https://cdn.simpleicons.org/bluesky/1185FE" alt="Bluesky" width="20" height="20"> marchelcc
-          </a>
-        </div>
-
-        <div class="games-showcase">
-          <div class="section-title">🎲 Juegos Favoritos 🐟</div>
-          <div class="games-flex">
-            <div class="game-item"><img src="https://i.imgur.com/fqVJUzA.png" alt="Final Fantasy X" width="20" height="20"> Final Fantasy X</div>
-            <div class="game-item"><img src="https://i.imgur.com/GYHWBvY.png" alt="Risk of Rain 2" width="20" height="20"> Risk of Rain 2</div>
-            <div class="game-item"><img src="https://i.imgur.com/cyIl69X.png" alt="Going Medieval" width="20" height="20"> Going Medieval</div>
-            <div class="game-item"><img src="https://i.imgur.com/eYTyoa8.png" alt="Deadlock" width="20" height="20"> Deadlock</div>
-            <div class="game-item"><img src="https://i.imgur.com/Eafk0PK.png" alt="Signalis" width="20" height="20"> SIGNALIS</div>
-            <div class="game-item"><img src="https://i.imgur.com/7Gll12N.png" alt="Marathon 2026" width="20" height="20"> Marathon (2026)</div>
-            <div class="game-item"><img src="https://i.imgur.com/GXqX6kG.png" alt="Minecraft" width="20" height="20"> Minecraft</div>
-            <div class="game-item"><img src="https://i.imgur.com/q42StlY.png" alt="Kirby" width="20" height="20"> Kirby Planet Robobot</div>
+          <div class="title-left">
+            <span class="title-icon">🎣</span>
+            <span class="title-text">Marchel.exe — VTuber Pescador</span>
           </div>
-          <p style="font-size:0.9rem;margin-top:10px;color:#6f5a3a;font-style:italic;background:#f9f3e0;display:inline-block;padding:4px 12px;border-radius:20px;">
-            🎣 + muchos otros indies y party games
-          </p>
-          <p style="font-size:0.9rem;margin-top:10px;color:#6f5a3a;font-style:italic;background:#f9f3e0;display:inline-block;padding:4px 12px;border-radius:20px;">
-            Streams cada semana, consulta el horario en <a href="https://marchelcc.github.io/marchel-website/" target="_blank">mi sitio web</a>!
-          </p>
+
+          <div class="xp-window-btns">
+            <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+            <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
+            <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+          </div>
+
         </div>
 
-        <div class="aboutme-highlight">
-          <span>🐟✨</span>
-          <span style="font-size:13px; text-align: left;">Siempre estoy buscando mejorar mi contenido, ya sea mejorando miniaturas, formatos de videos; o buscando otros VTubers para colaborar, o dinámicas para hacer en directo! 🎣🌊</span>
-        </div>
+        <div class="xp-content">
 
-      </div>
-    </div>
-  </section>
+          <div class="msn-profile-wrap">
+            <div class="msn-frame" id="profile-pic-frame">
+              <div class="msn-fallback" id="profile-pic-fallback">🎣</div>
+            </div>
+            <div class="msn-display-name" id="msn-display-name">Marchel ✦ Online</div>
+          </div>
 
-  <!-- ============================================================
-       WINDOW: Schedule — "Horario Semanal"
-       ============================================================ -->
-  <section
-          id="schedule"
-          class="xp-window schedule-window"
-          data-wid="schedule"
-          data-title="Horario Semanal"
-          data-icon="📅"
-          data-autoopen
-  >
-    <div class="xp-titlebar">
-      <div class="title-left">
-        <span class="title-icon">📅</span>
-        <span class="title-text">Horario Semanal — Semana Actual</span>
-      </div>
-      <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
-        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
-      </div>
-    </div>
+          <h1 class="hero-name" id="hero-name">Marchel</h1>
+          <p class="hero-tagline" id="hero-tagline">🎣 Tu pescador chileno de confianza que ama los Kiwis!</p>
 
-    <div class="xp-menubar">
-      <span>Archivo</span>
-      <span>Ver</span>
-      <span>Ayuda</span>
-    </div>
+          <div class="social-row" id="social-row"><!-- rendered by script.js --></div>
 
-    <div class="xp-content">
-      <table class="schedule-table">
-        <thead>
-        <tr>
-          <th>📆 Día</th>
-          <th>⏰ Hora</th>
-          <th>🎮 Contenido</th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody id="schedule-body">
-        <tr>
-          <td colspan="4" style="text-align:center;padding:20px;color:#888;font-style:italic;">
-            🎣 Pescando el horario...
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+          <div class="aboutme-enhanced">
 
-    <div class="xp-statusbar" style="flex-wrap:wrap;gap:6px;padding:6px 10px;">
-      <div class="status-item">
-        <span class="status-dot"></span>
-        <span id="stream-count">cargando...</span>
-      </div>
-      <div class="status-item">
-        <span id="last-updated">📅 Actualizado: —</span>
-      </div>
-    </div>
-  </section>
+            <div class="bio-card">
+              <p class="bio-text">
+                🎣 <strong>¡Buenas!</strong> Soy <strong>Marchel</strong>, un creador de contenido que hace streams en
+                <img src="https://cdn.simpleicons.org/twitch/6441A5" width="16" height="16" alt="Twitch" style="display:inline-block;vertical-align:middle;">
+                <strong>Twitch</strong> y
+                <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16" height="16" alt="YouTube" style="display:inline-block;vertical-align:middle;">
+                <strong>YouTube</strong>, además de subir videos editados. Empecé en <strong>2015</strong> en otro canal grabando contenido variado,
+                principalmente minijuegos de
+                <img src="https://i.imgur.com/GXqX6kG.png" width="16" height="16" alt="Minecraft" style="display:inline-block;vertical-align:middle;">
+                <strong>Minecraft</strong>.
+                Ya en <strong>2019</strong> comencé a hacer streams en Twitch, y desde entonces no he parado de conocer
+                gente increíble y compartir partidas.
+              </p>
+              <p class="bio-text" style="margin-top:12px;">
+                Actualmente me dedico principalmente a hacer <strong>streams semanales</strong> de varios jueguitos, rotándolos semanal o mensualmente.
+                También intento subir videos semanales usando extractos de streams o series grabadas offline 🎣✨
+              </p>
+            </div>
 
-  <!-- ============================================================
-       WINDOW: Rotation Games — "Juegos en Rotación"
-       ============================================================ -->
-  <section
-          id="rotation"
-          class="xp-window rotation-window"
-          data-wid="rotation"
-          data-title="Juegos en Rotación"
-          data-icon="🎮"
-  >
-    <div class="xp-titlebar">
-      <div class="title-left">
-        <span class="title-icon">🎮</span>
-        <span class="title-text">Juegos en Rotación — Temporada Actual</span>
-      </div>
-      <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
-        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
-      </div>
-    </div>
+            <div class="platforms-row">
+              <a href="https://www.twitch.tv/marchel_cc" class="platform-badge twitch-badge" target="_blank" rel="noopener">
+                <img src="https://cdn.simpleicons.org/twitch/9146FF" alt="Twitch" width="20" height="20"> Marchel_cc
+              </a>
+              <a href="https://www.youtube.com/@Marchel-cc" class="platform-badge youtube-badge" target="_blank" rel="noopener">
+                <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube" width="20" height="20"> Marchel-cc
+              </a>
+              <a href="https://x.com/Marchel_cc" class="platform-badge twitter-badge" target="_blank" rel="noopener">
+                <img src="https://cdn.simpleicons.org/x/1DA1F2" alt="X" width="20" height="20"> @marchel_cc
+              </a>
+              <a href="https://bsky.app/profile/marchelcc.bsky.social" class="platform-badge bsky-badge" target="_blank" rel="noopener">
+                <img src="https://cdn.simpleicons.org/bluesky/1185FE" alt="Bluesky" width="20" height="20"> marchelcc
+              </a>
+            </div>
 
-    <div class="xp-content">
-      <div class="rotation-grid" id="rotation-grid"><!-- rendered by script.js --></div>
-    </div>
+            <div class="games-showcase">
+              <div class="section-title">🎲 Juegos Favoritos 🐟</div>
+              <div class="games-flex">
+                <div class="game-item"><img src="https://i.imgur.com/fqVJUzA.png" alt="Final Fantasy X" width="20" height="20"> Final Fantasy X</div>
+                <div class="game-item"><img src="https://i.imgur.com/GYHWBvY.png" alt="Risk of Rain 2" width="20" height="20"> Risk of Rain 2</div>
+                <div class="game-item"><img src="https://i.imgur.com/cyIl69X.png" alt="Going Medieval" width="20" height="20"> Going Medieval</div>
+                <div class="game-item"><img src="https://i.imgur.com/eYTyoa8.png" alt="Deadlock" width="20" height="20"> Deadlock</div>
+                <div class="game-item"><img src="https://i.imgur.com/Eafk0PK.png" alt="Signalis" width="20" height="20"> SIGNALIS</div>
+                <div class="game-item"><img src="https://i.imgur.com/7Gll12N.png" alt="Marathon 2026" width="20" height="20"> Marathon (2026)</div>
+                <div class="game-item"><img src="https://i.imgur.com/GXqX6kG.png" alt="Minecraft" width="20" height="20"> Minecraft</div>
+                <div class="game-item"><img src="https://i.imgur.com/q42StlY.png" alt="Kirby" width="20" height="20"> Kirby Planet Robobot</div>
+              </div>
+              <p style="font-size:0.9rem;margin-top:10px;color:#6f5a3a;font-style:italic;background:#f9f3e0;display:inline-block;padding:4px 12px;border-radius:20px;">
+                🎣 + muchos otros indies y party games
+              </p>
+              <p style="font-size:0.9rem;margin-top:10px;color:#6f5a3a;font-style:italic;background:#f9f3e0;display:inline-block;padding:4px 12px;border-radius:20px;">
+                Streams cada semana, consulta el horario en <a href="https://marchelcc.github.io/marchel-website/" target="_blank">mi sitio web</a>!
+              </p>
+            </div>
 
-    <div class="xp-statusbar">
-      <div class="status-item">
-        🐟 Estos son los juegos que Marchel está jugando actualmente
-      </div>
-    </div>
-  </section>
+            <div class="aboutme-highlight">
+              <span>🐟✨</span>
+              <span style="font-size:13px; text-align: left;">Siempre estoy buscando mejorar mi contenido, ya sea mejorando miniaturas, formatos de videos; o buscando otros VTubers para colaborar, o dinámicas para hacer en directo! 🎣🌊</span>
+            </div>
 
-  <!-- ============================================================
-       WINDOW: Backlog — "Historial de Juegos"
-       ============================================================ -->
-  <section
-          id="backlog"
-          class="xp-window backlog-window"
-          data-wid="backlog"
-          data-title="Backlog de Juegos"
-          data-icon="📚"
-          data-w="960"
-          data-h="600"
-  >
-    <div class="xp-titlebar">
-      <div class="title-left">
-        <span class="title-icon">📚</span>
-        <span class="title-text">Backlog — ¿Qué he jugado?</span>
-      </div>
-      <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
-        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
-      </div>
-    </div>
-
-    <div class="backlog-body">
-
-      <!-- Sidebar tipo Explorer -->
-      <aside class="backlog-sidebar" id="backlog-sidebar">
-        <div class="backlog-sidebar-section-title">Estado</div>
-        <button class="backlog-sidebar-item active" data-filter-type="status" data-filter="all">
-          <span>🗂️ Todos</span><span class="backlog-sidebar-count" data-count-status="all">—</span>
-        </button>
-        <button class="backlog-sidebar-item" data-filter-type="status" data-filter="jugando">
-          <span>🎮 Jugando</span><span class="backlog-sidebar-count" data-count-status="jugando">—</span>
-        </button>
-        <button class="backlog-sidebar-item" data-filter-type="status" data-filter="completado">
-          <span>✅ Completados</span><span class="backlog-sidebar-count" data-count-status="completado">—</span>
-        </button>
-        <button class="backlog-sidebar-item" data-filter-type="status" data-filter="backlog">
-          <span>📥 Backlog</span><span class="backlog-sidebar-count" data-count-status="backlog">—</span>
-        </button>
-
-        <div class="backlog-sidebar-divider"></div>
-
-        <button class="backlog-sidebar-item backlog-sidebar-item-secondary" data-filter-type="status" data-filter="pausado">
-          <span>⏸️ Pausado</span><span class="backlog-sidebar-count" data-count-status="pausado">—</span>
-        </button>
-        <button class="backlog-sidebar-item backlog-sidebar-item-secondary" data-filter-type="status" data-filter="dropeado">
-          <span>🗑️ Dropeado</span><span class="backlog-sidebar-count" data-count-status="dropeado">—</span>
-        </button>
-        <button class="backlog-sidebar-item backlog-sidebar-item-secondary" data-filter-type="status" data-filter="platino">
-          <span>💯 100%</span><span class="backlog-sidebar-count" data-count-status="platino">—</span>
-        </button>
-
-        <div class="backlog-sidebar-section-title">Plataforma</div>
-        <button class="backlog-sidebar-item" data-filter-type="platform" data-filter="all">
-          <span>🗂️ Todas</span><span class="backlog-sidebar-count" data-count-platform="all">—</span>
-        </button>
-        <button class="backlog-sidebar-item" data-filter-type="platform" data-filter="pc">
-          <span>🖥️ PC</span><span class="backlog-sidebar-count" data-count-platform="pc">—</span>
-        </button>
-        <button class="backlog-sidebar-item" data-filter-type="platform" data-filter="otros">
-          <span>🎮 Otros</span><span class="backlog-sidebar-count" data-count-platform="otros">—</span>
-        </button>
-      </aside>
-
-      <!-- Contenido -->
-      <div class="backlog-main">
-        <div class="backlog-toolbar">
-          <div class="backlog-toolbar-crumb" id="backlog-crumb">🗂️ Todos los juegos</div>
-          <div class="backlog-view-toggle" id="backlog-view-toggle">
-            <button class="backlog-view-btn active" data-view="library" title="Vista biblioteca">🖼️ Biblioteca</button>
-            <button class="backlog-view-btn" data-view="list" title="Vista lista">📋 Lista</button>
           </div>
         </div>
-        <div class="xp-content backlog-content">
-          <div class="backlog-grid backlog-view-library" id="backlog-grid"><!-- rendered by script.js --></div>
+      </section>
+
+      <section
+              id="schedule"
+              class="xp-window schedule-window"
+              data-wid="schedule"
+              data-title="Horario Semanal"
+              data-icon="📅"
+              data-autoopen
+      >
+        <div class="xp-titlebar">
+          <div class="title-left">
+            <span class="title-icon">📅</span>
+            <span class="title-text">Horario Semanal — Semana Actual</span>
+          </div>
+          <div class="xp-window-btns">
+            <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+            <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
+            <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+          </div>
         </div>
+
+        <div class="xp-menubar">
+          <span>Archivo</span>
+          <span>Ver</span>
+          <span>Ayuda</span>
+        </div>
+
+        <div class="xp-content">
+          <table class="schedule-table">
+            <thead>
+            <tr>
+              <th>📆 Día</th>
+              <th>⏰ Hora</th>
+              <th>🎮 Contenido</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody id="schedule-body">
+            <tr>
+              <td colspan="4" style="text-align:center;padding:20px;color:#888;font-style:italic;">
+                🎣 Pescando el horario...
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="xp-statusbar" style="flex-wrap:wrap;gap:6px;padding:6px 10px;">
+          <div class="status-item">
+            <span class="status-dot"></span>
+            <span id="stream-count">cargando...</span>
+          </div>
+          <div class="status-item">
+            <span id="last-updated">📅 Actualizado: —</span>
+          </div>
+        </div>
+      </section>
+
+      <section
+              id="rotation"
+              class="xp-window rotation-window"
+              data-wid="rotation"
+              data-title="Juegos en Rotación"
+              data-icon="🎮"
+      >
+        <div class="xp-titlebar">
+          <div class="title-left">
+            <span class="title-icon">🎮</span>
+            <span class="title-text">Juegos en Rotación — Temporada Actual</span>
+          </div>
+          <div class="xp-window-btns">
+            <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+            <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
+            <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+          </div>
+        </div>
+
+        <div class="xp-content">
+          <div class="rotation-grid" id="rotation-grid"><!-- rendered by script.js --></div>
+        </div>
+
+        <div class="xp-statusbar">
+          <div class="status-item">
+            🐟 Estos son los juegos que Marchel está jugando actualmente
+          </div>
+        </div>
+
+      </section>
+
+
+      <section
+              id="backlog"
+              class="xp-window backlog-window"
+              data-wid="backlog"
+              data-title="Backlog de Juegos"
+              data-icon="📚"
+              data-w="960"
+              data-h="600"
+      >
+        <div class="xp-titlebar">
+          <div class="title-left">
+            <span class="title-icon">📚</span>
+            <span class="title-text">Backlog — ¿Qué he jugado?</span>
+          </div>
+          <div class="xp-window-btns">
+            <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+            <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
+            <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+          </div>
+        </div>
+
+        <div class="backlog-body">
+
+          <aside class="backlog-sidebar" id="backlog-sidebar">
+            <div class="backlog-sidebar-section-title">Estado</div>
+            <button class="backlog-sidebar-item active" data-filter-type="status" data-filter="all">
+              <span>🗂️ Todos</span><span class="backlog-sidebar-count" data-count-status="all">—</span>
+            </button>
+            <button class="backlog-sidebar-item" data-filter-type="status" data-filter="jugando">
+              <span>🎮 Jugando</span><span class="backlog-sidebar-count" data-count-status="jugando">—</span>
+            </button>
+            <button class="backlog-sidebar-item" data-filter-type="status" data-filter="completado">
+              <span>✅ Completados</span><span class="backlog-sidebar-count" data-count-status="completado">—</span>
+            </button>
+            <button class="backlog-sidebar-item" data-filter-type="status" data-filter="backlog">
+              <span>📥 Backlog</span><span class="backlog-sidebar-count" data-count-status="backlog">—</span>
+            </button>
+
+            <div class="backlog-sidebar-divider"></div>
+
+            <button class="backlog-sidebar-item backlog-sidebar-item-secondary" data-filter-type="status" data-filter="pausado">
+              <span>⏸️ Pausado</span><span class="backlog-sidebar-count" data-count-status="pausado">—</span>
+            </button>
+            <button class="backlog-sidebar-item backlog-sidebar-item-secondary" data-filter-type="status" data-filter="dropeado">
+              <span>🗑️ Dropeado</span><span class="backlog-sidebar-count" data-count-status="dropeado">—</span>
+            </button>
+            <button class="backlog-sidebar-item backlog-sidebar-item-secondary" data-filter-type="status" data-filter="platino">
+              <span>💯 100%</span><span class="backlog-sidebar-count" data-count-status="platino">—</span>
+            </button>
+
+            <div class="backlog-sidebar-section-title">Plataforma</div>
+            <button class="backlog-sidebar-item" data-filter-type="platform" data-filter="all">
+              <span>🗂️ Todas</span><span class="backlog-sidebar-count" data-count-platform="all">—</span>
+            </button>
+            <button class="backlog-sidebar-item" data-filter-type="platform" data-filter="pc">
+              <span>🖥️ PC</span><span class="backlog-sidebar-count" data-count-platform="pc">—</span>
+            </button>
+            <button class="backlog-sidebar-item" data-filter-type="platform" data-filter="otros">
+              <span>🎮 Otros</span><span class="backlog-sidebar-count" data-count-platform="otros">—</span>
+            </button>
+          </aside>
+
+          <div class="backlog-main">
+            <div class="backlog-toolbar">
+              <div class="backlog-toolbar-crumb" id="backlog-crumb">🗂️ Todos los juegos</div>
+              <div class="backlog-view-toggle" id="backlog-view-toggle">
+                <button class="backlog-view-btn active" data-view="library" title="Vista biblioteca">🖼️ Biblioteca</button>
+                <button class="backlog-view-btn" data-view="list" title="Vista lista">📋 Lista</button>
+              </div>
+            </div>
+            <div class="xp-content backlog-content">
+              <div class="backlog-grid backlog-view-library" id="backlog-grid"><!-- rendered by script.js --></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="xp-statusbar">
+          <div class="status-item" id="backlog-count-status">—</div>
+          <div class="status-item" id="backlog-updated-status">—</div>
+        </div>
+
+      </section>
+
+      <section
+              id="github-section"
+              class="xp-window"
+              data-wid="github"
+              data-title="GitHub Repos"
+              data-icon="🐙"
+      >
+        <div class="xp-titlebar">
+          <div class="title-left">
+            <span class="title-icon">🐙</span>
+            <span class="title-text">GitHub — marchel-cc</span>
+          </div>
+          <div class="xp-window-btns">
+            <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
+            <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+            <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+          </div>
+        </div>
+        <div class="xp-content">
+          <div class="repos-grid" id="repos-grid">
+            <!-- Populated by fetchAndRenderGithubRepos() on first open -->
+          </div>
+        </div>
+        <div class="xp-statusbar">
+          <div class="status-item">🐙 Herramientas Desarrolladas por marchel-cc</div>
+        </div>
+      </section>
+
+      <section
+              id="stream"
+              class="xp-window stream-window"
+              data-wid="stream"
+              data-title="Stream en vivo"
+              data-icon="🟣"
+      >
+        <div class="xp-titlebar">
+          <div class="title-left">
+            <span class="title-icon">
+              <img src="https://cdn.simpleicons.org/twitch/6441A5" width="16" height="16"
+                  alt="Twitch" style="display:inline-block;vertical-align:middle;">
+            </span>
+            <span class="title-text">Stream — twitch.tv/marchel_cc</span>
+          </div>
+          <div class="xp-window-btns">
+            <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+            <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
+            <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+          </div>
+        </div>
+
+        <div class="xp-content stream">
+          <iframe id="twitch-embed" src="about:blank" allowfullscreen></iframe>
+        </div>
+      </section>
+
+      <section
+              id="yt"
+              class="xp-window stream-window"
+              data-wid="yt"
+              data-title="Último Video"
+              data-icon="📺"
+      >
+        <div class="xp-titlebar">
+          <div class="title-left">
+            <span class="title-icon">
+              <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16" height="16"
+                  alt="YouTube" style="display:inline-block;vertical-align:middle;">
+            </span>
+            <span class="title-text">Mi video más reciente en YouTube!</span>
+          </div>
+          <div class="xp-window-btns">
+            <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+            <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
+            <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+          </div>
+        </div>
+
+        <div class="xp-content yt-video">
+          <iframe id="youtube-embed" src="about:blank" allowfullscreen></iframe>
+        </div>
+      </section>
+
+      <section
+              id="yt-vod"
+              class="xp-window stream-window"
+              data-wid="yt-vod"
+              data-title="Último VOD"
+              data-icon="📼"
+      >
+        <div class="xp-titlebar">
+          <div class="title-left">
+            <span class="title-icon">
+              <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16" height="16"
+                  alt="YouTube" style="display:inline-block;vertical-align:middle;">
+            </span>
+            <span class="title-text">VOD más reciente — ¡por si te perdiste el stream!</span>
+          </div>
+          <div class="xp-window-btns">
+            <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
+            <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
+            <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+          </div>
+        </div>
+
+        <div class="xp-content yt-video">
+          <iframe id="youtube-vod-embed" src="about:blank" allowfullscreen></iframe>
+        </div>
+      </section>
+
+      <section
+              id="discord"
+              class="xp-window discord-window"
+              data-wid="discord"
+              data-title="Discord - Comunidad"
+              data-icon="💬"
+              data-w="380"
+              data-h="540"
+              data-autoopen
+      >
+        <div class="xp-titlebar">
+          <div class="title-left">
+            <span class="title-icon">💬</span>
+            <span class="title-text">Servidor de Discord</span>
+          </div>
+          <div class="xp-window-btns">
+            <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
+            <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+            <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
+          </div>
+        </div>
+        <div class="xp-content discord-iframe-wrapper">
+          <iframe
+                  src="https://discord.com/widget?id=1444033799095844887&theme=light"
+                  width="100%"
+                  height="100%"
+                  allowtransparency="true"
+                  frameborder="0"
+                  sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+          </iframe>
+        </div>
+        <div class="xp-statusbar">
+          <div class="status-item">✨ Conecta con la comunidad pescadora</div>
+        </div>
+      </section>
+
+
+    </div>
+
+    <div class="taskbar">
+
+      <a href="index.html" class="taskbar-start">🟢 Inicio</a>
+
+      <div class="taskbar-windows" id="taskbar-windows"></div>
+
+      <div class="taskbar-items">
+        <button class="taskbar-icon-btn" data-open="discord" title="Discord">💬</button>
+        <a href="admin.html"     class="taskbar-item" title="Panel Admin">⚙️</a>
+      </div>
+
+      <div class="taskbar-clock-wrap">
+        <span id="timezone-label"></span>
+        <div class="taskbar-clock" id="taskbar-clock">00:00</div>
       </div>
 
     </div>
 
-    <div class="xp-statusbar">
-      <div class="status-item" id="backlog-count-status">—</div>
-      <div class="status-item" id="backlog-updated-status">—</div>
-    </div>
-  </section>
+    <script src="js/script.js"></script>
 
-
-  <!-- ============================================================
-         WINDOW: Github — "Herramientas Desarrolladas"
-         ============================================================ -->
-  <section
-          id="github-section"
-          class="xp-window"
-          data-wid="github"
-          data-title="GitHub Repos"
-          data-icon="🐙"
-  >
-    <div class="xp-titlebar">
-      <div class="title-left">
-        <span class="title-icon">🐙</span>
-        <span class="title-text">GitHub — marchel-cc</span>
-      </div>
-      <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
-        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
-      </div>
-    </div>
-    <div class="xp-content">
-      <div class="repos-grid" id="repos-grid">
-        <!-- Populated by fetchAndRenderGithubRepos() on first open -->
-      </div>
-    </div>
-    <div class="xp-statusbar">
-      <div class="status-item">🐙 Herramientas Desarrolladas por marchel-cc</div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       WINDOW: Stream — Twitch embed
-       ============================================================ -->
-  <section
-          id="stream"
-          class="xp-window stream-window"
-          data-wid="stream"
-          data-title="Stream en vivo"
-          data-icon="🟣"
-  >
-    <div class="xp-titlebar">
-      <div class="title-left">
-        <span class="title-icon">
-          <img src="https://cdn.simpleicons.org/twitch/6441A5" width="16" height="16"
-               alt="Twitch" style="display:inline-block;vertical-align:middle;">
-        </span>
-        <span class="title-text">Stream — twitch.tv/marchel_cc</span>
-      </div>
-      <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
-        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
-      </div>
-    </div>
-
-    <div class="xp-content stream">
-      <iframe id="twitch-embed" src="about:blank" allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       WINDOW: YouTube — último video
-       ============================================================ -->
-  <section
-          id="yt"
-          class="xp-window stream-window"
-          data-wid="yt"
-          data-title="Último Video"
-          data-icon="📺"
-  >
-    <div class="xp-titlebar">
-      <div class="title-left">
-        <span class="title-icon">
-          <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16" height="16"
-               alt="YouTube" style="display:inline-block;vertical-align:middle;">
-        </span>
-        <span class="title-text">Mi video más reciente en YouTube!</span>
-      </div>
-      <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
-        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
-      </div>
-    </div>
-
-    <div class="xp-content yt-video">
-      <iframe id="youtube-embed" src="about:blank" allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       WINDOW: YouTube VOD — último VOD
-       ============================================================ -->
-  <section
-          id="yt-vod"
-          class="xp-window stream-window"
-          data-wid="yt-vod"
-          data-title="Último VOD"
-          data-icon="📼"
-  >
-    <div class="xp-titlebar">
-      <div class="title-left">
-        <span class="title-icon">
-          <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16" height="16"
-               alt="YouTube" style="display:inline-block;vertical-align:middle;">
-        </span>
-        <span class="title-text">VOD más reciente — ¡por si te perdiste el stream!</span>
-      </div>
-      <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min"   title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max"   title="Maximizar">□</button>
-        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
-      </div>
-    </div>
-
-    <div class="xp-content yt-video">
-      <iframe id="youtube-vod-embed" src="about:blank" allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <!-- ============================================================
-     WINDOW: Discord — Widget oficial
-     ============================================================ -->
-  <section
-          id="discord"
-          class="xp-window discord-window"
-          data-wid="discord"
-          data-title="Discord - Comunidad"
-          data-icon="💬"
-          data-w="380"
-          data-h="540"
-          data-autoopen
-  >
-    <div class="xp-titlebar">
-      <div class="title-left">
-        <span class="title-icon">💬</span>
-        <span class="title-text">Servidor de Discord</span>
-      </div>
-      <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
-        <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
-        <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
-      </div>
-    </div>
-    <div class="xp-content discord-iframe-wrapper">
-      <iframe
-              src="https://discord.com/widget?id=1444033799095844887&theme=light"
-              width="100%"
-              height="100%"
-              allowtransparency="true"
-              frameborder="0"
-              sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-      </iframe>
-    </div>
-    <div class="xp-statusbar">
-      <div class="status-item">✨ Conecta con la comunidad pescadora</div>
-    </div>
-  </section>
-
-
-</div><!-- /desktop -->
-
-<!-- ============================================================
-     TASKBAR
-     ============================================================ -->
-<div class="taskbar">
-
-  <!-- Start button -->
-  <a href="index.html" class="taskbar-start">🟢 Inicio</a>
-
-  <!-- Dynamic window buttons — WM.updateTaskbar() populates this -->
-  <div class="taskbar-windows" id="taskbar-windows"></div>
-
-  <!-- Static utility links (always present) -->
-  <div class="taskbar-items">
-    <button class="taskbar-icon-btn" data-open="discord" title="Discord">💬</button>
-    <a href="admin.html"     class="taskbar-item" title="Panel Admin">⚙️</a>
-  </div>
-
-  <!-- Timezone + clock -->
-  <div class="taskbar-clock-wrap">
-    <span id="timezone-label"></span>
-    <div class="taskbar-clock" id="taskbar-clock">00:00</div>
-  </div>
-
-</div><!-- /taskbar -->
-
-<script src="js/script.js"></script>
-
-</body>
+  </body>
 </html>
