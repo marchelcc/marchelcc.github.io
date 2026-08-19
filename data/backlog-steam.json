@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-18T09:40:53.889Z",
+  "updated": "2026-08-19T09:40:53.326Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -3738,9 +3738,9 @@
     },
     "3405340": {
       "name": "Megabonk",
-      "playtimeForeverMinutes": 369,
-      "playtime2WeeksMinutes": 369,
-      "lastPlayedUnix": 1787042025,
+      "playtimeForeverMinutes": 817,
+      "playtime2WeeksMinutes": 817,
+      "lastPlayedUnix": 1787128827,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3405340/8e0ff36cdb1076d69347a2796c7ef5ee18b2fee8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3405340/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3405340/library_600x900_2x.jpg"
@@ -3777,7 +3777,7 @@
       "playtimeForeverMinutes": 220,
       "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1785291138,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3513350/645fa03b0cf2967e63dde224cc7ee9854d51e834.jpg",
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3513350/b2065aa2b618ff4b310e929024baf237a3d58ff9.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3513350/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3513350/library_600x900_2x.jpg"
     },
