@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-20T09:41:59.263Z",
+  "updated": "2026-08-21T09:44:35.067Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -3478,7 +3478,7 @@
     "2868840": {
       "name": "Slay the Spire 2",
       "playtimeForeverMinutes": 231,
-      "playtime2WeeksMinutes": 32,
+      "playtime2WeeksMinutes": 31,
       "lastPlayedUnix": 1787198811,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2868840/f92b09dab91f1d1738f72fe0dd9be18dcc2901f9.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2868840/header.jpg",
@@ -3978,6 +3978,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4608190/f2e0362d1c9fdab805b6be32066bf4ce4e70c80a.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4608190/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4608190/library_600x900_2x.jpg"
+    },
+    "4731550": {
+      "name": "Deadzone Rogue 2 Playtest",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4731550/01ec2308a4c41ceeb0cd811659732ae44e6d48de.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4731550/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4731550/library_600x900_2x.jpg"
     },
     "4739830": {
       "name": "JOHN GLEEP Playtest",
