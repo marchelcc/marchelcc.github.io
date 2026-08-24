@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-23T09:34:49.484Z",
+  "updated": "2026-08-24T09:56:00.696Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -795,9 +795,9 @@
     },
     "365670": {
       "name": "Blender",
-      "playtimeForeverMinutes": 9547,
-      "playtime2WeeksMinutes": 1,
-      "lastPlayedUnix": 1787176252,
+      "playtimeForeverMinutes": 9569,
+      "playtime2WeeksMinutes": 22,
+      "lastPlayedUnix": 1787542301,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/365670/48733cd333eea6e40711a1b9c6dde32ffe363ced.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/365670/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/365670/library_600x900_2x.jpg"
@@ -840,9 +840,9 @@
     },
     "382490": {
       "name": "Relic Hunters Zero: Remix",
-      "playtimeForeverMinutes": 27,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1550158218,
+      "playtimeForeverMinutes": 56,
+      "playtime2WeeksMinutes": 28,
+      "lastPlayedUnix": 1787558251,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/382490/3493ab2e0187380e5aefabe62cf4650f0318b855.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/382490/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/382490/library_600x900_2x.jpg"
@@ -3738,9 +3738,9 @@
     },
     "3405340": {
       "name": "Megabonk",
-      "playtimeForeverMinutes": 817,
-      "playtime2WeeksMinutes": 817,
-      "lastPlayedUnix": 1787128827,
+      "playtimeForeverMinutes": 851,
+      "playtime2WeeksMinutes": 851,
+      "lastPlayedUnix": 1787545392,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3405340/8e0ff36cdb1076d69347a2796c7ef5ee18b2fee8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3405340/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3405340/library_600x900_2x.jpg"
@@ -3990,9 +3990,9 @@
     },
     "4739830": {
       "name": "JOHN GLEEP Playtest",
-      "playtimeForeverMinutes": 100,
-      "playtime2WeeksMinutes": 100,
-      "lastPlayedUnix": 1786861942,
+      "playtimeForeverMinutes": 151,
+      "playtime2WeeksMinutes": 151,
+      "lastPlayedUnix": 1787561531,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4739830/97062b069dd3d0faf58c23fd6cb7525dc3ba8d5a.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4739830/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4739830/library_600x900_2x.jpg"
@@ -4008,9 +4008,9 @@
     },
     "4883580": {
       "name": "The One Fish",
-      "playtimeForeverMinutes": 0,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": null,
+      "playtimeForeverMinutes": 9,
+      "playtime2WeeksMinutes": 9,
+      "lastPlayedUnix": 1787550665,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4883580/6a693115800565b65e3bf9770a42fe6684d39398.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4883580/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4883580/library_600x900_2x.jpg"
