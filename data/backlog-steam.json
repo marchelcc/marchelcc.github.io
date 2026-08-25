@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-24T09:56:00.696Z",
+  "updated": "2026-08-25T09:43:06.523Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1354,7 +1354,7 @@
     "632360": {
       "name": "Risk of Rain 2",
       "playtimeForeverMinutes": 3995,
-      "playtime2WeeksMinutes": 368,
+      "playtime2WeeksMinutes": 199,
       "lastPlayedUnix": 1787205575,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
@@ -2980,6 +2980,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2016590/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2016590/library_600x900_2x.jpg"
     },
+    "2019300": {
+      "name": "Dokimon",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2019300/a3c08f83f59d8791eaa7c9a2c441aaa4f7395e49.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2019300/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2019300/library_600x900_2x.jpg"
+    },
     "2026000": {
       "name": "Our Adventurer Guild",
       "playtimeForeverMinutes": 0,
@@ -3738,9 +3747,9 @@
     },
     "3405340": {
       "name": "Megabonk",
-      "playtimeForeverMinutes": 851,
-      "playtime2WeeksMinutes": 851,
-      "lastPlayedUnix": 1787545392,
+      "playtimeForeverMinutes": 917,
+      "playtime2WeeksMinutes": 917,
+      "lastPlayedUnix": 1787627012,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3405340/8e0ff36cdb1076d69347a2796c7ef5ee18b2fee8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3405340/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3405340/library_600x900_2x.jpg"
