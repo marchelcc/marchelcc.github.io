@@ -767,6 +767,35 @@ let BACKLOG_VIEW = 'library'; // 'library' | 'list'
 
 /* ── NUEVO: filtro de búsqueda por nombre ── */
 let backlogSearchTerm = '';
+let backlogSortMode = 'az';
+
+function applyBacklogSort(list) {
+  const sorted = [...list];
+
+  sorted.sort((a, b) => {
+    switch (backlogSortMode) {
+      case 'za':
+        return b.name.localeCompare(a.name, undefined, { sensitivity: 'base' });
+      case 'hours-desc': {
+        const aHours = Number.isFinite(a.playedHours) ? a.playedHours : -1;
+        const bHours = Number.isFinite(b.playedHours) ? b.playedHours : -1;
+        if (bHours !== aHours) return bHours - aHours;
+        return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+      }
+      case 'last-played-desc': {
+        const aLast = Number.isFinite(a.lastPlayedUnix) ? a.lastPlayedUnix : -1;
+        const bLast = Number.isFinite(b.lastPlayedUnix) ? b.lastPlayedUnix : -1;
+        if (bLast !== aLast) return bLast - aLast;
+        return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+      }
+      case 'az':
+      default:
+        return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+    }
+  });
+
+  return sorted;
+}
 
 function renderBacklog(manualGames, steamData) {
   const grid = document.getElementById('backlog-grid');
@@ -799,7 +828,13 @@ function renderBacklog(manualGames, steamData) {
         : (steamEntry?.headerUrl || '');
     
     return {
-      ...game, playedHours, coverUrl, capsuleUrl, steamLinked: !!steamEntry, hoursAreManual,
+      ...game,
+      playedHours,
+      coverUrl,
+      capsuleUrl,
+      steamLinked: !!steamEntry,
+      hoursAreManual,
+      lastPlayedUnix: steamEntry?.lastPlayedUnix ?? game.lastPlayedUnix ?? null,
       achievements: steamAch || raAch || null,
       achievementsSource: steamAch ? 'steam' : (raAch ? 'retro' : null)
     };
@@ -849,12 +884,14 @@ function drawBacklog() {
   grid.innerHTML = '';
 
   /* Filtro combinado: estado + plataforma + búsqueda por nombre */
-  const list = BACKLOG_DATA.filter(g => {
+  const filtered = BACKLOG_DATA.filter(g => {
     const matchStatus = backlogStatusFilter === 'all' || g.status === backlogStatusFilter;
     const matchPlatform = backlogPlatformFilter === 'all' || platformGroup(g.platform) === backlogPlatformFilter;
     const matchSearch = backlogSearchTerm === '' || g.name.toLowerCase().includes(backlogSearchTerm.toLowerCase());
     return matchStatus && matchPlatform && matchSearch;
   });
+
+  const list = applyBacklogSort(filtered);
 
   if (list.length === 0) {
     grid.innerHTML = `<div class="backlog-empty">🎣 Nada por aquí todavía...</div>`;
@@ -1018,6 +1055,15 @@ function setupBacklogFilters() {
     searchInput.addEventListener('input', () => {
       backlogSearchTerm = searchInput.value.trim();
       updateBacklogCrumb();
+      drawBacklog();
+    });
+  }
+
+  const sortSelect = document.getElementById('backlog-sort-select');
+  if (sortSelect) {
+    sortSelect.value = backlogSortMode;
+    sortSelect.addEventListener('change', () => {
+      backlogSortMode = sortSelect.value;
       drawBacklog();
     });
   }

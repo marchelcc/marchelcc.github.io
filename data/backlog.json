@@ -12,6 +12,17 @@
       "raGameId": null
     },
     {
+      "id": 2,
+      "name": "Gladiator Games",
+      "appid": null,
+      "raGameId": null,
+      "platform": "otro",
+      "status": "backlog",
+      "hoursPlayed": 0,
+      "imageUrl": "https://i.imgur.com/Ka7Q7HE.png",
+      "capsuleUrl": "https://i.imgur.com/8DDCV37.png"
+    },
+    {
       "id": 8,
       "name": "Ascenders: Beyond the Peak",
       "appid": 4621180,
@@ -138,7 +149,7 @@
       "appid": null,
       "platform": "otro",
       "status": "completado",
-      "hoursPlayed": null,
+      "hoursPlayed": -1,
       "imageUrl": "https://i.imgur.com/E3fLUad.gif",
       "capsuleUrl": "https://i.imgur.com/DbmNn3W.png",
       "raGameId": null
