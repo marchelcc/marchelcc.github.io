@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-25T09:43:06.523Z",
+  "updated": "2026-08-26T09:50:46.063Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -659,7 +659,7 @@
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/291480/library_600x900_2x.jpg"
     },
     "292030": {
-      "name": "The Witcher 3: Wild Hunt",
+      "name": "The Witcher 3: Wild Hunt - Complete Edition",
       "playtimeForeverMinutes": 199,
       "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1673382899,
