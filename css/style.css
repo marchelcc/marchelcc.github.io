@@ -1,15 +1,8 @@
 /* ============================================================
-   MARCHEL WEBSITE – ESTILO MOCKUP (glass, cálido, retro)
-   Adaptado a clases reales del HTML (xp-*, taskbar, etc.)
-   ============================================================ */
-
-/* ============================================================
-   1. RESET + VARIABLES (paleta del mockup)
-   ============================================================ */
+  GLOBAL RESET AND DESIGN TOKENS
+  ============================================================ */
 
 :root {
-  /* Nombres originales del mockup, ahora apuntando a la paleta XP Luna
-     (mismos valores que usa el overlay de OBS en core.css) */
   --cream: #EAF1FF;
   --gold: #0356EA;
   --olive: #4FD1C5;
@@ -29,9 +22,26 @@
   --text: var(--dark);
   --muted: var(--brown);
 
-  /* Paleta XP Luna (idéntica a core.css del overlay) */
   --font-ui: Tahoma, Verdana, "Segoe UI", sans-serif;
   --font-mono: Consolas, "Courier New", monospace;
+  --font-mono-compact: Consolas, monospace;
+
+  --color-white: #fff;
+  --color-black: #000;
+  --color-status: #58E88A;
+  --color-success-dark: #2E9C90;
+  --color-danger-dark: #B8341F;
+
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 7px;
+  --radius-xl: 8px;
+  --radius-card: 9px;
+  --radius-section: 10px;
+  --radius-round: 50%;
+  --radius-pill: 20px;
+
   --color-navy: #0000CC;
   --color-blue: #0356EA;
   --color-blue-top: #4C86F2;
@@ -45,6 +55,7 @@
   --color-wallpaper-bg: #FBE8CA;
   --color-wallpaper-red: #BF4A3F;
   --color-wallpaper-ochre: #CA995C;
+  --window-frame: inset 5px 0 0 var(--color-blue-dark), inset -5px 0 0 var(--color-blue-dark), inset 0 -5px 0 var(--color-blue-dark);
 }
 
 * {
@@ -98,8 +109,8 @@ a {
 }
 
 /* ============================================================
-   2. DESKTOP
-   ============================================================ */
+  SHARED DESKTOP SHELL
+  ============================================================ */
 
 .desktop {
   position: fixed;
@@ -108,9 +119,7 @@ a {
   isolation: isolate;
 }
 
-/* ============================================================
-   3. DESKTOP ICONS (estilo mockup)
-   ============================================================ */
+/* Desktop icons */
 
 .desktop-icons {
   position: fixed;
@@ -127,9 +136,9 @@ a {
   width: 92px;
   padding: 7px 4px;
   border: 1px solid transparent;
-  border-radius: 9px;
+  border-radius: var(--radius-card);
   background: transparent;
-  color: white;
+  color: var(--color-white);
   font-family: inherit;
   font-size: 12px;
   text-align: center;
@@ -159,9 +168,7 @@ a {
   word-wrap: break-word;
 }
 
-/* ============================================================
-   4. DRAG COVER
-   ============================================================ */
+/* Window drag cover */
 
 #wm-drag-cover {
   position: fixed;
@@ -171,16 +178,7 @@ a {
   cursor: grabbing;
 }
 
-/* ============================================================
-   5. XP WINDOWS (glass, redondeadas)
-   ============================================================ */
-
-:root {
-  /* frame azul del marco de ventana (izq/der/abajo), pintado como
-     inset shadow para que quede DETRÁS de los hijos (la titlebar
-     pinta encima y tapa el marco arriba, sin costuras en las esquinas) */
-  --window-frame: inset 5px 0 0 var(--color-blue-dark), inset -5px 0 0 var(--color-blue-dark), inset 0 -5px 0 var(--color-blue-dark);
-}
+/* XP window frame and states */
 
 .xp-window {
   position: fixed;
@@ -190,7 +188,7 @@ a {
   min-height: 200px;
   overflow: hidden;
   border-radius: 13px 13px 6px 6px;
-  background: #fff;
+  background: var(--color-white);
   border: none;
   padding: 0 5px 5px 5px;
   box-shadow: var(--shadow), var(--window-frame);
@@ -233,15 +231,12 @@ a {
   }
 }
 
-/* Todas las ventanas usan el mismo cuerpo blanco opaco tipo XP */
 .schedule-window,
 .backlog-window {
-  background: #fff;
+  background: var(--color-white);
 }
 
-/* ============================================================
-   6. TITLE BAR (gradiente blanco-crema)
-   ============================================================ */
+/* Window title bars */
 
 .xp-titlebar {
   flex: 0 0 38px;
@@ -283,7 +278,7 @@ a {
 
 .title-text {
   flex: 1;
-  color: #fff;
+  color: var(--color-white);
   font-size: 13px;
   font-weight: 500;
   white-space: nowrap;
@@ -292,9 +287,7 @@ a {
   text-shadow: none;
 }
 
-/* ============================================================
-   7. WINDOW BUTTONS (mockup)
-   ============================================================ */
+/* Window controls */
 
 .xp-window-btns {
   display: flex;
@@ -308,7 +301,7 @@ a {
   border: 1.5px solid #fff;
   border-radius: 4.5px;
   background: radial-gradient(ellipse at 42% 38%, #D7E1EC 0%, #6F97C0 45%, #1E60AA 100%);
-  color: #fff;
+  color: var(--color-white);
   cursor: pointer;
   box-shadow: none;
   font-size: 11px;
@@ -324,13 +317,11 @@ a {
   background: radial-gradient(ellipse at 42% 38%, #F0C9BE 0%, #E88E75 45%, #DD5337 100%);
 }
 .xp-btn-close:hover {
-  color: white;
+  color: var(--color-white);
   filter: brightness(1.08);
 }
 
-/* ============================================================
-   8. WINDOW CONTENT & SCROLL
-   ============================================================ */
+/* Window content, menus, and status bars */
 
 .xp-content {
   flex: 1 1 auto;
@@ -348,13 +339,9 @@ a {
 }
 .xp-content::-webkit-scrollbar-thumb {
   background: var(--gold);
-  border-radius: 8px;
+  border-radius: var(--radius-xl);
   border: 3px solid transparent;
 }
-
-/* ============================================================
-   9. MENU BAR (opcional)
-   ============================================================ */
 
 .xp-menubar {
   flex: 0 0 25px;
@@ -373,10 +360,6 @@ a {
 .xp-menubar span:first-letter {
   text-decoration: underline;
 }
-
-/* ============================================================
-   10. STATUS BAR (mockup)
-   ============================================================ */
 
 .xp-statusbar {
   flex: 0 0 23px;
@@ -397,25 +380,25 @@ a {
   white-space: nowrap;
   text-overflow: ellipsis;
   border: 1px solid rgba(0, 0, 204, 0.1);
-  border-bottom-color: white;
-  border-right-color: white;
+  border-bottom-color: var(--color-white);
+  border-right-color: var(--color-white);
 }
 .status-dot {
   display: inline-block;
   width: 8px;
   height: 8px;
-  border-radius: 50%;
-  background: #58E88A;
+  border-radius: var(--radius-round);
+  background: var(--color-status);
   box-shadow: 0 0 4px #58E88A;
   margin-right: 4px;
 }
 
 /* ============================================================
-   11. HERO / MSN (estilo mockup)
-   ============================================================ */
+  HOME PAGE: PROFILE AND INTRODUCTION
+  ============================================================ */
 
 .hero-window {
-  background: #fff;
+  background: var(--color-white);
 }
 
 .msn-profile {
@@ -467,8 +450,8 @@ a {
   width: 16px;
   height: 16px;
   border: 2px solid white;
-  border-radius: 50%;
-  background: #58E88A;
+  border-radius: var(--radius-round);
+  background: var(--color-status);
   box-shadow: 0 0 7px #58E88A;
 }
 .msn-profile-info .msn-status {
@@ -496,7 +479,7 @@ a {
   color: var(--brown);
   background: rgba(255, 255, 255, 0.53);
   border: 1px solid var(--border-light);
-  border-radius: 10px;
+  border-radius: var(--radius-section);
   font-size: 12px;
   font-style: italic;
 }
@@ -524,9 +507,7 @@ a {
   font-size: 11px;
 }
 
-/* ============================================================
-   12. SOCIAL ROW (mockup)
-   ============================================================ */
+/* Home page: social and platform links */
 
 .social-row,
 .platforms-row {
@@ -545,7 +526,7 @@ a {
   justify-content: center;
   padding: 4px 7px;
   border: 1px solid rgba(0, 0, 204, 0.14);
-  border-radius: 7px;
+  border-radius: var(--radius-lg);
   text-decoration: none;
   font-size: 10px;
   font-weight: bold;
@@ -582,9 +563,7 @@ a {
   background: #edf6ff;
 }
 
-/* ============================================================
-   13. BIO (mockup)
-   ============================================================ */
+/* Home page: biography and favorite games */
 
 .aboutme-enhanced {
   display: flex;
@@ -595,7 +574,7 @@ a {
   padding: 10px;
   background: rgba(255, 255, 255, 0.53);
   border: 1px solid var(--border-light);
-  border-radius: 10px;
+  border-radius: var(--radius-section);
   box-shadow: inset 0 1px white;
 }
 .bio-card-title {
@@ -625,14 +604,13 @@ a {
   padding: 9px;
   background: rgba(255, 255, 255, 0.4);
   border: 1px solid var(--border-light);
-  border-radius: 10px;
+  border-radius: var(--radius-section);
 }
 .section-title {
   margin-bottom: 7px;
   color: var(--dark);
   font-weight: bold;
 }
-/* ── Juegos favoritos (grid justificado) ── */
 .games-flex {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -642,12 +620,12 @@ a {
 .game-item {
   display: flex;
   align-items: center;
-  justify-content: center;   /* centra el contenido dentro de cada badge */
+  justify-content: center;
   gap: 4px;
   padding: 4px 6px;
   background: rgba(234, 241, 255, 0.5);
   border: 1px solid rgba(0, 0, 204, 0.1);
-  border-radius: 7px;
+  border-radius: var(--radius-lg);
   font-size: 10px;
 }
 .game-item img {
@@ -664,14 +642,14 @@ a {
   color: var(--brown);
   background: rgba(224, 236, 255, 0.6);
   border: 1px solid rgba(3, 86, 234, 0.3);
-  border-radius: 10px;
+  border-radius: var(--radius-section);
   font-size: 10px;
   line-height: 1.45;
 }
 
 /* ============================================================
-   14. SCHEDULE (mockup) — versión rediseñada, tipo tarjeta
-   ============================================================ */
+  SCHEDULE PAGE
+  ============================================================ */
 
 .schedule-window {
   background: var(--cream);
@@ -718,14 +696,12 @@ a {
   overflow-x: auto;
 }
 
-/* ── Contenedor de la tabla ── */
 .schedule-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 10px;  /* separación vertical entre filas */
+  border-spacing: 0 10px;
 }
 
-/* ── Cada fila es una "tarjeta" ── */
 .schedule-table tr {
   background: rgba(255, 255, 255, 0.6);
   border-radius: 14px;
@@ -739,7 +715,6 @@ a {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
 }
 
-/* ── Celdas ── */
 .schedule-table td {
   padding: 12px 14px;
   border: none;
@@ -747,32 +722,29 @@ a {
   font-size: 13px;
 }
 
-/* Primera celda (día) — se mantiene el rowspan */
 .schedule-table .td-day {
   background: rgba(22, 71, 199, 0.08);
   color: var(--teal);
   font-weight: 700;
   text-align: center;
-  border-radius: 14px 0 0 14px;  /* redondeo solo a la izquierda */
+  border-radius: 14px 0 0 14px;
   width: 105px;
   font-size: 14px;
   letter-spacing: 0.3px;
 }
 
-/* Hora */
 .schedule-table .td-time {
-  font-family: Consolas, monospace;
+  font-family: var(--font-mono-compact);
   font-weight: 700;
   color: var(--teal);
   width: 70px;
   text-align: center;
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
+  border-radius: var(--radius-xl);
   padding: 6px 10px;
   margin: 0 4px;
 }
 
-/* Juego + logo */
 .schedule-table .td-game {
   min-width: 140px;
 }
@@ -786,13 +758,12 @@ a {
   width: 32px;
   height: 32px;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: var(--radius-xl);
   flex: 0 0 32px;
   background: rgba(255,255,255,0.3);
   padding: 2px;
 }
 
-/* Tag (tipo de stream) */
 .schedule-table .td-tag {
   text-align: center;
   width: 115px;
@@ -801,14 +772,13 @@ a {
 .tag {
   display: inline-block;
   padding: 4px 12px;
-  border-radius: 20px;  /* más redondeado */
+  border-radius: var(--radius-pill);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.4px;
   background: rgba(234, 241, 255, 0.7);
   border: 1px solid rgba(0, 0, 204, 0.10);
 }
-/* Colores de tags (se mantienen) */
 .tag-stream-longo {
   background: rgba(22, 71, 199, 0.15);
   border-color: var(--teal);
@@ -835,7 +805,6 @@ a {
   color: var(--muted);
 }
 
-/* ── Estados de fila ── */
 .schedule-table tr.inactive {
   opacity: 0.5;
 }
@@ -848,13 +817,10 @@ a {
   color: #123F9E;
 }
 
-/* Para slots extra del mismo día, el día está oculto por rowspan,
-   pero podemos ajustar el redondeo de la primera celda */
 .schedule-table tr.slot-extra .td-day {
-  border-radius: 0; /* no visible de todos modos */
+  border-radius: 0;
 }
 
-/* ── Ajustes móviles ── */
 @media (max-width: 768px) {
   .schedule-table td {
     padding: 10px 10px;
@@ -907,9 +873,7 @@ a {
   }
 }
 
-/* ============================================================
-   15. ROTATION GAMES (mockup)
-   ============================================================ */
+/* ROTATION PAGE */
 
 .rotation-grid {
   display: grid;
@@ -928,7 +892,7 @@ a {
   padding: 10px;
   background: rgba(255, 255, 255, 0.47);
   border: 1px solid var(--border-light);
-  border-radius: 9px;
+  border-radius: var(--radius-card);
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.15s, box-shadow 0.15s;
@@ -959,8 +923,8 @@ a {
 }
 
 /* ============================================================
-   16. BACKLOG (mockup)
-   ============================================================ */
+  BACKLOG PAGE
+  ============================================================ */
 
 .backlog-window {
   background: var(--cream);
@@ -1001,7 +965,7 @@ a {
   gap: 5px;
   padding: 8px 9px;
   border: 1px solid transparent;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   background: transparent;
   color: var(--dark);
   text-align: left;
@@ -1020,7 +984,7 @@ a {
 .backlog-sidebar-count {
   min-width: 18px;
   padding: 1px 4px;
-  border-radius: 8px;
+  border-radius: var(--radius-xl);
   background: rgba(0, 0, 204, 0.1);
   text-align: center;
   font-size: 9px;
@@ -1074,7 +1038,7 @@ a {
   padding: 0 6px;
   background: rgba(255, 255, 255, 0.65);
   border: 1px solid rgba(0, 0, 204, 0.2);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
 }
 .backlog-search input {
   width: 145px;
@@ -1086,7 +1050,7 @@ a {
 .backlog-view-toggle {
   display: flex;
   border: 1px solid rgba(0, 0, 204, 0.2);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   overflow: hidden;
 }
 .backlog-view-btn {
@@ -1132,7 +1096,7 @@ a {
   font-size: 10px;
   background: transparent;
   border: 1px solid rgba(42, 74, 138, 0.25);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 2px 6px;
   cursor: pointer;
   font-family: inherit;
@@ -1173,7 +1137,7 @@ a {
   overflow: hidden;
   background: rgba(0, 0, 204, 0.1);
   border: 1px solid rgba(0, 0, 204, 0.15);
-  border-radius: 9px;
+  border-radius: var(--radius-card);
   box-shadow: var(--small-shadow);
 }
 .backlog-lib-cover {
@@ -1205,22 +1169,22 @@ a {
   font-size: 9px;
 }
 
-/* Etiquetas de estado y plataforma - más legibles */
+/* Backlog status and platform tags */
 .backlog-status-tag,
 .backlog-platform-tag {
   display: inline-block;
   padding: 4px 8px;
   border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 7px;
+  border-radius: var(--radius-lg);
   font-size: 9px;
   font-weight: bold;
   letter-spacing: 0.3px;
   backdrop-filter: blur(2px);
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  color: #FFFFFF;
+  color: var(--color-white);
 }
 
-/* Posición de la etiqueta en la vista biblioteca */
+/* Library view status placement */
 .backlog-lib-status {
   position: absolute;
   left: 4px;
@@ -1228,11 +1192,10 @@ a {
   backdrop-filter: blur(2px);
 }
 
-/* Estados con fondos semitransparentes más opacos */
 .status-backlog {
   background: rgba(234, 241, 255, 0.85);
   border-color: rgba(0, 0, 204, 0.25);
-  color: #0000CC; /* texto oscuro para contraste */
+  color: var(--color-navy);
 }
 .status-jugando {
   background: rgba(22, 71, 199, 0.5);
@@ -1255,7 +1218,6 @@ a {
   border-color: var(--brown);
 }
 
-/* Plataformas con fondos más visibles */
 .platform-steam {
   background: rgba(22, 71, 199, 0.4);
   border-color: rgba(22, 71, 199, 0.5);
@@ -1281,22 +1243,21 @@ a {
   border-color: rgba(42, 74, 138, 0.4);
 }
 
-/* List view */
 .backlog-view-list {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* aumentado de 7px a 10px */
+  gap: 10px;
 }
 .backlog-list-row {
-  padding: 10px; /* aumentado de 8px a 10px */
+  padding: 10px;
   background: rgba(255, 255, 255, 0.47);
   border: 1px solid var(--border-light);
-  border-radius: 9px;
+  border-radius: var(--radius-card);
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.08);
 }
 .backlog-row-top {
   display: flex;
-  gap: 12px; /* aumentado de 9px a 12px */
+  gap: 12px;
 }
 .backlog-row-cover {
   max-width: 328px;
@@ -1304,8 +1265,8 @@ a {
   aspect-ratio: 2.14 / 1;
   object-fit: cover;
   border: 1px solid rgba(0, 0, 204, 0.15);
-  border-radius: 6px;
-  display: block; /* opcional */
+  border-radius: var(--radius-md);
+  display: block;
 }
 
 .backlog-row-info {
@@ -1348,7 +1309,7 @@ a {
   overflow: hidden;
   background: rgba(0, 0, 204, 0.08);
   border: 1px solid rgba(0, 0, 204, 0.1);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 .backlog-ach-bar-fill {
   height: 100%;
@@ -1365,7 +1326,7 @@ a {
   height: 30px;
   object-fit: cover;
   border: 1px solid rgba(0, 0, 204, 0.1);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 .backlog-ach-locked {
   filter: grayscale(1);
@@ -1378,7 +1339,7 @@ a {
   place-items: center;
   background: rgba(234, 241, 255, 0.5);
   border: 1px solid rgba(0, 0, 204, 0.1);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   color: var(--brown);
   font-size: 9px;
   font-weight: bold;
@@ -1395,11 +1356,11 @@ a {
 }
 
 /* ============================================================
-   17. GITHUB (mockup)
-   ============================================================ */
+  PROJECTS PAGE: GITHUB REPOSITORIES
+  ============================================================ */
 
 .github-window {
-  background: #fff;
+  background: var(--color-white);
 }
 .github-content {
   padding: 12px;
@@ -1410,7 +1371,7 @@ a {
   color: var(--dark);
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid var(--border-light);
-  border-radius: 7px;
+  border-radius: var(--radius-lg);
   text-decoration: none;
   font-size: 10px;
   font-weight: bold;
@@ -1429,7 +1390,7 @@ a {
   display: flex;
   flex-direction: column;
   padding: 14px;
-  background: #fff; /* sólido, opaco */
+  background: var(--color-white);
   border: 1px solid #ddd;
   border-radius: 11px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -1481,7 +1442,7 @@ a {
 .repo-lang-dot {
   width: 8px;
   height: 8px;
-  border-radius: 50%;
+  border-radius: var(--radius-round);
 }
 .repo-stat {
   white-space: nowrap;
@@ -1490,7 +1451,7 @@ a {
   padding: 2px 4px;
   background: rgba(234, 241, 255, 0.7);
   border: 1px solid rgba(0, 0, 204, 0.1);
-  border-radius: 7px;
+  border-radius: var(--radius-lg);
   color: var(--dark);
 }
 .repos-loading,
@@ -1502,15 +1463,15 @@ a {
 }
 
 /* ============================================================
-   18. STREAM / YOUTUBE (barras de título normales)
-   ============================================================ */
+  MEDIA PAGES: STREAMS AND VIDEOS
+  ============================================================ */
 
 .stream-window {
   background: #111;
 }
 .stream-window .xp-content {
   padding: 0;
-  background: #000;
+  background: var(--color-black);
 }
 .stream-window iframe,
 .yt-video iframe {
@@ -1520,12 +1481,10 @@ a {
   border: 0;
 }
 
-/* ============================================================
-   19. DISCORD (mockup)
-   ============================================================ */
+/* DISCORD PAGE */
 
 .discord-window {
-  background: #fff;
+  background: var(--color-white);
 }
 .discord-heading {
   flex: 0 0 auto;
@@ -1541,9 +1500,9 @@ a {
   height: 42px;
   display: grid;
   place-items: center;
-  border-radius: 8px;
+  border-radius: var(--radius-xl);
   background: #5865f2;
-  color: white;
+  color: var(--color-white);
   font-size: 23px;
 }
 .discord-heading strong {
@@ -1560,7 +1519,7 @@ a {
 .discord-iframe-wrapper {
   padding: 0;
   overflow: hidden;
-  background: #fff;
+  background: var(--color-white);
 }
 .discord-iframe-wrapper iframe {
   width: 100%;
@@ -1570,8 +1529,8 @@ a {
 }
 
 /* ============================================================
-   20. TASKBAR (mockup, fondo completamente opaco)
-   ============================================================ */
+  SHARED TASKBAR
+  ============================================================ */
 
 .taskbar {
   position: fixed;
@@ -1587,13 +1546,13 @@ a {
   background: linear-gradient(180deg, var(--color-blue-top) 0%, var(--color-blue) 14%, var(--color-blue-dark) 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 -4px 15px rgba(10, 15, 40, 0.3);
-  color: #fff;
+  color: var(--color-white);
 }
 
 .taskbar-start {
   height: 40px;
   padding: 0 17px;
-  border-radius: 10px;
+  border-radius: var(--radius-section);
   border: 1px solid white;
   background: linear-gradient(to bottom, #4C86F2, var(--teal));
   color: var(--cream);
@@ -1628,10 +1587,10 @@ a {
   height: 36px;
   max-width: 170px;
   padding: 0 12px;
-  border-radius: 7px;
+  border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.25);
   background: rgba(255, 255, 255, 0.16);
-  color: #fff;
+  color: var(--color-white);
   font-family: inherit;
   font-size: 11px;
   cursor: pointer;
@@ -1647,7 +1606,7 @@ a {
 }
 .win-task-btn.wm-focused {
   background: rgba(255, 255, 255, 0.35);
-  border-color: #fff;
+  border-color: var(--color-white);
 }
 .win-task-btn.wm-minimized {
   opacity: 0.65;
@@ -1679,9 +1638,9 @@ a {
   padding: 0;
   line-height: 1;
   border: 1px solid transparent;
-  border-radius: 7px;
+  border-radius: var(--radius-lg);
   background: transparent;
-  color: #fff;
+  color: var(--color-white);
   text-decoration: none;
   font-size: 15px;
 }
@@ -1714,15 +1673,15 @@ a {
 }
 .taskbar-clock {
   min-width: 36px;
-  color: #fff;
-  font-family: Consolas, monospace;
+  color: var(--color-white);
+  font-family: var(--font-mono-compact);
   font-size: 12px;
   font-weight: bold;
 }
 
 /* ============================================================
-   21. LOGIN OVERLAY (admin)
-   ============================================================ */
+  ADMIN PAGE: LOGIN OVERLAY
+  ============================================================ */
 
 .login-overlay {
   position: fixed;
@@ -1738,7 +1697,7 @@ a {
 .login-window {
   max-width: 480px;
   width: 100%;
-  background: #fff;
+  background: var(--color-white);
   border-radius: 13px 13px 6px 6px;
   border: none;
   padding: 0 5px 5px 5px;
@@ -1780,7 +1739,7 @@ a {
   color: var(--text);
   background: rgba(255,255,255,0.3);
   padding: 10px;
-  border-radius: 8px;
+  border-radius: var(--radius-xl);
   margin-bottom: 14px;
 }
 .login-error {
@@ -1788,7 +1747,7 @@ a {
   background: rgba(221, 83, 55, 0.15);
   color: var(--red);
   padding: 8px 10px;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   font-size: 12px;
   margin-bottom: 12px;
 }
@@ -1805,7 +1764,7 @@ a {
   width: 100%;
   padding: 8px 10px;
   border: 1px solid rgba(0, 0, 204, 0.2);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   background: rgba(255,255,255,0.65);
   font-size: 13px;
 }
@@ -1821,7 +1780,7 @@ a {
 }
 .login-btn-row .xp-button {
   padding: 8px 18px;
-  border-radius: 7px;
+  border-radius: var(--radius-lg);
   border: 1px solid rgba(0, 0, 204,0.2);
   background: rgba(255,255,255,0.6);
   color: var(--dark);
@@ -1834,19 +1793,19 @@ a {
 }
 .login-btn-row .xp-button.primary {
   background: var(--teal);
-  color: white;
+  color: var(--color-white);
   border-color: var(--teal);
 }
 .login-btn-row .xp-button.primary:hover {
-  background: #123F9E;
+  background: var(--color-login-deep);
 }
 .login-spinner {
   display: inline-block;
   width: 16px;
   height: 16px;
   border: 2px solid rgba(255,255,255,0.3);
-  border-top-color: white;
-  border-radius: 50%;
+  border-top-color: var(--color-white);
+  border-radius: var(--radius-round);
   animation: spin 0.6s linear infinite;
 }
 @keyframes spin {
@@ -1854,11 +1813,11 @@ a {
 }
 
 /* ============================================================
-   22. ADMIN PANEL (estilos existentes, adaptados a la paleta)
-   ============================================================ */
+  ADMIN PAGE: PANEL, TABS, AND EDITOR CONTROLS
+  ============================================================ */
 
 #admin-desktop {
-  display: flex; /* se oculta/activa por JS */
+  display: flex;
 }
 
 .session-banner {
@@ -1873,7 +1832,7 @@ a {
 .logout-btn {
   background: rgba(221, 83, 55,0.15);
   border: 1px solid var(--red);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   padding: 4px 10px;
   color: var(--red);
   cursor: pointer;
@@ -1882,7 +1841,7 @@ a {
 }
 .logout-btn:hover {
   background: var(--red);
-  color: white;
+  color: var(--color-white);
 }
 
 .admin-toolbar {
@@ -1896,7 +1855,7 @@ a {
 }
 .xp-button {
   padding: 5px 12px;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   border: 1px solid rgba(0, 0, 204,0.15);
   background: rgba(255,255,255,0.5);
   color: var(--dark);
@@ -1910,27 +1869,27 @@ a {
 }
 .xp-button.primary {
   background: var(--teal);
-  color: white;
+  color: var(--color-white);
   border-color: var(--teal);
 }
 .xp-button.primary:hover {
-  background: #123F9E;
+  background: var(--color-login-deep);
 }
 .xp-button.success {
   background: var(--olive);
-  color: white;
+  color: var(--color-white);
   border-color: var(--olive);
 }
 .xp-button.success:hover {
-  background: #2E9C90;
+  background: var(--color-success-dark);
 }
 .xp-button.danger {
   background: var(--red);
-  color: white;
+  color: var(--color-white);
   border-color: var(--red);
 }
 .xp-button.danger:hover {
-  background: #B8341F;
+  background: var(--color-danger-dark);
 }
 .xp-separator {
   width: 1px;
@@ -1943,7 +1902,7 @@ a {
   gap: 10px;
   background: rgba(224, 236, 255,0.5);
   padding: 10px 12px;
-  border-radius: 8px;
+  border-radius: var(--radius-xl);
   font-size: 12px;
   margin: 10px 0;
   border: 1px solid rgba(3, 86, 234,0.3);
@@ -1951,7 +1910,7 @@ a {
 .admin-notice code {
   background: rgba(0,0,0,0.05);
   padding: 1px 4px;
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
 }
 
 .tab-bar {
@@ -2020,7 +1979,7 @@ a {
 .admin-table input {
   background: rgba(255,255,255,0.6);
   border: 1px solid rgba(0, 0, 204,0.15);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 3px 5px;
   font-size: 11px;
 }
@@ -2050,7 +2009,7 @@ a {
   width: 28px;
   height: 28px;
   object-fit: contain;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   border: 1px solid rgba(0, 0, 204,0.1);
 }
 
@@ -2063,7 +2022,7 @@ a {
 .rotation-admin-card {
   background: rgba(255,255,255,0.4);
   border: 1px solid var(--border-light);
-  border-radius: 9px;
+  border-radius: var(--radius-card);
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -2078,7 +2037,7 @@ a {
 .rotation-admin-card input {
   background: rgba(255,255,255,0.6);
   border: 1px solid rgba(0, 0, 204,0.15);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 4px 6px;
   font-size: 11px;
 }
@@ -2088,13 +2047,13 @@ a {
   gap: 8px;
   padding: 6px;
   background: rgba(255,255,255,0.2);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
 }
 .rotation-admin-card .card-preview img {
   width: 32px;
   height: 32px;
   object-fit: contain;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .meta-form-grid {
@@ -2117,7 +2076,7 @@ a {
   padding: 6px 8px;
   background: rgba(255,255,255,0.6);
   border: 1px solid rgba(0, 0, 204,0.15);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 12px;
 }
 
@@ -2127,7 +2086,7 @@ a {
   gap: 14px;
   background: rgba(255,255,255,0.2);
   padding: 10px;
-  border-radius: 8px;
+  border-radius: var(--radius-xl);
   margin-bottom: 12px;
 }
 .mini-frame {
@@ -2159,8 +2118,8 @@ a {
 .json-preview {
   background: rgba(0,0,0,0.05);
   padding: 12px;
-  border-radius: 6px;
-  font-family: Consolas, monospace;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono-compact);
   font-size: 11px;
   white-space: pre-wrap;
   max-height: 400px;
@@ -2174,9 +2133,9 @@ a {
   left: 50%;
   transform: translateX(-50%) translateY(20px);
   background: rgba(22, 71, 199,0.9);
-  color: white;
+  color: var(--color-white);
   padding: 10px 24px;
-  border-radius: 10px;
+  border-radius: var(--radius-section);
   font-size: 13px;
   box-shadow: var(--shadow);
   opacity: 0;
@@ -2190,8 +2149,8 @@ a {
 }
 
 /* ============================================================
-   23. MOBILE (adaptado a la paleta mockup)
-   ============================================================ */
+  RESPONSIVE LAYOUT
+  ============================================================ */
 
 @media (max-width: 768px) {
   html, body {
@@ -2431,7 +2390,7 @@ a {
     font-size: 11px;
   }
 
-  /* Admin en móvil */
+  /* Admin page on small screens */
   .meta-form-grid {
     grid-template-columns: 1fr;
   }
@@ -2491,9 +2450,7 @@ a {
   }
 }
 
-/* ============================================================
-   24. REDUCED MOTION
-   ============================================================ */
+/* ACCESSIBILITY: REDUCED MOTION */
 
 @media (prefers-reduced-motion: reduce) {
   *,
