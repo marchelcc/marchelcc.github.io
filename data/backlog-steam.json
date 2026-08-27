@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-26T09:50:46.063Z",
+  "updated": "2026-08-27T19:47:32.136Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1354,7 +1354,7 @@
     "632360": {
       "name": "Risk of Rain 2",
       "playtimeForeverMinutes": 3995,
-      "playtime2WeeksMinutes": 199,
+      "playtime2WeeksMinutes": 90,
       "lastPlayedUnix": 1787205575,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
