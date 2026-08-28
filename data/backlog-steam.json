@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-27T19:47:32.136Z",
+  "updated": "2026-08-28T20:48:29.067Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -543,9 +543,9 @@
     },
     "250900": {
       "name": "The Binding of Isaac: Rebirth",
-      "playtimeForeverMinutes": 156,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1772452302,
+      "playtimeForeverMinutes": 240,
+      "playtime2WeeksMinutes": 84,
+      "lastPlayedUnix": 1787904460,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/250900/16d46c8630499bfc54d20745ac90786a302cd643.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/250900/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/250900/library_600x900_2x.jpg"
@@ -1353,9 +1353,9 @@
     },
     "632360": {
       "name": "Risk of Rain 2",
-      "playtimeForeverMinutes": 3995,
-      "playtime2WeeksMinutes": 90,
-      "lastPlayedUnix": 1787205575,
+      "playtimeForeverMinutes": 4021,
+      "playtime2WeeksMinutes": 116,
+      "lastPlayedUnix": 1787888056,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/library_600x900_2x.jpg"
@@ -2451,9 +2451,9 @@
     },
     "1449850": {
       "name": "Yu-Gi-Oh!  Master Duel",
-      "playtimeForeverMinutes": 1366,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1764299888,
+      "playtimeForeverMinutes": 1440,
+      "playtime2WeeksMinutes": 73,
+      "lastPlayedUnix": 1787898274,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1449850/d7f2b7e0a0cca27fa1cb2cc60efc4afb7a6203a8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1449850/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1449850/library_600x900_2x.jpg"
