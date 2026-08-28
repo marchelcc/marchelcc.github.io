@@ -2,6 +2,28 @@
   "games": [
     {
       "id": 1,
+      "name": "El Caos Libertario 3",
+      "appid": null,
+      "raGameId": null,
+      "platform": "minecraft-event",
+      "status": "backlog",
+      "hoursPlayed": 0,
+      "imageUrl": "https://i.imgur.com/b0NPlxq.png",
+      "capsuleUrl": "https://i.imgur.com/b0NPlxq.png"
+    },
+    {
+      "id": 2,
+      "name": "Gladiator Games",
+      "appid": null,
+      "raGameId": null,
+      "platform": "minecraft-map",
+      "status": "jugando",
+      "hoursPlayed": 3,
+      "imageUrl": "https://i.imgur.com/Ka7Q7HE.png",
+      "capsuleUrl": "https://i.imgur.com/8DDCV37.png"
+    },
+    {
+      "id": 3,
       "name": "Easy Delivery Co.",
       "appid": 3293010,
       "platform": "steam",
@@ -10,17 +32,6 @@
       "imageUrl": "https://i.imgur.com/PW7ujnM.png",
       "capsuleUrl": "https://i.imgur.com/mXpqQWK.png",
       "raGameId": null
-    },
-    {
-      "id": 2,
-      "name": "Gladiator Games",
-      "appid": null,
-      "raGameId": null,
-      "platform": "otro",
-      "status": "backlog",
-      "hoursPlayed": 0,
-      "imageUrl": "https://i.imgur.com/Ka7Q7HE.png",
-      "capsuleUrl": "https://i.imgur.com/8DDCV37.png"
     },
     {
       "id": 8,

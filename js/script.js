@@ -749,7 +749,18 @@ const BACKLOG_PLATFORM_CONFIG = {
   'retro': { label: '🕹️ Retro', cls: 'platform-retro' },
   'consola': { label: '🎮 Consola', cls: 'platform-consola' },
   'otro':  { label: '🎮 Otro',  cls: 'platform-otro'  },
+  'minecraft-map':   { label: '🗺️ Mapa de MC',   cls: 'platform-minecraft-map'   },
+  'minecraft-event': { label: '🎪 Evento de MC', cls: 'platform-minecraft-event' },
 };
+
+/* Backlog entries whose "platform" value marks them as Minecraft-specific
+   content (custom adventure maps / third-party live events) rather than a
+   regular tracked game. These live in their own "Minecraft" tab. */
+const MINECRAFT_PLATFORMS = ['minecraft-map', 'minecraft-event'];
+
+function isMinecraftEntry(game) {
+  return MINECRAFT_PLATFORMS.includes(game.platform);
+}
 
 function platformGroup(platform) {
   return ['steam', 'gog', 'epic'].includes(platform) ? 'pc' : 'otros';
@@ -765,15 +776,36 @@ function minutesToHours(min) {
 let BACKLOG_DATA = [];       // combination of backlog.json and backlog-steam.json, cached for the filters
 let BACKLOG_VIEW = 'library'; // 'library' | 'list'
 
+/* ── Backlog window tabs: 'backlog' (regular games) | 'minecraft' (MC maps/events) ── */
+let backlogActiveTab = 'backlog';
+
 /* ── NUEVO: filtro de búsqueda por nombre ── */
 let backlogSearchTerm = '';
-let backlogSortMode = 'az';
+/* 'id-asc' (Index/ID order) is the new default sort mode. */
+let backlogSortMode = 'id-asc';
+
+/* Parse a backlog item's id as a finite number for numeric sorting.
+   Returns null for missing/non-numeric ids so callers can push them last
+   instead of crashing or sorting lexicographically. */
+function parseBacklogId(id) {
+  if (id === null || id === undefined || id === '') return null;
+  const n = Number(id);
+  return Number.isFinite(n) ? n : null;
+}
 
 function applyBacklogSort(list) {
   const sorted = [...list];
 
   sorted.sort((a, b) => {
     switch (backlogSortMode) {
+      case 'id-asc': {
+        const aId = parseBacklogId(a.id);
+        const bId = parseBacklogId(b.id);
+        if (aId === null && bId === null) return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+        if (aId === null) return 1;  // items without a usable id sort last
+        if (bId === null) return -1;
+        return aId - bId;
+      }
       case 'za':
         return b.name.localeCompare(a.name, undefined, { sensitivity: 'base' });
       case 'hours-desc': {
@@ -855,17 +887,23 @@ let backlogStatusFilter   = 'all';
 let backlogPlatformFilter = 'all';
 
 function updateBacklogSidebarCounts() {
+  /* Counts are scoped to the active tab so the sidebar stays meaningful
+     whether you're browsing regular games or Minecraft content. */
+  const tabItems = BACKLOG_DATA.filter(g =>
+      backlogActiveTab === 'minecraft' ? isMinecraftEntry(g) : !isMinecraftEntry(g)
+  );
+
   const countFor = (status) => status === 'all'
-      ? BACKLOG_DATA.length
-      : BACKLOG_DATA.filter(g => g.status === status).length;
+      ? tabItems.length
+      : tabItems.filter(g => g.status === status).length;
 
   document.querySelectorAll('[data-count-status]').forEach(el => {
     el.textContent = countFor(el.dataset.countStatus);
   });
 
   const platCountFor = (group) => group === 'all'
-      ? BACKLOG_DATA.length
-      : BACKLOG_DATA.filter(g => platformGroup(g.platform) === group).length;
+      ? tabItems.length
+      : tabItems.filter(g => platformGroup(g.platform) === group).length;
 
   document.querySelectorAll('[data-count-platform]').forEach(el => {
     el.textContent = platCountFor(el.dataset.countPlatform);
@@ -876,6 +914,8 @@ function drawBacklog() {
   const grid = document.getElementById('backlog-grid');
   if (!grid) return;
 
+  updateBacklogSidebarCounts();
+
   const isNarrow = window.matchMedia('(max-width: 768px)').matches;
   const effectiveView = isNarrow ? 'list' : BACKLOG_VIEW;
 
@@ -883,12 +923,15 @@ function drawBacklog() {
   grid.classList.toggle('backlog-view-list', effectiveView === 'list');
   grid.innerHTML = '';
 
-  /* Filtro combinado: estado + plataforma + búsqueda por nombre */
+  /* Filtro combinado: pestaña activa + estado + plataforma + búsqueda por nombre.
+     Tab filtering happens first so Minecraft content only ever shows in the
+     Minecraft tab, and regular games only in the Backlog tab. */
   const filtered = BACKLOG_DATA.filter(g => {
+    const matchTab = backlogActiveTab === 'minecraft' ? isMinecraftEntry(g) : !isMinecraftEntry(g);
     const matchStatus = backlogStatusFilter === 'all' || g.status === backlogStatusFilter;
     const matchPlatform = backlogPlatformFilter === 'all' || platformGroup(g.platform) === backlogPlatformFilter;
     const matchSearch = backlogSearchTerm === '' || g.name.toLowerCase().includes(backlogSearchTerm.toLowerCase());
-    return matchStatus && matchPlatform && matchSearch;
+    return matchTab && matchStatus && matchPlatform && matchSearch;
   });
 
   const list = applyBacklogSort(filtered);
@@ -1012,10 +1055,48 @@ const BACKLOG_PLATFORM_CRUMBS = { 'pc': '🖥️ PC', 'otros': '🎮 Otros' };
 function updateBacklogCrumb() {
   const crumbEl = document.getElementById('backlog-crumb');
   if (!crumbEl) return;
-  const parts = [BACKLOG_STATUS_CRUMBS[backlogStatusFilter] || 'Todos'];
-  if (backlogPlatformFilter !== 'all') parts.push(BACKLOG_PLATFORM_CRUMBS[backlogPlatformFilter]);
+  const parts = backlogActiveTab === 'minecraft'
+      ? ['Minecraft - Eventos, Mapas y Aventuras']
+      : [BACKLOG_STATUS_CRUMBS[backlogStatusFilter] || 'Todos'];
+  if (backlogActiveTab !== 'minecraft' && backlogPlatformFilter !== 'all') {
+    parts.push(BACKLOG_PLATFORM_CRUMBS[backlogPlatformFilter]);
+  }
   if (backlogSearchTerm) parts.push(`🔍 "${backlogSearchTerm}"`);
   crumbEl.textContent = parts.join(' · ');
+}
+
+/* ── Tab bar: Backlog vs Minecraft ── */
+function setupBacklogTabs() {
+  const tabBar = document.getElementById('backlog-tab-bar');
+  if (!tabBar) return;
+
+  tabBar.querySelectorAll('.tab').forEach(tabEl => {
+    tabEl.addEventListener('click', () => {
+      const tab = tabEl.dataset.backlogTab;
+      if (!tab || tab === backlogActiveTab) return;
+
+      backlogActiveTab = tab;
+      tabBar.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tabEl.classList.add('active');
+
+      /* Existing status/platform/search/sort state is intentionally left as-is
+         when switching tabs — only the tab filter itself changes. */
+      updateBacklogViewToggleVisibility();
+      updateBacklogCrumb();
+      drawBacklog();
+    });
+  });
+
+  /* Sync once on setup too, in case the default active tab ever changes. */
+  updateBacklogViewToggleVisibility();
+}
+
+function updateBacklogViewToggleVisibility() {
+  const toggle = document.getElementById('backlog-view-toggle');
+  if (!toggle) return;
+  /* The library/list view switcher only makes sense for the main Backlog
+     tab — Minecraft content always reuses whichever view was last set. */
+  toggle.style.display = backlogActiveTab === 'minecraft' ? 'none' : '';
 }
 
 function setupBacklogFilters() {
@@ -1031,6 +1112,7 @@ function setupBacklogFilters() {
         if (type === 'status') backlogStatusFilter = btn.dataset.filter;
         else backlogPlatformFilter = btn.dataset.filter;
 
+        updateBacklogViewToggleVisibility();
         updateBacklogCrumb();
         drawBacklog();
       });
@@ -1067,6 +1149,8 @@ function setupBacklogFilters() {
       drawBacklog();
     });
   }
+
+  setupBacklogTabs();
 }
 
 /* ── Social badges ── */

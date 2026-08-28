@@ -44,6 +44,9 @@ const BACKLOG_PLATFORM_OPTIONS = [
     { value: 'retro',   label: '🕹️ Retro / Emulado' },
     { value: 'consola', label: '🎮 Consola' },
     { value: 'otro',    label: '🎮 Otro' },
+    /* Minecraft-specific content — rendered in the site's separate "Minecraft" backlog tab */
+    { value: 'minecraft-map',   label: '🗺️ Mapa de Minecraft' },
+    { value: 'minecraft-event', label: '🎪 Evento de Minecraft' },
 ];
 
 /* ─────────────────────────────────────────────────────────────

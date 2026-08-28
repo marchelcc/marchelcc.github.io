@@ -63,9 +63,9 @@
     {
       "id": 7,
       "day": "Domingo",
-      "time": "-",
-      "game": "???",
-      "imageUrl": "",
+      "time": "Por Definir",
+      "game": "El Caos Libertario 3",
+      "imageUrl": "https://i.imgur.com/j7GbJsf.png",
       "tag": "Stream Longo",
       "active": true
     }
