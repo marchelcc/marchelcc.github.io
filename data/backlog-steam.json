@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-29T14:22:29.724Z",
+  "updated": "2026-08-30T14:22:40.573Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1264,7 +1264,7 @@
     "588650": {
       "name": "Dead Cells",
       "playtimeForeverMinutes": 88,
-      "playtime2WeeksMinutes": 88,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1786867063,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/588650/a431361e5dae5fd6ac2433064b62b2a37abc38f1.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/588650/header.jpg",
@@ -3415,7 +3415,7 @@
     "2767030": {
       "name": "Marvel Rivals",
       "playtimeForeverMinutes": 345,
-      "playtime2WeeksMinutes": 32,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1786846140,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2767030/839b4712925b95702ca56e0c4d399adf54f4d617.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/header.jpg",
@@ -3892,7 +3892,7 @@
     "4059240": {
       "name": "Gears of War: E-Day Multiplayer Beta",
       "playtimeForeverMinutes": 7,
-      "playtime2WeeksMinutes": 7,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1786846867,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4059240/53a324b2edd5bccb96e8e9e6066dad6820e1e809.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4059240/header.jpg",
@@ -4000,7 +4000,7 @@
     "4739830": {
       "name": "JOHN GLEEP Playtest",
       "playtimeForeverMinutes": 151,
-      "playtime2WeeksMinutes": 151,
+      "playtime2WeeksMinutes": 50,
       "lastPlayedUnix": 1787561531,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4739830/97062b069dd3d0faf58c23fd6cb7525dc3ba8d5a.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4739830/header.jpg",
@@ -4009,7 +4009,7 @@
     "4809930": {
       "name": "WARDOGS Playtest",
       "playtimeForeverMinutes": 14,
-      "playtime2WeeksMinutes": 3,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1786846377,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4809930/6829090332535af8637c4b6e1dddf3ee8ec3d134.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4809930/header.jpg",
