@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-31T17:00:00.356Z",
+  "updated": "2026-09-01T14:05:21.011Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -3748,7 +3748,7 @@
     "3405340": {
       "name": "Megabonk",
       "playtimeForeverMinutes": 1028,
-      "playtime2WeeksMinutes": 1028,
+      "playtime2WeeksMinutes": 658,
       "lastPlayedUnix": 1787969965,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3405340/8e0ff36cdb1076d69347a2796c7ef5ee18b2fee8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3405340/header.jpg",
