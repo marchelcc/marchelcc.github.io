@@ -1,7 +1,7 @@
 {
   "vtuber": "Marchel",
   "tagline": "",
-  "lastUpdated": "2026-08-24",
+  "lastUpdated": "2026-09-01",
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
   "youtubeLatestVODId": "oJN929lROT8",
@@ -9,46 +9,46 @@
     {
       "id": 1,
       "day": "Lunes",
-      "time": "-",
-      "game": "-",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "19:30",
+      "game": "Día 2 — El Caos Libertario 3",
+      "imageUrl": "https://i.imgur.com/j7GbJsf.png",
+      "tag": "Stream Longo",
+      "active": true
     },
     {
       "id": 2,
       "day": "Martes",
-      "time": "-",
-      "game": "-",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "19:30",
+      "game": "Día 3 — El Caos Libertario 3",
+      "imageUrl": "https://i.imgur.com/j7GbJsf.png",
+      "tag": "Stream Longo",
+      "active": true
     },
     {
       "id": 3,
       "day": "Miércoles",
-      "time": "19:00",
-      "game": "Probamos mapita de Gladiator Games! ft. Muuyal, Hauru y Haru!",
-      "imageUrl": "https://i.imgur.com/q42xGY2.png",
-      "tag": "Colab",
+      "time": "14:30",
+      "game": "Día 4 — El Caos Libertario 3",
+      "imageUrl": "https://i.imgur.com/j7GbJsf.png",
+      "tag": "Stream Longo",
       "active": true
     },
     {
       "id": 4,
       "day": "Jueves",
-      "time": "-",
-      "game": "-",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "14:30",
+      "game": "Día 5 — El Caos Libertario 3",
+      "imageUrl": "https://i.imgur.com/j7GbJsf.png",
+      "tag": "Stream Longo",
+      "active": true
     },
     {
       "id": 5,
       "day": "Viernes",
-      "time": "19:00",
-      "game": "Probamos el Megabonk!",
-      "imageUrl": "https://i.imgur.com/oE7qBEC.png",
-      "tag": "Stream Shorti",
+      "time": "14:00",
+      "game": "Día Final — El Caos Libertario 3",
+      "imageUrl": "https://i.imgur.com/j7GbJsf.png",
+      "tag": "Stream Longo",
       "active": true
     },
     {
@@ -63,11 +63,11 @@
     {
       "id": 7,
       "day": "Domingo",
-      "time": "Por Definir",
-      "game": "El Caos Libertario 3",
-      "imageUrl": "https://i.imgur.com/j7GbJsf.png",
-      "tag": "Stream Longo",
-      "active": true
+      "time": "-",
+      "game": "-",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
     }
   ],
   "rotationGames": [],

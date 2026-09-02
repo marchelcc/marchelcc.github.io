@@ -7,7 +7,7 @@
       "raGameId": null,
       "platform": "minecraft-event",
       "status": "backlog",
-      "hoursPlayed": 0,
+      "hoursPlayed": 15,
       "imageUrl": "https://i.imgur.com/b0NPlxq.png",
       "capsuleUrl": "https://i.imgur.com/b0NPlxq.png"
     },
@@ -18,7 +18,7 @@
       "raGameId": null,
       "platform": "minecraft-map",
       "status": "jugando",
-      "hoursPlayed": 3,
+      "hoursPlayed": 1.5,
       "imageUrl": "https://i.imgur.com/Ka7Q7HE.png",
       "capsuleUrl": "https://i.imgur.com/8DDCV37.png"
     },
