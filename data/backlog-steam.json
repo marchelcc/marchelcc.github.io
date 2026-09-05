@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-02T13:31:11.179Z",
+  "updated": "2026-09-05T12:34:03.655Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1354,7 +1354,7 @@
     "632360": {
       "name": "Risk of Rain 2",
       "playtimeForeverMinutes": 4021,
-      "playtime2WeeksMinutes": 111,
+      "playtime2WeeksMinutes": 25,
       "lastPlayedUnix": 1787888056,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
@@ -3487,7 +3487,7 @@
     "2868840": {
       "name": "Slay the Spire 2",
       "playtimeForeverMinutes": 231,
-      "playtime2WeeksMinutes": 31,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1787198811,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2868840/f92b09dab91f1d1738f72fe0dd9be18dcc2901f9.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2868840/header.jpg",
@@ -3870,6 +3870,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3819230/b0ec1c29485d566e53730b4e4818a86038087aa0.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3819230/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3819230/library_600x900_2x.jpg"
+    },
+    "3883700": {
+      "name": "Time Takers Playtest",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3883700/de4baff2d2e1044bcd054d907e365460cee57eea.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3883700/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3883700/library_600x900_2x.jpg"
     },
     "3950020": {
       "name": "Duet Night Abyss",
