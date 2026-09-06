@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-05T12:34:03.655Z",
+  "updated": "2026-09-06T12:48:37.570Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -4017,9 +4017,9 @@
     },
     "4809930": {
       "name": "WARDOGS Playtest",
-      "playtimeForeverMinutes": 14,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1786846377,
+      "playtimeForeverMinutes": 40,
+      "playtime2WeeksMinutes": 26,
+      "lastPlayedUnix": 1788645229,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4809930/6829090332535af8637c4b6e1dddf3ee8ec3d134.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4809930/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4809930/library_600x900_2x.jpg"
