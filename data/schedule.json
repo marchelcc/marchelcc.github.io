@@ -1,7 +1,7 @@
 {
   "vtuber": "Marchel",
   "tagline": "",
-  "lastUpdated": "2026-09-05",
+  "lastUpdated": "2026-09-07",
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
   "youtubeLatestVODId": "oJN929lROT8",
@@ -27,20 +27,20 @@
     {
       "id": 3,
       "day": "Miércoles",
-      "time": null,
-      "game": "",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "19:30",
+      "game": "Garden Souls",
+      "imageUrl": "https://i.imgur.com/KnSM0NQ.png",
+      "tag": "Stream Shorti",
+      "active": true
     },
     {
       "id": 4,
       "day": "Jueves",
-      "time": null,
-      "game": "",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "19:30",
+      "game": "Desafío UHC",
+      "imageUrl": "https://i.imgur.com/sIAkrHO.png",
+      "tag": "Stream Longo",
+      "active": true
     },
     {
       "id": 5,
@@ -54,8 +54,8 @@
     {
       "id": 6,
       "day": "Sábado",
-      "time": "-",
-      "game": "-",
+      "time": null,
+      "game": "",
       "imageUrl": null,
       "tag": "Off",
       "active": false
@@ -63,8 +63,8 @@
     {
       "id": 7,
       "day": "Domingo",
-      "time": "-",
-      "game": "-",
+      "time": null,
+      "game": "",
       "imageUrl": "",
       "tag": "Off",
       "active": false
@@ -74,6 +74,8 @@
   "socials": {
     "twitch": "https://www.twitch.tv/marchel_cc",
     "youtube": "https://www.youtube.com/@Marchel-cc",
+    "kick": "https://kick.com/marchel-cc",
+    "tiktok": "https://tiktok.com/@marchel_cc",
     "youtubevods": "https://www.youtube.com/@marchel-vods1",
     "twitter": "https://x.com/Marchel_cc",
     "bsky": "https://bsky.app/profile/marchelcc.bsky.social"

@@ -236,6 +236,17 @@ a {
   background: var(--color-white);
 }
 
+#admin-window {
+  overflow: hidden;
+}
+
+#admin-window .admin-window-content {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 /* Window title bars */
 
 .xp-titlebar {

@@ -164,6 +164,72 @@
       "imageUrl": "https://i.imgur.com/E3fLUad.gif",
       "capsuleUrl": "https://i.imgur.com/DbmNn3W.png",
       "raGameId": null
+    },
+    {
+      "id": 100,
+      "name": "Garden Souls",
+      "appid": 5175000,
+      "raGameId": null,
+      "platform": "steam",
+      "status": "backlog",
+      "hoursPlayed": null,
+      "imageUrl": "https://i.imgur.com/kyBiwJX.png",
+      "capsuleUrl": "https://i.imgur.com/yPBFcs8.png"
+    },
+    {
+      "id": 100,
+      "name": "The One Fish",
+      "appid": 4883580,
+      "raGameId": null,
+      "platform": "steam",
+      "status": "backlog",
+      "hoursPlayed": null,
+      "imageUrl": "",
+      "capsuleUrl": ""
+    },
+    {
+      "id": 101,
+      "name": "Going Under",
+      "appid": 1154810,
+      "raGameId": null,
+      "platform": "steam",
+      "status": "backlog",
+      "hoursPlayed": null,
+      "imageUrl": "",
+      "capsuleUrl": ""
+    },
+    {
+      "id": 102,
+      "name": "John Gleep",
+      "appid": 4739830,
+      "raGameId": null,
+      "platform": "steam",
+      "status": "backlog",
+      "hoursPlayed": null,
+      "imageUrl": "",
+      "capsuleUrl": ""
+    },
+    {
+      "id": 103,
+      "name": "The Well's Blessing",
+      "appid": 3807830,
+      "raGameId": null,
+      "platform": "steam",
+      "status": "backlog",
+      "hoursPlayed": null,
+      "imageUrl": "",
+      "capsuleUrl": ""
+    },
+    {
+      "id": 104,
+      "name": "Desafío UHC",
+      "appid": null,
+      "raGameId": null,
+      "platform": "minecraft-event",
+      "status": "backlog",
+      "hoursPlayed": null,
+      "imageUrl": "https://i.imgur.com/zyPJqHw.png",
+      "capsuleUrl": "https://i.imgur.com/RhH8dNM.png"
     }
   ]
 }
