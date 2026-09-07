@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-05T12:34:03.655Z",
+  "updated": "2026-09-07T14:59:25.430Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -543,9 +543,9 @@
     },
     "250900": {
       "name": "The Binding of Isaac: Rebirth",
-      "playtimeForeverMinutes": 240,
-      "playtime2WeeksMinutes": 84,
-      "lastPlayedUnix": 1787904460,
+      "playtimeForeverMinutes": 256,
+      "playtime2WeeksMinutes": 100,
+      "lastPlayedUnix": 1788730478,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/250900/16d46c8630499bfc54d20745ac90786a302cd643.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/250900/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/250900/library_600x900_2x.jpg"
@@ -796,7 +796,7 @@
     "365670": {
       "name": "Blender",
       "playtimeForeverMinutes": 9569,
-      "playtime2WeeksMinutes": 22,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1787542301,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/365670/48733cd333eea6e40711a1b9c6dde32ffe363ced.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/365670/header.jpg",
@@ -841,7 +841,7 @@
     "382490": {
       "name": "Relic Hunters Zero: Remix",
       "playtimeForeverMinutes": 56,
-      "playtime2WeeksMinutes": 28,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1787558251,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/382490/3493ab2e0187380e5aefabe62cf4650f0318b855.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/382490/header.jpg",
@@ -1911,9 +1911,9 @@
     },
     "1085660": {
       "name": "Destiny 2",
-      "playtimeForeverMinutes": 98092,
-      "playtime2WeeksMinutes": 7,
-      "lastPlayedUnix": 1788163211,
+      "playtimeForeverMinutes": 98108,
+      "playtime2WeeksMinutes": 23,
+      "lastPlayedUnix": 1788759078,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1085660/fce050d63f0a2f8eb51b603c7f30bfca2a301549.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1085660/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1085660/library_600x900_2x.jpg"
@@ -2415,9 +2415,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 1290,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1782877811,
+      "playtimeForeverMinutes": 1347,
+      "playtime2WeeksMinutes": 56,
+      "lastPlayedUnix": 1788762489,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -2902,8 +2902,8 @@
     "1948280": {
       "name": "Stacklands",
       "playtimeForeverMinutes": 255,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1734500152,
+      "playtime2WeeksMinutes": 1,
+      "lastPlayedUnix": 1788730691,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1948280/23fe385571e311477310e092901af4273e546ad8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1948280/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1948280/library_600x900_2x.jpg"
@@ -3081,9 +3081,9 @@
     },
     "2097570": {
       "name": "StarVaders",
-      "playtimeForeverMinutes": 100,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1777188303,
+      "playtimeForeverMinutes": 101,
+      "playtime2WeeksMinutes": 1,
+      "lastPlayedUnix": 1788730598,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2097570/95fb11fdc7275b083b8e6b4a9e58ba6a8a938e49.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2097570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2097570/library_600x900_2x.jpg"
@@ -3198,9 +3198,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 1368,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1776825647,
+      "playtimeForeverMinutes": 1381,
+      "playtime2WeeksMinutes": 12,
+      "lastPlayedUnix": 1788763239,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
@@ -3424,8 +3424,8 @@
     "2784470": {
       "name": "9 Kings",
       "playtimeForeverMinutes": 676,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1786910804,
+      "playtime2WeeksMinutes": 1,
+      "lastPlayedUnix": 1788730644,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2784470/d1d0c590e82d977b24e1070a9ec1aeea9e4cd9f4.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2784470/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2784470/library_600x900_2x.jpg"
@@ -3748,7 +3748,7 @@
     "3405340": {
       "name": "Megabonk",
       "playtimeForeverMinutes": 1028,
-      "playtime2WeeksMinutes": 211,
+      "playtime2WeeksMinutes": 176,
       "lastPlayedUnix": 1787969965,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3405340/8e0ff36cdb1076d69347a2796c7ef5ee18b2fee8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3405340/header.jpg",
@@ -4009,7 +4009,7 @@
     "4739830": {
       "name": "JOHN GLEEP Playtest",
       "playtimeForeverMinutes": 151,
-      "playtime2WeeksMinutes": 50,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1787561531,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4739830/97062b069dd3d0faf58c23fd6cb7525dc3ba8d5a.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4739830/header.jpg",
@@ -4017,9 +4017,9 @@
     },
     "4809930": {
       "name": "WARDOGS Playtest",
-      "playtimeForeverMinutes": 14,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1786846377,
+      "playtimeForeverMinutes": 40,
+      "playtime2WeeksMinutes": 26,
+      "lastPlayedUnix": 1788645229,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4809930/6829090332535af8637c4b6e1dddf3ee8ec3d134.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4809930/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4809930/library_600x900_2x.jpg"
@@ -4027,7 +4027,7 @@
     "4883580": {
       "name": "The One Fish",
       "playtimeForeverMinutes": 9,
-      "playtime2WeeksMinutes": 9,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1787550665,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4883580/6a693115800565b65e3bf9770a42fe6684d39398.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4883580/header.jpg",
