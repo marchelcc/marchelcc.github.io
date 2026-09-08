@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07T17:10:13.594Z",
+  "updated": "2026-09-08T13:28:20.150Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1578,9 +1578,9 @@
     },
     "788100": {
       "name": "Neon Abyss",
-      "playtimeForeverMinutes": 131,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1767679553,
+      "playtimeForeverMinutes": 184,
+      "playtime2WeeksMinutes": 53,
+      "lastPlayedUnix": 1788853111,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/788100/78dfe88f6e4e2d36bf916c88a8100d546989a9e3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/788100/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/788100/library_600x900_2x.jpg"
@@ -3405,9 +3405,9 @@
     },
     "2763740": {
       "name": "Revolution Idle",
-      "playtimeForeverMinutes": 1784,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1751874700,
+      "playtimeForeverMinutes": 2424,
+      "playtime2WeeksMinutes": 639,
+      "lastPlayedUnix": 1788850637,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2763740/82afae56cfd88514886adb316b6d0f672dcbfaea.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2763740/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2763740/library_600x900_2x.jpg"
@@ -3748,7 +3748,7 @@
     "3405340": {
       "name": "Megabonk",
       "playtimeForeverMinutes": 1028,
-      "playtime2WeeksMinutes": 176,
+      "playtime2WeeksMinutes": 110,
       "lastPlayedUnix": 1787969965,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3405340/8e0ff36cdb1076d69347a2796c7ef5ee18b2fee8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3405340/header.jpg",
