@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10T13:29:43.744Z",
+  "updated": "2026-09-11T13:28:17.623Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -177,7 +177,7 @@
       "playtimeForeverMinutes": 43,
       "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1680837938,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/570/0bbb630d63262dd66d2fdd0f7d37e8661a410075.jpg",
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/570/48eb825bb93787945065b460bdc109e395384ebf.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/570/library_600x900_2x.jpg"
     },
@@ -544,7 +544,7 @@
     "250900": {
       "name": "The Binding of Isaac: Rebirth",
       "playtimeForeverMinutes": 256,
-      "playtime2WeeksMinutes": 100,
+      "playtime2WeeksMinutes": 16,
       "lastPlayedUnix": 1788730478,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/250900/16d46c8630499bfc54d20745ac90786a302cd643.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/250900/header.jpg",
@@ -1354,7 +1354,7 @@
     "632360": {
       "name": "Risk of Rain 2",
       "playtimeForeverMinutes": 4021,
-      "playtime2WeeksMinutes": 25,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1787888056,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
@@ -2452,7 +2452,7 @@
     "1449850": {
       "name": "Yu-Gi-Oh!  Master Duel",
       "playtimeForeverMinutes": 1440,
-      "playtime2WeeksMinutes": 73,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1787898274,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1449850/d7f2b7e0a0cca27fa1cb2cc60efc4afb7a6203a8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1449850/header.jpg",
@@ -3405,9 +3405,9 @@
     },
     "2763740": {
       "name": "Revolution Idle",
-      "playtimeForeverMinutes": 2575,
-      "playtime2WeeksMinutes": 791,
-      "lastPlayedUnix": 1789002217,
+      "playtimeForeverMinutes": 2921,
+      "playtime2WeeksMinutes": 1137,
+      "lastPlayedUnix": 1789075428,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2763740/82afae56cfd88514886adb316b6d0f672dcbfaea.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2763740/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2763740/library_600x900_2x.jpg"
