@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-12T12:47:40.972Z",
+  "updated": "2026-09-13T13:45:35.686Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -966,9 +966,9 @@
     },
     "431960": {
       "name": "Wallpaper Engine",
-      "playtimeForeverMinutes": 1803,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1783746975,
+      "playtimeForeverMinutes": 1810,
+      "playtime2WeeksMinutes": 6,
+      "lastPlayedUnix": 1789272992,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/431960/72edaed9d748c6cf7397ffb1c83f0b837b9ebd9d.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/431960/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/431960/library_600x900_2x.jpg"
@@ -3198,9 +3198,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 1381,
-      "playtime2WeeksMinutes": 12,
-      "lastPlayedUnix": 1788763239,
+      "playtimeForeverMinutes": 1402,
+      "playtime2WeeksMinutes": 33,
+      "lastPlayedUnix": 1789239369,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
