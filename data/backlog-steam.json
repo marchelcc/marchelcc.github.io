@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-13T13:45:35.686Z",
+  "updated": "2026-09-14T15:50:59.015Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1045,6 +1045,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/444090/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/444090/library_600x900_2x.jpg"
     },
+    "447700": {
+      "name": "Crystal Crisis",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/447700/568c6e789a8387ae17a4aa3dc206ce05256d6b70.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/447700/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/447700/library_600x900_2x.jpg"
+    },
     "460960": {
       "name": "The Deed: Dynasty",
       "playtimeForeverMinutes": 0,
@@ -1912,7 +1921,7 @@
     "1085660": {
       "name": "Destiny 2",
       "playtimeForeverMinutes": 98108,
-      "playtime2WeeksMinutes": 23,
+      "playtime2WeeksMinutes": 15,
       "lastPlayedUnix": 1788759078,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1085660/fce050d63f0a2f8eb51b603c7f30bfca2a301549.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1085660/header.jpg",
