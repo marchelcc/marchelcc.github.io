@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-16T14:09:18.703Z",
+  "updated": "2026-09-17T14:14:42.580Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -3207,9 +3207,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 1619,
-      "playtime2WeeksMinutes": 250,
-      "lastPlayedUnix": 1789537507,
+      "playtimeForeverMinutes": 1742,
+      "playtime2WeeksMinutes": 373,
+      "lastPlayedUnix": 1789609331,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
@@ -3423,9 +3423,9 @@
     },
     "2767030": {
       "name": "Marvel Rivals",
-      "playtimeForeverMinutes": 345,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1786846140,
+      "playtimeForeverMinutes": 352,
+      "playtime2WeeksMinutes": 6,
+      "lastPlayedUnix": 1789599246,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2767030/839b4712925b95702ca56e0c4d399adf54f4d617.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/library_600x900_2x.jpg"
