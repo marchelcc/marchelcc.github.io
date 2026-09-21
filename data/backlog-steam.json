@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-14T15:50:59.015Z",
+  "updated": "2026-09-21T15:50:53.886Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -192,9 +192,9 @@
     },
     "730": {
       "name": "Counter-Strike 2",
-      "playtimeForeverMinutes": 845,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1781416874,
+      "playtimeForeverMinutes": 854,
+      "playtime2WeeksMinutes": 8,
+      "lastPlayedUnix": 1789517471,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/730/8dbc71957312bbd3baea65848b545be9eae2a355.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/730/library_600x900_2x.jpg"
@@ -543,9 +543,9 @@
     },
     "250900": {
       "name": "The Binding of Isaac: Rebirth",
-      "playtimeForeverMinutes": 256,
+      "playtimeForeverMinutes": 273,
       "playtime2WeeksMinutes": 16,
-      "lastPlayedUnix": 1788730478,
+      "lastPlayedUnix": 1789678763,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/250900/16d46c8630499bfc54d20745ac90786a302cd643.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/250900/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/250900/library_600x900_2x.jpg"
@@ -1209,9 +1209,9 @@
     },
     "553850": {
       "name": "HELLDIVERS™ 2",
-      "playtimeForeverMinutes": 2693,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1782879249,
+      "playtimeForeverMinutes": 2718,
+      "playtime2WeeksMinutes": 24,
+      "lastPlayedUnix": 1789516704,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/553850/c3dff088e090f81d6e3d88eabbb67732647c69cf.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/553850/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/553850/library_600x900_2x.jpg"
@@ -1272,18 +1272,18 @@
     },
     "588650": {
       "name": "Dead Cells",
-      "playtimeForeverMinutes": 88,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1786867063,
+      "playtimeForeverMinutes": 90,
+      "playtime2WeeksMinutes": 1,
+      "lastPlayedUnix": 1789452075,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/588650/a431361e5dae5fd6ac2433064b62b2a37abc38f1.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/588650/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/588650/library_600x900_2x.jpg"
     },
     "594650": {
       "name": "Hunt: Showdown 1896",
-      "playtimeForeverMinutes": 873,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1773024567,
+      "playtimeForeverMinutes": 884,
+      "playtime2WeeksMinutes": 11,
+      "lastPlayedUnix": 1789514962,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/594650/06c70772db40f714537f4d80c11859a68560a6b3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/594650/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/594650/library_600x900_2x.jpg"
@@ -1362,9 +1362,9 @@
     },
     "632360": {
       "name": "Risk of Rain 2",
-      "playtimeForeverMinutes": 4021,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1787888056,
+      "playtimeForeverMinutes": 4170,
+      "playtime2WeeksMinutes": 148,
+      "lastPlayedUnix": 1789957798,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/library_600x900_2x.jpg"
@@ -1578,9 +1578,9 @@
     },
     "782330": {
       "name": "DOOM Eternal",
-      "playtimeForeverMinutes": 110,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1688191415,
+      "playtimeForeverMinutes": 116,
+      "playtime2WeeksMinutes": 5,
+      "lastPlayedUnix": 1789528528,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/782330/14235f425d27ab3b83661ba14c17d22dc90e566b.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/782330/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/782330/library_600x900_2x.jpg"
@@ -1921,7 +1921,7 @@
     "1085660": {
       "name": "Destiny 2",
       "playtimeForeverMinutes": 98108,
-      "playtime2WeeksMinutes": 15,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1788759078,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1085660/fce050d63f0a2f8eb51b603c7f30bfca2a301549.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1085660/header.jpg",
@@ -2001,9 +2001,9 @@
     },
     "1154810": {
       "name": "Going Under",
-      "playtimeForeverMinutes": 0,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": null,
+      "playtimeForeverMinutes": 15,
+      "playtime2WeeksMinutes": 15,
+      "lastPlayedUnix": 1789452991,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1154810/50a1e9277f9b2024a1fafdf407b3ec3889389a96.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1154810/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1154810/library_600x900_2x.jpg"
@@ -2424,9 +2424,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 1347,
-      "playtime2WeeksMinutes": 56,
-      "lastPlayedUnix": 1788762489,
+      "playtimeForeverMinutes": 1366,
+      "playtime2WeeksMinutes": 19,
+      "lastPlayedUnix": 1789514050,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -2487,9 +2487,9 @@
     },
     "1462040": {
       "name": "FINAL FANTASY VII REMAKE INTERGRADE",
-      "playtimeForeverMinutes": 768,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1784872829,
+      "playtimeForeverMinutes": 775,
+      "playtime2WeeksMinutes": 6,
+      "lastPlayedUnix": 1789528191,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1462040/3cf19bc8fa3bc953d68a9b46b0a7555839188da0.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1462040/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1462040/library_600x900_2x.jpg"
@@ -2911,7 +2911,7 @@
     "1948280": {
       "name": "Stacklands",
       "playtimeForeverMinutes": 255,
-      "playtime2WeeksMinutes": 1,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1788730691,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1948280/23fe385571e311477310e092901af4273e546ad8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1948280/header.jpg",
@@ -3091,7 +3091,7 @@
     "2097570": {
       "name": "StarVaders",
       "playtimeForeverMinutes": 101,
-      "playtime2WeeksMinutes": 1,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1788730598,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2097570/95fb11fdc7275b083b8e6b4a9e58ba6a8a938e49.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2097570/header.jpg",
@@ -3207,9 +3207,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 1402,
-      "playtime2WeeksMinutes": 33,
-      "lastPlayedUnix": 1789239369,
+      "playtimeForeverMinutes": 1742,
+      "playtime2WeeksMinutes": 361,
+      "lastPlayedUnix": 1789609331,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
@@ -3423,9 +3423,9 @@
     },
     "2767030": {
       "name": "Marvel Rivals",
-      "playtimeForeverMinutes": 345,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1786846140,
+      "playtimeForeverMinutes": 352,
+      "playtime2WeeksMinutes": 6,
+      "lastPlayedUnix": 1789599246,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2767030/839b4712925b95702ca56e0c4d399adf54f4d617.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/library_600x900_2x.jpg"
@@ -3433,7 +3433,7 @@
     "2784470": {
       "name": "9 Kings",
       "playtimeForeverMinutes": 676,
-      "playtime2WeeksMinutes": 1,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1788730644,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2784470/d1d0c590e82d977b24e1070a9ec1aeea9e4cd9f4.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2784470/header.jpg",
@@ -3495,9 +3495,9 @@
     },
     "2868840": {
       "name": "Slay the Spire 2",
-      "playtimeForeverMinutes": 231,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1787198811,
+      "playtimeForeverMinutes": 235,
+      "playtime2WeeksMinutes": 3,
+      "lastPlayedUnix": 1789451949,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2868840/f92b09dab91f1d1738f72fe0dd9be18dcc2901f9.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2868840/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2868840/library_600x900_2x.jpg"
@@ -4006,6 +4006,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4608190/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4608190/library_600x900_2x.jpg"
     },
+    "4621180": {
+      "name": "Ascenders: Beyond the Peak Demo",
+      "playtimeForeverMinutes": 155,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": 1782871538,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4621180/2bc3ea14e4cf5f27e9bf44ef66c2ebdd2bb59673.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4621180/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4621180/library_600x900_2x.jpg"
+    },
     "4731550": {
       "name": "Deadzone Rogue 2 Playtest",
       "playtimeForeverMinutes": 0,
@@ -4023,15 +4032,6 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4739830/97062b069dd3d0faf58c23fd6cb7525dc3ba8d5a.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4739830/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4739830/library_600x900_2x.jpg"
-    },
-    "4809930": {
-      "name": "WARDOGS Playtest",
-      "playtimeForeverMinutes": 40,
-      "playtime2WeeksMinutes": 26,
-      "lastPlayedUnix": 1788645229,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4809930/6829090332535af8637c4b6e1dddf3ee8ec3d134.jpg",
-      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4809930/header.jpg",
-      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4809930/library_600x900_2x.jpg"
     },
     "4883580": {
       "name": "The One Fish",
@@ -5018,8 +5018,14 @@
     },
     "632360": {
       "total": 171,
-      "unlocked": 56,
+      "unlocked": 57,
       "icons": [
+        {
+          "name": "Void Fiend: Cleared Prime Meridian",
+          "achieved": true,
+          "unlocktime": 1789956918,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/632360/b24c335622656a8adf3dd710a107c869f13d4e21.jpg"
+        },
         {
           "name": "Engineer: Better With Friends",
           "achieved": true,
@@ -5921,12 +5927,6 @@
           "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/632360/a5fee5620a0ef574855fbfc6abfb7a40ceb093c8.jpg"
         },
         {
-          "name": "Void Fiend: Cleared Prime Meridian",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/632360/a5fee5620a0ef574855fbfc6abfb7a40ceb093c8.jpg"
-        },
-        {
           "name": "Trial of Devotion",
           "achieved": false,
           "unlocktime": 0,
@@ -6620,13 +6620,13 @@
     },
     "1154810": {
       "total": 23,
-      "unlocked": 0,
+      "unlocked": 1,
       "icons": [
         {
           "name": "Icebreaker",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/0b780c28f8d21d3bf2afcd88be254b20716eccab.jpg"
+          "achieved": true,
+          "unlocktime": 1789452941,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/f9e29716cf52339ea26667ec9789e9217ac2bad1.jpg"
         },
         {
           "name": "The Mana Press",
@@ -6847,7 +6847,7 @@
       ]
     },
     "1621690": {
-      "total": 55,
+      "total": 59,
       "unlocked": 2,
       "icons": [
         {
@@ -7179,6 +7179,30 @@
           "achieved": false,
           "unlocktime": 0,
           "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1621690/c75de8303cb8d84233a9fa60784a3d3e0daa76d2.jpg"
+        },
+        {
+          "name": "Fortune and Glory",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1621690/f630502ca10a10ccf8aac8c4bbd14398a40e98e0.jpg"
+        },
+        {
+          "name": "Giddy Up",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1621690/8f0c9d1b052e4012c2a1fa13bf0620481b70feb8.jpg"
+        },
+        {
+          "name": "The Veil Crux",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1621690/ab641eb64a4c701ed9375bc8d873b158b060d329.jpg"
+        },
+        {
+          "name": "Racer's Garage",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1621690/36edf19c1cb24039837c07931aa33edce8e0e1d5.jpg"
         }
       ]
     },
