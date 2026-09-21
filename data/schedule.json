@@ -1,7 +1,7 @@
 {
   "vtuber": "Marchel",
   "tagline": "",
-  "lastUpdated": "2026-09-07",
+  "lastUpdated": "2026-09-21",
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
   "youtubeLatestVODId": "oJN929lROT8",
@@ -27,19 +27,19 @@
     {
       "id": 3,
       "day": "Miércoles",
-      "time": "19:30",
-      "game": "Garden Souls",
-      "imageUrl": "https://i.imgur.com/KnSM0NQ.png",
-      "tag": "Stream Shorti",
+      "time": "19:00",
+      "game": "Control, I'm Not Coming Back ",
+      "imageUrl": "https://i.imgur.com/cEAHh5u.png",
+      "tag": "Stream Longo",
       "active": true
     },
     {
       "id": 4,
       "day": "Jueves",
-      "time": "19:30",
-      "game": "Desafío UHC",
-      "imageUrl": "https://i.imgur.com/sIAkrHO.png",
-      "tag": "Stream Longo",
+      "time": "19:00",
+      "game": "Iron Bramble",
+      "imageUrl": "https://i.imgur.com/lNNHymm.png",
+      "tag": "Stream Shorti",
       "active": true
     },
     {

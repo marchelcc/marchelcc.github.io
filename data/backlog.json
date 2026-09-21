@@ -24,6 +24,17 @@
     },
     {
       "id": 3,
+      "name": "El Hoyo by Alan2k2 & Chiletian",
+      "appid": null,
+      "raGameId": null,
+      "platform": "minecraft-event",
+      "status": "completado",
+      "hoursPlayed": 3,
+      "imageUrl": "https://i.imgur.com/JJrNtxa.png",
+      "capsuleUrl": "https://i.imgur.com/JJrNtxa.png"
+    },
+    {
+      "id": 4,
       "name": "Easy Delivery Co.",
       "appid": 3293010,
       "platform": "steam",
@@ -39,7 +50,7 @@
       "appid": 4621180,
       "platform": "steam",
       "status": "pausado",
-      "hoursPlayed": null,
+      "hoursPlayed": 2.6,
       "imageUrl": "https://i.imgur.com/BJ6w3FE.png",
       "capsuleUrl": "https://i.imgur.com/i7Mv012.png",
       "raGameId": null
@@ -50,7 +61,7 @@
       "appid": 3376480,
       "platform": "steam",
       "status": "pausado",
-      "hoursPlayed": null,
+      "hoursPlayed": 2.9,
       "imageUrl": "https://i.imgur.com/UykJMmp.png",
       "capsuleUrl": "https://i.imgur.com/ufCE0je.png",
       "raGameId": null
@@ -184,8 +195,8 @@
       "platform": "steam",
       "status": "backlog",
       "hoursPlayed": null,
-      "imageUrl": "",
-      "capsuleUrl": ""
+      "imageUrl": "https://i.imgur.com/GxLbMFA.png",
+      "capsuleUrl": "https://i.imgur.com/pY8BvQc.png"
     },
     {
       "id": 101,
@@ -195,8 +206,8 @@
       "platform": "steam",
       "status": "backlog",
       "hoursPlayed": null,
-      "imageUrl": "",
-      "capsuleUrl": ""
+      "imageUrl": "https://i.imgur.com/z7zSZ1t.png",
+      "capsuleUrl": "https://i.imgur.com/XUmPx5h.png"
     },
     {
       "id": 102,
@@ -206,8 +217,8 @@
       "platform": "steam",
       "status": "backlog",
       "hoursPlayed": null,
-      "imageUrl": "",
-      "capsuleUrl": ""
+      "imageUrl": "https://i.imgur.com/li2IhrB.png",
+      "capsuleUrl": "https://i.imgur.com/KqJUkWp.png"
     },
     {
       "id": 103,
@@ -217,8 +228,8 @@
       "platform": "steam",
       "status": "backlog",
       "hoursPlayed": null,
-      "imageUrl": "",
-      "capsuleUrl": ""
+      "imageUrl": "https://i.imgur.com/WtijLxd.png",
+      "capsuleUrl": "https://i.imgur.com/58F3Nln.png"
     },
     {
       "id": 104,
