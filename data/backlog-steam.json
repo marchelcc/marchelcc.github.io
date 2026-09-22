@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-21T15:50:53.886Z",
+  "updated": "2026-09-22T13:59:29.023Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1092,9 +1092,9 @@
     },
     "493520": {
       "name": "GTFO",
-      "playtimeForeverMinutes": 72,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1743386415,
+      "playtimeForeverMinutes": 74,
+      "playtime2WeeksMinutes": 2,
+      "lastPlayedUnix": 1790027139,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/493520/c211299ef6127057dfe0271626bb044e79c28f78.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/493520/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/493520/library_600x900_2x.jpg"
@@ -1362,9 +1362,9 @@
     },
     "632360": {
       "name": "Risk of Rain 2",
-      "playtimeForeverMinutes": 4170,
-      "playtime2WeeksMinutes": 148,
-      "lastPlayedUnix": 1789957798,
+      "playtimeForeverMinutes": 4206,
+      "playtime2WeeksMinutes": 185,
+      "lastPlayedUnix": 1790048850,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/library_600x900_2x.jpg"
@@ -1588,7 +1588,7 @@
     "788100": {
       "name": "Neon Abyss",
       "playtimeForeverMinutes": 184,
-      "playtime2WeeksMinutes": 53,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1788853111,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/788100/78dfe88f6e4e2d36bf916c88a8100d546989a9e3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/788100/header.jpg",
@@ -3027,9 +3027,9 @@
     },
     "2073850": {
       "name": "THE FINALS",
-      "playtimeForeverMinutes": 373,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1774544178,
+      "playtimeForeverMinutes": 417,
+      "playtime2WeeksMinutes": 44,
+      "lastPlayedUnix": 1790038717,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2073850/9532db560dca3b4982f4af3f5981b6b2ce2a6909.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2073850/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2073850/library_600x900_2x.jpg"
@@ -3207,9 +3207,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 1742,
-      "playtime2WeeksMinutes": 361,
-      "lastPlayedUnix": 1789609331,
+      "playtimeForeverMinutes": 1816,
+      "playtime2WeeksMinutes": 435,
+      "lastPlayedUnix": 1790043309,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
@@ -3351,9 +3351,9 @@
     },
     "2666510": {
       "name": "Rusty's Retirement",
-      "playtimeForeverMinutes": 6205,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1779834709,
+      "playtimeForeverMinutes": 6209,
+      "playtime2WeeksMinutes": 3,
+      "lastPlayedUnix": 1790022261,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2666510/72be5b22943d8874a18c9de214f1d5fa82d98310.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2666510/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2666510/library_600x900_2x.jpg"
@@ -3415,7 +3415,7 @@
     "2763740": {
       "name": "Revolution Idle",
       "playtimeForeverMinutes": 2921,
-      "playtime2WeeksMinutes": 1137,
+      "playtime2WeeksMinutes": 497,
       "lastPlayedUnix": 1789075428,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2763740/82afae56cfd88514886adb316b6d0f672dcbfaea.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2763740/header.jpg",
