@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-22T13:59:29.023Z",
+  "updated": "2026-09-23T14:11:25.648Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -3207,9 +3207,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 1816,
-      "playtime2WeeksMinutes": 435,
-      "lastPlayedUnix": 1790043309,
+      "playtimeForeverMinutes": 1859,
+      "playtime2WeeksMinutes": 478,
+      "lastPlayedUnix": 1790139326,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
@@ -3415,7 +3415,7 @@
     "2763740": {
       "name": "Revolution Idle",
       "playtimeForeverMinutes": 2921,
-      "playtime2WeeksMinutes": 497,
+      "playtime2WeeksMinutes": 453,
       "lastPlayedUnix": 1789075428,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2763740/82afae56cfd88514886adb316b6d0f672dcbfaea.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2763740/header.jpg",
@@ -3423,9 +3423,9 @@
     },
     "2767030": {
       "name": "Marvel Rivals",
-      "playtimeForeverMinutes": 352,
-      "playtime2WeeksMinutes": 6,
-      "lastPlayedUnix": 1789599246,
+      "playtimeForeverMinutes": 410,
+      "playtime2WeeksMinutes": 65,
+      "lastPlayedUnix": 1790142813,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2767030/839b4712925b95702ca56e0c4d399adf54f4d617.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/library_600x900_2x.jpg"
@@ -7467,6 +7467,144 @@
           "achieved": false,
           "unlocktime": 0,
           "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3376480/574de207b374e956adf84fea3aae41e2eb1d0dd4.jpg"
+        }
+      ]
+    },
+    "4883580": {
+      "total": 22,
+      "unlocked": 0,
+      "icons": [
+        {
+          "name": "Getting Started",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/4582637c5a32bb5bbc7ff921a764bf79abdc84a0.jpg"
+        },
+        {
+          "name": "Beginner",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/d09f0b5288220477a5afea07ed94518d2c6b96e6.jpg"
+        },
+        {
+          "name": "Amateur",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/b2170b5d10d23613ad78e556d482f530f7286181.jpg"
+        },
+        {
+          "name": "Intermediate",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/cd74b4c89ea8cb65c4107cdf7606f62113c11a46.jpg"
+        },
+        {
+          "name": "Expert",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/224b6ed8db4f24ea51e987a67669e3634c88b2f3.jpg"
+        },
+        {
+          "name": "Master",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/c3328c6808186d0b17b251ac54828b7a788c3839.jpg"
+        },
+        {
+          "name": "Roddin' Out",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/ea23a6b5da364adda92543769b15303986fe02b3.jpg"
+        },
+        {
+          "name": "Dawn of the Third Day",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/fec032587dbc583581a90fbdf9d826d6143d8bad.jpg"
+        },
+        {
+          "name": "Don't Stop Me Now",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/e6dc3aaad89423b32ff9e2bff79f2c315dfd5f3d.jpg"
+        },
+        {
+          "name": "Still Fishin'",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/4b6b95df6cfee4f6bc78360e78ab5efea2bc1ac4.jpg"
+        },
+        {
+          "name": "Gotta Blast!",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/0286f08b9dea096af2dc99e5a0e13736c8bcee04.jpg"
+        },
+        {
+          "name": "Under the Sea",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/4eaec8c1b5a24ce6bb579999a71fb34564fb81c4.jpg"
+        },
+        {
+          "name": "Just Chillin'",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/2ea081fdeda85091e1565b771ed494459f1f8367.jpg"
+        },
+        {
+          "name": "Looking Good",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/f4b19aa52504330e12fc6c8a3d82be4a507d2f73.jpg"
+        },
+        {
+          "name": "Fashionista",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/740c1ebe63ced015802d3fce01efc679cf16f58a.jpg"
+        },
+        {
+          "name": "Big!",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/e6108c5c5c49b160ba7639aaeb0365371b3ab3ee.jpg"
+        },
+        {
+          "name": "Small!",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/20acbe8b3307d3028a1747985c8fbbcd5e76834b.jpg"
+        },
+        {
+          "name": "Boom!",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/5b980fa7dd03b0d823086ac8b273046a4ccf6116.jpg"
+        },
+        {
+          "name": "Only a Thousand Soft Resets!",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/3a5fc200c829723b98d230ed3ac8973817861431.jpg"
+        },
+        {
+          "name": "A Little Lucky",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/07fc1402463a104d50d69a43cc57c6c05b48265a.jpg"
+        },
+        {
+          "name": "Pretty Lucky",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/652758f0afb954ca7316f09874934b79641c78c1.jpg"
+        },
+        {
+          "name": "Holy Mackerel!",
+          "achieved": false,
+          "unlocktime": 0,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/6b4dbd38aa22fbf20cf2dcbe153e89ecd978169f.jpg"
         }
       ]
     }
