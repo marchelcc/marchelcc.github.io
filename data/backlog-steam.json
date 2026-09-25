@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-24T14:09:26.804Z",
+  "updated": "2026-09-25T14:33:03.405Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -3415,7 +3415,7 @@
     "2763740": {
       "name": "Revolution Idle",
       "playtimeForeverMinutes": 2921,
-      "playtime2WeeksMinutes": 345,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1789075428,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2763740/82afae56cfd88514886adb316b6d0f672dcbfaea.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2763740/header.jpg",
@@ -3801,9 +3801,9 @@
     },
     "3527290": {
       "name": "PEAK",
-      "playtimeForeverMinutes": 1462,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1782413267,
+      "playtimeForeverMinutes": 1601,
+      "playtime2WeeksMinutes": 138,
+      "lastPlayedUnix": 1790286426,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3527290/b3a992fd5991bd2f4c956d58e062b0ce2988d6cd.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3527290/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3527290/library_600x900_2x.jpg"
