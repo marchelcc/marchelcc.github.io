@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T14:33:03.405Z",
+  "updated": "2026-09-26T13:42:49.170Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -3207,9 +3207,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 1907,
-      "playtime2WeeksMinutes": 526,
-      "lastPlayedUnix": 1790219778,
+      "playtimeForeverMinutes": 1962,
+      "playtime2WeeksMinutes": 581,
+      "lastPlayedUnix": 1790413235,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
