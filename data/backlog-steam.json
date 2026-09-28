@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-27T14:39:10.770Z",
+  "updated": "2026-09-28T17:34:58.623Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -2424,9 +2424,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 1416,
-      "playtime2WeeksMinutes": 69,
-      "lastPlayedUnix": 1790477909,
+      "playtimeForeverMinutes": 1466,
+      "playtime2WeeksMinutes": 119,
+      "lastPlayedUnix": 1790568739,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -2859,7 +2859,7 @@
       "playtimeForeverMinutes": 2,
       "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1765983009,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1903340/d48fb3ed033a08bad9bf0a2e1ceb145e58ffe0aa.jpg",
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1903340/d569d17097e2a2991cc5097939948ea075bdd653.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1903340/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1903340/library_600x900_2x.jpg"
     },
@@ -3207,9 +3207,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 2054,
-      "playtime2WeeksMinutes": 652,
-      "lastPlayedUnix": 1790474768,
+      "playtimeForeverMinutes": 2109,
+      "playtime2WeeksMinutes": 707,
+      "lastPlayedUnix": 1790563768,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
