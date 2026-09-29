@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-28T17:34:58.623Z",
+  "updated": "2026-09-29T15:38:14.875Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -544,7 +544,7 @@
     "250900": {
       "name": "The Binding of Isaac: Rebirth",
       "playtimeForeverMinutes": 273,
-      "playtime2WeeksMinutes": 16,
+      "playtime2WeeksMinutes": 13,
       "lastPlayedUnix": 1789678763,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/250900/16d46c8630499bfc54d20745ac90786a302cd643.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/250900/header.jpg",
@@ -659,7 +659,7 @@
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/291480/library_600x900_2x.jpg"
     },
     "292030": {
-      "name": "The Witcher 3: Wild Hunt - Complete Edition",
+      "name": "The Witcher 3: Wild Hunt — Remastered",
       "playtimeForeverMinutes": 199,
       "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1673382899,
@@ -1273,7 +1273,7 @@
     "588650": {
       "name": "Dead Cells",
       "playtimeForeverMinutes": 90,
-      "playtime2WeeksMinutes": 1,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1789452075,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/588650/a431361e5dae5fd6ac2433064b62b2a37abc38f1.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/588650/header.jpg",
@@ -1363,7 +1363,7 @@
     "632360": {
       "name": "Risk of Rain 2",
       "playtimeForeverMinutes": 4300,
-      "playtime2WeeksMinutes": 279,
+      "playtime2WeeksMinutes": 273,
       "lastPlayedUnix": 1790213346,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
@@ -2002,7 +2002,7 @@
     "1154810": {
       "name": "Going Under",
       "playtimeForeverMinutes": 15,
-      "playtime2WeeksMinutes": 15,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1789452991,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1154810/50a1e9277f9b2024a1fafdf407b3ec3889389a96.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1154810/header.jpg",
@@ -2424,9 +2424,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 1466,
-      "playtime2WeeksMinutes": 119,
-      "lastPlayedUnix": 1790568739,
+      "playtimeForeverMinutes": 1512,
+      "playtime2WeeksMinutes": 161,
+      "lastPlayedUnix": 1790657619,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3207,9 +3207,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 2109,
-      "playtime2WeeksMinutes": 707,
-      "lastPlayedUnix": 1790563768,
+      "playtimeForeverMinutes": 2134,
+      "playtime2WeeksMinutes": 642,
+      "lastPlayedUnix": 1790633830,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
@@ -3423,9 +3423,9 @@
     },
     "2767030": {
       "name": "Marvel Rivals",
-      "playtimeForeverMinutes": 410,
-      "playtime2WeeksMinutes": 65,
-      "lastPlayedUnix": 1790142813,
+      "playtimeForeverMinutes": 516,
+      "playtime2WeeksMinutes": 171,
+      "lastPlayedUnix": 1790642960,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2767030/839b4712925b95702ca56e0c4d399adf54f4d617.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/library_600x900_2x.jpg"
@@ -3496,7 +3496,7 @@
     "2868840": {
       "name": "Slay the Spire 2",
       "playtimeForeverMinutes": 235,
-      "playtime2WeeksMinutes": 3,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1789451949,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2868840/f92b09dab91f1d1738f72fe0dd9be18dcc2901f9.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2868840/header.jpg",
