@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-30T15:49:24.295Z",
+  "updated": "2026-10-01T16:16:04.066Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -2424,9 +2424,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 1694,
-      "playtime2WeeksMinutes": 327,
-      "lastPlayedUnix": 1790744126,
+      "playtimeForeverMinutes": 1933,
+      "playtime2WeeksMinutes": 566,
+      "lastPlayedUnix": 1790839437,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3208,7 +3208,7 @@
     "2357570": {
       "name": "Overwatch®",
       "playtimeForeverMinutes": 2134,
-      "playtime2WeeksMinutes": 515,
+      "playtime2WeeksMinutes": 392,
       "lastPlayedUnix": 1790633830,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
@@ -3424,7 +3424,7 @@
     "2767030": {
       "name": "Marvel Rivals",
       "playtimeForeverMinutes": 516,
-      "playtime2WeeksMinutes": 171,
+      "playtime2WeeksMinutes": 164,
       "lastPlayedUnix": 1790642960,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2767030/839b4712925b95702ca56e0c4d399adf54f4d617.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/header.jpg",
@@ -3720,9 +3720,9 @@
     },
     "3241660": {
       "name": "R.E.P.O.",
-      "playtimeForeverMinutes": 2834,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1783052448,
+      "playtimeForeverMinutes": 2944,
+      "playtime2WeeksMinutes": 109,
+      "lastPlayedUnix": 1790825405,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3241660/b8bf4770408fc369e15cebd42e0026a27b67aaa8.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3241660/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3241660/library_600x900_2x.jpg"
