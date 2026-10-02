@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-01T16:16:04.066Z",
+  "updated": "2026-10-02T15:40:19.015Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -544,7 +544,7 @@
     "250900": {
       "name": "The Binding of Isaac: Rebirth",
       "playtimeForeverMinutes": 273,
-      "playtime2WeeksMinutes": 13,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1789678763,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/250900/16d46c8630499bfc54d20745ac90786a302cd643.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/250900/header.jpg",
@@ -2424,9 +2424,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 1933,
-      "playtime2WeeksMinutes": 566,
-      "lastPlayedUnix": 1790839437,
+      "playtimeForeverMinutes": 2325,
+      "playtime2WeeksMinutes": 958,
+      "lastPlayedUnix": 1790927352,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3906,6 +3906,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3950020/780f9c68ea62b1f199a1322defed924e6ca077e1.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3950020/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3950020/library_600x900_2x.jpg"
+    },
+    "3998020": {
+      "name": "Lootbound Playtest",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3998020/e7857f559b9a2183f2f9256cdf0d86a8affa7676.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3998020/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3998020/library_600x900_2x.jpg"
     },
     "4021750": {
       "name": "Spellcasters Chronicles Playtest",
