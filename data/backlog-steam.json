@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-03T14:15:33.041Z",
+  "updated": "2026-10-04T14:44:17.396Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -2424,9 +2424,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 2475,
-      "playtime2WeeksMinutes": 1108,
-      "lastPlayedUnix": 1790999513,
+      "playtimeForeverMinutes": 2577,
+      "playtime2WeeksMinutes": 1211,
+      "lastPlayedUnix": 1791097291,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3423,9 +3423,9 @@
     },
     "2767030": {
       "name": "Marvel Rivals",
-      "playtimeForeverMinutes": 516,
-      "playtime2WeeksMinutes": 164,
-      "lastPlayedUnix": 1790642960,
+      "playtimeForeverMinutes": 537,
+      "playtime2WeeksMinutes": 185,
+      "lastPlayedUnix": 1791089083,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2767030/839b4712925b95702ca56e0c4d399adf54f4d617.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/library_600x900_2x.jpg"
