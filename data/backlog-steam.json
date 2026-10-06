@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-05T18:17:00.607Z",
+  "updated": "2026-10-06T15:49:37.580Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1093,7 +1093,7 @@
     "493520": {
       "name": "GTFO",
       "playtimeForeverMinutes": 74,
-      "playtime2WeeksMinutes": 2,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1790027139,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/493520/c211299ef6127057dfe0271626bb044e79c28f78.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/493520/header.jpg",
@@ -1363,7 +1363,7 @@
     "632360": {
       "name": "Risk of Rain 2",
       "playtimeForeverMinutes": 4300,
-      "playtime2WeeksMinutes": 130,
+      "playtime2WeeksMinutes": 93,
       "lastPlayedUnix": 1790213346,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
@@ -2424,9 +2424,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 2577,
-      "playtime2WeeksMinutes": 1211,
-      "lastPlayedUnix": 1791097291,
+      "playtimeForeverMinutes": 2612,
+      "playtime2WeeksMinutes": 1245,
+      "lastPlayedUnix": 1791259565,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3028,7 +3028,7 @@
     "2073850": {
       "name": "THE FINALS",
       "playtimeForeverMinutes": 417,
-      "playtime2WeeksMinutes": 44,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1790038717,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2073850/9532db560dca3b4982f4af3f5981b6b2ce2a6909.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2073850/header.jpg",
@@ -3207,9 +3207,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 2184,
-      "playtime2WeeksMinutes": 441,
-      "lastPlayedUnix": 1790973035,
+      "playtimeForeverMinutes": 2250,
+      "playtime2WeeksMinutes": 434,
+      "lastPlayedUnix": 1791267312,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
@@ -3352,7 +3352,7 @@
     "2666510": {
       "name": "Rusty's Retirement",
       "playtimeForeverMinutes": 6209,
-      "playtime2WeeksMinutes": 3,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1790022261,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2666510/72be5b22943d8874a18c9de214f1d5fa82d98310.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2666510/header.jpg",
