@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T15:49:37.580Z",
+  "updated": "2026-10-07T16:18:20.241Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -2424,9 +2424,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 2612,
-      "playtime2WeeksMinutes": 1245,
-      "lastPlayedUnix": 1791259565,
+      "playtimeForeverMinutes": 2623,
+      "playtime2WeeksMinutes": 1256,
+      "lastPlayedUnix": 1791324776,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3208,7 +3208,7 @@
     "2357570": {
       "name": "Overwatch®",
       "playtimeForeverMinutes": 2250,
-      "playtime2WeeksMinutes": 434,
+      "playtime2WeeksMinutes": 391,
       "lastPlayedUnix": 1791267312,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
@@ -3424,7 +3424,7 @@
     "2767030": {
       "name": "Marvel Rivals",
       "playtimeForeverMinutes": 537,
-      "playtime2WeeksMinutes": 185,
+      "playtime2WeeksMinutes": 126,
       "lastPlayedUnix": 1791089083,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2767030/839b4712925b95702ca56e0c4d399adf54f4d617.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/header.jpg",
