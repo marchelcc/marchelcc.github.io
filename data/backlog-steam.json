@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-09T16:04:09.343Z",
+  "updated": "2026-10-10T15:12:23.501Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1371,9 +1371,9 @@
     },
     "632360": {
       "name": "Risk of Rain 2",
-      "playtimeForeverMinutes": 4300,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1790213346,
+      "playtimeForeverMinutes": 4343,
+      "playtime2WeeksMinutes": 43,
+      "lastPlayedUnix": 1791614706,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/library_600x900_2x.jpg"
@@ -2433,9 +2433,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 2623,
-      "playtime2WeeksMinutes": 1256,
-      "lastPlayedUnix": 1791324776,
+      "playtimeForeverMinutes": 2681,
+      "playtime2WeeksMinutes": 1314,
+      "lastPlayedUnix": 1791610923,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3216,9 +3216,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 2330,
-      "playtime2WeeksMinutes": 423,
-      "lastPlayedUnix": 1791497762,
+      "playtimeForeverMinutes": 2399,
+      "playtime2WeeksMinutes": 436,
+      "lastPlayedUnix": 1791607087,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
@@ -3591,6 +3591,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2955840/93c637e395897e6a681db87bd6ada2371772e4eb.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2955840/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2955840/library_600x900_2x.jpg"
+    },
+    "2990600": {
+      "name": "Fireside Feelings",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2990600/4ffe7aca1c7f9cef20fca05795025c64eb14aa61.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2990600/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2990600/library_600x900_2x.jpg"
     },
     "2998250": {
       "name": "Isle Goblin Playtest",
