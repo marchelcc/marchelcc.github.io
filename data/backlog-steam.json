@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-10T15:12:23.501Z",
+  "updated": "2026-10-11T15:32:19.258Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1543,7 +1543,7 @@
     "761890": {
       "name": "Albion Online",
       "playtimeForeverMinutes": 485,
-      "playtime2WeeksMinutes": 80,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1790471079,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/761890/c58d1e42e59a9c6cc57c8da69d944b37ba45a0e2.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/761890/header.jpg",
@@ -2433,9 +2433,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 2681,
-      "playtime2WeeksMinutes": 1314,
-      "lastPlayedUnix": 1791610923,
+      "playtimeForeverMinutes": 2746,
+      "playtime2WeeksMinutes": 1329,
+      "lastPlayedUnix": 1791675023,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3216,9 +3216,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 2399,
-      "playtime2WeeksMinutes": 436,
-      "lastPlayedUnix": 1791607087,
+      "playtimeForeverMinutes": 2481,
+      "playtime2WeeksMinutes": 426,
+      "lastPlayedUnix": 1791682219,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
@@ -4032,6 +4032,24 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4469370/cad2799dc03a7f3881b29f0a3e7515d298309316.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4469370/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4469370/library_600x900_2x.jpg"
+    },
+    "4474710": {
+      "name": "FINAL FANTASY RESONANCE DEMO",
+      "playtimeForeverMinutes": 49,
+      "playtime2WeeksMinutes": 49,
+      "lastPlayedUnix": 1791708406,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4474710/4e89e6108d4a4eb44a9ae23d078eb8175118c4e3.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4474710/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4474710/library_600x900_2x.jpg"
+    },
+    "4505440": {
+      "name": "Asobi: Remote Play",
+      "playtimeForeverMinutes": 10,
+      "playtime2WeeksMinutes": 10,
+      "lastPlayedUnix": 1791670225,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4505440/be77af3871d9af20369a606d1f900520e1aea538.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4505440/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4505440/library_600x900_2x.jpg"
     },
     "4508340": {
       "name": "NTE: Neverness to Everness",
