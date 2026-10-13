@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-12T18:52:56.648Z",
+  "updated": "2026-10-13T16:52:00.248Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1371,9 +1371,9 @@
     },
     "632360": {
       "name": "Risk of Rain 2",
-      "playtimeForeverMinutes": 4343,
-      "playtime2WeeksMinutes": 43,
-      "lastPlayedUnix": 1791614706,
+      "playtimeForeverMinutes": 4347,
+      "playtime2WeeksMinutes": 47,
+      "lastPlayedUnix": 1791861451,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/library_600x900_2x.jpg"
@@ -2433,9 +2433,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 2746,
+      "playtimeForeverMinutes": 2793,
       "playtime2WeeksMinutes": 1280,
-      "lastPlayedUnix": 1791675023,
+      "lastPlayedUnix": 1791875023,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3216,9 +3216,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 2481,
-      "playtime2WeeksMinutes": 371,
-      "lastPlayedUnix": 1791682219,
+      "playtimeForeverMinutes": 2513,
+      "playtime2WeeksMinutes": 379,
+      "lastPlayedUnix": 1791861195,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
@@ -3433,7 +3433,7 @@
     "2767030": {
       "name": "Marvel Rivals",
       "playtimeForeverMinutes": 537,
-      "playtime2WeeksMinutes": 126,
+      "playtime2WeeksMinutes": 20,
       "lastPlayedUnix": 1791089083,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2767030/839b4712925b95702ca56e0c4d399adf54f4d617.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/header.jpg",
@@ -3480,7 +3480,7 @@
       "playtimeForeverMinutes": 58,
       "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1769975386,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2807960/195cfd006af0fc4ab13b35bbb0c1a4f46416d303.jpg",
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2807960/3059e94fb89816fe1929a238ac2b55e8be348408.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2807960/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2807960/library_600x900_2x.jpg"
     },
@@ -3666,9 +3666,9 @@
     },
     "3065800": {
       "name": "Marathon",
-      "playtimeForeverMinutes": 1489,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1784772091,
+      "playtimeForeverMinutes": 1510,
+      "playtime2WeeksMinutes": 21,
+      "lastPlayedUnix": 1791870551,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3065800/ac94c44cc0d83393f57578e5a122eac481e68933.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3065800/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3065800/library_600x900_2x.jpg"
@@ -4032,15 +4032,6 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4469370/cad2799dc03a7f3881b29f0a3e7515d298309316.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4469370/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4469370/library_600x900_2x.jpg"
-    },
-    "4474710": {
-      "name": "FINAL FANTASY RESONANCE DEMO",
-      "playtimeForeverMinutes": 49,
-      "playtime2WeeksMinutes": 49,
-      "lastPlayedUnix": 1791708406,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4474710/4e89e6108d4a4eb44a9ae23d078eb8175118c4e3.jpg",
-      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4474710/header.jpg",
-      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4474710/library_600x900_2x.jpg"
     },
     "4505440": {
       "name": "Asobi: Remote Play",
