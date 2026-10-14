@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-13T16:52:00.248Z",
+  "updated": "2026-10-14T14:27:01.498Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -2434,7 +2434,7 @@
     "1422450": {
       "name": "Deadlock",
       "playtimeForeverMinutes": 2793,
-      "playtime2WeeksMinutes": 1280,
+      "playtime2WeeksMinutes": 1098,
       "lastPlayedUnix": 1791875023,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
@@ -3970,15 +3970,6 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4069520/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4069520/library_600x900_2x.jpg"
     },
-    "4127570": {
-      "name": "Scramble Knights Online Playtest",
-      "playtimeForeverMinutes": 34,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1786933658,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4127570/b7085b94a9678d85434ae6830a0f24d9b8319490.jpg",
-      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4127570/header.jpg",
-      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4127570/library_600x900_2x.jpg"
-    },
     "4128260": {
       "name": "Highguard",
       "playtimeForeverMinutes": 564,
@@ -4032,6 +4023,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4469370/cad2799dc03a7f3881b29f0a3e7515d298309316.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4469370/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4469370/library_600x900_2x.jpg"
+    },
+    "4474710": {
+      "name": "FINAL FANTASY RESONANCE DEMO",
+      "playtimeForeverMinutes": 49,
+      "playtime2WeeksMinutes": 49,
+      "lastPlayedUnix": 1791708406,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4474710/4e89e6108d4a4eb44a9ae23d078eb8175118c4e3.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4474710/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4474710/library_600x900_2x.jpg"
     },
     "4505440": {
       "name": "Asobi: Remote Play",
