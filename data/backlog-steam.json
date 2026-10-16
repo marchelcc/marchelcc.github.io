@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-15T14:05:19.482Z",
+  "updated": "2026-10-16T13:53:25.707Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -714,9 +714,9 @@
     },
     "315210": {
       "name": "Suicide Squad: Kill the Justice League",
-      "playtimeForeverMinutes": 1412,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1736113467,
+      "playtimeForeverMinutes": 1677,
+      "playtime2WeeksMinutes": 264,
+      "lastPlayedUnix": 1792134572,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/315210/1c0ed772f3b98f58c60f5077bce058a277a944c3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/315210/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/315210/library_600x900_2x.jpg"
@@ -2433,9 +2433,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 2968,
-      "playtime2WeeksMinutes": 1035,
-      "lastPlayedUnix": 1792054114,
+      "playtimeForeverMinutes": 3036,
+      "playtime2WeeksMinutes": 711,
+      "lastPlayedUnix": 1792126745,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3306,9 +3306,9 @@
     },
     "2525310": {
       "name": "Drop Duchy",
-      "playtimeForeverMinutes": 0,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": null,
+      "playtimeForeverMinutes": 50,
+      "playtime2WeeksMinutes": 50,
+      "lastPlayedUnix": 1792138982,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2525310/35ab91aaa039a57f6b67c0434f80b6f32235ebd0.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2525310/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2525310/library_600x900_2x.jpg"
@@ -3639,9 +3639,9 @@
     },
     "3061570": {
       "name": "Persona5: The Phantom X",
-      "playtimeForeverMinutes": 69,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1751175594,
+      "playtimeForeverMinutes": 139,
+      "playtime2WeeksMinutes": 69,
+      "lastPlayedUnix": 1792122420,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3061570/89919706d6ccd614920090b2eba4fdf22f6de146.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3061570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3061570/library_600x900_2x.jpg"
