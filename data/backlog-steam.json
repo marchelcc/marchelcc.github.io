@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-17T12:53:07.280Z",
+  "updated": "2026-10-18T13:08:58.540Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -2434,7 +2434,7 @@
     "1422450": {
       "name": "Deadlock",
       "playtimeForeverMinutes": 3036,
-      "playtime2WeeksMinutes": 561,
+      "playtime2WeeksMinutes": 458,
       "lastPlayedUnix": 1792126745,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
@@ -3433,7 +3433,7 @@
     "2767030": {
       "name": "Marvel Rivals",
       "playtimeForeverMinutes": 537,
-      "playtime2WeeksMinutes": 20,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1791089083,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2767030/839b4712925b95702ca56e0c4d399adf54f4d617.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2767030/header.jpg",
