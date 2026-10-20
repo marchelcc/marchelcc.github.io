@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-19T16:23:54.787Z",
+  "updated": "2026-10-20T14:14:18.133Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -714,9 +714,9 @@
     },
     "315210": {
       "name": "Suicide Squad: Kill the Justice League",
-      "playtimeForeverMinutes": 2209,
-      "playtime2WeeksMinutes": 797,
-      "lastPlayedUnix": 1792397295,
+      "playtimeForeverMinutes": 2257,
+      "playtime2WeeksMinutes": 844,
+      "lastPlayedUnix": 1792475422,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/315210/1c0ed772f3b98f58c60f5077bce058a277a944c3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/315210/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/315210/library_600x900_2x.jpg"
@@ -2433,9 +2433,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 3091,
-      "playtime2WeeksMinutes": 513,
-      "lastPlayedUnix": 1792365193,
+      "playtimeForeverMinutes": 3142,
+      "playtime2WeeksMinutes": 530,
+      "lastPlayedUnix": 1792467931,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3217,7 +3217,7 @@
     "2357570": {
       "name": "Overwatch®",
       "playtimeForeverMinutes": 2513,
-      "playtime2WeeksMinutes": 329,
+      "playtime2WeeksMinutes": 262,
       "lastPlayedUnix": 1791861195,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
