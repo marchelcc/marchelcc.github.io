@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-23T14:10:47.993Z",
+  "updated": "2026-10-24T13:13:41.982Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -714,9 +714,9 @@
     },
     "315210": {
       "name": "Suicide Squad: Kill the Justice League",
-      "playtimeForeverMinutes": 2525,
-      "playtime2WeeksMinutes": 1112,
-      "lastPlayedUnix": 1792694847,
+      "playtimeForeverMinutes": 2594,
+      "playtime2WeeksMinutes": 1181,
+      "lastPlayedUnix": 1792776704,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/315210/1c0ed772f3b98f58c60f5077bce058a277a944c3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/315210/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/315210/library_600x900_2x.jpg"
@@ -1372,7 +1372,7 @@
     "632360": {
       "name": "Risk of Rain 2",
       "playtimeForeverMinutes": 4347,
-      "playtime2WeeksMinutes": 47,
+      "playtime2WeeksMinutes": 4,
       "lastPlayedUnix": 1791861451,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
@@ -2434,7 +2434,7 @@
     "1422450": {
       "name": "Deadlock",
       "playtimeForeverMinutes": 3258,
-      "playtime2WeeksMinutes": 634,
+      "playtime2WeeksMinutes": 576,
       "lastPlayedUnix": 1792730430,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
@@ -3217,7 +3217,7 @@
     "2357570": {
       "name": "Overwatch®",
       "playtimeForeverMinutes": 2513,
-      "playtime2WeeksMinutes": 182,
+      "playtime2WeeksMinutes": 114,
       "lastPlayedUnix": 1791861195,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
