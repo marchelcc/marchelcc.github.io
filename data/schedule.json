@@ -1,7 +1,7 @@
 {
   "vtuber": "Marchel",
   "tagline": "",
-  "lastUpdated": "2026-09-21",
+  "lastUpdated": "2026-10-24",
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
   "youtubeLatestVODId": "oJN929lROT8",
@@ -9,47 +9,47 @@
     {
       "id": 1,
       "day": "Lunes",
-      "time": null,
-      "game": "",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
-    },
-    {
-      "id": 2,
-      "day": "Martes",
-      "time": null,
-      "game": "",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
-    },
-    {
-      "id": 3,
-      "day": "Miércoles",
       "time": "19:00",
-      "game": "Control, I'm Not Coming Back ",
-      "imageUrl": "https://i.imgur.com/cEAHh5u.png",
+      "game": "Going Medieval",
+      "imageUrl": "https://i.imgur.com/uIs53SI.png",
       "tag": "Stream Longo",
       "active": true
     },
     {
+      "id": 2,
+      "day": "Martes",
+      "time": "19:00",
+      "game": "Easy Delivery Co.",
+      "imageUrl": "https://i.imgur.com/CEMTjFE.png",
+      "tag": "Stream Longo",
+      "active": true
+    },
+    {
+      "id": 3,
+      "day": "Miércoles",
+      "time": null,
+      "game": "",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
+    },
+    {
       "id": 4,
       "day": "Jueves",
-      "time": "19:00",
-      "game": "Iron Bramble",
-      "imageUrl": "https://i.imgur.com/lNNHymm.png",
+      "time": "16:00",
+      "game": "Final Fantasy X",
+      "imageUrl": "https://i.imgur.com/fqVJUzA.png",
       "tag": "Stream Shorti",
       "active": true
     },
     {
       "id": 5,
       "day": "Viernes",
-      "time": null,
-      "game": "",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "19:00",
+      "game": "Minecraft",
+      "imageUrl": "https://i.imgur.com/sIAkrHO.png",
+      "tag": "Stream Longo",
+      "active": true
     },
     {
       "id": 6,

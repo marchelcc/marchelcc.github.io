@@ -17,7 +17,7 @@
       "appid": null,
       "raGameId": null,
       "platform": "minecraft-map",
-      "status": "jugando",
+      "status": "pausado",
       "hoursPlayed": 1.5,
       "imageUrl": "https://i.imgur.com/Ka7Q7HE.png",
       "capsuleUrl": "https://i.imgur.com/8DDCV37.png"
@@ -137,7 +137,7 @@
       "name": "Going Medieval",
       "appid": 1029780,
       "platform": "steam",
-      "status": "platino",
+      "status": "jugando",
       "hoursPlayed": null,
       "imageUrl": null,
       "capsuleUrl": null,
@@ -175,17 +175,6 @@
       "imageUrl": "https://i.imgur.com/E3fLUad.gif",
       "capsuleUrl": "https://i.imgur.com/DbmNn3W.png",
       "raGameId": null
-    },
-    {
-      "id": 100,
-      "name": "Garden Souls",
-      "appid": 5175000,
-      "raGameId": null,
-      "platform": "steam",
-      "status": "backlog",
-      "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/kyBiwJX.png",
-      "capsuleUrl": "https://i.imgur.com/yPBFcs8.png"
     },
     {
       "id": 100,
