@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-24T13:13:41.982Z",
+  "updated": "2026-10-25T13:39:23.218Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -630,6 +630,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/287700/7a1737163c96ea641143db45709a4ac444ba8f7b.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/287700/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/287700/library_600x900_2x.jpg"
+    },
+    "289070": {
+      "name": "Sid Meier's Civilization VI",
+      "playtimeForeverMinutes": 352,
+      "playtime2WeeksMinutes": 352,
+      "lastPlayedUnix": 1792910745,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/library_600x900_2x.jpg"
     },
     "289130": {
       "name": "ENDLESS Legend™",
@@ -2434,7 +2443,7 @@
     "1422450": {
       "name": "Deadlock",
       "playtimeForeverMinutes": 3258,
-      "playtime2WeeksMinutes": 576,
+      "playtime2WeeksMinutes": 511,
       "lastPlayedUnix": 1792730430,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
@@ -3217,7 +3226,7 @@
     "2357570": {
       "name": "Overwatch®",
       "playtimeForeverMinutes": 2513,
-      "playtime2WeeksMinutes": 114,
+      "playtime2WeeksMinutes": 32,
       "lastPlayedUnix": 1791861195,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
@@ -3691,6 +3700,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3104410/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3104410/library_600x900_2x.jpg"
     },
+    "3124540": {
+      "name": "Far Far West",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3124540/a0a5e461c215c2a8916f42111ce41fa887cbec71.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/library_600x900_2x.jpg"
+    },
     "3126180": {
       "name": "Tarisland",
       "playtimeForeverMinutes": 19,
@@ -4027,7 +4045,7 @@
     "4474710": {
       "name": "FINAL FANTASY RESONANCE DEMO",
       "playtimeForeverMinutes": 49,
-      "playtime2WeeksMinutes": 49,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1791708406,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4474710/4e89e6108d4a4eb44a9ae23d078eb8175118c4e3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4474710/header.jpg",
@@ -4036,7 +4054,7 @@
     "4505440": {
       "name": "Asobi: Remote Play",
       "playtimeForeverMinutes": 10,
-      "playtime2WeeksMinutes": 10,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1791670225,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4505440/be77af3871d9af20369a606d1f900520e1aea538.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4505440/header.jpg",
