@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-26T16:02:58.054Z",
+  "updated": "2026-10-27T15:16:38.738Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -633,9 +633,9 @@
     },
     "289070": {
       "name": "Sid Meier's Civilization VI",
-      "playtimeForeverMinutes": 536,
-      "playtime2WeeksMinutes": 536,
-      "lastPlayedUnix": 1793004788,
+      "playtimeForeverMinutes": 948,
+      "playtime2WeeksMinutes": 948,
+      "lastPlayedUnix": 1793085978,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/library_600x900_2x.jpg"
@@ -1381,7 +1381,7 @@
     "632360": {
       "name": "Risk of Rain 2",
       "playtimeForeverMinutes": 4347,
-      "playtime2WeeksMinutes": 4,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1791861451,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
@@ -1830,9 +1830,9 @@
     },
     "1029780": {
       "name": "Going Medieval",
-      "playtimeForeverMinutes": 2198,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1767679813,
+      "playtimeForeverMinutes": 2336,
+      "playtime2WeeksMinutes": 138,
+      "lastPlayedUnix": 1793061002,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1029780/3eec57d783c54036166564e195039b20f600a52f.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1029780/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1029780/library_600x900_2x.jpg"
@@ -2443,7 +2443,7 @@
     "1422450": {
       "name": "Deadlock",
       "playtimeForeverMinutes": 3258,
-      "playtime2WeeksMinutes": 511,
+      "playtime2WeeksMinutes": 464,
       "lastPlayedUnix": 1792730430,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
@@ -3226,7 +3226,7 @@
     "2357570": {
       "name": "Overwatch®",
       "playtimeForeverMinutes": 2513,
-      "playtime2WeeksMinutes": 32,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1791861195,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
@@ -3676,7 +3676,7 @@
     "3065800": {
       "name": "Marathon",
       "playtimeForeverMinutes": 1510,
-      "playtime2WeeksMinutes": 21,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1791870551,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3065800/ac94c44cc0d83393f57578e5a122eac481e68933.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3065800/header.jpg",
