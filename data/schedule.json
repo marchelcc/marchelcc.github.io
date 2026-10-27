@@ -19,19 +19,19 @@
       "id": 2,
       "day": "Martes",
       "time": "19:00",
-      "game": "Easy Delivery Co.",
-      "imageUrl": "https://i.imgur.com/CEMTjFE.png",
-      "tag": "Stream Longo",
+      "game": "",
+      "imageUrl": null,
+      "tag": "Off",
       "active": true
     },
     {
       "id": 3,
       "day": "Miércoles",
-      "time": null,
-      "game": "",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "19:00",
+      "game": "Easy Delivery Co.",
+      "imageUrl": "https://i.imgur.com/CEMTjFE.png",
+      "tag": "Stream Longo",
+      "active": true
     },
     {
       "id": 4,
