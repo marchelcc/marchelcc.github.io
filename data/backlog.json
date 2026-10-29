@@ -32,9 +32,20 @@
       "hoursPlayed": 3,
       "imageUrl": "https://i.imgur.com/JJrNtxa.png",
       "capsuleUrl": "https://i.imgur.com/JJrNtxa.png"
-    },
+    },    
     {
       "id": 4,
+      "name": "Going Medieval",
+      "appid": 1029780,
+      "platform": "steam",
+      "status": "jugando",
+      "hoursPlayed": null,
+      "imageUrl": null,
+      "capsuleUrl": null,
+      "raGameId": null
+    },
+    {
+      "id": 5,
       "name": "Easy Delivery Co.",
       "appid": 3293010,
       "platform": "steam",
