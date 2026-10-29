@@ -56,7 +56,18 @@
       "raGameId": null
     },
     {
-      "id": 8,
+      "id": 6,
+      "name": "Final Fantasy X/X-2 HD Remaster",
+      "appid": 359870,
+      "platform": "steam",
+      "status": "jugando",
+      "hoursPlayed": null,
+      "imageUrl": "https://i.imgur.com/CyVrZxs.png",
+      "capsuleUrl": "https://i.imgur.com/nQ7jEJQ.png",
+      "raGameId": null
+    },
+    {
+      "id": 9,
       "name": "Ascenders: Beyond the Peak",
       "appid": 4621180,
       "platform": "steam",
@@ -67,7 +78,7 @@
       "raGameId": null
     },
     {
-      "id": 9,
+      "id": 10,
       "name": "Delivery & Beyond",
       "appid": 3376480,
       "platform": "steam",
@@ -75,17 +86,6 @@
       "hoursPlayed": 2.9,
       "imageUrl": "https://i.imgur.com/UykJMmp.png",
       "capsuleUrl": "https://i.imgur.com/ufCE0je.png",
-      "raGameId": null
-    },
-    {
-      "id": 10,
-      "name": "Final Fantasy X/X-2 HD Remaster",
-      "appid": 359870,
-      "platform": "steam",
-      "status": "jugando",
-      "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/CyVrZxs.png",
-      "capsuleUrl": "https://i.imgur.com/nQ7jEJQ.png",
       "raGameId": null
     },
     {
@@ -137,18 +137,7 @@
       "name": "SIGNALIS",
       "appid": 1262350,
       "platform": "steam",
-      "status": "pausado",
-      "hoursPlayed": null,
-      "imageUrl": null,
-      "capsuleUrl": null,
-      "raGameId": null
-    },
-    {
-      "id": 16,
-      "name": "Going Medieval",
-      "appid": 1029780,
-      "platform": "steam",
-      "status": "jugando",
+      "status": "backlog",
       "hoursPlayed": null,
       "imageUrl": null,
       "capsuleUrl": null,
@@ -159,7 +148,7 @@
       "name": "Hollow Knight",
       "appid": 367520,
       "platform": "steam",
-      "status": "pausado",
+      "status": "backlog",
       "hoursPlayed": null,
       "imageUrl": null,
       "capsuleUrl": null,
