@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27T15:16:38.738Z",
+  "updated": "2026-10-28T15:53:57.533Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -633,9 +633,9 @@
     },
     "289070": {
       "name": "Sid Meier's Civilization VI",
-      "playtimeForeverMinutes": 948,
-      "playtime2WeeksMinutes": 948,
-      "lastPlayedUnix": 1793085978,
+      "playtimeForeverMinutes": 1034,
+      "playtime2WeeksMinutes": 1034,
+      "lastPlayedUnix": 1793151713,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/library_600x900_2x.jpg"
@@ -2674,6 +2674,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1666300/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1666300/library_600x900_2x.jpg"
     },
+    "1671200": {
+      "name": "HonkaiImpact 3rd",
+      "playtimeForeverMinutes": 81,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": 1676407293,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1671200/525d8e23e908bfe8cb5dcb093a4eb2528a0f55ad.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1671200/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1671200/library_600x900_2x.jpg"
+    },
     "1672970": {
       "name": "Minecraft Dungeons",
       "playtimeForeverMinutes": 679,
@@ -3702,9 +3711,9 @@
     },
     "3124540": {
       "name": "Far Far West",
-      "playtimeForeverMinutes": 0,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": null,
+      "playtimeForeverMinutes": 128,
+      "playtime2WeeksMinutes": 128,
+      "lastPlayedUnix": 1793167572,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3124540/a0a5e461c215c2a8916f42111ce41fa887cbec71.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/library_600x900_2x.jpg"
