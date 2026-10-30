@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29T15:59:22.439Z",
+  "updated": "2026-10-30T15:46:05.373Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -633,9 +633,9 @@
     },
     "289070": {
       "name": "Sid Meier's Civilization VI",
-      "playtimeForeverMinutes": 1297,
-      "playtime2WeeksMinutes": 1297,
-      "lastPlayedUnix": 1793251665,
+      "playtimeForeverMinutes": 1526,
+      "playtime2WeeksMinutes": 1526,
+      "lastPlayedUnix": 1793352567,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/library_600x900_2x.jpg"
@@ -723,9 +723,9 @@
     },
     "315210": {
       "name": "Suicide Squad: Kill the Justice League",
-      "playtimeForeverMinutes": 2594,
-      "playtime2WeeksMinutes": 1181,
-      "lastPlayedUnix": 1792776704,
+      "playtimeForeverMinutes": 2599,
+      "playtime2WeeksMinutes": 921,
+      "lastPlayedUnix": 1793319349,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/315210/1c0ed772f3b98f58c60f5077bce058a277a944c3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/315210/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/315210/library_600x900_2x.jpg"
@@ -1603,6 +1603,15 @@
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/782330/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/782330/library_600x900_2x.jpg"
     },
+    "785890": {
+      "name": "Hexologic",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/785890/7bedc0ef6e2d0fba292e2cad90d0166fb670319c.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/785890/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/785890/library_600x900_2x.jpg"
+    },
     "788100": {
       "name": "Neon Abyss",
       "playtimeForeverMinutes": 184,
@@ -2442,9 +2451,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 3258,
-      "playtime2WeeksMinutes": 289,
-      "lastPlayedUnix": 1792730430,
+      "playtimeForeverMinutes": 3303,
+      "playtime2WeeksMinutes": 267,
+      "lastPlayedUnix": 1793322138,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3325,7 +3334,7 @@
     "2525310": {
       "name": "Drop Duchy",
       "playtimeForeverMinutes": 50,
-      "playtime2WeeksMinutes": 50,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1792138982,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2525310/35ab91aaa039a57f6b67c0434f80b6f32235ebd0.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2525310/header.jpg",
@@ -3658,7 +3667,7 @@
     "3061570": {
       "name": "Persona5: The Phantom X",
       "playtimeForeverMinutes": 139,
-      "playtime2WeeksMinutes": 69,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1792122420,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3061570/89919706d6ccd614920090b2eba4fdf22f6de146.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3061570/header.jpg",
@@ -3711,9 +3720,9 @@
     },
     "3124540": {
       "name": "Far Far West",
-      "playtimeForeverMinutes": 128,
-      "playtime2WeeksMinutes": 128,
-      "lastPlayedUnix": 1793167572,
+      "playtimeForeverMinutes": 281,
+      "playtime2WeeksMinutes": 281,
+      "lastPlayedUnix": 1793332993,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3124540/a0a5e461c215c2a8916f42111ce41fa887cbec71.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/library_600x900_2x.jpg"
