@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30T15:46:05.373Z",
+  "updated": "2026-10-31T15:14:23.153Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -633,9 +633,9 @@
     },
     "289070": {
       "name": "Sid Meier's Civilization VI",
-      "playtimeForeverMinutes": 1526,
-      "playtime2WeeksMinutes": 1526,
-      "lastPlayedUnix": 1793352567,
+      "playtimeForeverMinutes": 1959,
+      "playtime2WeeksMinutes": 1959,
+      "lastPlayedUnix": 1793415659,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/library_600x900_2x.jpg"
@@ -1605,9 +1605,9 @@
     },
     "785890": {
       "name": "Hexologic",
-      "playtimeForeverMinutes": 0,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": null,
+      "playtimeForeverMinutes": 12,
+      "playtime2WeeksMinutes": 12,
+      "lastPlayedUnix": 1793425577,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/785890/7bedc0ef6e2d0fba292e2cad90d0166fb670319c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/785890/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/785890/library_600x900_2x.jpg"
@@ -2601,6 +2601,15 @@
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1580180/9cb8cb956b02a63edd8f20a6586300992b1f2cf3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1580180/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1580180/library_600x900_2x.jpg"
+    },
+    "1583850": {
+      "name": "Asleep: Act 1",
+      "playtimeForeverMinutes": 0,
+      "playtime2WeeksMinutes": 0,
+      "lastPlayedUnix": null,
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1583850/fa24e3d11e87dc854cd4e33496919d7cc1f034d0.jpg",
+      "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1583850/header.jpg",
+      "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1583850/library_600x900_2x.jpg"
     },
     "1599340": {
       "name": "Lost Ark",
@@ -3720,9 +3729,9 @@
     },
     "3124540": {
       "name": "Far Far West",
-      "playtimeForeverMinutes": 281,
-      "playtime2WeeksMinutes": 281,
-      "lastPlayedUnix": 1793332993,
+      "playtimeForeverMinutes": 323,
+      "playtime2WeeksMinutes": 323,
+      "lastPlayedUnix": 1793418446,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3124540/a0a5e461c215c2a8916f42111ce41fa887cbec71.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/library_600x900_2x.jpg"
