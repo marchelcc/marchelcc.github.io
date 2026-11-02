@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01T15:56:07.813Z",
+  "updated": "2026-11-02T19:24:00.589Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -724,7 +724,7 @@
     "315210": {
       "name": "Suicide Squad: Kill the Justice League",
       "playtimeForeverMinutes": 2599,
-      "playtime2WeeksMinutes": 921,
+      "playtime2WeeksMinutes": 389,
       "lastPlayedUnix": 1793319349,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/315210/1c0ed772f3b98f58c60f5077bce058a277a944c3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/315210/header.jpg",
@@ -1380,9 +1380,9 @@
     },
     "632360": {
       "name": "Risk of Rain 2",
-      "playtimeForeverMinutes": 4347,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1791861451,
+      "playtimeForeverMinutes": 4442,
+      "playtime2WeeksMinutes": 94,
+      "lastPlayedUnix": 1793597659,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/632360/0b809ac6f25e6570fecae5fc47bca0139a7bf70c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/632360/library_600x900_2x.jpg"
@@ -2452,7 +2452,7 @@
     "1422450": {
       "name": "Deadlock",
       "playtimeForeverMinutes": 3303,
-      "playtime2WeeksMinutes": 267,
+      "playtime2WeeksMinutes": 212,
       "lastPlayedUnix": 1793322138,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
@@ -3729,9 +3729,9 @@
     },
     "3124540": {
       "name": "Far Far West",
-      "playtimeForeverMinutes": 323,
-      "playtime2WeeksMinutes": 323,
-      "lastPlayedUnix": 1793418446,
+      "playtimeForeverMinutes": 402,
+      "playtime2WeeksMinutes": 402,
+      "lastPlayedUnix": 1793590422,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3124540/a0a5e461c215c2a8916f42111ce41fa887cbec71.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/library_600x900_2x.jpg"
@@ -5117,8 +5117,14 @@
     },
     "632360": {
       "total": 205,
-      "unlocked": 57,
+      "unlocked": 58,
       "icons": [
+        {
+          "name": "Cleanup Duty",
+          "achieved": true,
+          "unlocktime": 1793597171,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/632360/6322d79583c84913206c76296c6cf7603295e20e.jpg"
+        },
         {
           "name": "Void Fiend: Cleared Prime Meridian",
           "achieved": true,
@@ -5484,12 +5490,6 @@
           "achieved": false,
           "unlocktime": 0,
           "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/632360/320b4df5abb9d267e1b824197ad59a00610038ab.jpg"
-        },
-        {
-          "name": "Cleanup Duty",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/632360/6f5533c8ddc7add290bc7312898e6c6bd38c0ee7.jpg"
         },
         {
           "name": "Commando: Mastery",
