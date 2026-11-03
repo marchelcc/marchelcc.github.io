@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02T19:24:00.589Z",
+  "updated": "2026-11-03T16:57:07.802Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -724,7 +724,7 @@
     "315210": {
       "name": "Suicide Squad: Kill the Justice League",
       "playtimeForeverMinutes": 2599,
-      "playtime2WeeksMinutes": 389,
+      "playtime2WeeksMinutes": 341,
       "lastPlayedUnix": 1793319349,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/315210/1c0ed772f3b98f58c60f5077bce058a277a944c3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/315210/header.jpg",
@@ -2451,9 +2451,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 3303,
-      "playtime2WeeksMinutes": 212,
-      "lastPlayedUnix": 1793322138,
+      "playtimeForeverMinutes": 3363,
+      "playtime2WeeksMinutes": 221,
+      "lastPlayedUnix": 1793682215,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
