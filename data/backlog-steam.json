@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03T16:57:07.802Z",
+  "updated": "2026-11-04T17:01:16.198Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -633,9 +633,9 @@
     },
     "289070": {
       "name": "Sid Meier's Civilization VI",
-      "playtimeForeverMinutes": 1959,
-      "playtime2WeeksMinutes": 1959,
-      "lastPlayedUnix": 1793415659,
+      "playtimeForeverMinutes": 2013,
+      "playtime2WeeksMinutes": 2013,
+      "lastPlayedUnix": 1793763018,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/library_600x900_2x.jpg"
@@ -724,7 +724,7 @@
     "315210": {
       "name": "Suicide Squad: Kill the Justice League",
       "playtimeForeverMinutes": 2599,
-      "playtime2WeeksMinutes": 341,
+      "playtime2WeeksMinutes": 111,
       "lastPlayedUnix": 1793319349,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/315210/1c0ed772f3b98f58c60f5077bce058a277a944c3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/315210/header.jpg",
@@ -2452,7 +2452,7 @@
     "1422450": {
       "name": "Deadlock",
       "playtimeForeverMinutes": 3363,
-      "playtime2WeeksMinutes": 221,
+      "playtime2WeeksMinutes": 155,
       "lastPlayedUnix": 1793682215,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
@@ -2551,7 +2551,7 @@
     "1496790": {
       "name": "Gotham Knights",
       "playtimeForeverMinutes": 167,
-      "playtime2WeeksMinutes": 15,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1792592020,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1496790/1c133f57d64f54f24e4ef314b1ee08b8f5715df7.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1496790/header.jpg",
@@ -2983,7 +2983,7 @@
     "1974050": {
       "name": "Torchlight: Infinite",
       "playtimeForeverMinutes": 91,
-      "playtime2WeeksMinutes": 7,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1792557300,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1974050/77ce83c970c9f04b29a7381302fb35b152786c74.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1974050/header.jpg",
