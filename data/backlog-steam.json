@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-04T17:01:16.198Z",
+  "updated": "2026-11-05T17:16:44.291Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -2452,7 +2452,7 @@
     "1422450": {
       "name": "Deadlock",
       "playtimeForeverMinutes": 3363,
-      "playtime2WeeksMinutes": 155,
+      "playtime2WeeksMinutes": 107,
       "lastPlayedUnix": 1793682215,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
@@ -3640,7 +3640,7 @@
     "2998250": {
       "name": "Isle Goblin Playtest",
       "playtimeForeverMinutes": 156,
-      "playtime2WeeksMinutes": 156,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1792657044,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2998250/eda224a8014e07c4ece0ae258c9d4991bdd193d4.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2998250/header.jpg",
