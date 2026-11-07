@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-06T16:41:17.124Z",
+  "updated": "2026-11-07T15:36:04.321Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -633,9 +633,9 @@
     },
     "289070": {
       "name": "Sid Meier's Civilization VI",
-      "playtimeForeverMinutes": 2013,
-      "playtime2WeeksMinutes": 2013,
-      "lastPlayedUnix": 1793763018,
+      "playtimeForeverMinutes": 2393,
+      "playtime2WeeksMinutes": 2393,
+      "lastPlayedUnix": 1794043440,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/library_600x900_2x.jpg"
@@ -724,7 +724,7 @@
     "315210": {
       "name": "Suicide Squad: Kill the Justice League",
       "playtimeForeverMinutes": 2599,
-      "playtime2WeeksMinutes": 55,
+      "playtime2WeeksMinutes": 5,
       "lastPlayedUnix": 1793319349,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/315210/1c0ed772f3b98f58c60f5077bce058a277a944c3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/315210/header.jpg",
@@ -3765,9 +3765,9 @@
     },
     "3146520": {
       "name": "WEBFISHING",
-      "playtimeForeverMinutes": 114,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1735937625,
+      "playtimeForeverMinutes": 227,
+      "playtime2WeeksMinutes": 113,
+      "lastPlayedUnix": 1794016845,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3146520/f59f42d0b227a8161ac5bc5106d17fe6ba146157.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3146520/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3146520/library_600x900_2x.jpg"
