@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-07T15:36:04.321Z",
+  "updated": "2026-11-08T15:53:42.540Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -633,9 +633,9 @@
     },
     "289070": {
       "name": "Sid Meier's Civilization VI",
-      "playtimeForeverMinutes": 2393,
-      "playtime2WeeksMinutes": 2393,
-      "lastPlayedUnix": 1794043440,
+      "playtimeForeverMinutes": 2477,
+      "playtime2WeeksMinutes": 2124,
+      "lastPlayedUnix": 1794089088,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/library_600x900_2x.jpg"
@@ -2451,9 +2451,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 3399,
-      "playtime2WeeksMinutes": 141,
-      "lastPlayedUnix": 1793976524,
+      "playtimeForeverMinutes": 3436,
+      "playtime2WeeksMinutes": 177,
+      "lastPlayedUnix": 1794108396,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -4134,9 +4134,9 @@
     },
     "4883580": {
       "name": "The One Fish",
-      "playtimeForeverMinutes": 9,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1787550665,
+      "playtimeForeverMinutes": 44,
+      "playtime2WeeksMinutes": 34,
+      "lastPlayedUnix": 1794116813,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4883580/6a693115800565b65e3bf9770a42fe6684d39398.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4883580/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4883580/library_600x900_2x.jpg"
@@ -7775,19 +7775,55 @@
     },
     "4883580": {
       "total": 22,
-      "unlocked": 0,
+      "unlocked": 8,
       "icons": [
         {
-          "name": "Getting Started",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/4582637c5a32bb5bbc7ff921a764bf79abdc84a0.jpg"
+          "name": "Just Chillin'",
+          "achieved": true,
+          "unlocktime": 1794116071,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/4211aa94b4d0dbd3044ba30a2a033a5154ca061c.jpg"
+        },
+        {
+          "name": "Dawn of the Third Day",
+          "achieved": true,
+          "unlocktime": 1794115900,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/359ea8bd136ae75a7b95b0571779af146b15a208.jpg"
         },
         {
           "name": "Beginner",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/d09f0b5288220477a5afea07ed94518d2c6b96e6.jpg"
+          "achieved": true,
+          "unlocktime": 1794115721,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/5eaca9dc25f36427f55aeb6b5c1660fb4ee0cef3.jpg"
+        },
+        {
+          "name": "Looking Good",
+          "achieved": true,
+          "unlocktime": 1794115622,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/819a0564f35d1114c8dc8ed7b0a4e0204f3268b5.jpg"
+        },
+        {
+          "name": "Fashionista",
+          "achieved": true,
+          "unlocktime": 1794115287,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/d9a1ccbc841d984d8c0ec9fc45884cdea8921517.jpg"
+        },
+        {
+          "name": "A Little Lucky",
+          "achieved": true,
+          "unlocktime": 1794115209,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/9d74cf60da892f61db7ecfd2630407120dbf4228.jpg"
+        },
+        {
+          "name": "Pretty Lucky",
+          "achieved": true,
+          "unlocktime": 1794115175,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/2532d7f897867d54905158e3a204dbf016fe80a8.jpg"
+        },
+        {
+          "name": "Getting Started",
+          "achieved": true,
+          "unlocktime": 1794115144,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/888ccecd0b0756d86f6daf44459cb31b6e178079.jpg"
         },
         {
           "name": "Amateur",
@@ -7820,12 +7856,6 @@
           "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/ea23a6b5da364adda92543769b15303986fe02b3.jpg"
         },
         {
-          "name": "Dawn of the Third Day",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/fec032587dbc583581a90fbdf9d826d6143d8bad.jpg"
-        },
-        {
           "name": "Don't Stop Me Now",
           "achieved": false,
           "unlocktime": 0,
@@ -7850,24 +7880,6 @@
           "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/4eaec8c1b5a24ce6bb579999a71fb34564fb81c4.jpg"
         },
         {
-          "name": "Just Chillin'",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/2ea081fdeda85091e1565b771ed494459f1f8367.jpg"
-        },
-        {
-          "name": "Looking Good",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/f4b19aa52504330e12fc6c8a3d82be4a507d2f73.jpg"
-        },
-        {
-          "name": "Fashionista",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/740c1ebe63ced015802d3fce01efc679cf16f58a.jpg"
-        },
-        {
           "name": "Big!",
           "achieved": false,
           "unlocktime": 0,
@@ -7890,18 +7902,6 @@
           "achieved": false,
           "unlocktime": 0,
           "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/3a5fc200c829723b98d230ed3ac8973817861431.jpg"
-        },
-        {
-          "name": "A Little Lucky",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/07fc1402463a104d50d69a43cc57c6c05b48265a.jpg"
-        },
-        {
-          "name": "Pretty Lucky",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/652758f0afb954ca7316f09874934b79641c78c1.jpg"
         },
         {
           "name": "Holy Mackerel!",
