@@ -112,7 +112,12 @@
       </button>
 
       <button class="desktop-icon" data-open="stream">
-        <span class="icon-img">🔴</span>
+        <span class="icon-img">
+          <img
+            src="https://cdn.simpleicons.org/twitch/9146FF"
+            alt="Twitch"
+          />
+        </span>
         <span class="icon-label">Stream</span>
       </button>
 
@@ -143,7 +148,7 @@
       id="hero"
       class="xp-window hero-window"
       data-wid="hero"
-      data-title="Marchel.exe"
+      data-title="Profile"
       data-icon="🎣"
       data-w="420"
       data-h="620"
@@ -157,7 +162,7 @@
           <span class="title-icon">🎣</span>
 
           <span class="title-text">
-            Marchel.exe — VTuber Pescador
+            Perfil
           </span>
 
         </div>
@@ -201,6 +206,7 @@
               </div>
             </div>
 
+            <div class="msn-bubble">🎣 pescando contenido...</div>
           </div>
 
 
@@ -210,11 +216,7 @@
               class="msn-display-name"
               id="msn-display-name"
             >
-              Marchel ✦ Online
-            </div>
-
-            <div class="msn-status">
-              🎣 pescando contenido...
+              Marchel <span class="msn-name-status">(En línea)</span>
             </div>
 
           </div>
@@ -240,11 +242,8 @@
 
         <div class="aboutme-enhanced">
 
-          <div class="bio-card">
-
-            <div class="bio-card-title">
-              💬 Sobre mí
-            </div>
+          <details class="bio-card" open>
+            <summary class="bio-card-title">Sobre mí</summary>
 
             <p class="bio-text">
 
@@ -313,7 +312,7 @@
 
             </p>
 
-          </div>
+          </details>
 
 
 
@@ -390,11 +389,8 @@
 
           <!-- Favorite games -->
 
-          <div class="games-showcase">
-
-            <div class="section-title">
-              🎲 Juegos favoritos
-            </div>
+          <details class="games-showcase" open>
+            <summary class="section-title">Juegos favoritos (8)</summary>
 
 
             <div class="games-flex">
@@ -488,7 +484,7 @@
 
             </div>
 
-          </div>
+          </details>
 
 
 
@@ -574,6 +570,16 @@
         -->
 
         <table class="schedule-table">
+          
+            <thead>
+            <tr>
+              <th>Día</th>
+              <th>Hora</th>
+              <th>Juego / Contenido</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          
           <tbody
             class="schedule-days"
             id="schedule-body"
@@ -659,179 +665,44 @@
 
         <!-- SIDEBAR -->
 
-        <aside
-          class="backlog-sidebar"
-          id="backlog-sidebar"
-        >
+        <aside class="backlog-sidebar" id="backlog-sidebar">
+          <div class="bl-panel">
+            <div class="bl-panel-head">Mi biblioteca</div>
+            <div class="bl-panel-body">
+              <button class="backlog-sidebar-item active" data-filter-type="status" data-filter="all">
+                <span>🗂️ Todos</span>
+                <span class="backlog-sidebar-count" data-count-status="all">—</span>
+              </button>
+              <button class="backlog-sidebar-item" data-filter-type="status" data-filter="jugando">
+                <span>🎮 Jugando</span>
+                <span class="backlog-sidebar-count" data-count-status="jugando">—</span>
+              </button>
+              <button class="backlog-sidebar-item" data-filter-type="status" data-filter="completado">
+                <span>✅ Completados</span>
+                <span class="backlog-sidebar-count" data-count-status="completado">—</span>
+              </button>
+              <button class="backlog-sidebar-item" data-filter-type="status" data-filter="backlog">
+                <span>📥 Backlog</span>
+                <span class="backlog-sidebar-count" data-count-status="backlog">—</span>
+              </button>
 
-          <div class="backlog-sidebar-heading">
-            Biblioteca
+              <details class="bl-more">
+                <summary>Más estados</summary>
+                <button class="backlog-sidebar-item" data-filter-type="status" data-filter="pausado">
+                  <span>⏸️ Pausado</span>
+                  <span class="backlog-sidebar-count" data-count-status="pausado">—</span>
+                </button>
+                <button class="backlog-sidebar-item" data-filter-type="status" data-filter="dropeado">
+                  <span>🗑️ Dropeado</span>
+                  <span class="backlog-sidebar-count" data-count-status="dropeado">—</span>
+                </button>
+                <button class="backlog-sidebar-item" data-filter-type="status" data-filter="platino">
+                  <span>💯 100%</span>
+                  <span class="backlog-sidebar-count" data-count-status="platino">—</span>
+                </button>
+              </details>
+            </div>
           </div>
-
-
-          <div class="backlog-sidebar-section-title">
-            ESTADO
-          </div>
-
-
-          <button
-            class="backlog-sidebar-item active"
-            data-filter-type="status"
-            data-filter="all"
-          >
-            <span>🗂️ Todos</span>
-            <span
-              class="backlog-sidebar-count"
-              data-count-status="all"
-            >
-              —
-            </span>
-          </button>
-
-
-          <button
-            class="backlog-sidebar-item"
-            data-filter-type="status"
-            data-filter="jugando"
-          >
-            <span>🎮 Jugando</span>
-            <span
-              class="backlog-sidebar-count"
-              data-count-status="jugando"
-            >
-              —
-            </span>
-          </button>
-
-
-          <button
-            class="backlog-sidebar-item"
-            data-filter-type="status"
-            data-filter="completado"
-          >
-            <span>✅ Completados</span>
-            <span
-              class="backlog-sidebar-count"
-              data-count-status="completado"
-            >
-              —
-            </span>
-          </button>
-
-
-          <button
-            class="backlog-sidebar-item"
-            data-filter-type="status"
-            data-filter="backlog"
-          >
-            <span>📥 Backlog</span>
-            <span
-              class="backlog-sidebar-count"
-              data-count-status="backlog"
-            >
-              —
-            </span>
-          </button>
-
-
-          <div class="backlog-sidebar-divider"></div>
-
-
-          <button
-            class="backlog-sidebar-item backlog-sidebar-item-secondary"
-            data-filter-type="status"
-            data-filter="pausado"
-          >
-            <span>⏸️ Pausado</span>
-            <span
-              class="backlog-sidebar-count"
-              data-count-status="pausado"
-            >
-              —
-            </span>
-          </button>
-
-
-          <button
-            class="backlog-sidebar-item backlog-sidebar-item-secondary"
-            data-filter-type="status"
-            data-filter="dropeado"
-          >
-            <span>🗑️ Dropeado</span>
-            <span
-              class="backlog-sidebar-count"
-              data-count-status="dropeado"
-            >
-              —
-            </span>
-          </button>
-
-
-          <button
-            class="backlog-sidebar-item backlog-sidebar-item-secondary"
-            data-filter-type="status"
-            data-filter="platino"
-          >
-            <span>💯 100%</span>
-            <span
-              class="backlog-sidebar-count"
-              data-count-status="platino"
-            >
-              —
-            </span>
-          </button>
-
-
-
-          <div class="backlog-sidebar-section-title">
-            PLATAFORMA
-          </div>
-
-
-          <button
-            class="backlog-sidebar-item"
-            data-filter-type="platform"
-            data-filter="all"
-          >
-            <span>🗂️ Todas</span>
-            <span
-              class="backlog-sidebar-count"
-              data-count-platform="all"
-            >
-              —
-            </span>
-          </button>
-
-
-          <button
-            class="backlog-sidebar-item"
-            data-filter-type="platform"
-            data-filter="pc"
-          >
-            <span>🖥️ PC</span>
-            <span
-              class="backlog-sidebar-count"
-              data-count-platform="pc"
-            >
-              —
-            </span>
-          </button>
-
-
-          <button
-            class="backlog-sidebar-item"
-            data-filter-type="platform"
-            data-filter="otros"
-          >
-            <span>🎮 Otros</span>
-            <span
-              class="backlog-sidebar-count"
-              data-count-platform="otros"
-            >
-              —
-            </span>
-          </button>
-
         </aside>
 
 
@@ -849,6 +720,12 @@
 
 
             <div class="backlog-toolbar-right">
+
+              <select class="backlog-sort" id="backlog-platform-select" aria-label="Filtrar por plataforma">
+                <option value="all">Todas las plataformas</option>
+                <option value="pc">🖥️ PC</option>
+                <option value="otros">🎮 Otros</option>
+              </select>
 
               <div class="backlog-search">
                 🔎
@@ -957,86 +834,82 @@
       id="github-section"
       class="xp-window github-window"
       data-wid="github"
-      data-title="GitHub Repos"
+      data-title="GitHub"
       data-icon="🐙"
-      data-w="760"
-      data-h="600"
+      data-w="860"
+      data-h="620"
     >
 
       <div class="xp-titlebar">
-
         <div class="title-left">
-
           <span class="title-icon">🐙</span>
-
-          <span class="title-text">
-            GitHub — marchel-cc
-          </span>
-
+          <span class="title-text">Proyectos</span>
         </div>
-
         <div class="xp-window-btns">
-
-          <button class="xp-btn-win xp-btn-min" title="Minimizar">
-            _
-          </button>
-
-          <button class="xp-btn-win xp-btn-max" title="Maximizar">
-            □
-          </button>
-
-          <button class="xp-btn-win xp-btn-close" title="Cerrar">
-            ✕
-          </button>
-
+          <button class="xp-btn-win xp-btn-min" title="Minimizar">_</button>
+          <button class="xp-btn-win xp-btn-max" title="Maximizar">□</button>
+          <button class="xp-btn-win xp-btn-close" title="Cerrar">✕</button>
         </div>
-
       </div>
 
+      <div class="xp-menubar">
+        <span>Archivo</span>
+        <span>Edición</span>
+        <span>Ver</span>
+        <span>Favoritos</span>
+        <span>Herramientas</span>
+        <span>Ayuda</span>
+      </div>
 
-      <div class="github-header">
-
-        <div>
-
-          <strong>🐙 Herramientas desarrolladas</strong>
-
-          <span>
-            Algunos de mis proyectos y experimentos.
-          </span>
-
-        </div>
-
-
-        <a
-          href="https://github.com/marchel-cc"
-          target="_blank"
-          rel="noopener"
-          class="github-profile-link"
-        >
-          Ver GitHub ↗
+      <div class="ie-address">
+        <span>Dirección</span>
+        <a class="ie-url" href="https://github.com/marchelcc" target="_blank" rel="noopener">
+          <span>🐙</span>https://github.com/marchelcc
         </a>
-
+        <a class="ie-go" href="https://github.com/marchelcc" target="_blank" rel="noopener">Ir</a>
       </div>
 
+      <div class="xp-content gh-page">
+        <header class="gh-top">
+          <div class="gh-logo">🐙 GitHub</div>
+          <nav class="gh-nav">
+            <span class="active">Resumen</span>
+            <a href="https://github.com/marchelcc?tab=repositories" target="_blank" rel="noopener">Repositorios</a>
+          </nav>
+        </header>
 
-      <div class="xp-content github-content">
+        <div class="gh-layout">
+          <aside class="gh-side">
+            <img class="gh-avatar" src="https://i.imgur.com/IsyBjDJ.png" alt="Marchel">
+            <h3 class="gh-name">Marchel</h3>
+            <div class="gh-user">marchelcc</div>
 
-        <div
-          class="repos-grid"
-          id="repos-grid"
-        >
-          <!-- Populated by script.js -->
+            <p class="gh-bio">
+              Hago herramientas para mi stream y otros experimentos.
+            </p>
+
+            <a class="gh-follow" href="https://github.com/marchelcc" target="_blank" rel="noopener">
+              Ver perfil en GitHub ↗
+            </a>
+
+            <ul class="gh-info">
+              <li>📍 Chile</li>
+              <li>🔗 <a href="https://marchelcc.github.io/">marchelcc.github.io</a></li>
+            </ul>
+          </aside>
+
+          <main class="gh-main">
+            <h4 class="gh-heading">Repositorios</h4>
+            <div class="repos-grid" id="repos-grid">
+              <!-- Populated by script.js -->
+            </div>
+          </main>
         </div>
-
       </div>
-
 
       <div class="xp-statusbar">
-
-        <div class="status-item">
-          🐙 Herramientas desarrolladas por marchel-cc
-        </div>
-
+        <div class="status-item">Listo</div>
+        <div class="status-item">🌐 Internet</div>
       </div>
 
     </section>
@@ -1240,7 +1113,7 @@
       data-title="Discord - Comunidad"
       data-icon="💬"
       data-w="400"
-      data-h="560"
+      data-h="500"
       data-autoopen
     >
 
@@ -1276,45 +1149,43 @@
       </div>
 
 
-      <div class="discord-heading">
+      <div class="xp-content discord-card-wrap">
+        <article class="dc-card">
+          <div class="dc-banner"></div>
 
-        <div class="discord-server-icon">
-          💬
-        </div>
+          <div class="dc-body">
+            <img class="dc-icon" src="assets/dc_icon.gif" alt="Los Viajeros">
 
-        <div>
+            <h3 class="dc-name">Los Viajeros</h3>
+            <p class="dc-meta">📅 Desde nov 2025</p>
 
-          <strong>
-            Comunidad Pescadora
-          </strong>
+            <p class="dc-desc">
+              Bienvenidos a Los Viajeros, una comunidad pensada para todos y todas
+              aquellas que simplemente quieren jugar de chill, hacer actividades en
+              grupo, pero lo más importante: pasar un buen rato con amigos y
+              gentecilla de internet que solo busca divertirse, obviamente siempre
+              desde el respeto.
+            </p>
 
-          <span>
-            Conéctate con la comunidad
-          </span>
+            <fieldset class="dc-group">
+              <legend>Juegos de la comunidad</legend>
+              <div class="dc-games">
+                <span class="dc-game"><img src="https://i.imgur.com/GXqX6kG.png" alt="Minecraft" title="Minecraft"></span>
+                <span class="dc-game dc-game-more">+1</span>
+              </div>
+            </fieldset>
 
-        </div>
-
-      </div>
-
-
-      <div class="xp-content discord-iframe-wrapper">
-
-        <iframe
-          src="https://discord.com/widget?id=1444033799095844887&theme=light"
-          width="100%"
-          height="100%"
-          allowtransparency="true"
-          frameborder="0"
-          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-        ></iframe>
-
+            <a class="dc-join" href="https://discord.gg/ZAVbuQJJQv"
+               target="_blank" rel="noopener">Unirse al servidor</a>
+          </div>
+        </article>
       </div>
 
 
       <div class="xp-statusbar">
 
         <div class="status-item">
-          ✨ Conecta con la comunidad pescadora
+          ✨ Conecta con Los Viajeros
         </div>
 
       </div>
@@ -1337,7 +1208,8 @@
       href="index.html"
       class="taskbar-start"
     >
-      🟢 <span>Inicio</span>
+      <div class="xp-login-brand-mark"><span></span><span></span><span></span><span></span></div>
+      <span>Inicio</span>
     </a>
 
 
@@ -1384,7 +1256,19 @@
 
   </footer>
 
-
+  <!-- Globo de notificación (zona horaria) -->
+  <div class="tz-balloon" id="tz-balloon" role="status" aria-live="polite">
+    <button class="tz-balloon-close" type="button" aria-label="Cerrar">✕</button>
+    <div class="tz-balloon-title">
+      <span class="tz-balloon-icon">🌍</span>
+      Horarios en tu hora local
+    </div>
+    <p class="tz-balloon-text">
+      Las horas del horario semanal ya están convertidas a tu zona horaria:
+      <strong id="tz-balloon-zone">—</strong>.
+    </p>
+    <p class="tz-balloon-text">Haz clic en este globo para cerrarlo.</p>
+  </div>
 
   <!-- ============================================================
        SCRIPT

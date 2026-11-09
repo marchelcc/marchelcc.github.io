@@ -32,7 +32,7 @@
       "hoursPlayed": 3,
       "imageUrl": "https://i.imgur.com/JJrNtxa.png",
       "capsuleUrl": "https://i.imgur.com/JJrNtxa.png"
-    },    
+    },
     {
       "id": 4,
       "name": "Going Medieval",
@@ -164,72 +164,6 @@
       "imageUrl": "https://i.imgur.com/Dgt7vTh.png",
       "capsuleUrl": "https://i.imgur.com/JZdENVM.png",
       "raGameId": null
-    },
-    {
-      "id": 100,
-      "name": "Minecraft",
-      "appid": null,
-      "platform": "otro",
-      "status": "completado",
-      "hoursPlayed": -1,
-      "imageUrl": "https://i.imgur.com/E3fLUad.gif",
-      "capsuleUrl": "https://i.imgur.com/DbmNn3W.png",
-      "raGameId": null
-    },
-    {
-      "id": 100,
-      "name": "The One Fish",
-      "appid": 4883580,
-      "raGameId": null,
-      "platform": "steam",
-      "status": "backlog",
-      "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/GxLbMFA.png",
-      "capsuleUrl": "https://i.imgur.com/pY8BvQc.png"
-    },
-    {
-      "id": 101,
-      "name": "Going Under",
-      "appid": 1154810,
-      "raGameId": null,
-      "platform": "steam",
-      "status": "backlog",
-      "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/z7zSZ1t.png",
-      "capsuleUrl": "https://i.imgur.com/XUmPx5h.png"
-    },
-    {
-      "id": 102,
-      "name": "John Gleep",
-      "appid": 4739830,
-      "raGameId": null,
-      "platform": "steam",
-      "status": "backlog",
-      "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/li2IhrB.png",
-      "capsuleUrl": "https://i.imgur.com/KqJUkWp.png"
-    },
-    {
-      "id": 103,
-      "name": "The Well's Blessing",
-      "appid": 3807830,
-      "raGameId": null,
-      "platform": "steam",
-      "status": "backlog",
-      "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/WtijLxd.png",
-      "capsuleUrl": "https://i.imgur.com/58F3Nln.png"
-    },
-    {
-      "id": 104,
-      "name": "Desafío UHC",
-      "appid": null,
-      "raGameId": null,
-      "platform": "minecraft-event",
-      "status": "backlog",
-      "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/zyPJqHw.png",
-      "capsuleUrl": "https://i.imgur.com/RhH8dNM.png"
     }
   ]
 }

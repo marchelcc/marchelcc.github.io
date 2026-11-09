@@ -1,7 +1,7 @@
 {
   "vtuber": "Marchel",
   "tagline": "",
-  "lastUpdated": "2026-10-24",
+  "lastUpdated": "2026-11-08",
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
   "youtubeLatestVODId": "oJN929lROT8",
@@ -22,15 +22,15 @@
       "game": "",
       "imageUrl": null,
       "tag": "Off",
-      "active": true
+      "active": false
     },
     {
       "id": 3,
       "day": "Miércoles",
       "time": "19:00",
-      "game": "Easy Delivery Co.",
-      "imageUrl": "https://i.imgur.com/CEMTjFE.png",
-      "tag": "Stream Longo",
+      "game": "Deadlock",
+      "imageUrl": "https://i.imgur.com/eYTyoa8.png",
+      "tag": "Stream Shorti",
       "active": true
     },
     {
@@ -39,24 +39,24 @@
       "time": "16:00",
       "game": "Final Fantasy X",
       "imageUrl": "https://i.imgur.com/fqVJUzA.png",
-      "tag": "Stream Shorti",
+      "tag": "Stream Longo",
       "active": true
     },
     {
       "id": 5,
       "day": "Viernes",
-      "time": "19:00",
-      "game": "Minecraft",
-      "imageUrl": "https://i.imgur.com/sIAkrHO.png",
-      "tag": "Stream Longo",
-      "active": true
+      "time": null,
+      "game": "",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
     },
     {
       "id": 6,
       "day": "Sábado",
       "time": null,
       "game": "",
-      "imageUrl": null,
+      "imageUrl": "",
       "tag": "Off",
       "active": false
     },

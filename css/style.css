@@ -50,6 +50,11 @@
   --color-login-mid: #2F6FE8;
   --color-login-deep: #123F9E;
   --color-login-bottom: #061C52;
+  --alpha-white-soft: rgba(255, 255, 255, 0.18);
+  --color-login-mark-a: #FF7A59;
+  --color-login-mark-b: #FFD15C;
+  --color-login-mark-c: #4FD1C5;
+  --color-login-mark-d: #A78BFA;
 
   --color-transparent: transparent;
   --color-wallpaper-bg: #FBE8CA;
@@ -67,6 +72,18 @@ body {
   width: 100%;
   min-height: 100%;
   margin: 0;
+}
+
+/* Ruido sutil sobre el wallpaper (capa fija, no se anima) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.3;
+  mix-blend-mode: overlay;
 }
 
 body {
@@ -133,39 +150,75 @@ a {
 }
 
 .desktop-icon {
-  width: 92px;
-  padding: 7px 4px;
+  width: 96px;
+  padding: 6px 4px 5px;
   border: 1px solid transparent;
-  border-radius: var(--radius-card);
+  border-radius: 3px;
   background: transparent;
   color: var(--color-white);
-  font-family: inherit;
-  font-size: 12px;
+  font-family: "Trebuchet MS", Tahoma, Verdana, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  line-height: 1.25;
   text-align: center;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.95), 0 0 3px rgba(0, 0, 0, 0.6);
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  outline: none;
+  transition: none;
 }
-.desktop-icon:hover {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.2);
-}
+
 .desktop-icon .icon-img {
-  width: 52px;
-  height: 52px;
-  margin: 0 auto 5px;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 29px;
-  border-radius: 14px;
-  background: linear-gradient(145deg, #FFFFFF, var(--cream), var(--gold));
-  border: 1px solid white;
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3), inset 0 2px 5px white;
+  font-size: 44px;
+  line-height: 1;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.55));
 }
+
+.desktop-icon .icon-img img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  /* contorno blanco fino para que el morado resalte sobre el wallpaper rojizo */
+  filter:
+    drop-shadow(0 0 1px #000000)
+    drop-shadow(0 0 1px #000000);
+}
+
 .icon-label {
   display: block;
+  max-width: 100%;
   word-wrap: break-word;
+  font-weight: 600;
+}
+
+/* Hover: recuadro azul translúcido con borde fino */
+.desktop-icon:hover {
+  background: rgba(49, 106, 197, 0.32);
+  border-color: rgba(140, 185, 255, 0.85);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+/* Seleccionado (click / foco): más intenso, borde punteado e ícono teñido */
+.desktop-icon:focus,
+.desktop-icon:active {
+  background: rgba(49, 106, 197, 0.55);
+  border: 1px dotted rgba(255, 255, 255, 0.9);
+}
+.desktop-icon:focus .icon-img,
+.desktop-icon:active .icon-img {
+  filter:
+    drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.55))
+    sepia(1) saturate(3) hue-rotate(185deg) brightness(0.9);
 }
 
 /* Window drag cover */
@@ -195,6 +248,32 @@ a {
   color: var(--text);
   user-select: none;
   transform-origin: center center;
+}
+
+/* ── Ventanas sin foco (solo escritorio con mouse) ── */
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+  .xp-window.wm-open:not(.wm-focused) {
+    --window-frame:
+      inset 5px 0 0 #6f90dc,
+      inset -5px 0 0 #6f90dc,
+      inset 0 -5px 0 #6f90dc;
+  }
+
+  .xp-window.wm-open:not(.wm-focused) .xp-titlebar {
+    background: linear-gradient(to bottom, #8aa8ec 0%, #7a9de8 8%, #6f90dc 45%, #5f80cf 100%);
+  }
+  .xp-window.wm-open:not(.wm-focused) .title-text {
+    color: #d8e2f8;
+    text-shadow: 1px 1px 0 #3a549c;
+  }
+  .xp-window.wm-open:not(.wm-focused) .xp-btn-win {
+    filter: saturate(0.55) brightness(1.05);
+    opacity: 0.85;
+  }
+
+  .xp-window.wm-open:not(.wm-focused) > :not(.xp-titlebar) {
+    filter: saturate(0.65) brightness(0.97) blur(0.5px);
+  }
 }
 
 .xp-window.wm-open {
@@ -260,6 +339,16 @@ a {
   border-bottom: none;
   cursor: grab;
   user-select: none;
+  background:
+    linear-gradient(
+      to bottom,
+      #3d8bff 0%,
+      #0a5fe8 8%,
+      #0356ea 40%,
+      #0348c8 88%,
+      #0a3aa8 100%
+    );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 .xp-titlebar:active {
   cursor: grabbing;
@@ -290,12 +379,15 @@ a {
 .title-text {
   flex: 1;
   color: var(--color-white);
-  font-size: 13px;
-  font-weight: 500;
+  font-family: "Trebuchet MS", Tahoma, Verdana, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-shadow: none;
+  /* sombra dura azul oscuro, la firma de las titlebars de XP */
+  text-shadow: 1px 1px 0 #0a1f7a;
 }
 
 /* Window controls */
@@ -315,11 +407,15 @@ a {
   color: var(--color-white);
   cursor: pointer;
   box-shadow: none;
-  font-size: 11px;
-  font-weight: bold;
   display: grid;
   place-items: center;
   line-height: 1;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  -webkit-text-stroke: 0.7px var(--color-white);   /* engrosa el trazo del símbolo */
+  text-shadow: 0 1px 1px rgba(0, 40, 120, 0.45);
 }
 .xp-btn-win:hover {
   filter: brightness(1.08);
@@ -415,8 +511,8 @@ a {
 .msn-profile {
   flex: 0 0 auto;
   padding: 10px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.62), rgba(234, 241, 255, 0.25));
-  border-bottom: 1px solid rgba(0, 0, 204, 0.1);
+  background: linear-gradient(to bottom, #ffffff 0%, #dbe7fb 100%);
+  border-bottom: 1px solid #a9bde3;
   text-align: center;
 }
 
@@ -433,26 +529,38 @@ a {
 }
 
 .msn-frame {
+  position: relative;
   width: 112px;
   height: 112px;
+  padding: 5px;
   display: grid;
   place-items: center;
-  border-radius: 28px;
-  background: linear-gradient(145deg, white, var(--cream), var(--gold));
-  border: 1px solid white;
-  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.18), inset 0 2px 5px white;
-  font-size: 54px;
   overflow: hidden;
+  border: 1px solid #1f7a1f;
+  border-radius: 8px;
+  background: linear-gradient(to bottom, #9be89b 0%, #3dbb3d 50%, #2a9a2a 100%);
+  box-shadow:
+    1px 3px 6px rgba(0, 40, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  font-size: 54px;
 }
 .msn-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 28px;
+  border: 1px solid #fff;
+  border-radius: 4px;
 }
 .msn-fallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border-radius: 4px;
   font-size: 54px;
 }
+.msn-profile-wrap .msn-status { display: none; }
 
 .msn-status {
   position: absolute;
@@ -465,34 +573,83 @@ a {
   background: var(--color-status);
   box-shadow: 0 0 7px #58E88A;
 }
-.msn-profile-info .msn-status {
-  position: static;
-  width: auto;
-  height: auto;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  color: var(--teal);
-  font-size: 12px;
-  font-weight: 600;
+/* ── Burbuja de estado apuntando a la foto ── */
+.msn-bubble {
+  position: absolute;
+  left: calc(100% + 14px);
+  top: 16px;
+  width: max-content;
+  max-width: 118px;
+  padding: 6px 10px;
+  background: #ffffe1;
+  border: 1px solid #000;
+  border-radius: 8px;
+  box-shadow: 2px 3px 5px rgba(0, 20, 90, 0.3);
+  color: #000;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
+  line-height: 1.35;
+  text-align: left;
+  animation: bubble-bob 3.2s ease-in-out infinite;
+}
+.msn-bubble::before,
+.msn-bubble::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+}
+.msn-bubble::before {
+  left: -11px;
+  top: 12px;
+  border-width: 8px 11px 8px 0;
+  border-right-color: #000;
+}
+.msn-bubble::after {
+  left: -9px;
+  top: 13px;
+  border-width: 7px 10px 7px 0;
+  border-right-color: #ffffe1;
+}
+@keyframes bubble-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
 }
 
 .msn-display-name {
-  font-size: 23px;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 21px;
   font-weight: 400;
   color: var(--dark);
+}
+.msn-name-status {
+  color: #6b7895;
+  font-size: 14px;
+}
+.msn-display-name::after {
+  content: "▾";
+  margin-left: 5px;
+  color: #6b7895;
+  font-size: 12px;
+  vertical-align: middle;
 }
 
 .msn-personal-message {
   margin-top: 8px;
-  padding: 5px 7px;
-  color: var(--brown);
-  background: rgba(255, 255, 255, 0.53);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-section);
+  padding: 4px 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: #6b7895;
+  font-family: Tahoma, Verdana, sans-serif;
   font-size: 12px;
   font-style: italic;
+}
+.msn-personal-message:hover {
+  background: #fff;
+  border-color: #7f9db9;
 }
 .msn-message-icon {
   margin-right: 4px;
@@ -519,59 +676,87 @@ a {
 }
 
 /* Home page: social and platform links */
-
 .social-row,
 .platforms-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));   /* siempre 2 por fila */
+  gap: 6px;
   margin-bottom: 10px;
 }
 
 .social-badge,
+.platform-badge,
+.game-item {
+  --t-top:  #5f9bff;
+  --t-bot:  #1f58d6;
+  --t-edge: #0f3a9e;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 0 10px 0 0;
+  overflow: hidden;
+
+  border: 1px solid var(--t-edge);
+  border-radius: 3px;
+  background: linear-gradient(to bottom, var(--t-top) 0%, var(--t-bot) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 60, 0.25);
+  color: var(--color-white);
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+  transition: none;
+}
+
+/* Tamaño propio de los badges de redes */
+.social-badge,
 .platform-badge {
   display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  justify-content: center;
-  padding: 4px 7px;
-  border: 1px solid rgba(0, 0, 204, 0.14);
-  border-radius: var(--radius-lg);
-  text-decoration: none;
-  font-size: 10px;
-  font-weight: bold;
-  background: rgba(234, 241, 255, 0.7);
-  box-shadow: var(--small-shadow);
-  transition: transform 0.1s, filter 0.1s;
   flex: 1 1 45%;
-  max-width: 45%;
-  min-width: 120px;
+  max-width: none;
+  min-width: 0;
+  min-height: 30px;
+  text-decoration: none;
 }
+.social-badge { padding-left: 12px; }  /* este no lleva logo, solo texto */
+
+.game-item { min-height: 28px; }
+
+/* Panel blanco del logo (el <img> ya existente, estirado a toda la altura) */
+.platform-badge img,
+.game-item img {
+  flex: 0 0 auto;
+  align-self: stretch;
+  width: 33px;
+  height: auto;
+  padding: 5px 6px;
+  box-sizing: border-box;
+  object-fit: contain;
+  background: linear-gradient(to bottom, #ffffff 0%, #e9eef9 100%);
+  border-right: 1px solid var(--t-edge);
+  text-shadow: none;
+}
+
+/* Colores por plataforma */
+.twitch-badge,  .badge-twitch  { --t-top: #a970ff; --t-bot: #6e35d6; --t-edge: #4a1fa0; }
+.youtube-badge, .badge-yt      { --t-top: #ff5a4d; --t-bot: #c4160b; --t-edge: #8a0e06; }
+.twitter-badge, .badge-twitter { --t-top: #5cc8ff; --t-bot: #1da1f2; --t-edge: #0d78b8; }
+.bsky-badge,    .badge-bsky    { --t-top: #4aa3ff; --t-bot: #0b6fe0; --t-edge: #0a4aa0; }
+
+/* Interacción (solo los badges de redes son enlaces) */
 .social-badge:hover,
 .platform-badge:hover {
-  filter: brightness(1.05);
-  transform: translateY(-1px);
+  filter: brightness(1.1);
 }
-.badge-twitch,
-.twitch-badge {
-  border-color: #b59ad8;
-  background: #f1eaff;
-}
-.badge-yt,
-.youtube-badge {
-  border-color: #e2a0a0;
-  background: #fff0f0;
-}
-.badge-twitter,
-.twitter-badge {
-  border-color: #9bc5e4;
-  background: #eef8ff;
-}
-.badge-bsky,
-.bsky-badge {
-  border-color: #9dc7f5;
-  background: #edf6ff;
+.social-badge:active,
+.platform-badge:active {
+  filter: brightness(0.9);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 60, 0.45);
 }
 
 /* Home page: biography and favorite games */
@@ -583,17 +768,10 @@ a {
 }
 .bio-card {
   padding: 10px;
-  background: rgba(255, 255, 255, 0.53);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-section);
-  box-shadow: inset 0 1px white;
-}
-.bio-card-title {
-  margin-bottom: 7px;
-  color: var(--dark);
-  font-weight: bold;
-  border-bottom: 1px dotted rgba(0, 0, 204, 0.2);
-  padding-bottom: 4px;
+  background: #fff;
+  border: 1px solid #a9bde3;
+  border-radius: 3px;
+  box-shadow: none;
 }
 .bio-text {
   margin: 0 0 8px;
@@ -612,15 +790,11 @@ a {
 }
 
 .games-showcase {
-  padding: 9px;
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-section);
-}
-.section-title {
-  margin-bottom: 7px;
-  color: var(--dark);
-  font-weight: bold;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #a9bde3;
+  border-radius: 3px;
+  box-shadow: none;
 }
 .games-flex {
   display: grid;
@@ -628,21 +802,46 @@ a {
   gap: 5px;
 }
 
-.game-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 4px 6px;
-  background: rgba(234, 241, 255, 0.5);
-  border: 1px solid rgba(0, 0, 204, 0.1);
-  border-radius: var(--radius-lg);
-  font-size: 10px;
+/* ── Colores por juego (se asignan por el alt del ícono) ── */
+
+/* Final Fantasy X: azul océano de Spira */
+.game-item:has(img[alt="Final Fantasy X"]) {
+  --t-top: #62cdf2; --t-bot: #1a83c8; --t-edge: #0d5a94;
 }
-.game-item img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
+
+/* Risk of Rain 2: naranja del sol de Petrichor V */
+.game-item:has(img[alt="Risk of Rain 2"]) {
+  --t-top: #ffb44d; --t-bot: #e0701a; --t-edge: #9a4508;
+}
+
+/* Going Medieval: madera y tierra */
+.game-item:has(img[alt="Going Medieval"]) {
+  --t-top: #c9a073; --t-bot: #8b5a2b; --t-edge: #5a3714;
+}
+
+/* Deadlock: gris verdoso oscuro de Valve */
+.game-item:has(img[alt="Deadlock"]) {
+  --t-top: #6d8c88; --t-bot: #2b4745; --t-edge: #142524;
+}
+
+/* SIGNALIS: rojo carmesí sobre negro */
+.game-item:has(img[alt="Signalis"]) {
+  --t-top: #ec5a64; --t-bot: #a81c2a; --t-edge: #680d16;
+}
+
+/* Marathon: verde ácido neón */
+.game-item:has(img[alt^="Marathon"]) {
+  --t-top: #d2f040; --t-bot: #7fb010; --t-edge: #4f6e06;
+}
+
+/* Minecraft: verde césped */
+.game-item:has(img[alt="Minecraft"]) {
+  --t-top: #7fc650; --t-bot: #4a8f26; --t-edge: #2f5f14;
+}
+
+/* Kirby: rosa */
+.game-item:has(img[alt^="Kirby"]) {
+  --t-top: #ffa6c8; --t-bot: #e5568a; --t-edge: #a8285c;
 }
 
 .aboutme-highlight {
@@ -651,11 +850,48 @@ a {
   gap: 8px;
   padding: 8px;
   color: var(--brown);
-  background: rgba(224, 236, 255, 0.6);
-  border: 1px solid rgba(3, 86, 234, 0.3);
-  border-radius: var(--radius-section);
+  background: #eef3fc;
+  border: 1px solid #a9bde3;
+  border-radius: 3px;
   font-size: 10px;
   line-height: 1.45;
+}
+
+/* Títulos = grupos plegables de la lista de contactos */
+.bio-card-title,
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0 0 8px;
+  padding: 0 0 5px;
+  border-bottom: 1px solid #d9e2f4;
+  color: #215dc6;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+.bio-card-title::-webkit-details-marker,
+.section-title::-webkit-details-marker { display: none; }
+.bio-card-title::before,
+.section-title::before {
+  content: "▸";
+  width: 10px;
+  color: #6b7895;
+  font-size: 10px;
+}
+details[open] > .bio-card-title::before,
+details[open] > .section-title::before { content: "▾"; }
+.bio-card-title:hover,
+.section-title:hover { text-decoration: underline; }
+details:not([open]) > .bio-card-title,
+details:not([open]) > .section-title {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 /* ============================================================
@@ -702,132 +938,191 @@ a {
   white-space: nowrap;
 }
 
+/* ── Horario estilo "Detalles" del Explorador de XP ── */
+
+/* Barra superior: pasa de franja translúcida a barra de herramientas */
+.schedule-window .schedule-header {
+  padding: 5px 10px;
+  background: linear-gradient(to bottom, #ffffff 0%, #eaf1fd 100%);
+  border-bottom: 1px solid #a9bde3;
+}
+.schedule-window .schedule-live-indicator span {
+  margin: 0;
+  color: #000;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
+}
+.schedule-window .schedule-live-indicator .status-dot {
+  display: inline-block;
+  margin: 0 6px 0 0;
+}
+
+/* Área de contenido: blanca y a ras de los bordes */
 .schedule-content {
-  padding: 16px 12px;
-  overflow-x: auto;
+  padding: 0;
+  overflow: auto;
+  background: var(--color-white);
 }
 
 .schedule-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 10px;
+  border-spacing: 0;
 }
 
-.schedule-table tr {
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  transition: background 0.15s, box-shadow 0.15s;
-  backdrop-filter: blur(4px);
+/* Las filas llenan todo el alto de la ventana */
+.schedule-content {
+  display: block;
+}
+.schedule-table {
+  height: 100%;
+}
+.schedule-table thead {
+  height: 1px;
+}
+.schedule-table tbody {
+  height: 100%;
+}
+.schedule-table tbody td {
+  vertical-align: middle;
 }
 
-.schedule-table tr:hover {
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+/* Encabezados de columna (el hover naranja es el detalle clásico de XP) */
+.schedule-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 4px 10px;
+  background: linear-gradient(to bottom, #ffffff 0%, #eef3fc 55%, #d9e4f6 100%);
+  border-right: 1px solid #b4c4e4;
+  border-bottom: 1px solid #8fa6d6;
+  color: #000;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  text-align: left;
+  user-select: none;
 }
+.schedule-table thead th:last-child { border-right: 0; }
+.schedule-table thead th:hover { box-shadow: inset 0 -3px 0 #f8b330; }
+
+/* Filas planas, sin tarjetas */
+.schedule-table tbody tr { background: var(--color-white); }
 
 .schedule-table td {
-  padding: 12px 14px;
-  border: none;
+  padding: 9px 10px;
+  border-bottom: 1px solid #e4eaf6;
+  color: #000;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 12px;
   vertical-align: middle;
-  font-size: 13px;
 }
 
 .schedule-table .td-day {
-  background: rgba(22, 71, 199, 0.08);
-  color: var(--teal);
+  width: 112px;
+  background: #f3f6fd;
+  border-right: 1px solid #dfe7f5;
   font-weight: 700;
-  text-align: center;
-  border-radius: 14px 0 0 14px;
-  width: 105px;
-  font-size: 14px;
-  letter-spacing: 0.3px;
+  text-align: left;
 }
-
 .schedule-table .td-time {
-  font-family: var(--font-mono-compact);
-  font-weight: 700;
-  color: var(--teal);
-  width: 70px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 6px 10px;
-  margin: 0 4px;
+  width: 64px;
+  font-variant-numeric: tabular-nums;   /* antes monoespaciada y en negrita */
 }
-
-.schedule-table .td-game {
-  min-width: 140px;
-}
+.schedule-table .td-game { min-width: 140px; }
+.schedule-table .td-tag  { width: 116px; text-align: left; }
 
 .game-logo-wrap {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 .game-logo {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
   object-fit: contain;
-  border-radius: var(--radius-xl);
-  flex: 0 0 32px;
-  background: rgba(255,255,255,0.3);
-  padding: 2px;
 }
-
-.schedule-table .td-tag {
-  text-align: center;
-  width: 115px;
-}
-
-.schedule-table tr td:first-child { border-radius: 14px 0 0 14px; }
-.schedule-table tr td:last-child  { border-radius: 0 14px 14px 0; }
 
 .tag {
+  --t-top: #5f9bff;
+  --t-bot: #1f58d6;
+  --t-edge: #0f3a9e;
+
   display: inline-block;
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.4px;
-  background: rgba(234, 241, 255, 0.7);
-  border: 1px solid rgba(0, 0, 204, 0.10);
-}
-.tag-stream-longo {
-  background: rgba(22, 71, 199, 0.15);
-  border-color: var(--teal);
-  color: var(--teal);
-}
-.tag-stream-shorti {
-  background: rgba(79, 209, 197, 0.15);
-  border-color: var(--olive);
-  color: var(--olive);
-}
-.tag-colab {
-  background: rgba(3, 86, 234, 0.15);
-  border-color: var(--gold);
-  color: var(--brown);
-}
-.tag-video {
-  background: rgba(221, 83, 55, 0.12);
-  border-color: var(--red);
-  color: var(--red);
-}
-.tag-off {
-  background: rgba(0, 0, 204, 0.06);
-  border-color: var(--muted);
-  color: var(--muted);
+  padding: 3px 10px;
+  border: 1px solid var(--t-edge);
+  border-radius: 3px;
+  background: linear-gradient(to bottom, var(--t-top) 0%, var(--t-bot) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 60, 0.25);
+  color: var(--color-white);
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
 }
 
-.schedule-table tr.inactive {
-  opacity: 0.5;
+.tag-stream-longo  { --t-top: #5f9bff; --t-bot: #1f58d6; --t-edge: #0f3a9e; }
+.tag-stream-shorti { --t-top: #6fe3d6; --t-bot: #1fa89a; --t-edge: #0e6f66; }
+.tag-colab         { --t-top: #b89cff; --t-bot: #7a55dd; --t-edge: #4a2fa0; }
+.tag-video         { --t-top: #f08a72; --t-bot: #c4402a; --t-edge: #8a2512; }
+
+/* Off: se ve como un botón deshabilitado de XP */
+.tag-off {
+  --t-top: #fdfdfb;
+  --t-bot: #e3e1d4;
+  --t-edge: #aca899;
+  color: #8a887c;
+  text-shadow: none;
+  box-shadow: inset 0 1px 0 #fff;
 }
-.schedule-table tr.today {
-  background: rgba(22, 71, 199, 0.10);
-  box-shadow: 0 0 0 2px rgba(22, 71, 199, 0.15);
+
+/* Días sin stream: texto gris, como un elemento deshabilitado */
+.schedule-table tr.inactive td { color: #8f9ab3; }
+
+/* Hoy: fila seleccionada, azul de selección de XP */
+.schedule-table tr.today td {
+  background: #316ac5;
+  color: #fff;
+  border-bottom-color: #2a5cae;
 }
-.schedule-table tr.today .td-day {
-  background: rgba(22, 71, 199, 0.20);
-  color: #123F9E;
+.schedule-table tr.today .td-day { border-right-color: #2a5cae; }
+.schedule-table tr.today.inactive td { color: #cfdcf7; }
+
+/* Scrollbar estilo Luna: flechas, pulgar degradado y agarre central */
+.schedule-window .schedule-content::-webkit-scrollbar {
+  width: 17px;
+  height: 17px;
+}
+.schedule-window .schedule-content::-webkit-scrollbar-track {
+  background: #f4f7fd;
+  border-left: 1px solid #dfe7f5;
+}
+.schedule-window .schedule-content::-webkit-scrollbar-thumb {
+  background:
+    repeating-linear-gradient(to bottom, rgba(255,255,255,0.9) 0 1px, rgba(90,120,200,0.7) 1px 2px) center / 7px 9px no-repeat,
+    linear-gradient(to right, #d3e2ff 0%, #aec8f8 50%, #97b5f0 100%);
+  border: 1px solid #7b9ae0;
+  border-radius: 3px;
+}
+.schedule-window .schedule-content::-webkit-scrollbar-button:single-button {
+  display: block;
+  width: 17px;
+  height: 17px;
+  background-color: #c5d6fb;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid #7b9ae0;
+  border-radius: 3px;
+}
+.schedule-window .schedule-content::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M1 6l3.5-4L8 6z' fill='%234d6185'/%3E%3C/svg%3E");
+}
+.schedule-window .schedule-content::-webkit-scrollbar-button:single-button:vertical:increment {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M1 3l3.5 4L8 3z' fill='%234d6185'/%3E%3C/svg%3E");
 }
 
 @media (max-width: 768px) {
@@ -857,6 +1152,9 @@ a {
 }
 
 @media (max-width: 430px) {
+  .platform-badge {
+    justify-content: flex-start;
+  }
   .schedule-table td {
     padding: 8px 6px;
     font-size: 11px;
@@ -880,6 +1178,7 @@ a {
     width: 22px;
     height: 22px;
   }
+  
 }
 
 /* ROTATION PAGE */
@@ -947,66 +1246,89 @@ a {
 }
 
 .backlog-sidebar {
-  flex: 0 0 175px;
+  flex: 0 0 180px;
   overflow-y: auto;
-  padding: 13px 9px;
-  background: linear-gradient(to bottom, rgba(0, 0, 204, 0.09), rgba(42, 74, 138, 0.08));
-  border-right: 1px solid rgba(0, 0, 204, 0.18);
+  padding: 10px;
+  background: linear-gradient(to bottom, #7ba2e7 0%, #6375d6 100%);
+  border-right: 1px solid #1f4fa8;
 }
-.backlog-sidebar-heading {
-  padding: 5px 7px 9px;
-  color: var(--dark);
-  font-size: 15px;
-  font-weight: bold;
+.bl-panel {
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 60, 0.35);
 }
-.backlog-sidebar-section-title {
-  margin: 8px 5px 4px;
-  color: var(--brown);
-  font-size: 10px;
+.bl-panel-head {
+  padding: 6px 10px;
+  background: linear-gradient(to right, #ffffff 0%, #c6d3f7 100%);
+  color: #215dc6;
+  font-family: "Trebuchet MS", Tahoma, Verdana, sans-serif;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.7px;
+}
+.bl-panel-body {
+  padding: 6px;
+  background: #d6dff7;
 }
 .backlog-sidebar-item {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 5px;
-  padding: 8px 9px;
+  gap: 6px;
+  padding: 5px 8px;
   border: 1px solid transparent;
-  border-radius: var(--radius-md);
+  border-radius: 2px;
   background: transparent;
-  color: var(--dark);
+  color: #215dc6;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 12px;
   text-align: left;
-  font-size: 11px;
-  cursor: pointer;
 }
-.backlog-sidebar-item:hover {
-  background: rgba(3, 86, 234, 0.2);
-  border-color: rgba(3, 86, 234, 0.25);
+.backlog-sidebar-item:hover > span:first-child {
+  color: #428eff;
+  text-decoration: underline;
 }
 .backlog-sidebar-item.active {
-  background: rgba(3, 86, 234, 0.25);
-  border-color: rgba(3, 86, 234, 0.35);
-  font-weight: bold;
+  background: #316ac5;
+  color: #fff;
 }
 .backlog-sidebar-count {
-  min-width: 18px;
-  padding: 1px 4px;
-  border-radius: var(--radius-xl);
-  background: rgba(0, 0, 204, 0.1);
-  text-align: center;
-  font-size: 9px;
-  color: var(--brown);
+  min-width: 0;
+  padding: 0;
+  background: none;
+  color: #6b7895;
+  font-size: 10px;
+}
+.backlog-sidebar-item.active:hover > span:first-child {
+  color: #fff;
 }
 .backlog-sidebar-item.active .backlog-sidebar-count {
-  background: rgba(3, 86, 234, 0.3);
+  background: none;
+  color: #d6e3fb;
 }
-.backlog-sidebar-divider {
-  height: 1px;
-  margin: 8px 4px;
-  background: rgba(0, 0, 204, 0.12);
+
+.bl-more {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid #b4c4e4;
 }
+.bl-more summary {
+  padding: 4px 8px;
+  color: #215dc6;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+.bl-more summary::-webkit-details-marker { display: none; }
+.bl-more summary::before {
+  content: "▸";
+  display: inline-block;
+  width: 12px;
+}
+.bl-more[open] summary::before { content: "▾"; }
+.bl-more summary:hover { text-decoration: underline; }
 
 .backlog-main {
   min-width: 0;
@@ -1017,20 +1339,22 @@ a {
 }
 
 .backlog-toolbar {
-  min-height: 42px;
+  min-height: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 6px;
-  padding: 6px 9px;
-  background: rgba(234, 241, 255, 0.58);
-  border-bottom: 1px solid rgba(0, 0, 204, 0.15);
+  gap: 8px;
+  padding: 5px 9px;
+  background: linear-gradient(to bottom, #ffffff 0%, #eaf1fd 100%);
+  border-bottom: 1px solid #a9bde3;
 }
 .backlog-toolbar-crumb {
   min-width: 0;
-  color: var(--brown);
-  font-weight: bold;
   overflow: hidden;
+  color: #000;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -1043,84 +1367,82 @@ a {
   display: flex;
   align-items: center;
   gap: 4px;
-  height: 28px;
+  height: 24px;
   padding: 0 6px;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(0, 0, 204, 0.2);
-  border-radius: var(--radius-md);
+  background: var(--color-white);
+  border: 1px solid #7f9db9;
 }
 .backlog-search input {
-  width: 145px;
+  width: 140px;
   border: 0;
   outline: 0;
-  font-size: 10px;
   background: transparent;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
 }
+
 .backlog-view-toggle {
   display: flex;
-  border: 1px solid rgba(0, 0, 204, 0.2);
-  border-radius: var(--radius-md);
-  overflow: hidden;
+  gap: 2px;
 }
 .backlog-view-btn {
-  width: 27px;
-  height: 25px;
+  width: 28px;
+  height: 24px;
   padding: 0;
-  border: 0;
-  border-right: 1px solid rgba(0, 0, 204, 0.15);
-  background: rgba(255, 255, 255, 0.55);
-  cursor: pointer;
-}
-.backlog-view-btn:last-child {
-  border-right: 0;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
 }
 .backlog-view-btn:hover {
-  background: rgba(3, 86, 234, 0.15);
+  border-color: #8fa6d6;
+  background: linear-gradient(to bottom, #ffffff, #dbe5f8);
 }
 .backlog-view-btn.active {
-  background: rgba(3, 86, 234, 0.25);
-  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.08);
+  border-color: #316ac5;
+  background: #c5d5f6;
+  box-shadow: inset 1px 1px 2px rgba(0, 30, 100, 0.3);
 }
 
 .backlog-library-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 10px;
-  background: rgba(3, 86, 234, 0.08);
-  border-bottom: 1px solid rgba(0, 0, 204, 0.15);
+  padding: 6px 10px;
+  background: #eef3fc;
+  border-bottom: 1px solid #c3d1ec;
 }
 .backlog-library-header strong {
-  color: var(--dark);
-  font-size: 15px;
-  font-weight: 500;
+  color: #215dc6;
+  font-family: "Trebuchet MS", Tahoma, Verdana, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
 }
 .backlog-library-header span {
   margin-left: 6px;
-  color: var(--brown);
+  color: #6b7895;
+  font-family: Tahoma, Verdana, sans-serif;
   font-size: 10px;
 }
 .backlog-sort {
-  color: var(--brown);
-  font-size: 10px;
-  background: transparent;
-  border: 1px solid rgba(42, 74, 138, 0.25);
-  border-radius: var(--radius-sm);
-  padding: 2px 6px;
+  padding: 2px 4px;
+  background: var(--color-white);
+  border: 1px solid #7f9db9;
+  border-radius: 0;
+  color: #000;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
   cursor: pointer;
-  font-family: inherit;
-  line-height: 1.2;
 }
-
 .backlog-sort:focus {
-  outline: 1px solid rgba(42, 74, 138, 0.5);
-  outline-offset: 1px;
+  outline: 1px solid #316ac5;
 }
+#backlog-platform-select { max-width: 170px; height: 24px; }
 
 .backlog-content {
-  padding: 10px;
+  padding: 12px;
   flex: 1;
   overflow: auto;
+  background: var(--color-white);
 }
 
 .backlog-grid {
@@ -1144,10 +1466,14 @@ a {
   width: 100%;
   aspect-ratio: 2 / 3;
   overflow: hidden;
-  background: rgba(0, 0, 204, 0.1);
-  border: 1px solid rgba(0, 0, 204, 0.15);
-  border-radius: var(--radius-card);
-  box-shadow: var(--small-shadow);
+  background: #dbe5f8;
+  border: 1px solid #7f9db9;
+  border-radius: 3px;
+  box-shadow: 1px 2px 4px rgba(0, 20, 90, 0.3);
+}
+.backlog-lib-card:hover .backlog-lib-cover-wrap {
+  border-color: #e0a020;
+  box-shadow: 0 0 0 1px #fff4d1, 1px 2px 4px rgba(0, 20, 90, 0.3);
 }
 .backlog-lib-cover {
   width: 100%;
@@ -1164,101 +1490,89 @@ a {
   font-size: 28px;
 }
 .backlog-lib-name {
-  margin-top: 5px;
+  margin-top: 6px;
   overflow: hidden;
-  color: var(--dark);
+  color: #000;
+  font-family: Tahoma, Verdana, sans-serif;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .backlog-lib-hours {
   margin-top: 2px;
-  color: var(--brown);
-  font-size: 9px;
+  color: #6b7895;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 10px;
 }
 
 /* Backlog status and platform tags */
+/* ── Tags del backlog: mismo estilo sharp que los del horario ── */
 .backlog-status-tag,
 .backlog-platform-tag {
-  display: inline-block;
-  padding: 4px 8px;
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: var(--radius-lg);
-  font-size: 9px;
-  font-weight: bold;
-  letter-spacing: 0.3px;
-  backdrop-filter: blur(2px);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  --t-top:  #5f9bff;
+  --t-bot:  #1f58d6;
+  --t-edge: #0f3a9e;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  overflow: hidden;
+  border: 1px solid var(--t-edge);
+  border-radius: 3px;
+  background: linear-gradient(to bottom, var(--t-top) 0%, var(--t-bot) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 60, 0.25);
   color: var(--color-white);
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+  backdrop-filter: none;
 }
 
-/* Library view status placement */
-.backlog-lib-status {
-  position: absolute;
-  left: 4px;
-  bottom: 4px;
-  backdrop-filter: blur(2px);
+/* Estados */
+.status-backlog    { --t-top: #9aa9c9; --t-bot: #5d6f98; --t-edge: #3a4a73; }
+.status-jugando    { --t-top: #5f9bff; --t-bot: #1f58d6; --t-edge: #0f3a9e; }
+.status-pausado    { --t-top: #ffc65c; --t-bot: #e08a12; --t-edge: #96560a; }
+.status-dropeado   { --t-top: #f08a72; --t-bot: #c4402a; --t-edge: #8a2512; }
+.status-completado { --t-top: #6fe3d6; --t-bot: #1fa89a; --t-edge: #0e6f66; }
+.status-platino    { --t-top: #b89cff; --t-bot: #7a55dd; --t-edge: #4a2fa0; }
+
+/* Plataformas: panel blanco con logo + panel de color con texto */
+.backlog-platform-tag {
+  padding: 0 9px 0 0;
+}
+.backlog-plat-icon {
+  flex: 0 0 auto;
+  align-self: stretch;
+  width: 24px;
+  padding: 3px 4px;
+  box-sizing: border-box;
+  object-fit: contain;
+  background: linear-gradient(to bottom, #ffffff 0%, #e9eef9 100%);
+  border-right: 1px solid var(--t-edge);
+}
+.backlog-plat-emoji {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1;
+  text-shadow: none;
 }
 
-.status-backlog {
-  background: rgba(234, 241, 255, 0.85);
-  border-color: rgba(0, 0, 204, 0.25);
-  color: var(--color-navy);
-}
-.status-jugando {
-  background: rgba(22, 71, 199, 0.5);
-  border-color: var(--teal);
-}
-.status-pausado {
-  background: rgba(3, 86, 234, 0.5);
-  border-color: var(--gold);
-}
-.status-dropeado {
-  background: rgba(221, 83, 55, 0.5);
-  border-color: var(--red);
-}
-.status-completado {
-  background: rgba(79, 209, 197, 0.5);
-  border-color: var(--olive);
-}
-.status-platino {
-  background: rgba(42, 74, 138, 0.5);
-  border-color: var(--brown);
-}
-
-.platform-steam {
-  background: rgba(22, 71, 199, 0.4);
-  border-color: rgba(22, 71, 199, 0.5);
-}
-.platform-gog {
-  background: rgba(3, 86, 234, 0.4);
-  border-color: rgba(3, 86, 234, 0.5);
-}
-.platform-epic {
-  background: rgba(0, 0, 204, 0.3);
-  border-color: rgba(0, 0, 204, 0.4);
-}
-.platform-retro {
-  background: rgba(79, 209, 197, 0.4);
-  border-color: rgba(79, 209, 197, 0.5);
-}
-.platform-consola {
-  background: rgba(221, 83, 55, 0.3);
-  border-color: rgba(221, 83, 55, 0.4);
-}
-.platform-otro {
-  background: rgba(42, 74, 138, 0.3);
-  border-color: rgba(42, 74, 138, 0.4);
-}
-.platform-minecraft-map {
-  background: rgba(79, 209, 197, 0.45);
-  border-color: rgba(79, 209, 197, 0.55);
-}
-.platform-minecraft-event {
-  background: rgba(221, 83, 55, 0.4);
-  border-color: rgba(221, 83, 55, 0.5);
-}
+.platform-steam   { --t-top: #3d7aa8; --t-bot: #1b2f45; --t-edge: #0d1a28; }
+.platform-gog     { --t-top: #b562c0; --t-bot: #7a2f86; --t-edge: #4d1a56; }
+.platform-epic    { --t-top: #4a4a4a; --t-bot: #1c1c1c; --t-edge: #000000; }
+.platform-retro   { --t-top: #6fe3d6; --t-bot: #1fa89a; --t-edge: #0e6f66; }
+.platform-consola { --t-top: #f08a72; --t-bot: #c4402a; --t-edge: #8a2512; }
+.platform-otro    { --t-top: #8fa2cf; --t-bot: #4f6498; --t-edge: #2f4070; }
+.platform-minecraft-map   { --t-top: #7fc650; --t-bot: #4a8f26; --t-edge: #2f5f14; }
+.platform-minecraft-event { --t-top: #b89cff; --t-bot: #7a55dd; --t-edge: #4a2fa0; }
 
 .backlog-view-list {
   display: flex;
@@ -1267,11 +1581,12 @@ a {
 }
 .backlog-list-row {
   padding: 10px;
-  background: rgba(255, 255, 255, 0.47);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-card);
-  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.08);
+  background: var(--color-white);
+  border: 1px solid #a9bde3;
+  border-radius: 3px;
+  box-shadow: none;
 }
+.backlog-list-row:hover { border-color: #e0a020; }
 .backlog-row-top {
   display: flex;
   gap: 12px;
@@ -1281,19 +1596,20 @@ a {
   flex: 0 0 160px;
   aspect-ratio: 2.14 / 1;
   object-fit: cover;
-  border: 1px solid rgba(0, 0, 204, 0.15);
-  border-radius: var(--radius-md);
   display: block;
+  border: 1px solid #7f9db9;
+  border-radius: 2px;
 }
 
 .backlog-row-info {
   min-width: 0;
 }
 .backlog-row-name {
-  margin-bottom: 4px;
-  color: var(--dark);
-  font-size: 13px;
-  font-weight: 600;
+  margin-bottom: 5px;
+  color: #215dc6;
+  font-family: "Trebuchet MS", Tahoma, Verdana, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
 }
 .backlog-row-tags {
   display: flex;
@@ -1301,69 +1617,67 @@ a {
   gap: 4px;
 }
 .backlog-row-hours {
-  margin-top: 5px;
-  color: var(--brown);
-  font-size: 10px;
+  margin-top: 6px;
+  color: #6b7895;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
 }
 
+/* Logros: barra de progreso verde segmentada de XP */
 .backlog-achievements {
-  margin-top: 8px;
-  padding-top: 7px;
-  border-top: 1px dotted rgba(0, 0, 204, 0.15);
+  margin-top: 9px;
+  padding-top: 8px;
+  border-top: 1px solid #e4eaf6;
 }
 .backlog-ach-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 4px;
-  color: var(--brown);
-  font-size: 9px;
+  color: #000;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
 }
-.backlog-ach-count {
-  font-weight: bold;
-}
+.backlog-ach-count { font-weight: 700; }
 .backlog-ach-bar-track {
-  height: 7px;
+  height: 14px;
+  padding: 1px;
   overflow: hidden;
-  background: rgba(0, 0, 204, 0.08);
-  border: 1px solid rgba(0, 0, 204, 0.1);
-  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  border: 1px solid #686868;
+  border-radius: 3px;
 }
 .backlog-ach-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--gold), var(--teal));
+  border-radius: 2px;
+  background:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 55%),
+    repeating-linear-gradient(to right, #2db92d 0 7px, transparent 7px 9px);
 }
 .backlog-ach-icons-row {
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-top: 6px;
+  margin-top: 7px;
 }
 .backlog-ach-icon {
   width: 30px;
   height: 30px;
   object-fit: cover;
-  border: 1px solid rgba(0, 0, 204, 0.1);
-  border-radius: var(--radius-sm);
+  border: 1px solid #7f9db9;
+  border-radius: 3px;
 }
-.backlog-ach-locked {
-  filter: grayscale(1);
-  opacity: 0.35;
-}
+.backlog-ach-locked { filter: grayscale(1); opacity: 0.4; }
 .backlog-ach-more {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   display: grid;
   place-items: center;
-  background: rgba(234, 241, 255, 0.5);
-  border: 1px solid rgba(0, 0, 204, 0.1);
-  border-radius: var(--radius-sm);
-  color: var(--brown);
-  font-size: 9px;
-  font-weight: bold;
-}
-.backlog-ach-none {
-  color: var(--brown);
-  font-size: 9px;
+  background: linear-gradient(to bottom, #fdfdfb, #e3e1d4);
+  border: 1px solid #aca899;
+  border-radius: 3px;
+  color: #6b6a58;
+  font-size: 10px;
+  font-weight: 700;
 }
 .backlog-empty {
   padding: 40px 20px;
@@ -1379,66 +1693,232 @@ a {
 .github-window {
   background: var(--color-white);
 }
-.github-content {
-  padding: 12px;
-  overflow: auto;
+
+/* ── GitHub: perfil falso dentro de un navegador retro ── */
+
+/* Barra de dirección */
+.ie-address {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: linear-gradient(to bottom, #ffffff 0%, #eaf1fd 100%);
+  border-bottom: 1px solid #a9bde3;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
+  color: #4d6185;
 }
-.github-profile-link {
-  padding: 5px 8px;
-  color: var(--dark);
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
+.ie-url {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  overflow: hidden;
+  background: var(--color-white);
+  border: 1px solid #7f9db9;
+  color: #000;
   text-decoration: none;
-  font-size: 10px;
-  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-.github-profile-link:hover {
-  background: rgba(255, 255, 255, 0.7);
+.ie-go {
+  padding: 3px 12px;
+  border: 1px solid #003c74;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #ffffff 0%, #eaf1ff 55%, #d3e0f7 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+  color: #000;
+  text-decoration: none;
+}
+.ie-go:hover {
+  box-shadow: inset 0 0 0 1px #fff4d1, inset 0 0 0 2px #f8b330;
+}
+
+/* Página */
+.gh-page {
+  padding: 0;
+  background: var(--color-white);
+  user-select: text;
+}
+
+/* Cabecera con pestañas tipo cuadro de propiedades de XP */
+.gh-top {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  padding: 10px 16px 0;
+  background: linear-gradient(to bottom, #f4f7fd 0%, #e3ebfa 100%);
+  border-bottom: 1px solid #a9bde3;
+}
+.gh-logo {
+  padding-bottom: 8px;
+  color: #215dc6;
+  font-family: "Trebuchet MS", Tahoma, Verdana, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+}
+.gh-nav {
+  display: flex;
+  gap: 2px;
+}
+.gh-nav span,
+.gh-nav a {
+  margin-bottom: -1px;
+  padding: 5px 14px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  border-radius: 3px 3px 0 0;
+  color: #4d6185;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
+  text-decoration: none;
+}
+.gh-nav a:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: #c3d1ec;
+}
+.gh-nav .active {
+  background: var(--color-white);
+  border-color: #a9bde3;
+  color: #000;
+  font-weight: 700;
+}
+
+.gh-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  padding: 18px 18px 22px;
+  font-family: Tahoma, Verdana, sans-serif;
+  color: #000;
+}
+
+/* Columna del perfil */
+.gh-side {
+  flex: 0 0 190px;
+  min-width: 0;
+}
+.gh-avatar {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 3px;
+  object-fit: cover;
+  background: var(--color-white);
+  border: 1px solid #7f9db9;
+  box-shadow: 1px 2px 4px rgba(0, 20, 90, 0.25);
+}
+.gh-name {
+  margin: 12px 0 0;
+  color: #215dc6;
+  font-family: "Trebuchet MS", Tahoma, Verdana, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+.gh-user {
+  color: #6b7895;
+  font-size: 13px;
+}
+.gh-bio {
+  margin: 10px 0 12px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.gh-follow {
+  display: block;
+  padding: 6px 10px;
+  border: 1px solid #003c74;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #ffffff 0%, #eaf1ff 55%, #d3e0f7 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+  color: #000;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+.gh-follow:hover {
+  box-shadow: inset 0 0 0 1px #fff4d1, inset 0 0 0 2px #f8b330;
+}
+.gh-info {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+}
+.gh-info li {
+  padding: 3px 0;
+}
+.gh-info a {
+  color: #0046d5;
+}
+
+/* Columna de repos */
+.gh-main {
+  flex: 1;
+  min-width: 0;
+}
+.gh-heading {
+  margin: 0 0 12px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #d0d0bf;
+  color: #215dc6;
+  font-family: "Trebuchet MS", Tahoma, Verdana, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .repos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 10px;
 }
+
+/* Cada repo es una mini ventana */
 .repo-card {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  padding: 14px;
+  overflow: hidden;
   background: var(--color-white);
-  border: 1px solid #ddd;
-  border-radius: 11px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #7f9db9;
+  border-radius: 3px;
+  box-shadow: 1px 2px 3px rgba(0, 20, 90, 0.15);
   color: inherit;
   text-decoration: none;
-  transition: transform 0.15s, box-shadow 0.15s;
 }
 .repo-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  border-color: #e0a020;
+  box-shadow: 0 0 0 1px #fff4d1, 1px 2px 4px rgba(0, 20, 90, 0.25);
 }
 .repo-card-name {
+  padding: 5px 8px;
   overflow: hidden;
-  color: var(--dark);
+  background: linear-gradient(to right, #ffffff 0%, #c6d3f7 100%);
+  border-bottom: 1px solid #a9bde3;
+  color: #215dc6;
   font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.repo-card:hover .repo-card-name {
+  text-decoration: underline;
+}
 .repo-icon {
   margin-right: 4px;
 }
 .repo-card-desc {
-  min-height: 34px;
-  margin-top: 6px;
-  color: var(--brown);
-  font-size: 10px;
+  min-height: 52px;
+  padding: 8px 10px 0;
+  font-size: 11px;
   line-height: 1.5;
 }
 .repo-card-desc.empty {
-  color: var(--brown);
+  color: #8f9ab3;
   font-style: italic;
 }
 .repo-card-meta {
@@ -1447,29 +1927,30 @@ a {
   align-items: center;
   gap: 6px;
   margin-top: auto;
-  padding-top: 8px;
-  color: var(--brown);
-  font-size: 9px;
+  padding: 8px 10px 10px;
+  color: #4d6185;
+  font-size: 10px;
 }
 .repo-lang {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
 }
 .repo-lang-dot {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: var(--radius-round);
 }
 .repo-stat {
   white-space: nowrap;
 }
 .repo-topic {
-  padding: 2px 4px;
-  background: rgba(234, 241, 255, 0.7);
-  border: 1px solid rgba(0, 0, 204, 0.1);
-  border-radius: var(--radius-lg);
-  color: var(--dark);
+  padding: 1px 5px;
+  background: #eaf1ff;
+  border: 1px solid #a9bde3;
+  border-radius: 3px;
+  color: #215dc6;
 }
 .repos-loading,
 .repos-error {
@@ -1503,46 +1984,137 @@ a {
 .discord-window {
   background: var(--color-white);
 }
-.discord-heading {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 10px;
-  background: rgba(3, 86, 234, 0.08);
-  border-bottom: 1px solid rgba(0, 0, 204, 0.15);
+
+/* ── Discord: ficha de servidor estilo XP ── */
+.discord-card-wrap {
+  padding: 8px;
+  background: var(--cream);
 }
-.discord-server-icon {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: var(--radius-xl);
-  background: #5865f2;
-  color: var(--color-white);
-  font-size: 23px;
-}
-.discord-heading strong {
-  display: block;
-  color: var(--dark);
-  font-size: 12px;
-}
-.discord-heading span {
-  display: block;
-  margin-top: 3px;
-  color: var(--brown);
-  font-size: 10px;
-}
-.discord-iframe-wrapper {
-  padding: 0;
+
+.dc-card {
   overflow: hidden;
   background: var(--color-white);
+  border: 1px solid #7f9db9;
+  border-radius: 4px;
+  box-shadow: 1px 2px 4px rgba(0, 20, 90, 0.2);
+  font-family: Tahoma, Verdana, sans-serif;
+  color: #000;
 }
-.discord-iframe-wrapper iframe {
-  width: 100%;
-  height: 100%;
+
+.dc-banner {
+  position: relative;
+  height: 96px;
+  background-color: #2f9bff;
+  background-image: url("../assets/dc_banner.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.dc-body {
+  position: relative;
+  padding: 0 14px 14px;
+}
+
+/* Ícono: se superpone al banner */
+.dc-icon {
   display: block;
-  border: 0;
+  width: 72px;
+  height: 72px;
+  margin-top: -34px;
+  object-fit: cover;
+  border: 3px solid var(--color-white);
+  border-radius: 4px;
+  background: var(--color-white);
+  box-shadow: 1px 2px 4px rgba(0, 20, 90, 0.4);
+}
+
+.dc-name {
+  margin: 8px 0 0;
+  color: #215dc6;
+  font-family: "Trebuchet MS", Tahoma, Verdana, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+.dc-meta {
+  margin: 2px 0 0;
+  color: #6b7895;
+  font-size: 11px;
+}
+.dc-desc {
+  margin: 10px 0 12px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Cuadros de grupo de diálogo de XP */
+.dc-group {
+  margin: 0 0 10px;
+  padding: 8px 10px 10px;
+  border: 1px solid #d0d0bf;
+  border-radius: 3px;
+}
+.dc-group legend {
+  padding: 0 4px;
+  color: #0046d5;
+  font-size: 11px;
+}
+.dc-group .tag {
+  margin-right: 4px;
+}
+
+/* Fila de juegos */
+.dc-games {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.dc-game {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  background: var(--color-white);
+  border: 1px solid #7f9db9;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px #eef3fc;
+}
+.dc-game img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.dc-game-more {
+  background: linear-gradient(to bottom, #fdfdfb, #e3e1d4);
+  border-color: #aca899;
+  color: #6b6a58;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Botón verde: el mismo del Inicio */
+.dc-join {
+  display: block;
+  margin-top: 4px;
+  padding: 9px 12px;
+  border: 1px solid #1f6b1f;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #6fd36f 0%, #3aa63a 50%, #2b8a2b 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(0, 70, 0, 0.35);
+  color: var(--color-white);
+  font-family: "Trebuchet MS", Tahoma, Verdana, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 40, 0, 0.6);
+  text-decoration: none;
+}
+.dc-join:hover { filter: brightness(1.1); }
+.dc-join:active {
+  filter: brightness(0.92);
+  box-shadow: inset 1px 1px 3px rgba(0, 50, 0, 0.55);
 }
 
 /* ============================================================
@@ -1558,8 +2130,8 @@ a {
   z-index: 100000;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 8px;
+  gap: 0;
+  padding: 0;
   background: linear-gradient(180deg, var(--color-blue-top) 0%, var(--color-blue) 14%, var(--color-blue-dark) 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 -4px 15px rgba(10, 15, 40, 0.3);
@@ -1567,133 +2139,397 @@ a {
 }
 
 .taskbar-start {
-  height: 40px;
-  padding: 0 17px;
-  border-radius: var(--radius-section);
-  border: 1px solid white;
-  background: linear-gradient(to bottom, #4C86F2, var(--teal));
-  color: var(--cream);
-  font-family: inherit;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: inset 0 1px white, 0 2px 5px rgba(0, 0, 0, 0.22);
+  /* Colores del botón: cámbialos aquí si quieres otra variante */
+  --start-top:    #6fd36f;
+  --start-mid:    #3aa63a;
+  --start-bottom: #2b8a2b;
+  --start-edge:   #1f6b1f;
+
+  align-self: stretch;
+  height: auto;
+  margin-right: 8px;
+  padding: 0 34px 0 16px;
   display: flex;
   align-items: center;
-  gap: 4px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  gap: 8px;
+  border: 0;
+  border-radius: 0 16px 16px 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 35% 0%, rgba(255, 255, 255, 0.45), transparent 70%),
+    linear-gradient(to bottom, var(--start-top) 0%, var(--start-mid) 22%, var(--start-bottom) 60%, var(--start-mid) 100%);
+  box-shadow:
+    inset 0 2px 1px rgba(255, 255, 255, 0.55),
+    inset 0 -4px 6px rgba(0, 70, 0, 0.45),
+    inset -2px 0 3px rgba(0, 70, 0, 0.35),
+    3px 0 6px rgba(0, 0, 0, 0.4);
+  color: var(--color-white);
+  font-family: "Franklin Gothic Medium", "Trebuchet MS", var(--font-ui);
+  font-size: 21px;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 2px 2px rgba(0, 40, 0, 0.7);
+  cursor: pointer;
   text-decoration: none;
+  transition: filter 0.1s;
 }
 .taskbar-start:hover {
-  background: linear-gradient(to bottom, #6FA4FF, #1647C7);
+  filter: brightness(1.12);
 }
-.taskbar-start span {
+.taskbar-start:active {
+  filter: brightness(0.9);
+  box-shadow:
+    inset 0 3px 6px rgba(0, 50, 0, 0.6),
+    3px 0 6px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Logo: bandera inclinada ── */
+.taskbar-start .xp-login-brand-mark {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  transform: perspective(90px) rotateY(-16deg) rotateZ(-5deg);
+  filter: drop-shadow(2px 2px 1.5px rgba(0, 40, 0, 0.6));
+}
+.taskbar-start .xp-login-brand-mark::before {
+  content: none;
+}
+.taskbar-start .xp-login-brand-mark span {
+  position: relative;
+  border-radius: 3px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.3);
+}
+.taskbar-start .xp-login-brand-mark span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+}
+
+.taskbar-start .xp-login-brand-mark span:nth-child(1) { background: var(--color-login-mark-a); }
+.taskbar-start .xp-login-brand-mark span:nth-child(2) { background: var(--color-login-mark-b); }
+.taskbar-start .xp-login-brand-mark span:nth-child(3) { background: var(--color-login-mark-c); }
+.taskbar-start .xp-login-brand-mark span:nth-child(4) { background: var(--color-login-mark-d); }
+.taskbar-start > span {
   margin-left: 4px;
 }
 
 .taskbar-windows {
   min-width: 0;
   flex: 1;
+  align-self: stretch;       /* ocupa toda la altura de la barra */
   display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 0 4px;
+  align-items: stretch;      /* los botones llenan esa altura */
+  gap: 3px;
+  padding: 4px 6px;          /* margen mínimo arriba/abajo, como en XP */
   overflow: hidden;
 }
 
 .win-task-btn {
-  height: 36px;
-  max-width: 170px;
+  flex: 0 1 240px;           /* antes 170px: más ancho, se reparten el espacio */
+  min-width: 0;
+  max-width: 240px;
+  height: auto;              /* el alto lo da el contenedor */
   padding: 0 12px;
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.16);
-  color: var(--color-white);
-  font-family: inherit;
-  font-size: 11px;
-  cursor: pointer;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   display: flex;
   align-items: center;
-  gap: 5px;
-}
-.win-task-btn:hover {
-  background: rgba(255, 255, 255, 0.28);
-}
-.win-task-btn.wm-focused {
-  background: rgba(255, 255, 255, 0.35);
-  border-color: var(--color-white);
-}
-.win-task-btn.wm-minimized {
-  opacity: 0.65;
+  gap: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+
+  font-family: var(--font-ui);
+  font-size: 14px;           /* antes 11px */
+  color: var(--color-white);
+  text-shadow: none;
+  cursor: pointer;
+
+  border: 1px solid #1b46ad;
+  border-radius: 4px;
+  background: linear-gradient(
+    to bottom,
+    #5f9bff 0%,
+    #3c81f3 10%,
+    #3c81f3 88%,
+    #3374ea 100%
+  );
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.35),
+    inset -1px -1px 0 rgba(0, 0, 60, 0.3);
 }
 .win-task-btn > span:first-child {
   flex: 0 0 auto;
-  font-size: 14px;
+  font-size: 20px;           /* antes 14px */
+  line-height: 1;
 }
-.win-task-btn .btn-label {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.win-task-btn:hover {
+  background: linear-gradient(
+    to bottom,
+    #7bb0ff 0%,
+    #5a96fa 12%,
+    #5a96fa 85%,
+    #4a82ec 100%
+  );
 }
 
+/* Ventana activa: botón hundido y más oscuro */
+.win-task-btn.wm-focused {
+  background: linear-gradient(
+    to bottom,
+    #1a4cb8 0%,
+    #2159c9 20%,
+    #2a63d4 100%
+  );
+  border-color: #0f2f82;
+  box-shadow:
+    inset 1px 1px 3px rgba(0, 0, 50, 0.65),
+    inset -1px -1px 0 rgba(255, 255, 255, 0.18);
+  font-weight: 700;
+}
+.win-task-btn.wm-focused:hover {
+  filter: brightness(1.08);
+}
+
+/* Minimizada: en XP se ve como un botón normal, sin atenuar */
+.win-task-btn.wm-minimized {
+  opacity: 1;
+}
+
+/* ── Bandeja del sistema (íconos + reloj) ── */
+.taskbar-items,
+.taskbar-clock-wrap {
+  align-self: stretch;
+  /* Misma estructura que .taskbar (brillo arriba → color base → oscuro abajo), pero celeste */
+  background: linear-gradient(
+    180deg,
+    #6fcaf9 0%,
+    #1aa3f0 14%,
+    #1189e2 60%,
+    #1176d6 100%
+  );
+}
+
+/* Icono admin + discord: aquí empieza la bandeja */
 .taskbar-items {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 2px;
-  padding: 0 3px;
-  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  gap: 4px;
+  padding: 0 6px 0 14px;
+  border-left: 0;
 }
+
+/* Divisor vertical: línea oscura + línea clara pegadas, como en XP */
+.taskbar-items::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to right,
+    #0c3f9e 0 1px,                    /* línea oscura */
+    rgba(255, 255, 255, 0.45) 1px 2px /* línea clara */
+  );
+  pointer-events: none;
+}
+
+/* ── Botones de la bandeja (Discord / Admin) ── */
 .taskbar-icon-btn,
 .taskbar-item {
-  width: 29px;
-  height: 28px;
+  width: 38px;                  /* antes 29px */
+  height: 36px;                 /* antes 28px */
   display: grid;
   place-items: center;
   padding: 0;
+  font-size: 21px;              /* antes 15px */
   line-height: 1;
-  border: 1px solid transparent;
-  border-radius: var(--radius-lg);
-  background: transparent;
   color: var(--color-white);
   text-decoration: none;
-  font-size: 15px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  box-shadow: none;
+  /* sombra sutil para que el ícono sobresalga del celeste */
+  filter: drop-shadow(0 1px 1px rgba(0, 30, 100, 0.55));
 }
+
+/* Hover: mismo botón elevado que las pestañas de ventana */
 .taskbar-icon-btn:hover,
 .taskbar-item:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: #1b46ad;
+  background: linear-gradient(
+    to bottom,
+    #5f9bff 0%,
+    #3c81f3 10%,
+    #3c81f3 88%,
+    #3374ea 100%
+  );
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.35),
+    inset -1px -1px 0 rgba(0, 0, 60, 0.3);
 }
+
+/* Activo / presionado: hundido y más oscuro, como la ventana con foco */
+.taskbar-icon-btn:active,
+.taskbar-item:active,
 .taskbar-icon-btn.wm-focused {
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: inset 1px 1px rgba(255, 255, 255, 0.4);
+  border-color: #0f2f82;
+  background: linear-gradient(
+    to bottom,
+    #1a4cb8 0%,
+    #2159c9 20%,
+    #2a63d4 100%
+  );
+  box-shadow:
+    inset 1px 1px 3px rgba(0, 0, 50, 0.65),
+    inset -1px -1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .taskbar-clock-wrap {
-  min-width: 115px;
+  min-width: 0;                 /* el ancho ahora lo da el contenido */
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 0 8px;
-  border-left: 1px solid rgba(255, 255, 255, 0.25);
-  font-size: 10px;
+  gap: 12px;                    /* antes 8px */
+  padding: 0 18px 0 8px;
+  border-left: 0;
+  box-shadow: none;
 }
+
 #timezone-label {
-  max-width: 70px;
+  max-width: 170px;             /* antes 70px: ya no se corta "America/..." */
   overflow: hidden;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 14px;
+  font-weight: 450;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-shadow: 0 1px 1px rgba(0, 30, 100, 0.45);
 }
+
 .taskbar-clock {
-  min-width: 36px;
+  min-width: 48px;
   color: var(--color-white);
-  font-family: var(--font-mono-compact);
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 17px;              /* antes 13px */
+  font-weight: 600;
+  text-shadow: 0 1px 1px rgba(0, 30, 100, 0.45);
+}
+
+/* ── Globo de notificación estilo XP ── */
+.tz-balloon {
+  position: fixed;
+  right: 8px;
+  bottom: calc(var(--taskbar-height) + 14px);
+  z-index: 100001;                       /* por encima de la taskbar */
+  width: 270px;
+  max-width: calc(100vw - 16px);
+  padding: 10px 12px 11px;
+  background: #ffffe1;
+  border: 1px solid #000;
+  border-radius: 8px;
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.4);
+  color: #000;
+  font-family: Tahoma, Verdana, sans-serif;
   font-size: 12px;
-  font-weight: bold;
+  line-height: 1.4;
+  text-shadow: none;
+  cursor: pointer;
+
+  /* oculto por defecto */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+}
+.tz-balloon.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.tz-balloon-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 22px 6px 0;                  /* deja sitio al botón de cerrar */
+  font-size: 13px;
+  font-weight: 700;
+}
+.tz-balloon-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+.tz-balloon-text {
+  margin: 0 0 6px;
+}
+.tz-balloon-text:last-child {
+  margin-bottom: 0;
+}
+
+.tz-balloon-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 1px solid #a7a58f;
+  border-radius: 3px;
+  background: #fffbe0;
+  color: #6b6a58;
+  font-size: 10px;
+  line-height: 1;
+}
+.tz-balloon-close:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* Colita: triángulo negro (borde) + triángulo amarillo (relleno) */
+.tz-balloon::before,
+.tz-balloon::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+}
+.tz-balloon::before {
+  right: 15px;
+  bottom: -13px;
+  border-width: 12px 9px 0 9px;
+  border-top-color: #000;
+}
+.tz-balloon::after {
+  right: 16px;
+  bottom: -11px;
+  border-width: 11px 8px 0 8px;
+  border-top-color: #ffffe1;
 }
 
 /* ============================================================
@@ -1952,6 +2788,39 @@ a {
 .tab.active {
   color: var(--dark);
   border-bottom-color: var(--teal);
+}
+
+/* ── Pestañas del backlog: estilo cuadro de propiedades de XP ── */
+#backlog-tab-bar {
+  gap: 2px;
+  padding: 6px 10px 0;
+  background: linear-gradient(to bottom, #f4f7fd 0%, #e3ebfa 100%);
+  border-bottom: 1px solid #a9bde3;
+}
+#backlog-tab-bar .tab {
+  margin-bottom: -1px;
+  padding: 5px 16px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  border-radius: 3px 3px 0 0;
+  color: #4d6185;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  user-select: none;
+}
+#backlog-tab-bar .tab:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: #c3d1ec;
+  color: #000;
+}
+#backlog-tab-bar .tab.active {
+  background: var(--color-white);
+  border-color: #a9bde3;
+  border-bottom: 0;
+  box-shadow: inset 0 2px 0 #f8b330;
+  color: #000;
+  font-weight: 700;
 }
 
 .tab-panel {
@@ -2292,16 +3161,12 @@ a {
   .backlog-sidebar {
     width: 100%;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 3px;
     padding: 6px;
     border-right: 0;
     border-bottom: 1px solid rgba(0, 0, 204,0.1);
-  }
-  .backlog-sidebar-heading,
-  .backlog-sidebar-section-title,
-  .backlog-sidebar-divider {
-    display: none;
   }
   .backlog-sidebar-item {
     width: auto;
@@ -2359,8 +3224,15 @@ a {
     display: none;
   }
 
-  .repos-grid {
-    grid-template-columns: 1fr;
+  .gh-layout {
+    flex-direction: column;
+  }
+  .gh-side {
+    flex: none;
+    width: 100%;
+  }
+  .gh-avatar {
+    max-width: 140px;
   }
 
   .stream-window {
@@ -2369,13 +3241,6 @@ a {
   .stream-window iframe,
   .yt-video iframe {
     min-height: 360px;
-  }
-
-  .discord-window {
-    min-height: 500px;
-  }
-  .discord-iframe-wrapper {
-    min-height: 420px;
   }
 
   .taskbar {
@@ -2387,7 +3252,7 @@ a {
     justify-content: center;
     padding: 0 7px;
   }
-  .taskbar-start span {
+  .taskbar-start > span {
     display: none;
   }
   .taskbar-windows {
@@ -2398,13 +3263,12 @@ a {
   }
   .taskbar-clock-wrap {
     min-width: 70px;
-    padding: 0 5px;
   }
   #timezone-label {
     display: none;
   }
-  .taskbar-clock {
-    font-size: 11px;
+    .taskbar-clock {
+    font-size: 14px;   /* antes 11px */
   }
 
   /* Admin page on small screens */
@@ -2477,5 +3341,94 @@ a {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+/* ── Horario en móvil: un grupo por día, sin scroll horizontal ── */
+@media (max-width: 768px) {
+  .schedule-window .schedule-content { overflow-x: hidden; }
+
+  .schedule-window .schedule-table,
+  .schedule-window .schedule-table tbody {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+  }
+  .schedule-window .schedule-table thead { display: none; }
+
+  /* Cada fila: hora | juego | tag */
+  .schedule-window .schedule-table tbody tr {
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr) auto;
+    align-items: center;
+    border-bottom: 1px solid #e4eaf6;
+  }
+  .schedule-window .schedule-table td {
+    width: auto;
+    min-width: 0;
+    padding: 9px 10px;
+    border: 0;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  /* El día es una franja que ocupa todo el ancho, encima de sus horarios */
+  .schedule-window .schedule-table .td-day {
+    grid-column: 1 / -1;
+    padding: 5px 10px;
+    background: #eaf1fd;
+    border-bottom: 1px solid #c3d1ec;
+    color: #215dc6;
+    font-size: 11px;
+  }
+
+  .schedule-window .schedule-table .td-time {
+    padding-right: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .schedule-window .schedule-table .td-game { overflow-wrap: anywhere; }
+  .schedule-window .schedule-table .td-tag {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .schedule-window .tag {
+    padding: 3px 8px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  .schedule-window .game-logo {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+  }
+
+  /* Días sin stream */
+  .schedule-window .schedule-table tr.inactive .td-day { color: #8f9ab3; }
+
+  /* Hoy: solo la franja del día va en azul de selección */
+  .schedule-window .schedule-table tr.today .td-day {
+    background: #316ac5;
+    border-bottom-color: #2a5cae;
+    color: #fff;
+  }
+  .schedule-window .schedule-table tr.today .td-day::after {
+    content: " · hoy";
+    font-weight: 400;
+  }
+  .schedule-window .schedule-table tr.today td:not(.td-day) {
+    background: #fff;
+    color: #000;
+  }
+  .schedule-window .schedule-table tr.today.inactive td:not(.td-day) { color: #8f9ab3; }
+}
+
+@media (max-width: 430px) {
+  .schedule-window .schedule-table tbody tr {
+    grid-template-columns: 46px minmax(0, 1fr) auto;
+  }
+  .schedule-window .schedule-table .td-time {
+    padding-left: 8px;
+    font-size: 11px;
   }
 }

@@ -48,7 +48,7 @@ const WM = (() => {
      Each entry is a function (vw, vh, winW, winH) → { x, y }.
      Only used on first open when w.x === null. ── */
   const MARGIN = 16; // px gap from screen edges
-  const ICON_COL = 84; // px width of desktop icon column on the left
+  const ICON_COL = 120; // px width of desktop icon column on the left
 
   const PINNED = {
     /* Hero: left side, vertically centred, clear of the icon column */
@@ -618,7 +618,13 @@ function renderProfilePic(profilePic, vtuberName) {
   const nameEl   = document.getElementById('msn-display-name');
   const heroName = document.getElementById('hero-name');
 
-  if (nameEl   && vtuberName) nameEl.textContent   = `${vtuberName} ✦ Online`;
+  if (nameEl && vtuberName) {
+    nameEl.textContent = vtuberName + ' ';
+    const status = document.createElement('span');
+    status.className = 'msn-name-status';
+    status.textContent = '(En línea)';
+    nameEl.appendChild(status);
+  }
   if (heroName && vtuberName) heroName.textContent  = vtuberName;
   if (!frame) return;
 
@@ -743,27 +749,66 @@ const BACKLOG_STATUS_CONFIG = {
 };
 
 const BACKLOG_PLATFORM_CONFIG = {
-  'steam': { label: '🟦 Steam', cls: 'platform-steam' },
-  'gog':   { label: '🟪 GOG',   cls: 'platform-gog'   },
-  'epic':  { label: '⬛ Epic',  cls: 'platform-epic'  },
-  'retro': { label: '🕹️ Retro', cls: 'platform-retro' },
-  'consola': { label: '🎮 Consola', cls: 'platform-consola' },
-  'otro':  { label: '🎮 Otro',  cls: 'platform-otro'  },
-  'minecraft-map':   { label: '🗺️ Mapa de MC',   cls: 'platform-minecraft-map'   },
-  'minecraft-event': { label: '🎪 Evento de MC', cls: 'platform-minecraft-event' },
+  'steam':   { label: 'Steam',   cls: 'platform-steam',   icon: 'steam',     iconColor: '171A21' },
+  'gog':     { label: 'GOG',     cls: 'platform-gog',     icon: 'gogdotcom', iconColor: '86328A' },
+  'epic':    { label: 'Epic',    cls: 'platform-epic',    icon: 'epicgames', iconColor: '313131' },
+  'retro':   { label: 'Retro',   cls: 'platform-retro',   emoji: '🕹️' },
+  'consola': { label: 'Consola', cls: 'platform-consola', emoji: '🎮' },
+  'otro':    { label: 'Otro',    cls: 'platform-otro',    emoji: '🎮' },
+  'minecraft-map': { label: 'Mapa MC', cls: 'platform-minecraft-map', img: 'https://i.imgur.com/GXqX6kG.png' },
+  'minecraft-event': { label: 'Evento MC', cls: 'platform-minecraft-event', img: 'https://i.imgur.com/GXqX6kG.png' },
+  'Mapa de MC':   { label: 'Mapa MC',   cls: 'platform-minecraft-map',   img: 'https://i.imgur.com/GXqX6kG.png' },
+  'Evento de MC': { label: 'Evento MC', cls: 'platform-minecraft-event', img: 'https://i.imgur.com/GXqX6kG.png' },
 };
+
+function platformIconHtml(cfg) {
+  if (cfg.img)  return `<img class="backlog-plat-icon" src="${cfg.img}" alt="">`;
+  if (cfg.icon) return `<img class="backlog-plat-icon" src="https://cdn.simpleicons.org/${cfg.icon}/${cfg.iconColor}" alt="">`;
+  return `<span class="backlog-plat-icon backlog-plat-emoji">${cfg.emoji}</span>`;
+}
 
 /* Backlog entries whose "platform" value marks them as Minecraft-specific
    content (custom adventure maps / third-party live events) rather than a
    regular tracked game. These live in their own "Minecraft" tab. */
-const MINECRAFT_PLATFORMS = ['minecraft-map', 'minecraft-event'];
+const MINECRAFT_PLATFORMS = ['minecraft-map', 'minecraft-event', 'Mapa de MC', 'Evento de MC'];
 
 function isMinecraftEntry(game) {
   return MINECRAFT_PLATFORMS.includes(game.platform);
 }
 
+function tabGames() {
+  return BACKLOG_DATA.filter(game =>
+    backlogActiveTab === 'minecraft' ? isMinecraftEntry(game) : !isMinecraftEntry(game)
+  );
+}
+
 function platformGroup(platform) {
   return ['steam', 'gog', 'epic'].includes(platform) ? 'pc' : 'otros';
+}
+
+function matchesPlatformFilter(game) {
+  if (backlogPlatformFilter === 'all') return true;
+  if (backlogPlatformFilter === 'mapa') {
+    return ['minecraft-map', 'Mapa de MC'].includes(game.platform);
+  }
+  if (backlogPlatformFilter === 'evento') {
+    return ['minecraft-event', 'Evento de MC'].includes(game.platform);
+  }
+  return platformGroup(game.platform) === backlogPlatformFilter;
+}
+
+const BACKLOG_PLATFORM_FILTERS = {
+  backlog: [['all', 'Todas las plataformas'], ['pc', '🖥️ PC'], ['otros', '🎮 Otros']],
+  minecraft: [['all', 'Mapas y eventos'], ['mapa', '🗺️ Mapas'], ['evento', '🎪 Eventos']],
+};
+
+function fillPlatformSelect() {
+  const select = document.getElementById('backlog-platform-select');
+  if (!select) return;
+  select.innerHTML = BACKLOG_PLATFORM_FILTERS[backlogActiveTab]
+    .map(([value, label]) => `<option value="${value}">${label}</option>`)
+    .join('');
+  select.value = backlogPlatformFilter;
 }
 
 const BACKLOG_ACHIEVEMENT_PREVIEW_COUNT = 6;
@@ -887,26 +932,12 @@ let backlogStatusFilter   = 'all';
 let backlogPlatformFilter = 'all';
 
 function updateBacklogSidebarCounts() {
-  /* Counts are scoped to the active tab so the sidebar stays meaningful
-     whether you're browsing regular games or Minecraft content. */
-  const tabItems = BACKLOG_DATA.filter(g =>
-      backlogActiveTab === 'minecraft' ? isMinecraftEntry(g) : !isMinecraftEntry(g)
-  );
-
-  const countFor = (status) => status === 'all'
-      ? tabItems.length
-      : tabItems.filter(g => g.status === status).length;
-
+  const games = tabGames();
   document.querySelectorAll('[data-count-status]').forEach(el => {
-    el.textContent = countFor(el.dataset.countStatus);
-  });
-
-  const platCountFor = (group) => group === 'all'
-      ? tabItems.length
-      : tabItems.filter(g => platformGroup(g.platform) === group).length;
-
-  document.querySelectorAll('[data-count-platform]').forEach(el => {
-    el.textContent = platCountFor(el.dataset.countPlatform);
+    const status = el.dataset.countStatus;
+    el.textContent = status === 'all'
+      ? games.length
+      : games.filter(game => game.status === status).length;
   });
 }
 
@@ -923,15 +954,12 @@ function drawBacklog() {
   grid.classList.toggle('backlog-view-list', effectiveView === 'list');
   grid.innerHTML = '';
 
-  /* Filtro combinado: pestaña activa + estado + plataforma + búsqueda por nombre.
-     Tab filtering happens first so Minecraft content only ever shows in the
-     Minecraft tab, and regular games only in the Backlog tab. */
-  const filtered = BACKLOG_DATA.filter(g => {
-    const matchTab = backlogActiveTab === 'minecraft' ? isMinecraftEntry(g) : !isMinecraftEntry(g);
-    const matchStatus = backlogStatusFilter === 'all' || g.status === backlogStatusFilter;
-    const matchPlatform = backlogPlatformFilter === 'all' || platformGroup(g.platform) === backlogPlatformFilter;
-    const matchSearch = backlogSearchTerm === '' || g.name.toLowerCase().includes(backlogSearchTerm.toLowerCase());
-    return matchTab && matchStatus && matchPlatform && matchSearch;
+  const filtered = tabGames().filter(game => {
+    const matchStatus = backlogStatusFilter === 'all' || game.status === backlogStatusFilter;
+    const matchPlatform = matchesPlatformFilter(game);
+    const matchSearch = backlogSearchTerm === ''
+      || game.name.toLowerCase().includes(backlogSearchTerm.toLowerCase());
+    return matchStatus && matchPlatform && matchSearch;
   });
 
   const list = applyBacklogSort(filtered);
@@ -989,7 +1017,7 @@ function buildBacklogListRow(game) {
   row.className  = 'backlog-list-row';
 
   const hoursText = game.playedHours != null
-      ? `${game.playedHours}h en registro${game.hoursAreManual ? ' (manual)' : ''}`
+      ? `${game.playedHours}h en registro`
       : 'Sin horas registradas';
 
   let achievementsHtml = '';
@@ -1031,7 +1059,7 @@ function buildBacklogListRow(game) {
         <div class="backlog-row-name">${game.name}</div>
         <div class="backlog-row-tags">
           <span class="backlog-status-tag ${cfg.cls}">${cfg.label}</span>
-          ${platCfg ? `<span class="backlog-platform-tag ${platCfg.cls}">${platCfg.label}</span>` : ''}
+            ${platCfg ? `<span class="backlog-platform-tag ${platCfg.cls}">${platformIconHtml(platCfg)}<span>${platCfg.label}</span></span>` : ''}
         </div>
         <div class="backlog-row-hours">${hoursText}</div>
       </div>
@@ -1050,45 +1078,19 @@ const BACKLOG_STATUS_CRUMBS = {
   'all': '🗂️ Todos los juegos', 'jugando': '🎮 Jugando', 'completado': '✅ Completados',
   'backlog': '📥 Backlog', 'pausado': '⏸️ Pausados', 'dropeado': '🗑️ Dropeados', 'platino': '💯 100%',
 };
-const BACKLOG_PLATFORM_CRUMBS = { 'pc': '🖥️ PC', 'otros': '🎮 Otros' };
+const BACKLOG_PLATFORM_CRUMBS = {
+  'pc': '🖥️ PC', 'otros': '🎮 Otros',
+  'mapa': '🗺️ Mapas', 'evento': '🎪 Eventos',
+};
 
 function updateBacklogCrumb() {
   const crumbEl = document.getElementById('backlog-crumb');
   if (!crumbEl) return;
-  const parts = backlogActiveTab === 'minecraft'
-      ? ['Minecraft - Eventos, Mapas y Aventuras']
-      : [BACKLOG_STATUS_CRUMBS[backlogStatusFilter] || 'Todos'];
-  if (backlogActiveTab !== 'minecraft' && backlogPlatformFilter !== 'all') {
-    parts.push(BACKLOG_PLATFORM_CRUMBS[backlogPlatformFilter]);
-  }
+  const parts = [BACKLOG_STATUS_CRUMBS[backlogStatusFilter] || 'Todos'];
+  if (backlogActiveTab === 'minecraft') parts.unshift('⛏️ Minecraft');
+  if (backlogPlatformFilter !== 'all') parts.push(BACKLOG_PLATFORM_CRUMBS[backlogPlatformFilter]);
   if (backlogSearchTerm) parts.push(`🔍 "${backlogSearchTerm}"`);
   crumbEl.textContent = parts.join(' · ');
-}
-
-/* ── Tab bar: Backlog vs Minecraft ── */
-function setupBacklogTabs() {
-  const tabBar = document.getElementById('backlog-tab-bar');
-  if (!tabBar) return;
-
-  tabBar.querySelectorAll('.tab').forEach(tabEl => {
-    tabEl.addEventListener('click', () => {
-      const tab = tabEl.dataset.backlogTab;
-      if (!tab || tab === backlogActiveTab) return;
-
-      backlogActiveTab = tab;
-      tabBar.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      tabEl.classList.add('active');
-
-      /* Existing status/platform/search/sort state is intentionally left as-is
-         when switching tabs — only the tab filter itself changes. */
-      updateBacklogViewToggleVisibility();
-      updateBacklogCrumb();
-      drawBacklog();
-    });
-  });
-
-  /* Sync once on setup too, in case the default active tab ever changes. */
-  updateBacklogViewToggleVisibility();
 }
 
 function updateBacklogViewToggleVisibility() {
@@ -1100,6 +1102,29 @@ function updateBacklogViewToggleVisibility() {
 }
 
 function setupBacklogFilters() {
+  fillPlatformSelect();
+
+  const tabBar = document.getElementById('backlog-tab-bar');
+  if (tabBar) {
+    tabBar.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const selectedTab = tab.dataset.backlogTab;
+        if (!selectedTab || selectedTab === backlogActiveTab) return;
+
+        backlogActiveTab = selectedTab;
+        tabBar.querySelectorAll('.tab').forEach(item => {
+          item.classList.toggle('active', item === tab);
+        });
+        backlogPlatformFilter = 'all';
+        fillPlatformSelect();
+        updateBacklogSidebarCounts();
+        updateBacklogCrumb();
+        updateBacklogViewToggleVisibility();
+        drawBacklog();
+      });
+    });
+  }
+
   const sidebar = document.getElementById('backlog-sidebar');
   if (sidebar) {
     sidebar.querySelectorAll('.backlog-sidebar-item').forEach(btn => {
@@ -1150,7 +1175,16 @@ function setupBacklogFilters() {
     });
   }
 
-  setupBacklogTabs();
+  const platformSelect = document.getElementById('backlog-platform-select');
+  if (platformSelect) {
+    platformSelect.addEventListener('change', () => {
+      backlogPlatformFilter = platformSelect.value;
+      updateBacklogCrumb();
+      drawBacklog();
+    });
+  }
+
+  updateBacklogViewToggleVisibility();
 }
 
 /* ── Social badges ── */
@@ -1302,7 +1336,9 @@ async function fetchAndRenderGithubRepos() {
     const repos = await res.json();
 
     /* Filter out forks (optional — remove the filter to show all) */
-    const ownRepos = repos.filter(r => !r.fork);
+    const ownRepos = repos.filter(
+      r => !r.fork && r.full_name.toLowerCase() !== `${GITHUB_USER}/marchelcc.github.io`
+    );
 
     if (ownRepos.length === 0) {
       container.innerHTML = '<div class="repos-loading">No se encontraron repositorios públicos.</div>';
@@ -1362,6 +1398,30 @@ async function fetchAndRenderGithubRepos() {
 }
 
 /* ════════════════════════════════════════════════════════════
+   6.6 GLOBO DE NOTIFICACIÓN (zona horaria)
+   ════════════════════════════════════════════════════════════ */
+
+function setupTimezoneBalloon() {
+  const balloon = document.getElementById('tz-balloon');
+  if (!balloon) return;                      // admin.html no lo tiene
+
+  /* Mostrarlo solo una vez por visita (quita este bloque para verlo siempre) */
+  try { if (sessionStorage.getItem('tzBalloonSeen')) return; } catch {}
+
+  const zoneEl = document.getElementById('tz-balloon-zone');
+  if (zoneEl) zoneEl.textContent = getUserTimezone().replace(/_/g, ' ');
+
+  const hide = () => {
+    balloon.classList.remove('show');
+    try { sessionStorage.setItem('tzBalloonSeen', '1'); } catch {}
+  };
+
+  balloon.addEventListener('click', hide);
+  setTimeout(() => balloon.classList.add('show'), 1500);  // aparece tras 1.5 s
+  setTimeout(hide, 15000);                                // se va solo a los 15 s
+}
+
+/* ════════════════════════════════════════════════════════════
    7. BOOT
    ════════════════════════════════════════════════════════════ */
 
@@ -1395,9 +1455,11 @@ async function init() {
 
 document.addEventListener('DOMContentLoaded', () => {
   WM.init();          // start window manager; opens hero window by default
+  WM.focus('schedule');
   init();             // load and render schedule data
   startClock();       // taskbar clock
   setupTwitchEmbed(); // Twitch player
+  setupTimezoneBalloon();
 
   /* On resize from mobile → desktop, clean up mobile-open classes so the
      desktop WM takes over cleanly. Vice-versa: collapse all windows. */
