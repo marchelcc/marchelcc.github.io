@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08T15:53:42.540Z",
+  "updated": "2026-11-09T19:42:44.989Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -634,7 +634,7 @@
     "289070": {
       "name": "Sid Meier's Civilization VI",
       "playtimeForeverMinutes": 2477,
-      "playtime2WeeksMinutes": 2124,
+      "playtime2WeeksMinutes": 1940,
       "lastPlayedUnix": 1794089088,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
@@ -2406,9 +2406,9 @@
     },
     "1371980": {
       "name": "No Rest for the Wicked",
-      "playtimeForeverMinutes": 106,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1765983969,
+      "playtimeForeverMinutes": 209,
+      "playtime2WeeksMinutes": 103,
+      "lastPlayedUnix": 1794195197,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1371980/8b383999493fa60adbbda2a5a5714805d9d7c913.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1371980/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1371980/library_600x900_2x.jpg"
@@ -6921,150 +6921,6 @@
         }
       ]
     },
-    "1154810": {
-      "total": 23,
-      "unlocked": 1,
-      "icons": [
-        {
-          "name": "Icebreaker",
-          "achieved": true,
-          "unlocktime": 1789452941,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/f9e29716cf52339ea26667ec9789e9217ac2bad1.jpg"
-        },
-        {
-          "name": "The Mana Press",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/badfc622f082810e749270b1a3f59529ddd6c86d.jpg"
-        },
-        {
-          "name": "The Toxic Mask",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/48e9bbffac89914f6d44836c12d4a444687b82f6.jpg"
-        },
-        {
-          "name": "The Grim Ledger",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/5d576aaf40cb52f43fefe5814678c9c2000b59c9.jpg"
-        },
-        {
-          "name": "F",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/d41547a13567d6f65977b47de8c27b4bf4be890f.jpg"
-        },
-        {
-          "name": "Work Smarter and also Harder",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/2d69a9bd4b957b29dc44b2afa5f4dcafffc60aa4.jpg"
-        },
-        {
-          "name": "Grab Life by the Horns",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/8063ef10b52aa899f12fd7f6153790d0f0f92e5e.jpg"
-        },
-        {
-          "name": "Get Rich & Die Trying",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/82c941bd2d31a47601ebbf1d366db3fa921a8735.jpg"
-        },
-        {
-          "name": "Hostile Takeover",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/c0503ff63bdc73fb3bc995ad7342fe63535b8e4c.jpg"
-        },
-        {
-          "name": "You Are (Un)Employed",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/b30b0b1431d05129efb603b3f70b108184e56ca9.jpg"
-        },
-        {
-          "name": "Padded Resume",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/ce4df4924644aab8dd6e5f423a8fb3072f5dc84e.jpg"
-        },
-        {
-          "name": "Big Boss",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/faa3c9d1121ad028796ef402f21a2e92c7bcf815.jpg"
-        },
-        {
-          "name": "Brand Ambassador",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/d55234126a4bfd72ad217ec5d65319280f7bef2a.jpg"
-        },
-        {
-          "name": "Senior Accountant",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/12d74436e9084786d54e4ed6bd46c26e665a2c86.jpg"
-        },
-        {
-          "name": "Lead Engineer",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/dbadcce09ea51c157425b153f279a8bcdd01ee9d.jpg"
-        },
-        {
-          "name": "Chief Flavor Officer",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/b6f139f7edbed0cc5fb910097e1d9eb54eca6ea5.jpg"
-        },
-        {
-          "name": "Unboxing Champ",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/b18b70b5ce478bb98e6790be36c8f30b107e2519.jpg"
-        },
-        {
-          "name": "Clutchgod",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/16f9f2686c197cde425bccbac6619105e0f44c9e.jpg"
-        },
-        {
-          "name": "The Price of Knowledge",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/e6ec62716955ce2d97785f4f56889ea6237bc585.jpg"
-        },
-        {
-          "name": "Clean Exit",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/3803937b3d40d6426604c172cdbeba081552715f.jpg"
-        },
-        {
-          "name": "Self-Destructive",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/bcd642c35cb752e12dd881fa974edee933ee8b02.jpg"
-        },
-        {
-          "name": "Self-Actualized",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/1f465b89d643788018181aa5d5e1cf781ef5c0dc.jpg"
-        },
-        {
-          "name": "Elbow Bumper",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1154810/b1894338ea8cd75bd6e3ff00ba78278b502ec18c.jpg"
-        }
-      ]
-    },
     "1262350": {
       "total": 13,
       "unlocked": 6,
@@ -7770,144 +7626,6 @@
           "achieved": false,
           "unlocktime": 0,
           "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3376480/574de207b374e956adf84fea3aae41e2eb1d0dd4.jpg"
-        }
-      ]
-    },
-    "4883580": {
-      "total": 22,
-      "unlocked": 8,
-      "icons": [
-        {
-          "name": "Just Chillin'",
-          "achieved": true,
-          "unlocktime": 1794116071,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/4211aa94b4d0dbd3044ba30a2a033a5154ca061c.jpg"
-        },
-        {
-          "name": "Dawn of the Third Day",
-          "achieved": true,
-          "unlocktime": 1794115900,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/359ea8bd136ae75a7b95b0571779af146b15a208.jpg"
-        },
-        {
-          "name": "Beginner",
-          "achieved": true,
-          "unlocktime": 1794115721,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/5eaca9dc25f36427f55aeb6b5c1660fb4ee0cef3.jpg"
-        },
-        {
-          "name": "Looking Good",
-          "achieved": true,
-          "unlocktime": 1794115622,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/819a0564f35d1114c8dc8ed7b0a4e0204f3268b5.jpg"
-        },
-        {
-          "name": "Fashionista",
-          "achieved": true,
-          "unlocktime": 1794115287,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/d9a1ccbc841d984d8c0ec9fc45884cdea8921517.jpg"
-        },
-        {
-          "name": "A Little Lucky",
-          "achieved": true,
-          "unlocktime": 1794115209,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/9d74cf60da892f61db7ecfd2630407120dbf4228.jpg"
-        },
-        {
-          "name": "Pretty Lucky",
-          "achieved": true,
-          "unlocktime": 1794115175,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/2532d7f897867d54905158e3a204dbf016fe80a8.jpg"
-        },
-        {
-          "name": "Getting Started",
-          "achieved": true,
-          "unlocktime": 1794115144,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/888ccecd0b0756d86f6daf44459cb31b6e178079.jpg"
-        },
-        {
-          "name": "Amateur",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/b2170b5d10d23613ad78e556d482f530f7286181.jpg"
-        },
-        {
-          "name": "Intermediate",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/cd74b4c89ea8cb65c4107cdf7606f62113c11a46.jpg"
-        },
-        {
-          "name": "Expert",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/224b6ed8db4f24ea51e987a67669e3634c88b2f3.jpg"
-        },
-        {
-          "name": "Master",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/c3328c6808186d0b17b251ac54828b7a788c3839.jpg"
-        },
-        {
-          "name": "Roddin' Out",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/ea23a6b5da364adda92543769b15303986fe02b3.jpg"
-        },
-        {
-          "name": "Don't Stop Me Now",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/e6dc3aaad89423b32ff9e2bff79f2c315dfd5f3d.jpg"
-        },
-        {
-          "name": "Still Fishin'",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/4b6b95df6cfee4f6bc78360e78ab5efea2bc1ac4.jpg"
-        },
-        {
-          "name": "Gotta Blast!",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/0286f08b9dea096af2dc99e5a0e13736c8bcee04.jpg"
-        },
-        {
-          "name": "Under the Sea",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/4eaec8c1b5a24ce6bb579999a71fb34564fb81c4.jpg"
-        },
-        {
-          "name": "Big!",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/e6108c5c5c49b160ba7639aaeb0365371b3ab3ee.jpg"
-        },
-        {
-          "name": "Small!",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/20acbe8b3307d3028a1747985c8fbbcd5e76834b.jpg"
-        },
-        {
-          "name": "Boom!",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/5b980fa7dd03b0d823086ac8b273046a4ccf6116.jpg"
-        },
-        {
-          "name": "Only a Thousand Soft Resets!",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/3a5fc200c829723b98d230ed3ac8973817861431.jpg"
-        },
-        {
-          "name": "Holy Mackerel!",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/4883580/6b4dbd38aa22fbf20cf2dcbe153e89ecd978169f.jpg"
         }
       ]
     }
