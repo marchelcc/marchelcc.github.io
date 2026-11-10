@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T19:42:44.989Z",
+  "updated": "2026-11-10T16:56:54.543Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -634,7 +634,7 @@
     "289070": {
       "name": "Sid Meier's Civilization VI",
       "playtimeForeverMinutes": 2477,
-      "playtime2WeeksMinutes": 1940,
+      "playtime2WeeksMinutes": 1528,
       "lastPlayedUnix": 1794089088,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
@@ -1839,9 +1839,9 @@
     },
     "1029780": {
       "name": "Going Medieval",
-      "playtimeForeverMinutes": 2336,
-      "playtime2WeeksMinutes": 138,
-      "lastPlayedUnix": 1793061002,
+      "playtimeForeverMinutes": 2571,
+      "playtime2WeeksMinutes": 235,
+      "lastPlayedUnix": 1794276664,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1029780/3eec57d783c54036166564e195039b20f600a52f.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1029780/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1029780/library_600x900_2x.jpg"
@@ -3692,11 +3692,11 @@
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3063840/library_600x900_2x.jpg"
     },
     "3065170": {
-      "name": "Monster Hunter Wilds Beta test",
+      "name": "Monster Hunter Wilds: Ascendance Beta test",
       "playtimeForeverMinutes": 0,
       "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": null,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3065170/cb8345c0f9742dad3764d058c9da49c8860d15f9.jpg",
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3065170/bae6bcf632448a61309a518f85fb174a7313630e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3065170/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3065170/library_600x900_2x.jpg"
     },
@@ -6353,8 +6353,26 @@
     },
     "1029780": {
       "total": 94,
-      "unlocked": 31,
+      "unlocked": 34,
       "icons": [
+        {
+          "name": "Fifty Shades of Bait",
+          "achieved": true,
+          "unlocktime": 1794266077,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1029780/9a04d4042a5924f8c2551686821321598fb5cac8.jpg"
+        },
+        {
+          "name": "Reel Skills",
+          "achieved": true,
+          "unlocktime": 1794265538,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1029780/cbd3bc1d4a7c4435e7c0cdb7cd6b0bbda95e7d80.jpg"
+        },
+        {
+          "name": "Casting Call",
+          "achieved": true,
+          "unlocktime": 1794262916,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1029780/7582e910ebc422302b1aaa65371d644fd470aee1.jpg"
+        },
         {
           "name": "Wabbit Season",
           "achieved": true,
@@ -6696,24 +6714,6 @@
           "achieved": false,
           "unlocktime": 0,
           "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1029780/c7e0978ca80487e22e631f277bdbc1e204cff6fa.jpg"
-        },
-        {
-          "name": "Casting Call",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1029780/a0b2d2715c9eae9cc69e5a9d184d639532a6af77.jpg"
-        },
-        {
-          "name": "Reel Skills",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1029780/095a8f4af9e22ecc07c35c167acc7c4c76b8418c.jpg"
-        },
-        {
-          "name": "Fifty Shades of Bait",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1029780/94bcc485e5468093043cd07ff3d99e350df1e711.jpg"
         },
         {
           "name": "Feast Mode",
