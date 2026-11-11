@@ -3,305 +3,158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marchel — Admin Panel ⚙️</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="robots" content="noindex" />
+  <title>Admin — Marchel ⚙️</title>
+  <link rel="stylesheet" href="css/admin.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>" />
 </head>
 <body>
 
-<!-- Drag cover — blocks iframes during window drag -->
-<div id="wm-drag-cover"></div>
-
-<!-- ============================================================
-     LOGIN OVERLAY — shown until GitHub token is verified.
-     This is NOT an xp-window managed by the WM; it's a full-screen
-     overlay that disappears after authentication.
-     ============================================================ -->
-<div class="login-overlay" id="login-overlay">
-  <div class="login-window">
-
+<!-- ───────── LOGIN ───────── -->
+<section class="login" id="login">
+  <form class="xp-window dialog" id="login-form">
     <div class="xp-titlebar">
       <div class="title-left">
         <span class="title-icon">🔒</span>
         <span class="title-text">Acceso al Panel de Administración</span>
       </div>
       <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-close" onclick="window.location='index.html'">✕</button>
+        <a class="xp-btn-win xp-btn-close" href="index.html" title="Volver al sitio">✕</a>
       </div>
     </div>
 
-    <div class="login-body">
+    <div class="dialog-body">
       <div class="login-icon-row">
         <div class="login-avatar">🎣</div>
         <div>
           <div class="login-title">Panel de Marchel</div>
-          <div class="login-subtitle">Solo el pescador puede entrar aquí 🐟</div>
+          <div class="login-subtitle">Los cambios se guardan directo en GitHub.</div>
         </div>
       </div>
 
-      <div class="login-hint">
-        🔑 Ingresa tu <strong>GitHub Personal Access Token</strong> para acceder.<br>
-        Solo la cuenta <strong>marchelcc</strong> tiene acceso.<br>
-        El token se verifica contra la API de GitHub y <em>nunca se almacena</em> en disco.
-        <br><br>
-        Genera un token en: <strong>GitHub → Settings → Developer settings → Personal access tokens</strong>
-        (scope mínimo: solo lectura de usuario).
-      </div>
+      <fieldset class="dc-group">
+        <legend>Token de GitHub</legend>
+        <input type="password" id="token" placeholder="github_pat_… o ghp_…" autocomplete="off" spellcheck="false" aria-label="Token de GitHub" />
+        <label class="check"><input type="checkbox" id="remember" /> Recordar en este equipo</label>
+        <p class="error" id="login-error" hidden></p>
+      </fieldset>
 
-      <div class="login-error" id="login-error">
-        ❌ <span id="login-error-msg">Token incorrecto o cuenta no autorizada.</span>
-      </div>
+      <details class="help">
+        <summary>¿Cómo creo el token?</summary>
+        <ol>
+          <li>GitHub → Settings → Developer settings → Personal access tokens → <b>Fine-grained tokens</b>.</li>
+          <li>En “Repository access” elige solo el repo de tu web.</li>
+          <li>En “Permissions → Repository” pon <b>Contents: Read and write</b>.</li>
+          <li>Copia el token y pégalo aquí.</li>
+        </ol>
+      </details>
 
-      <div class="login-field">
-        <label for="token-input">🔑 GitHub Personal Access Token</label>
-        <input
-                type="password"
-                id="token-input"
-                placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-                autocomplete="off"
-                spellcheck="false"
-        />
-      </div>
-
-      <div class="login-btn-row">
-        <a href="index.html" class="xp-button">← Volver</a>
-        <button class="xp-button primary" id="login-btn" onclick="doLogin()">
-          🔓 Entrar
-        </button>
+      <div class="btn-row">
+        <a class="btn" href="index.html">← Volver</a>
+        <button class="btn primary" id="login-btn" type="submit">Entrar</button>
       </div>
     </div>
+  </form>
+</section>
 
-    <div class="xp-statusbar">
-      <div class="status-item" id="login-status-bar">
-        <span class="status-dot" style="background:#aaa;"></span>
-        En espera de credenciales
-      </div>
+<!-- ───────── APP ───────── -->
+<div id="app" class="xp-window app-window" hidden>
+  <div class="xp-titlebar">
+    <div class="title-left">
+      <span class="title-icon">⚙️</span>
+      <span class="title-text">Panel de Administración — Marchel</span>
     </div>
+    <div class="xp-window-btns">
+      <span class="xp-btn-win" aria-hidden="true">_</span>
+      <span class="xp-btn-win" aria-hidden="true">□</span>
+      <button class="xp-btn-win xp-btn-close" data-act="close" title="Volver al sitio">✕</button>
+    </div>
+  </div>
+
+  <div class="xp-toolbar">
+    <button class="btn primary" id="save-btn" data-act="save" disabled>💾 Guardar cambios</button>
+    <span class="sep"></span>
+    <a class="btn" href="index.html" target="_blank" rel="noopener">🌐 Ver sitio</a>
+    <span class="grow"></span>
+    <span class="who">👤 <span id="user-name"></span></span>
+    <button class="btn" data-act="logout">🔒 Cerrar sesión</button>
+  </div>
+
+  <nav class="xp-tabs" role="tablist">
+    <button class="tab active" data-act="tab" data-tab="schedule" role="tab">📅 Horario</button>
+    <button class="tab" data-act="tab" data-tab="backlog" role="tab">📚 Backlog</button>
+    <button class="tab" data-act="tab" data-tab="profile" role="tab">🎣 Perfil y redes</button>
+  </nav>
+
+  <main class="xp-content">
+    <section class="panel active" id="panel-schedule">
+      <p class="hint">Cada día puede tener uno o varios horarios. Para dejar un día libre (Off), elimina todos sus horarios con 🗑️. Las horas van en <b>hora de Chile</b> (HH:MM); la web las convierte a la hora de cada visitante.</p>
+      <div class="sched-layout">
+        <div class="days" id="schedule-root"></div>
+        <aside class="preview">
+          <div class="preview-bar">👁️ Vista previa <span>— así se ve en la web (hora de Chile)</span></div>
+          <div class="preview-body" id="preview-root"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-backlog">
+      <div class="subtabs" role="tablist">
+        <button class="subtab active" data-act="subtab" data-sub="backlog" role="tab">📚 Backlog <span class="subcount" id="subcount-backlog"></span></button>
+        <button class="subtab" data-act="subtab" data-sub="mc" role="tab">⛏️ Minecraft <span class="subcount" id="subcount-mc"></span></button>
+      </div>
+
+      <div class="subpanel active" id="sub-backlog">
+        <div class="toolbar">
+          <input type="search" class="f-search" data-kind="backlog" placeholder="Buscar juego…" aria-label="Buscar juego" />
+          <select class="f-status" data-kind="backlog" aria-label="Filtrar por estado"></select>
+          <span class="muted" id="count-backlog"></span>
+          <button class="btn success" data-act="add-game" data-kind="backlog">+ Agregar juego</button>
+        </div>
+        <p class="hint">Los juegos de Steam con App ID traen horas y logros solos (se actualizan cada día). Para el resto, escribe las horas a mano. Toca ▾ para ver más opciones. Si cambias la plataforma a Mapa o Evento de MC, el juego pasa a la pestaña Minecraft.</p>
+        <div class="games" id="list-backlog"></div>
+      </div>
+
+      <div class="subpanel" id="sub-mc">
+        <div class="toolbar">
+          <input type="search" class="f-search" data-kind="mc" placeholder="Buscar mapa o evento…" aria-label="Buscar" />
+          <select class="f-status" data-kind="mc" aria-label="Filtrar por estado"></select>
+          <span class="muted" id="count-mc"></span>
+          <button class="btn success" data-act="add-game" data-kind="mc">+ Agregar mapa / evento</button>
+        </div>
+        <p class="hint">Mapas y eventos de Minecraft. En la web aparecen en la pestaña “Minecraft” de la biblioteca, separados del backlog normal.</p>
+        <div class="games" id="list-mc"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-profile">
+      <div id="profile-root"></div>
+    </section>
+  </main>
+
+  <div class="xp-statusbar">
+    <div class="status-item grow" id="status">Cargando…</div>
+    <div class="status-item">Ctrl+S para guardar</div>
   </div>
 </div>
 
-<!-- ============================================================
-     DESKTOP CANVAS — hidden until logged in.
-     The WM registers the admin window on init(), but won't open it
-     automatically (no data-autoopen). showAdminPanel() calls WM.open().
-     ============================================================ -->
-<div class="desktop" id="admin-desktop" style="display:none;">
+<div class="toast" id="toast" role="status"></div>
 
-  <!-- Desktop Icons -->
-  <div class="desktop-icons">
-    <a href="index.html" class="desktop-icon">
-      <div class="icon-img">🌐</div>
-      Main Page
-    </a>
-  </div>
-
-  <!-- ============================================================
-       WINDOW: Admin Panel
-       No data-autoopen — opened programmatically by showAdminPanel()
-       after GitHub token authentication.
-       ============================================================ -->
-  <div
-          id="admin-window"
-          class="xp-window"
-          data-wid="admin"
-          data-title="Admin Panel"
-          data-icon="⚙️"
-          data-w="850"
-          data-h="550"
-          data-autoopen=""
-  >
-    <div class="xp-titlebar">
-      <div class="title-left">
-        <span class="title-icon">⚙️</span>
-        <span class="title-text">Panel de Administración — marchelcc</span>
-      </div>
-      <div class="xp-window-btns">
-        <button class="xp-btn-win xp-btn-min">_</button>
-        <button class="xp-btn-win xp-btn-max">□</button>
-        <button class="xp-btn-win xp-btn-close">✕</button>
-      </div>
-    </div>
-
-    <div class="admin-window-content">
-    <div class="xp-menubar">
-      <span>Archivo</span>
-      <span>Editar</span>
-      <span>Herramientas</span>
-    </div>
-
-    <div class="session-banner" id="session-banner">
-      <span>✅ Sesión activa — <span id="session-user">marchelcc</span></span>
-      <button class="logout-btn" onclick="doLogout()">🔒 Cerrar sesión</button>
-    </div>
-
-    <div class="admin-toolbar">
-      <button class="xp-button success" onclick="addScheduleRow()">➕ Agregar día</button>
-      <div class="xp-separator"></div>
-      <button class="xp-button primary" onclick="addRotationGame()">🎮 + Juego</button>
-      <div class="xp-separator"></div>
-      <button class="xp-button" onclick="showJsonTab()">👁️ Ver JSON</button>
-      <button class="xp-button primary" onclick="exportJson()">💾 Exportar JSON</button>
-      <div class="xp-separator"></div>
-      <a href="index.html" class="xp-button">🌐 Ver sitio</a>
-    </div>
-
-    <div style="padding:0 12px;position:relative;z-index:1;">
-      <div class="admin-notice">
-        <span style="font-size:18px;">ℹ️</span>
-        <div>
-          <strong>¿Cómo usar?</strong> Edita los campos directamente. Cuando termines, haz clic en
-          <strong>"Exportar JSON"</strong> para descargar el <code>schedule.json</code> actualizado.
-          Reemplaza el archivo en tu repo <strong>marchelcc/marchel-website</strong> y el sitio se actualizará.
-        </div>
-      </div>
-    </div>
-
-    <div class="tab-bar">
-      <div class="tab active" onclick="switchTab('tab-schedule', this)">📅 Horario</div>
-      <div class="tab" onclick="switchTab('tab-rotation', this)">🎮 Rotación</div>
-      <div class="tab" onclick="switchTab('tab-backlog', this)">📚 Backlog</div>
-      <div class="tab" onclick="switchTab('tab-meta', this)">⚙️ Info / Fotos</div>
-      <div class="tab" onclick="switchTab('tab-json', this)">{ } JSON</div>
-    </div>
-
-    <div id="tab-schedule" class="tab-panel active"
-         style="padding:12px;position:relative;z-index:1;background:var(--cream);">
-      <p class="admin-section-title">📅 Horario semanal</p>
-      <div style="overflow-x:auto;">
-        <table class="admin-table" id="schedule-admin-table">
-          <thead>
-          <tr>
-            <th>On</th><th>Día</th><th>Hora</th>
-            <th>Juego / Contenido</th><th>Logo (imgur URL)</th>
-            <th>Tag</th><th>Acciones</th>
-          </tr>
-          </thead>
-          <tbody id="schedule-admin-body"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div id="tab-rotation" class="tab-panel"
-         style="background:var(--cream);position:relative;z-index:1;">
-      <div style="padding:12px;">
-        <p class="admin-section-title">🎮 Juegos en rotación</p>
-        <p class="admin-hint-text">
-          Máximo recomendado: 4 juegos. Pega URLs de imgur para las imágenes de portada.
-        </p>
-      </div>
-      <div class="rotation-admin-grid" id="rotation-admin-grid"></div>
-      <div style="padding:0 12px 12px;">
-        <button class="xp-button success" onclick="addRotationGame()">➕ Agregar juego</button>
-      </div>
-    </div>
-
-    <div id="tab-backlog" class="tab-panel"
-         style="padding:12px;position:relative;z-index:1;background:var(--cream);">
-      <p class="admin-section-title">📚 Backlog de juegos</p>
-      <p class="admin-hint-text">
-        Esto edita <code>backlog.json</code> (estado, plataforma, horas jugadas). Para juegos de <strong>Steam</strong>,
-        las horas y logros se llenan solos si le pones el <strong>App ID</strong> correcto (búscalo en la URL de la
-        tienda, ej. store.steampowered.com/app/<strong>632360</strong>/...). Para juegos trackeados en
-        <strong>RetroAchievements.org</strong>, pon el <strong>RA Game ID</strong> (el número en la URL del juego
-        en ese sitio) y sus logros se traerán solos también. Para <strong>GOG, Epic</strong> u otras plataformas,
-        no hay forma de automatizarlo — ingresa las horas jugadas a mano en la columna correspondiente.
-        Los juegos con plataforma <strong>Mapa de Minecraft</strong> o <strong>Evento de Minecraft</strong>
-        aparecen en la pestaña "Minecraft" del Backlog en el sitio, en vez de la pestaña "Backlog" normal.
-      </p>
-      <div style="overflow-x:auto; overflow-y:auto;">
-        <table class="admin-table" id="backlog-admin-table">
-          <thead>
-          <tr>
-            <th>Juego</th><th>Portada vertical</th><th>Capsule (lista)</th><th>Plataforma</th>
-            <th>Steam App ID</th><th>RA Game ID</th><th>Estado</th><th>Horas jugadas</th><th>Acciones</th>
-          </tr>
-          </thead>
-          <tbody id="backlog-admin-body"></tbody>
-        </table>
-      </div>
-      <div style="margin-top:10px;">
-        <button class="xp-button success" onclick="addBacklogGame()">➕ Agregar juego</button>
-        <button class="xp-button primary" onclick="exportBacklogJson()">💾 Exportar backlog.json</button>
-      </div>
-    </div>
-
-    <div id="tab-meta" class="tab-panel"
-         style="background:var(--cream);position:relative;z-index:1;padding:12px;">
-      <p class="admin-section-title">⚙️ Información del canal y fotos de perfil</p>
-      <div class="profile-pic-preview-wrap" id="profile-pic-admin-preview">
-        <div class="mini-frame">
-          <div class="mini-fallback" id="profile-mini-fallback">🎣</div>
-        </div>
-        <div>
-          <div class="profile-pic-preview-title">
-            Vista previa de foto de perfil
-          </div>
-          <div class="profile-pic-preview-hint">
-            Sube tu foto a imgur.com y pega el enlace directo abajo
-          </div>
-        </div>
-      </div>
-      <div class="meta-form-grid" id="meta-form"></div>
-    </div>
-
-    <div id="tab-json" class="tab-panel"
-         style="padding:12px;background:var(--cream);position:relative;z-index:1;">
-      <p class="admin-section-title">{ } Vista previa del JSON generado</p>
-      <p class="admin-hint-text">
-        Descarga este archivo y reemplázalo en tu repo
-        <strong>marchelcc/marchel-website</strong> como <code>schedule.json</code>.
-      </p>
-      <pre class="json-preview" id="json-preview-content">Haz clic en "{ } JSON" o en "Ver JSON" para actualizar.</pre>
-      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
-        <button class="xp-button primary" onclick="exportJson()">💾 Descargar schedule.json</button>
-        <button class="xp-button" onclick="copyJson()">📋 Copiar al portapapeles</button>
-      </div>
-    </div>
-      </div>
-
-    <div class="xp-statusbar">
-      <div class="status-item">
-        <span class="status-dot"></span>
-        <span id="admin-status">Listo</span>
-      </div>
-      <div class="status-item" id="admin-count-status">—</div>
-    </div>
-
-  </div><!-- /xp-window#admin-window -->
-
-</div><!-- /desktop#admin-desktop -->
-
-<!-- Toast notification -->
-<div class="toast" id="toast"></div>
-
-<!-- Taskbar -->
-<div class="taskbar">
-    <a
-      href="index.html"
-      class="taskbar-start"
-    >
-      <div class="xp-login-brand-mark"><span></span><span></span><span></span><span></span></div>
-      <span>Inicio</span>
-    </a>
-  <div class="taskbar-windows" id="taskbar-windows"></div>
-  <div class="taskbar-items">
-    <a href="admin.html"     class="taskbar-item" title="Admin">⚙️</a>
+<!-- ───────── TASKBAR ───────── -->
+<footer class="taskbar">
+  <a class="taskbar-start" href="index.html" title="Volver al sitio">
+    <div class="xp-login-brand-mark"><span></span><span></span><span></span><span></span></div>
+    <span>Inicio</span>
+  </a>
+  <div class="taskbar-windows">
+    <div class="win-task-btn wm-focused"><span>⚙️</span><span>Panel de Administración</span></div>
   </div>
   <div class="taskbar-clock-wrap">
     <span id="timezone-label"></span>
     <div class="taskbar-clock" id="taskbar-clock">00:00</div>
   </div>
-</div>
+</footer>
 
-<!-- ============================================================
-     SCRIPTS
-     script.js  → WM + schedule rendering (WM.init runs on DOMContentLoaded)
-     admin.js   → login auth + CRUD logic
-     The auth functions below live inline so they can call WM.open()
-     directly without a circular dependency on admin.js load order.
-     ============================================================ -->
-<script src="js/script.js"></script>
 <script src="js/admin.js"></script>
-
 </body>
 </html>

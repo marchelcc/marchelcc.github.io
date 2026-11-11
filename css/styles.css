@@ -603,14 +603,16 @@ a {
 }
 .msn-bubble::before {
   left: -11px;
-  top: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   border-width: 8px 11px 8px 0;
   border-right-color: #000;
 }
 .msn-bubble::after {
   left: -9px;
-  top: 13px;
-  border-width: 7px 10px 7px 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 7px 11px 7px 0;
   border-right-color: #ffffe1;
 }
 @keyframes bubble-bob {

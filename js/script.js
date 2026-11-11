@@ -1214,8 +1214,8 @@ function renderSocials(socials) {
 
 /* ── Tagline, status bar counts, timezone label ── */
 function renderMeta(data) {
-  const tagEl = document.getElementById('hero-tagline');
-  if (tagEl && data.tagline) tagEl.textContent = data.tagline;
+  const bubble = document.querySelector('.msn-bubble');
+  if (bubble && data.tagline) bubble.textContent = data.tagline;
 
   const updEl = document.getElementById('last-updated');
   if (updEl && data.lastUpdated) updEl.textContent = `📅 Actualizado: ${data.lastUpdated}`;

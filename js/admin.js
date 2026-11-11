@@ -1,656 +1,537 @@
 ﻿'use strict';
 
-/* ─────────────────────────────────────────────────────────────
-   CONFIG
-   ───────────────────────────────────────────────────────────── */
-const ALLOWED_GITHUB_USER = 'marchelcc';
-const SESSION_KEY         = 'marchel_admin_token';
-
-/* ─────────────────────────────────────────────────────────────
-   IN-MEMORY STATE
-   ───────────────────────────────────────────────────────────── */
-let state = {
-    vtuber: 'Marchel',
-    tagline: '🎣 El pescador de los mares digitales',
-    lastUpdated: new Date().toISOString().slice(0,10),
-    profilePic: '',
-    youtubeLatestVideoId: '',
-    youtubeLatestVODId: '',
-    schedule: [],
-    rotationGames: [],
-    socials: {}
+/* ═══════════════════════════════════════════════════════════
+   CONFIG — revisa que owner/repo sean los de tu repo real
+   ═══════════════════════════════════════════════════════════ */
+const CONFIG = {
+  owner: 'marchelcc',
+  repo: 'marchelcc.github.io',
+  branch: null,                       // null = rama por defecto del repo
+  schedulePath: 'data/schedule.json',
+  backlogPath: 'data/backlog.json',
 };
-let scheduleIdCounter = 100;
-let rotationIdCounter = 100;
+const STORE_KEY = 'marchel_admin_token';
 
-const TAG_OPTIONS = ['Stream Longo', 'Stream Shorti','Colab','Nuevo Video','Off'];
-const DAY_OPTIONS = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
-
-/* ── Backlog de juegos: estado separado, vive en backlog.json ── */
-let backlogState = [];
-let backlogIdCounter = 100;
-const BACKLOG_STATUS_OPTIONS = [
-    { value: 'backlog',    label: '📥 Backlog' },
-    { value: 'jugando',    label: '🎮 Jugando' },
-    { value: 'pausado',    label: '⏸️ Pausado' },
-    { value: 'dropeado',   label: '🗑️ Dropeado' },
-    { value: 'completado', label: '✅ Completado' },
-    { value: 'platino',    label: '💯 100%' },
+const DAYS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+const TAGS = ['Stream Longo', 'Stream Shorti', 'Colab', 'Nuevo Video'];   // “Off” se genera solo en días sin horarios
+const STATUS = [
+  { value: 'backlog', label: '📥 Backlog' },
+  { value: 'jugando', label: '🎮 Jugando' },
+  { value: 'pausado', label: '⏸️ Pausado' },
+  { value: 'dropeado', label: '🗑️ Dropeado' },
+  { value: 'completado', label: '✅ Completado' },
+  { value: 'platino', label: '💯 100%' },
 ];
-const BACKLOG_PLATFORM_OPTIONS = [
-    { value: 'steam',   label: '🟦 Steam' },
-    { value: 'gog',     label: '🟪 GOG' },
-    { value: 'epic',    label: '⬛ Epic Games' },
-    { value: 'retro',   label: '🕹️ Retro / Emulado' },
-    { value: 'consola', label: '🎮 Consola' },
-    { value: 'otro',    label: '🎮 Otro' },
-    /* Minecraft-specific content — rendered in the site's separate "Minecraft" backlog tab */
-    { value: 'Mapa de MC',   label: '⛏️ Mapa de MC' },
-    { value: 'Evento de MC', label: '⛏️ Evento de MC' },
+const MC_IMG = 'https://i.imgur.com/GXqX6kG.png';
+const PLATFORMS = [
+  { value: 'steam', label: 'Steam', icon: 'steam', color: '171A21' },
+  { value: 'gog', label: 'GOG', icon: 'gogdotcom', color: '86328A' },
+  { value: 'epic', label: 'Epic Games', icon: 'epicgames', color: '313131' },
+  { value: 'retro', label: 'Retro / Emulado', emoji: '🕹️' },
+  { value: 'consola', label: 'Consola', emoji: '🎮' },
+  { value: 'otro', label: 'Otro', emoji: '🎮' },
+  { value: 'Mapa de MC', label: 'Mapa MC', img: MC_IMG },
+  { value: 'Evento de MC', label: 'Evento MC', img: MC_IMG },
 ];
+const LEGACY_PLATFORMS = { 'minecraft-map': 'Mapa de MC', 'minecraft-event': 'Evento de MC' };
+function platIcon(v) {
+  const c = PLATFORMS.find(p => p.value === v) || { emoji: '🎮' };
+  if (c.icon) return `<img src="https://cdn.simpleicons.org/${c.icon}/${c.color}" alt="">`;
+  if (c.img) return `<img src="${c.img}" alt="">`;
+  return `<span>${c.emoji}</span>`;
+}
+const MC_PLATFORMS = ['Mapa de MC', 'Evento de MC'];
+const isMC = g => MC_PLATFORMS.includes(g.platform);
+const TAG_CLS = { 'Stream Longo': 'tag-stream-longo', 'Stream Shorti': 'tag-stream-shorti', 'Colab': 'tag-colab', 'Nuevo Video': 'tag-video', 'Off': 'tag-off' };
 
-/* ─────────────────────────────────────────────────────────────
-   AUTH — GITHUB TOKEN LOGIN
-   Calls api.github.com/user with the token and checks
-   that the returned login === ALLOWED_GITHUB_USER.
-   The token is stored in sessionStorage (clears on tab close).
-   ───────────────────────────────────────────────────────────── */
-async function doLogin() {
-    const input  = document.getElementById('token-input');
-    const btn    = document.getElementById('login-btn');
-    const errEl  = document.getElementById('login-error');
-    const errMsg = document.getElementById('login-error-msg');
-    const bar    = document.getElementById('login-status-bar');
-    const token  = input.value.trim();
+/* ═══════════ helpers ═══════════ */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const opts = (list, cur) => {
+  const items = list.some(o => o.value === cur) || cur == null ? list : [...list, { value: cur, label: String(cur) }];
+  return items.map(o => `<option value="${esc(o.value)}" ${o.value === cur ? 'selected' : ''}>${esc(o.label)}</option>`).join('');
+};
+const todayChile = () => new Date().toLocaleDateString('en-CA', { timeZone: 'America/Santiago' });
+const todayName = () => {
+  const n = new Date().toLocaleDateString('es-CL', { weekday: 'long', timeZone: 'America/Santiago' });
+  return n.charAt(0).toUpperCase() + n.slice(1);
+};
+const ytId = v => {
+  v = (v || '').trim();
+  const m = v.match(/(?:v=|youtu\.be\/|embed\/|live\/|shorts\/)([\w-]{11})/);
+  return m ? m[1] : v;
+};
+let toastTimer;
+function toast(msg, isErr = false) {
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.toggle('err', isErr);
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), isErr ? 6000 : 2800);
+}
 
-    if (!token) {
-        showLoginError('Por favor ingresa tu GitHub Personal Access Token.');
-        input.classList.add('error');
-        setTimeout(() => input.classList.remove('error'), 600);
-        return;
+/* ═══════════ GitHub API ═══════════ */
+let token = null;
+
+async function gh(path, opt = {}) {
+  const res = await fetch('https://api.github.com' + path, {
+    cache: 'no-store',
+    ...opt,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      ...(opt.headers || {}),
+    },
+  });
+  if (!res.ok) {
+    const err = new Error(`GitHub ${res.status}`);
+    err.status = res.status;
+    throw err;
+  }
+  return res.json();
+}
+const contentsUrl = p => `/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${p}`;
+const decodeB64 = b64 => new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\n/g, '')), c => c.charCodeAt(0)));
+const encodeB64 = str => { let bin = ''; new TextEncoder().encode(str).forEach(b => (bin += String.fromCharCode(b))); return btoa(bin); };
+
+async function readFile(path, optional = false) {
+  try {
+    const q = CONFIG.branch ? `?ref=${encodeURIComponent(CONFIG.branch)}` : '';
+    const f = await gh(contentsUrl(path) + q);
+    return { json: JSON.parse(decodeB64(f.content)), sha: f.sha };
+  } catch (e) {
+    if (optional && e.status === 404) return { json: null, sha: null };
+    if (e.status === 404) e.message = `No encontré ${path} en ${CONFIG.owner}/${CONFIG.repo}. Revisa CONFIG al inicio de admin.js y que el token tenga acceso a ese repo.`;
+    throw e;
+  }
+}
+
+async function writeFile(path, obj, file, message) {
+  const body = { message, content: encodeB64(JSON.stringify(obj, null, 2) + '\n') };
+  if (file.sha) body.sha = file.sha;
+  if (CONFIG.branch) body.branch = CONFIG.branch;
+  const r = await gh(contentsUrl(path), { method: 'PUT', body: JSON.stringify(body) });
+  file.sha = r.content.sha;
+}
+
+/* ═══════════ State ═══════════ */
+const files = { schedule: { sha: null, base: '', date: '' }, backlog: { sha: null, base: '' } };
+let doc = {};            // schedule.json sin el array "schedule"
+let days = {};           // { Lunes: [slot, …], … }
+let games = [];
+const openGames = new Set();
+const filters = { backlog: { q: '', status: 'all' }, mc: { q: '', status: 'all' } };
+
+function parseSchedule(json) {
+  const { schedule = [], ...rest } = json;
+  doc = { vtuber: '', tagline: '', profilePic: '', youtubeLatestVideoId: '', youtubeLatestVODId: '', ...rest };
+  doc.rotationGames ??= [];
+  doc.socials ??= {};
+  days = Object.fromEntries(DAYS.map(d => [d, []]));
+  schedule.forEach(it => {
+    if (!days[it.day]) return;
+    if (it.tag === 'Off' && (!it.game || it.game === '-')) return;   // día libre
+    days[it.day].push({
+      time: it.time && it.time !== '-' ? String(it.time) : '',
+      game: it.game || '',
+      imageUrl: it.imageUrl || '',
+      tag: it.tag || 'Stream Longo',
+    });
+  });
+}
+
+function buildSchedule(date) {
+  let id = 1;
+  const schedule = [];
+  DAYS.forEach(day => {
+    const slots = days[day];
+    if (!slots.length) {
+      schedule.push({ id: id++, day, time: null, game: '-', imageUrl: '', tag: 'Off', active: false });
+    } else {
+      slots.forEach(s => schedule.push({
+        id: id++, day, time: s.time.trim() || null, game: s.game.trim(),
+        imageUrl: s.imageUrl.trim(), tag: s.tag, active: true,
+      }));
     }
+  });
+  const { rotationGames, socials, ...head } = doc;
+  return { ...head, lastUpdated: date, schedule, rotationGames, socials };
+}
+const buildBacklog = () => ({ games });
 
-    // Loading state
-    btn.innerHTML = '<span class="login-spinner"></span> Verificando...';
-    btn.disabled  = true;
-    errEl.classList.remove('show');
-    bar.innerHTML = '🔄 Conectando con GitHub API...';
-
-    try {
-        const res = await fetch('https://api.github.com/user', {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Accept': 'application/vnd.github+json'
-            }
-        });
-
-        if (!res.ok) {
-            throw new Error(res.status === 401
-                ? 'Token inválido. Verifica que copiaste el token completo.'
-                : `Error de GitHub API: ${res.status}`);
-        }
-
-        const user = await res.json();
-
-        if (user.login.toLowerCase() !== ALLOWED_GITHUB_USER.toLowerCase()) {
-            throw new Error(`Cuenta "${user.login}" no tiene acceso. Solo marchelcc puede entrar.`);
-        }
-
-        // ✅ Success — store token in sessionStorage and show admin
-        sessionStorage.setItem(SESSION_KEY, token);
-        sessionStorage.setItem('marchel_admin_user', user.login);
-        showAdminPanel(user.login);
-
-    } catch (err) {
-        showLoginError(err.message);
-        btn.innerHTML = '🔓 Entrar';
-        btn.disabled  = false;
-        input.classList.add('error');
-        setTimeout(() => input.classList.remove('error'), 600);
-        bar.innerHTML = '❌ Fallo de autenticación';
-    }
+function dirty() {
+  return {
+    schedule: JSON.stringify(buildSchedule(files.schedule.date)) !== files.schedule.base,
+    backlog: JSON.stringify(buildBacklog()) !== files.backlog.base,
+  };
+}
+function markClean() {
+  files.schedule.base = JSON.stringify(buildSchedule(files.schedule.date));
+  files.backlog.base = JSON.stringify(buildBacklog());
+}
+function refreshStatus() {
+  const d = dirty();
+  const names = [d.schedule && 'Horario / Perfil', d.backlog && 'Backlog'].filter(Boolean);
+  const st = $('#status');
+  st.textContent = names.length ? `● Sin guardar: ${names.join(' y ')}` : '✓ Todo guardado';
+  st.classList.toggle('dirty', names.length > 0);
+  $('#save-btn').disabled = !names.length;
+  renderPreview();
 }
 
-function showLoginError(msg) {
-    const errEl  = document.getElementById('login-error');
-    const errMsg = document.getElementById('login-error-msg');
-    errMsg.textContent = msg;
-    errEl.classList.add('show');
+/* ═══════════ Render: schedule ═══════════ */
+function slotHtml(day, i, s) {
+  const k = `data-scope="slot" data-day="${day}" data-i="${i}"`;
+  return `
+  <div class="slot">
+    <input class="in-time" type="text" ${k} data-f="time" value="${esc(s.time)}" placeholder="19:00" aria-label="Hora (Chile)">
+    <input class="in-game" type="text" ${k} data-f="game" value="${esc(s.game)}" placeholder="¿Qué vas a jugar?" aria-label="Juego o contenido">
+    <select class="in-tag" ${k} data-f="tag" aria-label="Tipo">${opts(TAGS.map(t => ({ value: t, label: t })), s.tag)}</select>
+    <button class="icon-btn" data-act="del-slot" data-day="${day}" data-i="${i}" title="Quitar este horario">🗑️</button>
+    <div class="url-field">
+      <img class="thumb" src="${esc(s.imageUrl)}" ${s.imageUrl ? '' : 'hidden'} alt="" onerror="this.hidden=true">
+      <input type="url" ${k} data-f="imageUrl" value="${esc(s.imageUrl)}" placeholder="Logo del juego (URL de imgur, opcional)" aria-label="Logo">
+    </div>
+  </div>`;
 }
 
-function showAdminPanel(username) {
-    document.getElementById('login-overlay').style.display   = 'none';
-    document.getElementById('admin-desktop').style.display   = 'flex';
-    document.getElementById('session-user').textContent      = username;
-
-    loadData();
+function renderSchedule() {
+  const today = todayName();
+  $('#schedule-root').innerHTML = DAYS.map(day => {
+    const slots = days[day];
+    return `
+    <article class="day ${day === today ? 'today' : ''}">
+      <header class="day-h">
+        <span>${day}</span>${day === today ? '<span class="badge">Hoy</span>' : ''}
+        <span class="count">${slots.length ? slots.length + (slots.length > 1 ? ' horarios' : ' horario') : 'Libre'}</span>
+      </header>
+      <div class="day-b">
+        ${slots.map((s, i) => slotHtml(day, i, s)).join('') || '<p class="empty">Sin stream este día</p>'}
+        <button class="btn small" data-act="add-slot" data-day="${day}">+ Agregar horario</button>
+      </div>
+    </article>`;
+  }).join('');
 }
 
-function doLogout() {
-    sessionStorage.removeItem(SESSION_KEY);
-    sessionStorage.removeItem('marchel_admin_user');
-    window.location.reload();
+/* ═══════════ Render: schedule preview ═══════════ */
+function renderPreview() {
+  const root = $('#preview-root');
+  if (!root) return;
+  const today = todayName();
+  let rows = '';
+  DAYS.forEach(day => {
+    const slots = days[day].length ? days[day] : [{ free: true, time: '', game: '-', imageUrl: '', tag: 'Off' }];
+    slots.forEach((s, i) => {
+      const logo = s.imageUrl ? `<img class="game-logo" src="${esc(s.imageUrl)}" alt="" onerror="this.style.display='none'">` : '';
+      rows += `<tr class="${s.free ? 'inactive' : ''} ${day === today ? 'today' : ''}">
+        ${i === 0 ? `<td class="td-day" rowspan="${slots.length}">${day}</td>` : ''}
+        <td class="td-time">${esc(s.time.trim() || '—')}</td>
+        <td class="td-game"><div class="game-logo-wrap">${logo}<span>${esc(s.game || '(sin nombre)')}</span></div></td>
+        <td class="td-tag"><span class="tag ${TAG_CLS[s.tag] || 'tag-stream-longo'}">${esc(s.tag)}</span></td></tr>`;
+    });
+  });
+  root.innerHTML = `<table class="schedule-table"><thead><tr><th>Día</th><th>Hora</th><th>Juego / Contenido</th><th>Tipo</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
-// Allow pressing Enter in the token field
-document.getElementById('token-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') doLogin();
+/* ═══════════ Render: backlog ═══════════ */
+function gameHtml(g, kind) {
+  const k = `data-scope="game" data-id="${g.id}"`;
+  const open = openGames.has(g.id);
+  const auto = g.platform === 'steam' && g.appid;
+  return `
+  <div class="game ${open ? 'open' : ''}">
+    <div class="game-row">
+      ${g.imageUrl ? `<img class="cover" src="${esc(g.imageUrl)}" alt="" onerror="this.outerHTML='<span class=&quot;cover ph&quot;>🎮</span>'">` : '<span class="cover ph">🎮</span>'}
+      <input class="in-name" type="text" ${k} data-f="name" value="${esc(g.name)}" placeholder="Nombre del juego" aria-label="Nombre">
+      <select class="in-status" ${k} data-f="status" aria-label="Estado">${opts(STATUS, g.status)}</select>
+      <div class="plat"><span class="plat-ico" title="Plataforma">${platIcon(g.platform)}</span>
+        <select class="in-plat" ${k} data-f="platform" aria-label="Plataforma">${opts(kind === 'mc' ? PLATFORMS.filter(p => MC_PLATFORMS.includes(p.value)) : PLATFORMS, g.platform)}</select></div>
+      <label class="hours">⏱️ <input type="number" min="0" step="0.5" ${k} data-f="hoursPlayed" data-num value="${g.hoursPlayed ?? ''}" ${auto ? 'disabled placeholder="auto"' : 'placeholder="0"'} aria-label="Horas jugadas"> h</label>
+      <button class="icon-btn" data-act="toggle-game" data-id="${g.id}" title="${open ? 'Cerrar' : 'Más opciones'}">${open ? '▴' : '▾'}</button>
+    </div>
+    ${open ? `
+    <div class="game-more">
+      <div class="field"><label>Steam App ID</label>
+        <input type="number" ${k} data-f="appid" data-num data-rerender value="${g.appid ?? ''}" placeholder="632360" ${g.platform === 'steam' ? '' : 'disabled'}>
+        <div class="note">El número en store.steampowered.com/app/<b>632360</b>/… Solo para Steam.</div></div>
+      <div class="field"><label>RetroAchievements Game ID</label>
+        <input type="number" ${k} data-f="raGameId" data-num value="${g.raGameId ?? ''}" placeholder="opcional">
+        <div class="note">El número en la URL del juego en retroachievements.org.</div></div>
+      <div class="field wide"><label>Portada vertical (URL)</label>
+        <input type="url" ${k} data-f="imageUrl" value="${esc(g.imageUrl)}" placeholder="https://… (vista biblioteca)"></div>
+      <div class="field wide"><label>Capsule horizontal (URL)</label>
+        <input type="url" ${k} data-f="capsuleUrl" value="${esc(g.capsuleUrl)}" placeholder="https://… (vista lista)"></div>
+      <div class="end"><button class="btn danger small" data-act="del-game" data-id="${g.id}">🗑️ Eliminar juego</button></div>
+    </div>` : ''}
+  </div>`;
+}
+
+function renderBacklog() {
+  ['backlog', 'mc'].forEach(kind => {
+    const { q, status } = filters[kind];
+    const pool = games.filter(g => isMC(g) === (kind === 'mc'));
+    const list = pool.filter(g => (status === 'all' || g.status === status) && (!q || (g.name || '').toLowerCase().includes(q.toLowerCase())));
+    $(`#count-${kind}`).textContent = `${list.length} de ${pool.length}`;
+    $(`#subcount-${kind}`).textContent = pool.length;
+    $(`#list-${kind}`).innerHTML = list.map(g => gameHtml(g, kind)).join('') ||
+      `<p class="empty">${pool.length ? 'Ningún juego coincide 🎣' : 'Aún no hay nada aquí.'}</p>`;
+  });
+}
+
+/* ═══════════ Render: profile ═══════════ */
+function renderProfile() {
+  const f = (label, scope, key, val, ph = '', type = 'text', extra = '') =>
+    `<div class="field"><label>${label}</label><input type="${type}" data-scope="${scope}" data-f="${key}" ${extra} value="${esc(val)}" placeholder="${esc(ph)}"></div>`;
+  const s = doc.socials;
+  $('#profile-root').innerHTML = `
+    <fieldset class="dc-group">
+      <legend>Foto de perfil</legend>
+      <div class="profile-top">
+        <img class="avatar" id="avatar" src="${esc(doc.profilePic)}" ${doc.profilePic ? '' : 'hidden'} alt="" onerror="this.hidden=true">
+        <div class="field">
+          <label>URL de imgur (imagen cuadrada)</label>
+          <input type="url" data-scope="meta" data-f="profilePic" value="${esc(doc.profilePic)}" placeholder="https://i.imgur.com/…">
+        </div>
+      </div>
+      <div class="profile-top" style="margin-top:12px">
+        <div class="field">
+          <label>Mensaje junto a la foto (burbuja)</label>
+          <input type="text" maxlength="60" data-scope="meta" data-f="tagline" data-bubble value="${esc(doc.tagline)}" placeholder="🎣 pescando contenido...">
+          <div class="note">Texto corto: aparece en la burbuja amarilla al lado de tu foto en la web.</div>
+        </div>
+        <div class="bubble-prev" id="bubble-prev">${esc(doc.tagline) || '<span class="muted">(vacío)</span>'}</div>
+      </div>
+    </fieldset>
+    <fieldset class="dc-group">
+      <legend>Canal</legend>
+      <div class="profile-grid">
+        ${f('Nombre', 'meta', 'vtuber', doc.vtuber)}
+      </div>
+    </fieldset>
+    <fieldset class="dc-group">
+      <legend>YouTube</legend>
+      <div class="profile-grid">
+        ${f('Último video', 'meta', 'youtubeLatestVideoId', doc.youtubeLatestVideoId, 'Pega el link o el ID', 'text', 'data-yt')}
+        ${f('Último VOD', 'meta', 'youtubeLatestVODId', doc.youtubeLatestVODId, 'Pega el link o el ID', 'text', 'data-yt')}
+      </div>
+    </fieldset>
+    <fieldset class="dc-group">
+      <legend>Redes</legend>
+      <div class="profile-grid">
+        ${f('Twitch', 'social', 'twitch', s.twitch, 'https://www.twitch.tv/…', 'url')}
+        ${f('YouTube', 'social', 'youtube', s.youtube, 'https://www.youtube.com/@…', 'url')}
+        ${f('YouTube VODs', 'social', 'youtubevods', s.youtubevods, 'https://www.youtube.com/@…', 'url')}
+        ${f('Twitter / X', 'social', 'twitter', s.twitter, 'https://x.com/…', 'url')}
+        ${f('Bluesky', 'social', 'bsky', s.bsky, 'https://bsky.app/profile/…', 'url')}
+      </div>
+    </fieldset>
+    <fieldset class="dc-group">
+      <legend>Respaldo manual</legend>
+      <div class="adv">
+        <button class="btn small" data-act="download" data-what="schedule">⬇ schedule.json</button>
+        <button class="btn small" data-act="download" data-what="backlog">⬇ backlog.json</button>
+      </div>
+    </fieldset>`;
+}
+
+/* ═══════════ Editing (event delegation) ═══════════ */
+function applyEdit(t) {
+  const { scope, f } = t.dataset;
+  const val = t.type === 'checkbox' ? t.checked : t.dataset.num !== undefined ? (t.value === '' ? null : Number(t.value)) : t.value;
+  if (scope === 'slot') days[t.dataset.day][+t.dataset.i][f] = val;
+  else if (scope === 'game') { const g = games.find(x => x.id == t.dataset.id); if (g) g[f] = val; }
+  else if (scope === 'meta') doc[f] = val;
+  else if (scope === 'social') doc.socials[f] = val;
+}
+
+document.addEventListener('input', e => {
+  const t = e.target;
+  if (t.classList.contains('f-search')) { filters[t.dataset.kind].q = t.value.trim(); renderBacklog(); return; }
+  if (!t.dataset.scope) return;
+  applyEdit(t);
+  if (t.dataset.bubble !== undefined) $('#bubble-prev').textContent = t.value || '(vacío)';
+  refreshStatus();
 });
 
-/* ─────────────────────────────────────────────────────────────
-   AUTO-LOGIN if session token already exists
-   ───────────────────────────────────────────────────────────── */
-(function checkSession() {
-    const token = sessionStorage.getItem(SESSION_KEY);
-    const user  = sessionStorage.getItem('marchel_admin_user');
-    if (token && user) {
-        showAdminPanel(user);
+document.addEventListener('change', e => {
+  const t = e.target;
+  if (t.classList.contains('f-status')) { filters[t.dataset.kind].status = t.value; renderBacklog(); return; }
+  if (!t.dataset.scope) return;
+  if (t.dataset.scope === 'game' && t.dataset.f === 'platform') {
+    const g = games.find(x => x.id == t.dataset.id);
+    const here = t.closest('.subpanel').id === 'sub-mc' ? 'mc' : 'backlog';
+    const there = g && isMC(g) ? 'mc' : 'backlog';
+    if (g && here !== there) toast(`➡️ “${g.name}” pasó a la pestaña ${there === 'mc' ? 'Minecraft' : 'Backlog'}`);
+  }
+  if (t.dataset.yt !== undefined) { t.value = ytId(t.value); applyEdit(t); refreshStatus(); }
+  if (t.dataset.f === 'imageUrl' && t.closest('.url-field')) {
+    const img = $('.thumb', t.closest('.url-field'));
+    img.hidden = !t.value; img.src = t.value;
+  }
+  if (t.dataset.f === 'profilePic') {
+    const img = $('#avatar'); img.hidden = !t.value; img.src = t.value;
+  }
+  if (t.dataset.scope === 'game' && ['imageUrl', 'platform', 'appid', 'status'].includes(t.dataset.f)) renderBacklog();
+});
+
+
+const actions = {
+  tab(el) {
+    $$('.tab').forEach(b => b.classList.toggle('active', b === el));
+    $$('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + el.dataset.tab));
+  },
+  subtab(el) {
+    $$('.subtab').forEach(b => b.classList.toggle('active', b === el));
+    $$('.subpanel').forEach(p => p.classList.toggle('active', p.id === 'sub-' + el.dataset.sub));
+  },
+  'add-slot'(el) {
+    days[el.dataset.day].push({ time: '19:00', game: '', imageUrl: '', tag: 'Stream Longo' });
+    renderSchedule(); refreshStatus();
+  },
+  'del-slot'(el) {
+    days[el.dataset.day].splice(+el.dataset.i, 1);
+    renderSchedule(); refreshStatus();
+  },
+  'add-game'(el) {
+    const kind = el.dataset.kind;
+    const id = Math.max(100, ...games.map(g => +g.id || 0)) + 1;
+    games.push({
+      id, name: kind === 'mc' ? 'Nuevo mapa / evento' : 'Nuevo juego', appid: null, raGameId: null,
+      platform: kind === 'mc' ? 'Mapa de MC' : 'otro', status: 'backlog', hoursPlayed: null, imageUrl: '', capsuleUrl: '',
+    });
+    filters[kind] = { q: '', status: 'all' };
+    $(`.f-search[data-kind="${kind}"]`).value = ''; $(`.f-status[data-kind="${kind}"]`).value = 'all';
+    openGames.add(id);
+    renderBacklog(); refreshStatus();
+    const last = $$(`#list-${kind} .game`).pop();
+    last?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    $('.in-name', last)?.select();
+  },
+  'del-game'(el) {
+    const g = games.find(x => x.id == el.dataset.id);
+    if (!g || !confirm(`¿Eliminar “${g.name}” del backlog?`)) return;
+    games = games.filter(x => x !== g);
+    renderBacklog(); refreshStatus();
+  },
+  'toggle-game'(el) {
+    const id = +el.dataset.id;
+    openGames.has(id) ? openGames.delete(id) : openGames.add(id);
+    renderBacklog();
+  },
+  download(el) {
+    const isS = el.dataset.what === 'schedule';
+    const obj = isS ? buildSchedule(todayChile()) : buildBacklog();
+    const a = Object.assign(document.createElement('a'), {
+      href: URL.createObjectURL(new Blob([JSON.stringify(obj, null, 2) + '\n'], { type: 'application/json' })),
+      download: isS ? 'schedule.json' : 'backlog.json',
+    });
+    a.click(); URL.revokeObjectURL(a.href);
+  },
+  close() { location.href = 'index.html'; },
+  logout() {
+    localStorage.removeItem(STORE_KEY); sessionStorage.removeItem(STORE_KEY);
+    location.reload();
+  },
+  save,
+};
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if (el && actions[el.dataset.act]) actions[el.dataset.act](el);
+});
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's' && !$('#app').hidden) { e.preventDefault(); if (!$('#save-btn').disabled) save(); }
+});
+window.addEventListener('beforeunload', e => {
+  if (!$('#app').hidden && (dirty().schedule || dirty().backlog)) { e.preventDefault(); e.returnValue = ''; }
+});
+
+/* ═══════════ Save ═══════════ */
+async function save() {
+  const d = dirty();
+  const btn = $('#save-btn');
+  btn.disabled = true; btn.textContent = 'Guardando…';
+  try {
+    if (d.schedule) {
+      const date = todayChile();
+      await writeFile(CONFIG.schedulePath, buildSchedule(date), files.schedule, 'Admin: actualizar horario / perfil');
+      doc.lastUpdated = date; files.schedule.date = date;
     }
+    if (d.backlog) await writeFile(CONFIG.backlogPath, buildBacklog(), files.backlog, 'Admin: actualizar backlog');
+    markClean();
+    toast('✅ Guardado en GitHub — la web se actualiza en ~1 minuto');
+  } catch (err) {
+    const msg = err.status === 409 || err.status === 422
+      ? 'El archivo cambió en GitHub mientras editabas. Copia lo que necesites, recarga la página y vuelve a intentar.'
+      : err.status === 403 || err.status === 404
+        ? 'GitHub rechazó el guardado. ¿El token tiene permiso “Contents: Read and write” en este repo?'
+        : 'No se pudo guardar: ' + err.message;
+    toast(msg, true);
+  } finally {
+    btn.textContent = 'Guardar cambios';
+    refreshStatus();
+  }
+}
+
+/* ═══════════ Boot / login ═══════════ */
+async function startApp(tok, remember) {
+  token = tok;
+  const user = await gh('/user');
+  if (user.login.toLowerCase() !== CONFIG.owner.toLowerCase()) throw new Error(`La cuenta “${user.login}” no tiene acceso. Solo ${CONFIG.owner}.`);
+
+  const [s, b] = await Promise.all([readFile(CONFIG.schedulePath), readFile(CONFIG.backlogPath, true)]);
+  parseSchedule(s.json);
+  files.schedule.sha = s.sha; files.schedule.date = doc.lastUpdated || todayChile();
+  games = (b.json?.games || []).map(g => ({ ...g, platform: LEGACY_PLATFORMS[g.platform] || g.platform }));
+  files.backlog.sha = b.sha;
+  markClean();
+
+  (remember ? localStorage : sessionStorage).setItem(STORE_KEY, tok);
+  $('#user-name').textContent = user.login;
+  $$('.f-status').forEach(el => {
+    el.innerHTML = `<option value="all">Todos los estados</option>` + STATUS.map(o => `<option value="${o.value}">${o.label}</option>`).join('');
+  });
+  renderSchedule(); renderBacklog(); renderProfile(); refreshStatus();
+  $('#login').hidden = true;
+  $('#app').hidden = false;
+}
+
+function loginError(err) {
+  const msg = err.status === 401 ? 'Token inválido o vencido. Revisa que lo copiaste completo.' : err.message;
+  const el = $('#login-error');
+  el.textContent = msg; el.hidden = false;
+}
+
+$('#login-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const tok = $('#token').value.trim();
+  if (!tok) return loginError(new Error('Pega tu token de GitHub.'));
+  const btn = $('#login-btn');
+  btn.disabled = true; btn.textContent = 'Verificando…'; $('#login-error').hidden = true;
+  try { await startApp(tok, $('#remember').checked); }
+  catch (err) { loginError(err); }
+  finally { btn.disabled = false; btn.textContent = 'Entrar'; }
+});
+
+(async function autoLogin() {
+  const saved = localStorage.getItem(STORE_KEY) || sessionStorage.getItem(STORE_KEY);
+  if (!saved) return;
+  $('#login-btn').textContent = 'Entrando…';
+  try { await startApp(saved, !!localStorage.getItem(STORE_KEY)); }
+  catch (err) {
+    localStorage.removeItem(STORE_KEY); sessionStorage.removeItem(STORE_KEY);
+    loginError(err);
+  } finally { $('#login-btn').textContent = 'Entrar'; }
 })();
 
-/* ─────────────────────────────────────────────────────────────
-   LOAD DATA
-   ───────────────────────────────────────────────────────────── */
-async function loadData() {
-    try {
-        const res  = await fetch('data/schedule.json?nocache=' + Date.now());
-        const data = await res.json();
-
-        state.vtuber        = data.vtuber      || 'Marchel';
-        state.tagline       = data.tagline     || '';
-        state.lastUpdated   = data.lastUpdated || new Date().toISOString().slice(0,10);
-        state.profilePic    = data.profilePic  || '';
-        state.youtubeLatestVideoId = data.youtubeLatestVideoId || '';
-        state.youtubeLatestVODId   = data.youtubeLatestVODId   || '';
-        state.schedule      = data.schedule      || [];
-        state.rotationGames = data.rotationGames || [];
-        state.socials       = data.socials       || {};
-
-        renderAll();
-        updateStatus();
-        setStatus('✅ schedule.json cargado correctamente');
-    } catch (err) {
-        setStatus('⚠️ No se pudo cargar schedule.json');
-        console.error(err);
-    }
-
-    /* backlog.json es un archivo aparte — si falla, no bloquea el resto del panel */
-    try {
-        const res  = await fetch('data/backlog.json?nocache=' + Date.now());
-        const data = await res.json();
-        backlogState = data.games || [];
-        renderBacklogAdmin();
-    } catch (err) {
-        console.warn('No se pudo cargar backlog.json (¿todavía no existe?):', err);
-        backlogState = [];
-        renderBacklogAdmin();
-    }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   RENDER ALL TABS
-   ───────────────────────────────────────────────────────────── */
-function renderAll() {
-    renderScheduleAdmin();
-    renderRotationAdmin();
-    renderMetaForm();
-}
-
-/* ── Schedule table ── */
-function renderScheduleAdmin() {
-    const tbody = document.getElementById('schedule-admin-body');
-    tbody.innerHTML = '';
-
-    state.schedule.forEach((item, idx) => {
-        const tr = document.createElement('tr');
-
-        const dayOpts = DAY_OPTIONS.map(d =>
-            `<option value="${d}" ${d === item.day ? 'selected' : ''}>${d}</option>`
-        ).join('');
-        const tagOpts = TAG_OPTIONS.map(t =>
-            `<option value="${t}" ${t === item.tag ? 'selected' : ''}>${t}</option>`
-        ).join('');
-
-        const logoSrc    = item.imageUrl || '';
-        const imgPreview = logoSrc && !logoSrc.includes('your-')
-            ? `<img src="${logoSrc}" onerror="this.style.display='none'" />`
-            : '';
-        const timeVal = item.time ?? '';
-
-        tr.innerHTML = `
-          <td class="admin-col-active">
-            <input type="checkbox" class="active-toggle" ${item.active ? 'checked' : ''}
-              onchange="updateScheduleField(${idx}, 'active', this.checked)" />
-          </td>
-          <td><select onchange="updateScheduleField(${idx}, 'day', this.value)">${dayOpts}</select></td>
-          <td><input type="text" value="${timeVal}" placeholder="19:00"
-               onchange="updateScheduleField(${idx}, 'time', this.value || null)" /></td>
-          <td><input type="text" value="${item.game || ''}" placeholder="Nombre del juego"
-               onchange="updateScheduleField(${idx}, 'game', this.value)" /></td>
-          <td>
-            <div class="logo-preview-cell">
-              ${imgPreview}
-              <input type="url" value="${logoSrc}"
-                placeholder="https://i.imgur.com/..."
-                onchange="updateScheduleField(${idx}, 'imageUrl', this.value); refreshLogoPreview(this)" />
-            </div>
-          </td>
-          <td><select onchange="updateScheduleField(${idx}, 'tag', this.value)">${tagOpts}</select></td>
-          <td class="admin-col-actions">
-            <button class="xp-button success admin-slot-btn"
-              title="Agregar otro slot para este mismo día"
-              onclick="addSlotAfter(${idx})">+⏰</button>
-            <button class="xp-button danger admin-slot-btn"
-              onclick="removeScheduleRow(${idx})">🗑️</button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-    });
-}
-
-/* ── Rotation cards ── */
-function renderRotationAdmin() {
-    const grid = document.getElementById('rotation-admin-grid');
-    grid.innerHTML = '';
-
-    state.rotationGames.forEach((game, idx) => {
-        const card = document.createElement('div');
-        card.className = 'rotation-admin-card';
-
-        const logoSrc = game.imageUrl || '';
-        const hasLogo = logoSrc && !logoSrc.includes('your-');
-
-        card.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <strong style="font-size:13px;">Juego ${idx+1}</strong>
-        <button class="xp-button danger" onclick="removeRotationGame(${idx})"
-          style="padding:2px 8px;font-size:11px;">🗑️ Quitar</button>
-      </div>
-      <div class="card-preview">
-        <img id="rot-preview-${idx}"
-          src="${hasLogo ? logoSrc : ''}"
-          style="${hasLogo ? '' : 'display:none'}"
-          onerror="this.style.display='none'"
-          alt="preview" />
-        <span>${hasLogo ? game.name : (game.emoji + ' ' + game.name)}</span>
-      </div>
-      <label>Emoji (fallback)</label>
-      <input type="text" value="${game.emoji}" placeholder="🎮"
-        onchange="updateRotationField(${idx}, 'emoji', this.value)" />
-      <label>Nombre del juego</label>
-      <input type="text" value="${game.name}" placeholder="Stardew Valley"
-        onchange="updateRotationField(${idx}, 'name', this.value)" />
-      <label>Logo imgur URL</label>
-      <input type="url" value="${logoSrc}" placeholder="https://i.imgur.com/..."
-        onchange="updateRotationField(${idx}, 'imageUrl', this.value); updateRotPreview(${idx}, this.value)" />
-      <label>Nota / descripción</label>
-      <input type="text" value="${game.note}" placeholder="Farm arc activo"
-        onchange="updateRotationField(${idx}, 'note', this.value)" />
-    `;
-        grid.appendChild(card);
-    });
-}
-
-/* ── Meta form (info general + profile pic + YouTube ID) ── */
-function renderMetaForm() {
-    const form = document.getElementById('meta-form');
-    const picSrc = state.profilePic || '';
-    const hasRealPic = picSrc && !picSrc.includes('your-profile-pic');
-
-    form.innerHTML = `
-    <div class="full-span">
-      <label>URL de foto de perfil (imgur, formato 1:1)</label>
-      <input type="url" value="${picSrc}"
-        placeholder="https://i.imgur.com/tu-foto-de-perfil.png"
-        oninput="state.profilePic = this.value; updateProfilePicPreview(this.value)" />
-    </div>
-    <div>
-      <label>Nombre del VTuber</label>
-      <input type="text" value="${state.vtuber}" onchange="state.vtuber = this.value" />
-    </div>
-    <div>
-      <label>Tagline</label>
-      <input type="text" value="${state.tagline}" onchange="state.tagline = this.value" />
-    </div>
-    <div>
-      <label>Fecha de actualización</label>
-      <input type="date" value="${state.lastUpdated}" onchange="state.lastUpdated = this.value" />
-    </div>
-    <div class="full-span">
-      <label>🎬 Último video de YouTube (ID)</label>
-      <input type="text" value="${state.youtubeLatestVideoId || ''}"
-        placeholder="Ej: dQw4w9WgXcQ"
-        onchange="state.youtubeLatestVideoId = this.value" />
-
-      <label style="margin-top:8px;">📼 Último VOD de YouTube (ID)</label>
-      <input type="text" value="${state.youtubeLatestVODId || ''}"
-        placeholder="Ej: rHJ6IgUTu1k"
-        onchange="state.youtubeLatestVODId = this.value" />
-
-      <label style="margin-top:8px;">YouTube VODs URL</label>
-      <input type="url" value="${state.socials.youtubevods || ''}"
-        placeholder="https://www.youtube.com/@marchel-vods1"
-        onchange="state.socials.youtubevods = this.value" />
-   
-      <div style="font-size:10px; color:#666; margin-top:2px;">
-        El ID es la parte después de <code>watch?v=</code> en la URL del video. Ejemplo: de <code>https://www.youtube.com/watch?v=ABC123</code> el ID es <code>ABC123</code>.
-      </div>
-    </div>
-    <div>
-      <label>Twitch URL</label>
-      <input type="url" value="${state.socials.twitch || ''}"
-        placeholder="https://www.twitch.tv/marchel_cc"
-        onchange="state.socials.twitch = this.value" />
-    </div>
-    <div>
-      <label>YouTube URL</label>
-      <input type="url" value="${state.socials.youtube || ''}"
-        placeholder="https://www.youtube.com/@Marchel-cc"
-        onchange="state.socials.youtube = this.value" />
-    </div>
-    <div>
-      <label>Twitter / X URL</label>
-      <input type="url" value="${state.socials.twitter || ''}"
-        placeholder="https://x.com/Marchel_cc"
-        onchange="state.socials.twitter = this.value" />
-    </div>
-    <div>
-      <label>BlueSky URL</label>
-      <input type="url" value="${state.socials.bsky || ''}"
-        placeholder="https://bsky.app/profile/marchelcc.bsky.social"
-        onchange="state.socials.bsky = this.value" />
-    </div>
-  `;
-
-    // Seed the preview
-    if (hasRealPic) updateProfilePicPreview(picSrc);
-}
-
-/* ── Live profile pic preview in admin ── */
-function updateProfilePicPreview(url) {
-    const frame    = document.querySelector('.profile-pic-preview-wrap .mini-frame');
-    const fallback = document.getElementById('profile-mini-fallback');
-    if (!frame) return;
-
-    // Remove any old img
-    const old = frame.querySelector('img');
-    if (old) old.remove();
-    if (fallback) fallback.style.display = 'flex';
-
-    if (!url || url.includes('your-')) return;
-
-    const img = document.createElement('img');
-    img.src = url;
-    img.alt = 'Profile preview';
-    img.style.display = 'none';
-    img.onload = () => {
-        if (fallback) fallback.style.display = 'none';
-        img.style.display = 'block';
-    };
-    img.onerror = () => img.remove();
-    frame.appendChild(img);
-}
-
-/* ── Live logo preview helpers ── */
-function refreshLogoPreview(inputEl) {
-    const cell = inputEl.closest('.logo-preview-cell');
-    if (!cell) return;
-    let img = cell.querySelector('img');
-    const url = inputEl.value.trim();
-    if (!url) { if (img) img.remove(); return; }
-    if (!img) {
-        img = document.createElement('img');
-        img.onerror = () => img.style.display = 'none';
-        cell.prepend(img);
-    }
-    img.src = url;
-    img.style.display = 'block';
-}
-
-function updateRotPreview(idx, url) {
-    const img = document.getElementById(`rot-preview-${idx}`);
-    if (!img) return;
-    if (!url) { img.style.display = 'none'; return; }
-    img.src = url;
-    img.style.display = 'block';
-}
-
-/* ─────────────────────────────────────────────────────────────
-   FIELD UPDATERS
-   ───────────────────────────────────────────────────────────── */
-function updateScheduleField(idx, field, value) { state.schedule[idx][field] = value; }
-function updateRotationField(idx, field, value)  { state.rotationGames[idx][field] = value; }
-
-/* ─────────────────────────────────────────────────────────────
-   ADD / REMOVE
-   ───────────────────────────────────────────────────────────── */
-function addScheduleRow() {
-    state.schedule.push({
-        id: scheduleIdCounter++,
-        day: 'Lunes', time: '19:00',
-        game: 'Nuevo stream', imageUrl: '', tag: 'Stream Longo', active: true
-    });
-    renderScheduleAdmin();
-    setStatus('✅ Fila agregada');
-}
-
-/* Add a second (or third…) time slot right below the row at idx,
-   inheriting the same day so they appear grouped in the public view. */
-function addSlotAfter(idx) {
-    const sourceDay = state.schedule[idx]?.day || 'Lunes';
-    const newSlot = {
-        id: scheduleIdCounter++,
-        day: sourceDay, time: '21:00',
-        game: 'Nuevo slot', imageUrl: '', tag: 'Stream Shorti', active: true
-    };
-    /* Insert immediately after idx so it renders right below */
-    state.schedule.splice(idx + 1, 0, newSlot);
-    renderScheduleAdmin();
-    setStatus(`✅ Slot extra añadido para ${sourceDay}`);
-}
-function removeScheduleRow(idx) {
-    state.schedule.splice(idx, 1);
-    renderScheduleAdmin();
-    setStatus('🗑️ Fila eliminada');
-}
-function addRotationGame() {
-    state.rotationGames.push({
-        id: rotationIdCounter++, name: 'Nuevo Juego',
-        emoji: '🎮', imageUrl: '', note: 'Descripción'
-    });
-    renderRotationAdmin();
-    switchTab('tab-rotation', document.querySelectorAll('.tab')[1]);
-    setStatus('✅ Juego agregado');
-}
-function removeRotationGame(idx) {
-    state.rotationGames.splice(idx, 1);
-    renderRotationAdmin();
-    setStatus('🗑️ Juego eliminado');
-}
-
-/* ── Backlog table ── */
-function renderBacklogAdmin() {
-    const tbody = document.getElementById('backlog-admin-body');
-    if (!tbody) return;
-    tbody.innerHTML = '';
-
-    backlogState.forEach((game, idx) => {
-        const tr = document.createElement('tr');
-
-        const statusOpts = BACKLOG_STATUS_OPTIONS.map(s =>
-            `<option value="${s.value}" ${s.value === game.status ? 'selected' : ''}>${s.label}</option>`
-        ).join('');
-        const platformOpts = BACKLOG_PLATFORM_OPTIONS.map(p =>
-            `<option value="${p.value}" ${p.value === game.platform ? 'selected' : ''}>${p.label}</option>`
-        ).join('');
-
-        const logoSrc    = game.imageUrl || '';
-        const imgPreview = logoSrc && !logoSrc.includes('your-')
-            ? `<img src="${logoSrc}" onerror="this.style.display='none'" />`
-            : '';
-
-        const capsuleSrc     = game.capsuleUrl || '';
-        const capsulePreview = capsuleSrc && !capsuleSrc.includes('your-')
-            ? `<img src="${capsuleSrc}" onerror="this.style.display='none'" />`
-            : '';
-
-        const isSteam = game.platform === 'steam';
-
-        tr.innerHTML = `
-          <td><input type="text" value="${game.name || ''}" placeholder="Nombre del juego"
-               onchange="updateBacklogField(${idx}, 'name', this.value)" /></td>
-          <td>
-            <div class="logo-preview-cell">
-              ${imgPreview}
-              <input type="url" value="${logoSrc}"
-                placeholder="https://... (portada vertical)"
-                onchange="updateBacklogField(${idx}, 'imageUrl', this.value); refreshLogoPreview(this)" />
-            </div>
-          </td>
-          <td>
-            <div class="logo-preview-cell">
-              ${capsulePreview}
-              <input type="url" value="${capsuleSrc}"
-                placeholder="https://... (capsule horizontal, vista lista)"
-                onchange="updateBacklogField(${idx}, 'capsuleUrl', this.value); refreshLogoPreview(this)" />
-            </div>
-          </td>
-          <td><select onchange="updateBacklogField(${idx}, 'platform', this.value); renderBacklogAdmin();">${platformOpts}</select></td>
-          <td><input type="number" value="${game.appid ?? ''}" placeholder="632360" style="width:90px;"
-               ${isSteam ? '' : 'disabled title="Solo aplica para plataforma Steam"'}
-               onchange="updateBacklogField(${idx}, 'appid', this.value ? Number(this.value) : null)" /></td>
-          <td><input type="number" value="${game.raGameId ?? ''}" placeholder="14402" style="width:80px;"
-               title="ID del juego en RetroAchievements.org (busca el juego ahí, es el número en la URL)"
-               onchange="updateBacklogField(${idx}, 'raGameId', this.value ? Number(this.value) : null)" /></td>
-          <td><select onchange="updateBacklogField(${idx}, 'status', this.value)">${statusOpts}</select></td>
-          <td><input type="number" value="${game.hoursPlayed ?? ''}" placeholder="18" style="width:70px;"
-               ${isSteam ? 'disabled title="Se llena automático desde Steam"' : ''}
-               onchange="updateBacklogField(${idx}, 'hoursPlayed', this.value ? Number(this.value) : null)" /></td>
-          <td class="admin-col-actions">
-            <button class="xp-button danger admin-slot-btn"
-              onclick="removeBacklogGame(${idx})">🗑️</button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-    });
-}
-
-function updateBacklogField(idx, field, value) { backlogState[idx][field] = value; }
-
-function addBacklogGame() {
-    backlogState.push({
-        id: backlogIdCounter++, name: 'Nuevo Juego', appid: null, raGameId: null, platform: 'otro',
-        status: 'backlog', hoursPlayed: null, imageUrl: '', capsuleUrl: ''
-    });
-    renderBacklogAdmin();
-    setStatus('✅ Juego agregado al backlog');
-}
-
-function removeBacklogGame(idx) {
-    backlogState.splice(idx, 1);
-    renderBacklogAdmin();
-    setStatus('🗑️ Juego eliminado del backlog');
-}
-
-function exportBacklogJson() {
-    const json = JSON.stringify({ games: backlogState }, null, 2);
-    const blob = new Blob([json], { type: 'application/json' });
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
-    a.href = url; a.download = 'backlog.json'; a.click();
-    URL.revokeObjectURL(url);
-    showToast('💾 backlog.json descargado correctamente');
-    setStatus('✅ backlog.json exportado');
-}
-
-/* ─────────────────────────────────────────────────────────────
-   JSON GENERATION & EXPORT
-   ───────────────────────────────────────────────────────────── */
-function buildJson() {
-    state.lastUpdated = new Date().toISOString().slice(0,10);
-    return JSON.stringify(state, null, 2);
-}
-
-function showJsonTab() {
-    document.getElementById('json-preview-content').textContent = buildJson();
-    switchTab('tab-json', document.querySelectorAll('.tab')[3]);
-}
-
-function exportJson() {
-    const json = buildJson();
-    const blob = new Blob([json], { type: 'application/json' });
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
-    a.href = url; a.download = 'schedule.json'; a.click();
-    URL.revokeObjectURL(url);
-    showToast('💾 schedule.json descargado correctamente');
-    setStatus('✅ JSON exportado');
-    document.getElementById('json-preview-content').textContent = json;
-}
-
-async function copyJson() {
-    try {
-        await navigator.clipboard.writeText(buildJson());
-        showToast('📋 JSON copiado al portapapeles');
-    } catch {
-        showToast('⚠️ No se pudo copiar — usa el botón de exportar');
-    }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   TAB SWITCHING
-   ───────────────────────────────────────────────────────────── */
-function switchTab(panelId, tabEl) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    const panel = document.getElementById(panelId);
-    if (panel) panel.classList.add('active');
-    if (tabEl)  tabEl.classList.add('active');
-    if (panelId === 'tab-json') showJsonTab();
-}
-
-/* ─────────────────────────────────────────────────────────────
-   UI HELPERS
-   ───────────────────────────────────────────────────────────── */
-function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3000);
-}
-function setStatus(msg) {
-    document.getElementById('admin-status').textContent = msg;
-}
-function updateStatus() {
-    const total  = state.schedule.length;
-    const active = state.schedule.filter(s => s.active).length;
-    document.getElementById('admin-count-status').textContent =
-        `${active} días activos / ${total} días   · ${state.rotationGames.length} juegos en rotación`;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   XP WINDOW BUTTONS (decorative)
-   ───────────────────────────────────────────────────────────── */
-document.querySelectorAll('.xp-btn-close').forEach(btn => {
-    btn.addEventListener('click', e => {
-        const win = e.target.closest('.xp-window');
-        if (!win) return;
-        win.style.transition = 'transform 0.2s, opacity 0.2s';
-        win.style.transform  = 'scale(0.97)';
-        win.style.opacity    = '0.6';
-        setTimeout(() => { win.style.transform = ''; win.style.opacity = ''; }, 300);
-    });
-});
-
-/* ─────────────────────────────────────────────────────────────
-   CLOCK
-   ───────────────────────────────────────────────────────────── */
-(function startClock() {
-    const el = document.getElementById('taskbar-clock');
-    if (!el) return;
-    function tick() {
-        const n = new Date();
-        el.textContent = String(n.getHours()).padStart(2,'0') + ':' + String(n.getMinutes()).padStart(2,'0');
-    }
-    tick(); setInterval(tick, 30000);
+/* Reloj de la barra de tareas */
+(function clock() {
+  const el = $('#taskbar-clock');
+  const timezone = $('#timezone-label');
+  if (timezone) timezone.textContent = `🌍 ${Intl.DateTimeFormat().resolvedOptions().timeZone}`;
+  const tick = () => { const n = new Date(); el.textContent = String(n.getHours()).padStart(2, '0') + ':' + String(n.getMinutes()).padStart(2, '0'); };
+  tick(); setInterval(tick, 30000);
 })();
