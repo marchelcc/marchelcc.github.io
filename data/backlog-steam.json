@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10T16:56:54.543Z",
+  "updated": "2026-11-11T17:00:29.281Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -634,7 +634,7 @@
     "289070": {
       "name": "Sid Meier's Civilization VI",
       "playtimeForeverMinutes": 2477,
-      "playtime2WeeksMinutes": 1528,
+      "playtime2WeeksMinutes": 1442,
       "lastPlayedUnix": 1794089088,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
@@ -2451,9 +2451,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 3436,
-      "playtime2WeeksMinutes": 177,
-      "lastPlayedUnix": 1794108396,
+      "playtimeForeverMinutes": 3510,
+      "playtime2WeeksMinutes": 252,
+      "lastPlayedUnix": 1794379178,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3252,9 +3252,9 @@
     },
     "2357570": {
       "name": "Overwatch®",
-      "playtimeForeverMinutes": 2513,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1791861195,
+      "playtimeForeverMinutes": 2534,
+      "playtime2WeeksMinutes": 21,
+      "lastPlayedUnix": 1794374613,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/library_600x900_2x.jpg"
@@ -3729,9 +3729,9 @@
     },
     "3124540": {
       "name": "Far Far West",
-      "playtimeForeverMinutes": 402,
-      "playtime2WeeksMinutes": 402,
-      "lastPlayedUnix": 1793590422,
+      "playtimeForeverMinutes": 424,
+      "playtime2WeeksMinutes": 296,
+      "lastPlayedUnix": 1794369364,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3124540/a0a5e461c215c2a8916f42111ce41fa887cbec71.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/library_600x900_2x.jpg"
@@ -3966,7 +3966,7 @@
       "playtimeForeverMinutes": 0,
       "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": null,
-      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3883700/de4baff2d2e1044bcd054d907e365460cee57eea.jpg",
+      "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3883700/ff34e546c1a9a9e80d050840d673e282148a72ba.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3883700/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3883700/library_600x900_2x.jpg"
     },
