@@ -8,6 +8,7 @@ const CONFIG = {
   repo: 'marchelcc.github.io',
   branch: null,                       // null = rama por defecto del repo
   schedulePath: 'data/schedule.json',
+  socialsPath: 'data/socials.json',
   backlogPath: 'data/backlog.json',
 };
 const STORE_KEY = 'marchel_admin_token';
@@ -118,9 +119,14 @@ async function writeFile(path, obj, file, message) {
 }
 
 /* ═══════════ State ═══════════ */
-const files = { schedule: { sha: null, base: '', date: '' }, backlog: { sha: null, base: '' } };
+const files = {
+  schedule: { sha: null, base: '', date: '' },
+  socials: { sha: null, base: '' },
+  backlog: { sha: null, base: '' },
+};
 let doc = {};            // schedule.json sin el array "schedule"
 let days = {};           // { Lunes: [slot, …], … }
+let socials = {};
 let games = [];
 const openGames = new Set();
 const filters = { backlog: { q: '', status: 'all' }, mc: { q: '', status: 'all' } };
@@ -128,8 +134,8 @@ const filters = { backlog: { q: '', status: 'all' }, mc: { q: '', status: 'all' 
 function parseSchedule(json) {
   const { schedule = [], ...rest } = json;
   doc = { vtuber: '', tagline: '', profilePic: '', youtubeLatestVideoId: '', youtubeLatestVODId: '', ...rest };
+  delete doc.socials;
   doc.rotationGames ??= [];
-  doc.socials ??= {};
   days = Object.fromEntries(DAYS.map(d => [d, []]));
   schedule.forEach(it => {
     if (!days[it.day]) return;
@@ -141,6 +147,10 @@ function parseSchedule(json) {
       tag: it.tag || 'Stream Longo',
     });
   });
+}
+
+function parseSocials(json) {
+  socials = { ...json };
 }
 
 function buildSchedule(date) {
@@ -157,24 +167,26 @@ function buildSchedule(date) {
       }));
     }
   });
-  const { rotationGames, socials, ...head } = doc;
-  return { ...head, lastUpdated: date, schedule, rotationGames, socials };
+  const { rotationGames, ...head } = doc;
+  return { ...head, lastUpdated: date, schedule, rotationGames };
 }
 const buildBacklog = () => ({ games });
 
 function dirty() {
   return {
     schedule: JSON.stringify(buildSchedule(files.schedule.date)) !== files.schedule.base,
+    socials: JSON.stringify(socials) !== files.socials.base,
     backlog: JSON.stringify(buildBacklog()) !== files.backlog.base,
   };
 }
 function markClean() {
   files.schedule.base = JSON.stringify(buildSchedule(files.schedule.date));
+  files.socials.base = JSON.stringify(socials);
   files.backlog.base = JSON.stringify(buildBacklog());
 }
 function refreshStatus() {
   const d = dirty();
-  const names = [d.schedule && 'Horario / Perfil', d.backlog && 'Backlog'].filter(Boolean);
+  const names = [d.schedule && 'Horario / Perfil', d.socials && 'Redes', d.backlog && 'Backlog'].filter(Boolean);
   const st = $('#status');
   st.textContent = names.length ? `● Sin guardar: ${names.join(' y ')}` : '✓ Todo guardado';
   st.classList.toggle('dirty', names.length > 0);
@@ -285,7 +297,7 @@ function renderBacklog() {
 function renderProfile() {
   const f = (label, scope, key, val, ph = '', type = 'text', extra = '') =>
     `<div class="field"><label>${label}</label><input type="${type}" data-scope="${scope}" data-f="${key}" ${extra} value="${esc(val)}" placeholder="${esc(ph)}"></div>`;
-  const s = doc.socials;
+  const s = socials;
   $('#profile-root').innerHTML = `
     <fieldset class="dc-group">
       <legend>Foto de perfil</legend>
@@ -326,12 +338,14 @@ function renderProfile() {
         ${f('YouTube VODs', 'social', 'youtubevods', s.youtubevods, 'https://www.youtube.com/@…', 'url')}
         ${f('Twitter / X', 'social', 'twitter', s.twitter, 'https://x.com/…', 'url')}
         ${f('Bluesky', 'social', 'bsky', s.bsky, 'https://bsky.app/profile/…', 'url')}
+        ${f('Correo de contacto', 'social', 'email', s.email, 'nombre@ejemplo.com', 'email')}
       </div>
     </fieldset>
     <fieldset class="dc-group">
       <legend>Respaldo manual</legend>
       <div class="adv">
         <button class="btn small" data-act="download" data-what="schedule">⬇ schedule.json</button>
+        <button class="btn small" data-act="download" data-what="socials">⬇ socials.json</button>
         <button class="btn small" data-act="download" data-what="backlog">⬇ backlog.json</button>
       </div>
     </fieldset>`;
@@ -344,7 +358,7 @@ function applyEdit(t) {
   if (scope === 'slot') days[t.dataset.day][+t.dataset.i][f] = val;
   else if (scope === 'game') { const g = games.find(x => x.id == t.dataset.id); if (g) g[f] = val; }
   else if (scope === 'meta') doc[f] = val;
-  else if (scope === 'social') doc.socials[f] = val;
+  else if (scope === 'social') socials[f] = val;
 }
 
 document.addEventListener('input', e => {
@@ -422,11 +436,11 @@ const actions = {
     renderBacklog();
   },
   download(el) {
-    const isS = el.dataset.what === 'schedule';
-    const obj = isS ? buildSchedule(todayChile()) : buildBacklog();
+    const what = el.dataset.what;
+    const obj = what === 'schedule' ? buildSchedule(todayChile()) : what === 'socials' ? socials : buildBacklog();
     const a = Object.assign(document.createElement('a'), {
       href: URL.createObjectURL(new Blob([JSON.stringify(obj, null, 2) + '\n'], { type: 'application/json' })),
-      download: isS ? 'schedule.json' : 'backlog.json',
+      download: `${what}.json`,
     });
     a.click(); URL.revokeObjectURL(a.href);
   },
@@ -446,11 +460,15 @@ document.addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && e.key === 's' && !$('#app').hidden) { e.preventDefault(); if (!$('#save-btn').disabled) save(); }
 });
 window.addEventListener('beforeunload', e => {
-  if (!$('#app').hidden && (dirty().schedule || dirty().backlog)) { e.preventDefault(); e.returnValue = ''; }
+  if ($('#app').hidden) return;
+  const d = dirty();
+  if (d.schedule || d.socials || d.backlog) { e.preventDefault(); e.returnValue = ''; }
 });
 
 /* ═══════════ Save ═══════════ */
 async function save() {
+  const emailField = $('#profile-root input[type="email"]');
+  if (emailField && !emailField.reportValidity()) return;
   const d = dirty();
   const btn = $('#save-btn');
   btn.disabled = true; btn.textContent = 'Guardando…';
@@ -460,6 +478,7 @@ async function save() {
       await writeFile(CONFIG.schedulePath, buildSchedule(date), files.schedule, 'Admin: actualizar horario / perfil');
       doc.lastUpdated = date; files.schedule.date = date;
     }
+    if (d.socials) await writeFile(CONFIG.socialsPath, socials, files.socials, 'Admin: actualizar redes');
     if (d.backlog) await writeFile(CONFIG.backlogPath, buildBacklog(), files.backlog, 'Admin: actualizar backlog');
     markClean();
     toast('✅ Guardado en GitHub — la web se actualiza en ~1 minuto');
@@ -482,9 +501,15 @@ async function startApp(tok, remember) {
   const user = await gh('/user');
   if (user.login.toLowerCase() !== CONFIG.owner.toLowerCase()) throw new Error(`La cuenta “${user.login}” no tiene acceso. Solo ${CONFIG.owner}.`);
 
-  const [s, b] = await Promise.all([readFile(CONFIG.schedulePath), readFile(CONFIG.backlogPath, true)]);
+  const [s, soc, b] = await Promise.all([
+    readFile(CONFIG.schedulePath),
+    readFile(CONFIG.socialsPath),
+    readFile(CONFIG.backlogPath, true),
+  ]);
   parseSchedule(s.json);
+  parseSocials(soc.json);
   files.schedule.sha = s.sha; files.schedule.date = doc.lastUpdated || todayChile();
+  files.socials.sha = soc.sha;
   games = (b.json?.games || []).map(g => ({ ...g, platform: LEGACY_PLATFORMS[g.platform] || g.platform }));
   files.backlog.sha = b.sha;
   markClean();

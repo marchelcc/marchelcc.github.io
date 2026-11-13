@@ -1,0 +1,441 @@
+/* ============================================================
+   SOCIAL LINKS — css/social-links.css
+   Misma estética XP del sitio, sin ventanas arrastrables.
+   El email de contacto se carga desde data/socials.json.
+   ============================================================ */
+
+:root {
+  --dark: #0000CC;
+  --brown: #2A4A8A;
+  --color-white: #fff;
+  --color-blue-top: #4C86F2;
+  --color-blue: #0356EA;
+  --color-blue-dark: #1647C7;
+  --color-wallpaper-bg: #FBE8CA;
+  --color-wallpaper-red: #BF4A3F;
+  --color-wallpaper-ochre: #CA995C;
+  --color-transparent: transparent;
+  --taskbar-height: 52px;
+
+  --shadow: 0 18px 45px rgba(10, 15, 40, 0.35);
+  --window-frame: inset 5px 0 0 var(--color-blue-dark), inset -5px 0 0 var(--color-blue-dark), inset 0 -5px 0 var(--color-blue-dark);
+  --font-ui: Tahoma, Verdana, "Segoe UI", sans-serif;
+  --font-title: "Trebuchet MS", Tahoma, Verdana, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: #000;
+  background-color: var(--color-wallpaper-bg);
+  background-image:
+    radial-gradient(at 97% 92%, var(--color-wallpaper-red) 0px, var(--color-transparent) 50%),
+    radial-gradient(at 15% 19%, var(--color-wallpaper-ochre) 0px, var(--color-transparent) 50%),
+    radial-gradient(at 13% 88%, var(--color-wallpaper-red) 0px, var(--color-transparent) 50%),
+    radial-gradient(at 48% 56%, var(--color-wallpaper-ochre) 0px, var(--color-transparent) 50%),
+    radial-gradient(at 33% 6%, var(--color-wallpaper-bg) 0px, var(--color-transparent) 50%),
+    radial-gradient(at 40% 60%, var(--color-wallpaper-red) 0px, var(--color-transparent) 50%),
+    radial-gradient(at 96% 37%, var(--color-wallpaper-ochre) 0px, var(--color-transparent) 50%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+a { color: inherit; text-decoration: none; }
+
+:focus-visible {
+  outline: 2px solid #f8b330;
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   ESCRITORIO: una sola ventana centrada
+   ============================================================ */
+
+.stage {
+  min-height: calc(100vh - var(--taskbar-height));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 28px 20px;
+}
+
+.xp-window {
+  width: 100%;
+  max-width: 920px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-white);
+  border-radius: 13px 13px 6px 6px;
+  padding: 0 5px 5px;
+  box-shadow: var(--shadow), var(--window-frame), 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.xp-titlebar {
+  flex: 0 0 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 7px 0 12px;
+  margin: 0 -5px;
+  background: linear-gradient(to bottom, #3d8bff 0%, #0a5fe8 8%, #0356ea 40%, #0348c8 88%, #0a3aa8 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.title-icon { font-size: 15px; }
+.title-text {
+  flex: 1;
+  overflow: hidden;
+  color: var(--color-white);
+  font-family: var(--font-title);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-overflow: ellipsis;
+  text-shadow: 1px 1px 0 #0a1f7a;
+  white-space: nowrap;
+}
+
+/* Botones de ventana: solo decorativos (son <span>, no responden a nada) */
+.xp-window-btns { display: flex; gap: 4px; }
+.xp-btn-win {
+  width: 25px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid #fff;
+  border-radius: 4.5px;
+  background: radial-gradient(ellipse at 42% 38%, #D7E1EC 0%, #6F97C0 45%, #1E60AA 100%);
+  color: var(--color-white);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  -webkit-text-stroke: 0.7px var(--color-white);
+  text-shadow: 0 1px 1px rgba(0, 40, 120, 0.45);
+  user-select: none;
+}
+.xp-btn-close {
+  background: radial-gradient(ellipse at 42% 38%, #F0C9BE 0%, #E88E75 45%, #DD5337 100%);
+}
+
+/* ============================================================
+   CONTENIDO: perfil a la izquierda, links a la derecha
+   ============================================================ */
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 28px;
+  padding: 28px 26px;
+  background: radial-gradient(circle at top right, rgba(3, 86, 234, 0.15), transparent 40%), #fff;
+}
+
+/* ── Perfil ── */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.avatar-frame {
+  width: 168px;
+  height: 168px;
+  padding: 6px;
+  overflow: hidden;
+  border: 1px solid #1f7a1f;
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #9be89b 0%, #3dbb3d 50%, #2a9a2a 100%);
+  box-shadow: 1px 3px 6px rgba(0, 40, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+.avatar-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.profile-name {
+  margin: 6px 0 0;
+  color: var(--dark);
+  font-family: var(--font-title);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.05;
+}
+.profile-name small {
+  display: block;
+  margin-top: 4px;
+  color: #6b7895;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.profile-tagline {
+  max-width: 300px;
+  margin: 0;
+  padding: 8px 12px;
+  background: #ffffe1;
+  border: 1px solid #000;
+  border-radius: 8px;
+  box-shadow: 2px 3px 5px rgba(0, 20, 90, 0.3);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* ── Lista de links ── */
+.links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link-btn {
+  --t-top: #5f9bff;
+  --t-bot: #1f58d6;
+  --t-edge: #0f3a9e;
+
+  min-height: 54px;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid var(--t-edge);
+  border-radius: 4px;
+  background: linear-gradient(to bottom, var(--t-top) 0%, var(--t-bot) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(0, 0, 60, 0.25), 1px 2px 3px rgba(0, 20, 90, 0.2);
+  color: var(--color-white);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+.link-btn:hover { filter: brightness(1.08); }
+
+.link-label {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  padding: 6px 14px;
+}
+.link-name {
+  font-size: 16px;
+  font-weight: 700;
+}
+.link-handle {
+  overflow: hidden;
+  font-size: 11px;
+  opacity: 0.85;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Panel blanco con el logo, a la derecha */
+.link-icon {
+  flex: 0 0 54px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(to bottom, #ffffff 0%, #e9eef9 100%);
+  border-left: 1px solid var(--t-edge);
+}
+.link-icon img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+/* Colores por plataforma */
+.is-twitch  { --t-top: #a970ff; --t-bot: #6e35d6; --t-edge: #4a1fa0; }
+.is-youtube { --t-top: #ff5a4d; --t-bot: #c4160b; --t-edge: #8a0e06; }
+.is-vods    { --t-top: #f08a72; --t-bot: #c4402a; --t-edge: #8a2512; }
+.is-x       { --t-top: #4a4a4a; --t-bot: #0d0d0d; --t-edge: #000000; }
+.is-bsky    { --t-top: #4aa3ff; --t-bot: #0b6fe0; --t-edge: #0a4aa0; }
+.is-kick    { --t-top: #9be04a; --t-bot: #3f9d12; --t-edge: #24660a; }
+.is-tiktok  { --t-top: #8a8f99; --t-bot: #2b2d33; --t-edge: #121316; }
+.is-mail    { --t-top: #ffc65c; --t-bot: #e08a12; --t-edge: #96560a; }
+.is-discord { --t-top: #7b89ff; --t-bot: #3d4ad6; --t-edge: #232d9c; }
+
+.link-icon-emoji {
+  font-size: 26px;
+  line-height: 1;
+  text-shadow: none;
+}
+
+/* ============================================================
+   GLOBO XP (mismo estilo que el aviso de zona horaria)
+   ============================================================ */
+
+.balloon {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  padding: 10px 12px 12px;
+  background: #ffffe1;
+  border: 1px solid #000;
+  border-radius: 8px;
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.4);
+  color: #000;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.balloon-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.balloon-text { margin: 0 0 10px; }
+
+/* Botón XP clásico */
+.balloon-btn {
+  display: block;
+  padding: 7px 12px;
+  border: 1px solid #003c74;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #ffffff 0%, #eaf1ff 55%, #d3e0f7 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+  color: #000;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+.balloon-btn:hover {
+  box-shadow: inset 0 0 0 1px #fff4d1, inset 0 0 0 2px #f8b330;
+}
+
+/* Colita hacia la ventana: triángulo negro (borde) + amarillo (relleno) */
+.balloon::before,
+.balloon::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+}
+.balloon::before {
+  left: 30px;
+  top: -13px;
+  border-width: 0 9px 12px 9px;
+  border-bottom-color: #000;
+}
+.balloon::after {
+  left: 31px;
+  top: -11px;
+  border-width: 0 8px 11px 8px;
+  border-bottom-color: #ffffe1;
+}
+
+/* ============================================================
+   BARRA DE TAREAS (estática, solo link de Inicio)
+   ============================================================ */
+
+.taskbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--taskbar-height);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, var(--color-blue-top) 0%, var(--color-blue) 14%, var(--color-blue-dark) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 -4px 15px rgba(10, 15, 40, 0.3);
+  color: var(--color-white);
+}
+
+.taskbar-start {
+  --start-top: #6fd36f;
+  --start-mid: #3aa63a;
+  --start-bottom: #2b8a2b;
+
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 34px 0 16px;
+  border-radius: 0 16px 16px 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 35% 0%, rgba(255, 255, 255, 0.45), transparent 70%),
+    linear-gradient(to bottom, var(--start-top) 0%, var(--start-mid) 22%, var(--start-bottom) 60%, var(--start-mid) 100%);
+  box-shadow:
+    inset 0 2px 1px rgba(255, 255, 255, 0.55),
+    inset 0 -4px 6px rgba(0, 70, 0, 0.45),
+    inset -2px 0 3px rgba(0, 70, 0, 0.35),
+    3px 0 6px rgba(0, 0, 0, 0.4);
+  color: var(--color-white);
+  font-family: "Franklin Gothic Medium", "Trebuchet MS", var(--font-ui);
+  font-size: 21px;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 2px 2px rgba(0, 40, 0, 0.7);
+}
+.taskbar-start:hover { filter: brightness(1.1); }
+
+.start-mark {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+  transform: perspective(90px) rotateY(-16deg) rotateZ(-5deg);
+  filter: drop-shadow(2px 2px 1.5px rgba(0, 40, 0, 0.6));
+}
+.start-mark span {
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), inset 0 -2px 2px rgba(0, 0, 0, 0.3);
+}
+.start-mark span:nth-child(1) { background: #FF7A59; }
+.start-mark span:nth-child(2) { background: #FFD15C; }
+.start-mark span:nth-child(3) { background: #4FD1C5; }
+.start-mark span:nth-child(4) { background: #A78BFA; }
+
+/* ============================================================
+   MÓVIL: todo en una sola columna, como la captura vertical
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .stage {
+    align-items: flex-start;
+    padding: 12px 10px calc(var(--taskbar-height) + 14px);
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 22px 14px 18px;
+  }
+
+  .avatar-frame { width: 132px; height: 132px; }
+  .profile-name { font-size: 34px; }
+
+  .link-btn { min-height: 52px; }
+
+  .taskbar-start { padding: 0 14px; }
+  .taskbar-start > span:last-child { display: none; }
+}

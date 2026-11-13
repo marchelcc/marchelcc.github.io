@@ -4,7 +4,7 @@
 
    Sections:
      1. Window Manager (WM)  — floating, draggable XP Windows
-     2. Data loading          — fetch schedule.json
+     2. Data loading          — fetch schedule.json and socials.json
      3. Rendering             — schedule, rotation, profile pic, socials
      4. Embed setup           — Twitch, YouTube
      5. Clock & meta
@@ -577,6 +577,17 @@ async function loadSchedule() {
     return await res.json();
   } catch (err) {
     console.error('Error cargando schedule.json:', err);
+    return null;
+  }
+}
+
+async function loadSocials() {
+  try {
+    const res = await fetch('data/socials.json?nocache=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return await res.json();
+  } catch (err) {
+    console.error('Error cargando socials.json:', err);
     return null;
   }
 }
@@ -1437,11 +1448,12 @@ async function init() {
     return;
   }
 
+  const socials = await loadSocials();
   renderProfilePic(data.profilePic,  data.vtuber);
   renderMeta(data);
   renderSchedule(data.schedule       || []);
   renderRotation(data.rotationGames  || []);
-  renderSocials(data.socials         || {});
+  renderSocials(socials);
   setupYoutubeEmbed(data.youtubeLatestVideoId);
   setupYoutubeVODEmbed(data.youtubeLatestVODId);
 
