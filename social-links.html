@@ -7,7 +7,7 @@
 
   <title>Marchel — Redes 🎣</title>
 
-  <meta name="description" content="Todas las redes sociales de Marchel: Twitch, YouTube, X, Bluesky, Kick, TikTok y Discord." />
+  <meta name="description" content="Todas las redes sociales de Marchel: Twitch, YouTube, X, Instagram, TikTok, Bluesky, Kick y Discord." />
   <meta name="author" content="Marchel" />
   <meta name="theme-color" content="#1683c7" />
   <link rel="canonical" href="https://marchelcc.github.io/social-links.html" />
@@ -117,12 +117,12 @@
           </li>
 
           <li>
-            <a class="link-btn is-bsky" href="https://bsky.app/profile/marchelcc.bsky.social" target="_blank" rel="noopener me">
+            <a class="link-btn is-instagram" id="instagram-link" href="https://www.instagram.com/soy_marchel/" target="_blank" rel="noopener" hidden>
               <span class="link-label">
-                <span class="link-name">Bluesky</span>
-                <span class="link-handle">marchelcc.bsky.social</span>
+                <span class="link-name">Instagram</span>
+                <span class="link-handle">@soy_marchel</span>
               </span>
-              <span class="link-icon"><img src="https://cdn.simpleicons.org/bluesky/1185FE" alt="" width="26" height="26" /></span>
+              <span class="link-icon"><img src="https://cdn.simpleicons.org/instagram/E4405F" alt="" width="26" height="26" /></span>
             </a>
           </li>
 
@@ -133,6 +133,16 @@
                 <span class="link-handle">@marchel_cc</span>
               </span>
               <span class="link-icon"><img src="https://cdn.simpleicons.org/tiktok/000000" alt="" width="26" height="26" /></span>
+            </a>
+          </li>
+
+          <li>
+            <a class="link-btn is-bsky" id="bsky-link" href="#" target="_blank" rel="noopener me" hidden>
+              <span class="link-label">
+                <span class="link-name">Bluesky</span>
+                <span class="link-handle"></span>
+              </span>
+              <span class="link-icon"><img src="https://cdn.simpleicons.org/bluesky/1185FE" alt="" width="26" height="26" /></span>
             </a>
           </li>
 
@@ -189,6 +199,25 @@
         const response = await fetch('data/socials.json?nocache=' + Date.now());
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
+
+        const showProfile = (key, id) => {
+          const value = typeof data?.[key] === 'string' ? data[key].trim() : '';
+          if (!value) return;
+          try {
+            const url = new URL(value);
+            if (url.protocol !== 'https:') throw new Error('URL must use HTTPS');
+            const handle = url.pathname.split('/').filter(Boolean).pop() || url.hostname;
+            const profileLink = document.getElementById(id);
+            profileLink.href = url.href;
+            profileLink.querySelector('.link-handle').textContent = key === 'instagram' ? `@${handle}` : handle;
+            profileLink.hidden = false;
+          } catch (error) {
+            console.error(`Invalid ${key} URL in socials.json:`, error);
+          }
+        };
+        showProfile('instagram', 'instagram-link');
+        showProfile('bsky', 'bsky-link');
+
         const email = typeof data?.email === 'string' ? data.email.trim() : '';
         if (!email) return;
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('Invalid contact email in socials.json');

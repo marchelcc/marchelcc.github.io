@@ -338,6 +338,7 @@ function renderProfile() {
         ${f('YouTube VODs', 'social', 'youtubevods', s.youtubevods, 'https://www.youtube.com/@…', 'url')}
         ${f('Twitter / X', 'social', 'twitter', s.twitter, 'https://x.com/…', 'url')}
         ${f('Bluesky', 'social', 'bsky', s.bsky, 'https://bsky.app/profile/…', 'url')}
+        ${f('Instagram', 'social', 'instagram', s.instagram, 'https://www.instagram.com/…', 'url')}
         ${f('Correo de contacto', 'social', 'email', s.email, 'nombre@ejemplo.com', 'email')}
       </div>
     </fieldset>

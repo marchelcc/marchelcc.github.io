@@ -270,6 +270,7 @@ a { color: inherit; text-decoration: none; }
 .is-vods    { --t-top: #f08a72; --t-bot: #c4402a; --t-edge: #8a2512; }
 .is-x       { --t-top: #4a4a4a; --t-bot: #0d0d0d; --t-edge: #000000; }
 .is-bsky    { --t-top: #4aa3ff; --t-bot: #0b6fe0; --t-edge: #0a4aa0; }
+.is-instagram { --t-top: #f783ac; --t-bot: #c13584; --t-edge: #833ab4; }
 .is-kick    { --t-top: #9be04a; --t-bot: #3f9d12; --t-edge: #24660a; }
 .is-tiktok  { --t-top: #8a8f99; --t-bot: #2b2d33; --t-edge: #121316; }
 .is-mail    { --t-top: #ffc65c; --t-bot: #e08a12; --t-edge: #96560a; }
