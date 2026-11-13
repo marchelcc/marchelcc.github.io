@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12T17:30:01.082Z",
+  "updated": "2026-11-13T17:06:01.796Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -634,7 +634,7 @@
     "289070": {
       "name": "Sid Meier's Civilization VI",
       "playtimeForeverMinutes": 2634,
-      "playtime2WeeksMinutes": 1336,
+      "playtime2WeeksMinutes": 1107,
       "lastPlayedUnix": 1794458400,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
@@ -724,7 +724,7 @@
     "315210": {
       "name": "Suicide Squad: Kill the Justice League",
       "playtimeForeverMinutes": 2599,
-      "playtime2WeeksMinutes": 5,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1793319349,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/315210/1c0ed772f3b98f58c60f5077bce058a277a944c3.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/315210/header.jpg",
@@ -786,9 +786,9 @@
     },
     "359870": {
       "name": "FINAL FANTASY X/X-2 HD Remaster",
-      "playtimeForeverMinutes": 831,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1785212853,
+      "playtimeForeverMinutes": 982,
+      "playtime2WeeksMinutes": 150,
+      "lastPlayedUnix": 1794532976,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/359870/86616d56239e83099e90940c8c9424489aee2ceb.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/359870/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/359870/library_600x900_2x.jpg"
@@ -2452,7 +2452,7 @@
     "1422450": {
       "name": "Deadlock",
       "playtimeForeverMinutes": 3510,
-      "playtime2WeeksMinutes": 252,
+      "playtime2WeeksMinutes": 206,
       "lastPlayedUnix": 1794379178,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
@@ -3730,7 +3730,7 @@
     "3124540": {
       "name": "Far Far West",
       "playtimeForeverMinutes": 424,
-      "playtime2WeeksMinutes": 296,
+      "playtime2WeeksMinutes": 143,
       "lastPlayedUnix": 1794369364,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3124540/a0a5e461c215c2a8916f42111ce41fa887cbec71.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/header.jpg",
