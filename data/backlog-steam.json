@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13T17:06:01.796Z",
+  "updated": "2026-11-14T15:42:30.380Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -634,7 +634,7 @@
     "289070": {
       "name": "Sid Meier's Civilization VI",
       "playtimeForeverMinutes": 2634,
-      "playtime2WeeksMinutes": 1107,
+      "playtime2WeeksMinutes": 674,
       "lastPlayedUnix": 1794458400,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
@@ -1606,7 +1606,7 @@
     "785890": {
       "name": "Hexologic",
       "playtimeForeverMinutes": 12,
-      "playtime2WeeksMinutes": 12,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1793425577,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/785890/7bedc0ef6e2d0fba292e2cad90d0166fb670319c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/785890/header.jpg",
@@ -3730,7 +3730,7 @@
     "3124540": {
       "name": "Far Far West",
       "playtimeForeverMinutes": 424,
-      "playtime2WeeksMinutes": 143,
+      "playtime2WeeksMinutes": 101,
       "lastPlayedUnix": 1794369364,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3124540/a0a5e461c215c2a8916f42111ce41fa887cbec71.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/header.jpg",
