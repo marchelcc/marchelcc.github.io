@@ -1,10 +1,10 @@
 {
   "vtuber": "Marchel",
   "tagline": "",
-  "lastUpdated": "2026-11-08",
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
   "youtubeLatestVODId": "Rm7DDnRE838",
+  "lastUpdated": "2026-11-16",
   "schedule": [
     {
       "id": 1,
@@ -18,20 +18,20 @@
     {
       "id": 2,
       "day": "Martes",
-      "time": "19:00",
-      "game": "",
-      "imageUrl": null,
+      "time": null,
+      "game": "-",
+      "imageUrl": "",
       "tag": "Off",
       "active": false
     },
     {
       "id": 3,
       "day": "Miércoles",
-      "time": "19:00",
-      "game": "Deadlock",
-      "imageUrl": "https://i.imgur.com/eYTyoa8.png",
-      "tag": "Stream Shorti",
-      "active": true
+      "time": null,
+      "game": "-",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
     },
     {
       "id": 4,
@@ -46,7 +46,7 @@
       "id": 5,
       "day": "Viernes",
       "time": null,
-      "game": "",
+      "game": "-",
       "imageUrl": "",
       "tag": "Off",
       "active": false
@@ -55,7 +55,7 @@
       "id": 6,
       "day": "Sábado",
       "time": null,
-      "game": "",
+      "game": "-",
       "imageUrl": "",
       "tag": "Off",
       "active": false
@@ -64,7 +64,7 @@
       "id": 7,
       "day": "Domingo",
       "time": null,
-      "game": "",
+      "game": "-",
       "imageUrl": "",
       "tag": "Off",
       "active": false
