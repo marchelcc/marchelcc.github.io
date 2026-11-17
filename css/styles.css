@@ -1575,6 +1575,7 @@ details:not([open]) > .section-title {
 .platform-otro    { --t-top: #8fa2cf; --t-bot: #4f6498; --t-edge: #2f4070; }
 .platform-minecraft-map   { --t-top: #7fc650; --t-bot: #4a8f26; --t-edge: #2f5f14; }
 .platform-minecraft-event { --t-top: #b89cff; --t-bot: #7a55dd; --t-edge: #4a2fa0; }
+.platform-minecraft-series { --t-top: #65c7d4; --t-bot: #238a9b; --t-edge: #145b67; }
 
 .backlog-view-list {
   display: flex;

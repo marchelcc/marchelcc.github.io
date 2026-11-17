@@ -768,6 +768,7 @@ const BACKLOG_PLATFORM_CONFIG = {
   'otro':    { label: 'Otro',    cls: 'platform-otro',    emoji: '🎮' },
   'minecraft-map': { label: 'Mapa MC', cls: 'platform-minecraft-map', img: 'https://i.imgur.com/GXqX6kG.png' },
   'minecraft-event': { label: 'Evento MC', cls: 'platform-minecraft-event', img: 'https://i.imgur.com/GXqX6kG.png' },
+  'Series MC': { label: 'Series MC', cls: 'platform-minecraft-series', img: 'https://i.imgur.com/GXqX6kG.png' },
   'Mapa de MC':   { label: 'Mapa MC',   cls: 'platform-minecraft-map',   img: 'https://i.imgur.com/GXqX6kG.png' },
   'Evento de MC': { label: 'Evento MC', cls: 'platform-minecraft-event', img: 'https://i.imgur.com/GXqX6kG.png' },
 };
@@ -779,9 +780,9 @@ function platformIconHtml(cfg) {
 }
 
 /* Backlog entries whose "platform" value marks them as Minecraft-specific
-   content (custom adventure maps / third-party live events) rather than a
-   regular tracked game. These live in their own "Minecraft" tab. */
-const MINECRAFT_PLATFORMS = ['minecraft-map', 'minecraft-event', 'Mapa de MC', 'Evento de MC'];
+   content rather than a regular tracked game. These live in their own
+   "Minecraft" tab. */
+const MINECRAFT_PLATFORMS = ['minecraft-map', 'minecraft-event', 'Mapa de MC', 'Evento de MC', 'Series MC'];
 
 function isMinecraftEntry(game) {
   return MINECRAFT_PLATFORMS.includes(game.platform);
@@ -805,12 +806,15 @@ function matchesPlatformFilter(game) {
   if (backlogPlatformFilter === 'evento') {
     return ['minecraft-event', 'Evento de MC'].includes(game.platform);
   }
+  if (backlogPlatformFilter === 'series') {
+    return game.platform === 'Series MC';
+  }
   return platformGroup(game.platform) === backlogPlatformFilter;
 }
 
 const BACKLOG_PLATFORM_FILTERS = {
   backlog: [['all', 'Todas las plataformas'], ['pc', '🖥️ PC'], ['otros', '🎮 Otros']],
-  minecraft: [['all', 'Mapas y eventos'], ['mapa', '🗺️ Mapas'], ['evento', '🎪 Eventos']],
+  minecraft: [['all', 'Mapas, eventos y series'], ['mapa', '🗺️ Mapas'], ['evento', '🎪 Eventos'], ['series', '📺 Series MC']],
 };
 
 function fillPlatformSelect() {
@@ -1077,7 +1081,7 @@ const BACKLOG_STATUS_CRUMBS = {
 };
 const BACKLOG_PLATFORM_CRUMBS = {
   'pc': '🖥️ PC', 'otros': '🎮 Otros',
-  'mapa': '🗺️ Mapas', 'evento': '🎪 Eventos',
+  'mapa': '🗺️ Mapas', 'evento': '🎪 Eventos', 'series': '📺 Series MC',
 };
 
 function updateBacklogCrumb() {

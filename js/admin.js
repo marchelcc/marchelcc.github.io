@@ -33,6 +33,7 @@ const PLATFORMS = [
   { value: 'otro', label: 'Otro', emoji: '🎮' },
   { value: 'Mapa de MC', label: 'Mapa MC', img: MC_IMG },
   { value: 'Evento de MC', label: 'Evento MC', img: MC_IMG },
+  { value: 'Series MC', label: 'Series MC', img: MC_IMG },
 ];
 const LEGACY_PLATFORMS = { 'minecraft-map': 'Mapa de MC', 'minecraft-event': 'Evento de MC' };
 function platIcon(v) {
@@ -41,7 +42,7 @@ function platIcon(v) {
   if (c.img) return `<img src="${c.img}" alt="">`;
   return `<span>${c.emoji}</span>`;
 }
-const MC_PLATFORMS = ['Mapa de MC', 'Evento de MC'];
+const MC_PLATFORMS = ['Mapa de MC', 'Evento de MC', 'Series MC'];
 const isMC = g => MC_PLATFORMS.includes(g.platform);
 const TAG_CLS = { 'Stream Longo': 'tag-stream-longo', 'Stream Shorti': 'tag-stream-shorti', 'Colab': 'tag-colab', 'Nuevo Video': 'tag-video', 'Off': 'tag-off' };
 
@@ -415,7 +416,7 @@ const actions = {
     const kind = el.dataset.kind;
     const id = Math.max(100, ...games.map(g => +g.id || 0)) + 1;
     games.push({
-      id, name: kind === 'mc' ? 'Nuevo mapa / evento' : 'Nuevo juego', appid: null, raGameId: null,
+      id, name: kind === 'mc' ? 'Nuevo contenido de Minecraft' : 'Nuevo juego', appid: null, raGameId: null,
       platform: kind === 'mc' ? 'Mapa de MC' : 'otro', status: 'backlog', hoursPlayed: null, imageUrl: '', capsuleUrl: '',
     });
     filters[kind] = { q: '', status: 'all' };
