@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-16T19:28:58.761Z",
+  "updated": "2026-11-17T18:23:21.168Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -2451,9 +2451,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 3510,
-      "playtime2WeeksMinutes": 206,
-      "lastPlayedUnix": 1794379178,
+      "playtimeForeverMinutes": 3571,
+      "playtime2WeeksMinutes": 208,
+      "lastPlayedUnix": 1794892523,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3387,9 +3387,9 @@
     },
     "2651330": {
       "name": "Intravenous 2: Mercenarism",
-      "playtimeForeverMinutes": 7,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1717313360,
+      "playtimeForeverMinutes": 8,
+      "playtime2WeeksMinutes": 1,
+      "lastPlayedUnix": 1794867791,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2651330/a6630203b9b90c2bfc21046fbe9fd01db89a1b00.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2651330/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2651330/library_600x900_2x.jpg"
