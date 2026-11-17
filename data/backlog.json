@@ -1,11 +1,22 @@
 {
   "games": [
     {
+      "id": 101,
+      "name": "Let`s go fishing!",
+      "appid": null,
+      "raGameId": null,
+      "platform": "Evento de MC",
+      "status": "jugando",
+      "hoursPlayed": null,
+      "imageUrl": "",
+      "capsuleUrl": ""
+    },
+    {
       "id": 1,
       "name": "El Caos Libertario 3",
       "appid": null,
       "raGameId": null,
-      "platform": "minecraft-event",
+      "platform": "Evento de MC",
       "status": "completado",
       "hoursPlayed": 39,
       "imageUrl": "https://i.imgur.com/b0NPlxq.png",
@@ -16,26 +27,12 @@
       "name": "Gladiator Games",
       "appid": null,
       "raGameId": null,
-      "platform": "minecraft-map",
-      "status": "pausado",
+      "platform": "Mapa de MC",
+      "status": "completado",
       "hoursPlayed": 1.5,
       "imageUrl": "https://i.imgur.com/Ka7Q7HE.png",
       "capsuleUrl": "https://i.imgur.com/8DDCV37.png"
     },
-    {
-      "id": 3,
-      "name": "El Hoyo by Alan2k2 & Chiletian",
-      "appid": null,
-      "raGameId": null,
-      "platform": "minecraft-event",
-      "status": "completado",
-      "hoursPlayed": 3,
-      "imageUrl": "https://i.imgur.com/JJrNtxa.png",
-      "capsuleUrl": "https://i.imgur.com/JJrNtxa.png"
-    },
-
-
-    
     {
       "id": 4,
       "name": "Going Medieval",
@@ -48,17 +45,6 @@
       "raGameId": null
     },
     {
-      "id": 5,
-      "name": "Easy Delivery Co.",
-      "appid": 3293010,
-      "platform": "steam",
-      "status": "jugando",
-      "hoursPlayed": null,
-      "imageUrl": "https://i.imgur.com/PW7ujnM.png",
-      "capsuleUrl": "https://i.imgur.com/mXpqQWK.png",
-      "raGameId": null
-    },
-    {
       "id": 6,
       "name": "Final Fantasy X/X-2 HD Remaster",
       "appid": 359870,
@@ -67,6 +53,17 @@
       "hoursPlayed": null,
       "imageUrl": "https://i.imgur.com/CyVrZxs.png",
       "capsuleUrl": "https://i.imgur.com/nQ7jEJQ.png",
+      "raGameId": null
+    },
+    {
+      "id": 5,
+      "name": "Easy Delivery Co.",
+      "appid": 3293010,
+      "platform": "steam",
+      "status": "jugando",
+      "hoursPlayed": null,
+      "imageUrl": "https://i.imgur.com/PW7ujnM.png",
+      "capsuleUrl": "https://i.imgur.com/mXpqQWK.png",
       "raGameId": null
     },
     {
@@ -167,6 +164,17 @@
       "imageUrl": "https://i.imgur.com/Dgt7vTh.png",
       "capsuleUrl": "https://i.imgur.com/JZdENVM.png",
       "raGameId": null
+    },
+    {
+      "id": 3,
+      "name": "El Hoyo by Alan2k2 & Chiletian",
+      "appid": null,
+      "raGameId": null,
+      "platform": "Evento de MC",
+      "status": "completado",
+      "hoursPlayed": 3,
+      "imageUrl": "https://i.imgur.com/JJrNtxa.png",
+      "capsuleUrl": "https://i.imgur.com/JJrNtxa.png"
     }
   ]
 }
