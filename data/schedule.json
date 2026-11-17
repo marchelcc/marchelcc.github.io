@@ -4,7 +4,7 @@
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "PV5krnUGmPU",
   "youtubeLatestVODId": "Rm7DDnRE838",
-  "lastUpdated": "2026-11-16",
+  "lastUpdated": "2026-11-17",
   "schedule": [
     {
       "id": 1,
@@ -56,7 +56,7 @@
       "day": "Sábado",
       "time": "16:00",
       "game": "Pescando ando",
-      "imageUrl": "https://i.imgur.com/p8g1uuz.png",
+      "imageUrl": "https://i.imgur.com/7QXeqV5.png",
       "tag": "Stream Longo",
       "active": true
     },
