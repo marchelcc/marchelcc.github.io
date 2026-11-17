@@ -2,10 +2,10 @@
   "games": [
     {
       "id": 101,
-      "name": "Let`s go fishing!",
+      "name": "Pescando ando",
       "appid": null,
       "raGameId": null,
-      "platform": "Evento de MC",
+      "platform": "Series MC",
       "status": "jugando",
       "hoursPlayed": null,
       "imageUrl": "",
