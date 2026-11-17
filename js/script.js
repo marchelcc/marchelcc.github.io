@@ -1081,7 +1081,7 @@ const BACKLOG_STATUS_CRUMBS = {
 };
 const BACKLOG_PLATFORM_CRUMBS = {
   'pc': '🖥️ PC', 'otros': '🎮 Otros',
-  'mapa': '🗺️ Mapas', 'evento': '🎪 Eventos', 'series': '📺 Series MC',
+  'mapa': '🗺️ Mapas', 'evento': '🎪 Eventos', 'series': '📺 Series',
 };
 
 function updateBacklogCrumb() {
@@ -1097,9 +1097,7 @@ function updateBacklogCrumb() {
 function updateBacklogViewToggleVisibility() {
   const toggle = document.getElementById('backlog-view-toggle');
   if (!toggle) return;
-  /* The library/list view switcher only makes sense for the main Backlog
-     tab — Minecraft content always reuses whichever view was last set. */
-  toggle.style.display = backlogActiveTab === 'minecraft' ? 'none' : '';
+  toggle.style.display = '';
 }
 
 function setupBacklogFilters() {
