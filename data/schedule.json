@@ -10,8 +10,8 @@
       "id": 1,
       "day": "Lunes",
       "time": "19:00",
-      "game": "Going Medieval",
-      "imageUrl": "https://i.imgur.com/uIs53SI.png",
+      "game": "",
+      "imageUrl": "",
       "tag": "Stream Longo",
       "active": true
     },
@@ -27,6 +27,15 @@
     {
       "id": 3,
       "day": "Miércoles",
+      "time": "16:00",
+      "game": "Going Medieval",
+      "imageUrl": "https://i.imgur.com/uIs53SI.png",
+      "tag": "Stream Longo",
+      "active": true
+    },
+    {
+      "id": 4,
+      "day": "Jueves",
       "time": null,
       "game": "-",
       "imageUrl": "",
@@ -34,31 +43,22 @@
       "active": false
     },
     {
-      "id": 4,
-      "day": "Jueves",
-      "time": "17:00",
+      "id": 5,
+      "day": "Viernes",
+      "time": "16:00",
       "game": "Final Fantasy X",
       "imageUrl": "https://i.imgur.com/fqVJUzA.png",
       "tag": "Stream Longo",
       "active": true
     },
     {
-      "id": 5,
-      "day": "Viernes",
-      "time": null,
-      "game": "-",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
-    },
-    {
       "id": 6,
       "day": "Sábado",
-      "time": null,
-      "game": "-",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "16:00",
+      "game": "Minecraft: Let`s go fishing!",
+      "imageUrl": "https://i.imgur.com/p8g1uuz.png",
+      "tag": "Stream Longo",
+      "active": true
     },
     {
       "id": 7,
