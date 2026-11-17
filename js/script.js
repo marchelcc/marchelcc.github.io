@@ -840,28 +840,13 @@ let backlogSearchTerm = '';
 /* 'id-asc' (Index/ID order) is the new default sort mode. */
 let backlogSortMode = 'id-asc';
 
-/* Parse a backlog item's id as a finite number for numeric sorting.
-   Returns null for missing/non-numeric ids so callers can push them last
-   instead of crashing or sorting lexicographically. */
-function parseBacklogId(id) {
-  if (id === null || id === undefined || id === '') return null;
-  const n = Number(id);
-  return Number.isFinite(n) ? n : null;
-}
-
 function applyBacklogSort(list) {
   const sorted = [...list];
 
   sorted.sort((a, b) => {
     switch (backlogSortMode) {
-      case 'id-asc': {
-        const aId = parseBacklogId(a.id);
-        const bId = parseBacklogId(b.id);
-        if (aId === null && bId === null) return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
-        if (aId === null) return 1;  // items without a usable id sort last
-        if (bId === null) return -1;
-        return aId - bId;
-      }
+      case 'id-asc':
+        return a.manualOrder - b.manualOrder;
       case 'za':
         return b.name.localeCompare(a.name, undefined, { sensitivity: 'base' });
       case 'hours-desc': {
@@ -890,7 +875,7 @@ function renderBacklog(manualGames, steamData) {
   if (!grid) return;
 
   /* Merge each manual entry with Steam or RetroAchievements hours/achievements */
-  BACKLOG_DATA = manualGames.map(game => {
+  BACKLOG_DATA = manualGames.map((game, index) => {
     const steamEntry = (game.appid && steamData?.games)
         ? steamData.games[game.appid]
         : null;
@@ -917,6 +902,7 @@ function renderBacklog(manualGames, steamData) {
     
     return {
       ...game,
+      manualOrder: index,
       playedHours,
       coverUrl,
       capsuleUrl,

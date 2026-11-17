@@ -254,8 +254,9 @@ function gameHtml(g, kind) {
   const open = openGames.has(g.id);
   const auto = g.platform === 'steam' && g.appid;
   return `
-  <div class="game ${open ? 'open' : ''}">
+  <div class="game ${open ? 'open' : ''}" data-id="${g.id}">
     <div class="game-row">
+      <span class="handle" title="Arrastra para reordenar" aria-label="Reordenar">⠿</span>
       ${g.imageUrl ? `<img class="cover" src="${esc(g.imageUrl)}" alt="" onerror="this.outerHTML='<span class=&quot;cover ph&quot;>🎮</span>'">` : '<span class="cover ph">🎮</span>'}
       <input class="in-name" type="text" ${k} data-f="name" value="${esc(g.name)}" placeholder="Nombre del juego" aria-label="Nombre">
       <select class="in-status" ${k} data-f="status" aria-label="Estado">${opts(STATUS, g.status)}</select>
@@ -465,6 +466,60 @@ window.addEventListener('beforeunload', e => {
   const d = dirty();
   if (d.schedule || d.socials || d.backlog) { e.preventDefault(); e.returnValue = ''; }
 });
+
+/* ═══════════ Reordenar juegos (manilla ⠿) ═══════════ */
+let drag = null;
+
+document.addEventListener('pointerdown', e => {
+  const handle = e.target.closest('.handle');
+  if (!handle) return;
+  const item = handle.closest('.game');
+  e.preventDefault();
+  drag = { item, list: item.parentElement };
+  item.classList.add('dragging');
+  document.body.classList.add('is-sorting');
+  handle.setPointerCapture?.(e.pointerId);
+});
+
+document.addEventListener('pointermove', e => {
+  if (!drag) return;
+  const { item, list } = drag;
+
+  // Mover el elemento a la posición bajo el puntero
+  const others = [...list.querySelectorAll(':scope > .game')].filter(c => c !== item);
+  const before = others.find(c => {
+    const r = c.getBoundingClientRect();
+    return e.clientY < r.top + r.height / 2;
+  }) || null;
+  if (before !== item.nextElementSibling) list.insertBefore(item, before);
+
+  // Auto-scroll cerca de los bordes
+  const sc = $('.xp-content');
+  const scrolls = sc && getComputedStyle(sc).overflowY !== 'visible';
+  const top = scrolls ? sc.getBoundingClientRect().top : 0;
+  const bottom = scrolls ? sc.getBoundingClientRect().bottom : window.innerHeight;
+  const dy = e.clientY < top + 50 ? -14 : e.clientY > bottom - 50 ? 14 : 0;
+  if (dy) (scrolls ? sc : window).scrollBy(0, dy);
+});
+
+function endDrag() {
+  if (!drag) return;
+  const { item, list } = drag;
+  item.classList.remove('dragging');
+  document.body.classList.remove('is-sorting');
+
+  // Los juegos visibles ocupan ciertos "huecos" del array completo;
+  // los rellenamos con el nuevo orden (así funciona aunque haya filtros activos).
+  const ids = [...list.querySelectorAll(':scope > .game')].map(el => el.dataset.id);
+  const byId = new Map(games.map(g => [String(g.id), g]));
+  const slots = games.reduce((a, g, i) => (ids.includes(String(g.id)) && a.push(i), a), []);
+  ids.forEach((id, n) => { games[slots[n]] = byId.get(id); });
+
+  drag = null;
+  refreshStatus();
+}
+document.addEventListener('pointerup', endDrag);
+document.addEventListener('pointercancel', endDrag);
 
 /* ═══════════ Save ═══════════ */
 async function save() {

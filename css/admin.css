@@ -299,6 +299,14 @@ input[type=checkbox] { width: 15px; height: 15px; margin: 0; flex: 0 0 auto; acc
 .game:last-child { border-bottom: 0; }
 .game.open { background: #f3f6fd; }
 .game-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 6px 8px; }
+.handle {
+  width: 18px; flex: 0 0 18px; align-self: stretch; display: grid; place-items: center;
+  color: #8f9ab3; font-size: 18px; line-height: 1; cursor: grab;
+  touch-action: none; user-select: none;
+}
+.handle:hover { color: var(--xp-select); }
+.game.dragging { background: #fff4d1; box-shadow: 0 0 0 2px var(--xp-orange); position: relative; z-index: 2; }
+body.is-sorting, body.is-sorting * { cursor: grabbing !important; user-select: none; }
 .cover { width: 34px; height: 46px; flex: 0 0 auto; object-fit: cover; border: 1px solid var(--xp-input); }
 .cover.ph { display: grid; place-items: center; background: var(--cream); font-size: 18px; }
 .game .in-name { flex: 1 1 180px; font-weight: 700; }
