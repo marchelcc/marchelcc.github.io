@@ -197,6 +197,17 @@
       "hoursPlayed": 165,
       "imageUrl": "https://i.imgur.com/X2AFMNu.png",
       "capsuleUrl": "https://i.imgur.com/1vmgu2b.png"
+    },
+    {
+      "id": 104,
+      "name": "Destiny 2",
+      "appid": 1085660,
+      "raGameId": null,
+      "platform": "steam",
+      "status": "platino",
+      "hoursPlayed": null,
+      "imageUrl": "",
+      "capsuleUrl": ""
     }
   ]
 }
