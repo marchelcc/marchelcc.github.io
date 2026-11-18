@@ -175,6 +175,17 @@
       "hoursPlayed": 3,
       "imageUrl": "https://i.imgur.com/JJrNtxa.png",
       "capsuleUrl": "https://i.imgur.com/JJrNtxa.png"
+    },
+    {
+      "id": 102,
+      "name": "Watch_Dogs 2",
+      "appid": null,
+      "raGameId": null,
+      "platform": "epic",
+      "status": "completado",
+      "hoursPlayed": 164,
+      "imageUrl": "",
+      "capsuleUrl": ""
     }
   ]
 }
