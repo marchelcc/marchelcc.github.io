@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17T18:23:21.168Z",
+  "updated": "2026-11-18T17:55:40.266Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -633,9 +633,9 @@
     },
     "289070": {
       "name": "Sid Meier's Civilization VI",
-      "playtimeForeverMinutes": 2634,
-      "playtime2WeeksMinutes": 674,
-      "lastPlayedUnix": 1794458400,
+      "playtimeForeverMinutes": 2681,
+      "playtime2WeeksMinutes": 667,
+      "lastPlayedUnix": 1794971023,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/library_600x900_2x.jpg"
