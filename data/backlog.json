@@ -183,9 +183,20 @@
       "raGameId": null,
       "platform": "epic",
       "status": "completado",
-      "hoursPlayed": 164,
-      "imageUrl": "",
-      "capsuleUrl": ""
+      "hoursPlayed": 25,
+      "imageUrl": "https://i.imgur.com/nswis6A.png",
+      "capsuleUrl": "https://i.imgur.com/kgYojLU.png"
+    },
+    {
+      "id": 103,
+      "name": "Borderlands 3",
+      "appid": null,
+      "raGameId": null,
+      "platform": "epic",
+      "status": "platino",
+      "hoursPlayed": 165,
+      "imageUrl": "https://i.imgur.com/X2AFMNu.png",
+      "capsuleUrl": "https://i.imgur.com/1vmgu2b.png"
     }
   ]
 }
