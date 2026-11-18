@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18T17:55:40.266Z",
+  "updated": "2026-11-18T23:23:20.445Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -6918,6 +6918,150 @@
           "achieved": false,
           "unlocktime": 0,
           "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1029780/5655f7944ed2453566cff8cb8c0e5c9f667c9a71.jpg"
+        }
+      ]
+    },
+    "1085660": {
+      "total": 23,
+      "unlocked": 23,
+      "icons": [
+        {
+          "name": "The Prestige",
+          "achieved": true,
+          "unlocktime": 1710654690,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/e9ce8a6dae6e12e71fafaa3f15116461d61e7a5b.jpg"
+        },
+        {
+          "name": "Seal the Deal",
+          "achieved": true,
+          "unlocktime": 1701392605,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/5618ff9afb3b097ad99ba0d34e3eb9e674a02f27.jpg"
+        },
+        {
+          "name": "Cayde's Pathfinder",
+          "achieved": true,
+          "unlocktime": 1575118603,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/8f23007de716cd93b5abc02560dbef7a8d2f053c.jpg"
+        },
+        {
+          "name": "Zavala's Lieutenant",
+          "achieved": true,
+          "unlocktime": 1570061281,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/c4b32b8cc89ee429acd52cada5520af99fd253e9.jpg"
+        },
+        {
+          "name": "Long and Winding Road",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/18c2c6e05659aed26cd374da8a75b722121b37f0.jpg"
+        },
+        {
+          "name": "Ikora's Protégé",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/a00b8c7394b8af482a2d3fea70e152310d6d8a2f.jpg"
+        },
+        {
+          "name": "Show Me What You Got",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/d79a37583b5bef753e6d17e420e558c277e391c3.jpg"
+        },
+        {
+          "name": "In A Flash",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/d5d441bce37d3997c314de2dde4155da58a45ea9.jpg"
+        },
+        {
+          "name": "The People's Hero",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/4f1d1d43b60c087bf99bba3061b375fe0f327be7.jpg"
+        },
+        {
+          "name": "Heart of Darkness",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/feacf3708386388730de45cf538e96cd90e5ec5e.jpg"
+        },
+        {
+          "name": "The Life Exotic",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/bc3b74c2422e55faae5a2fceb5c5218afd06afe5.jpg"
+        },
+        {
+          "name": "Challenge Accepted",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/08c8201a669107e6ebcccb50be6e7980e2d6a1d6.jpg"
+        },
+        {
+          "name": "Belly Of The Beast",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/930efb81487e3b2e2482b3ea7385c8697579f24b.jpg"
+        },
+        {
+          "name": "Lest Ye Be Judged",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/cc0bd02daa4d45c8b43deb23c1923a40257ba061.jpg"
+        },
+        {
+          "name": "Legends Grow",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/b601e22596fcf9213c95712f68634826f79cdecc.jpg"
+        },
+        {
+          "name": "Exotique",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/a7484760f6a350cece3f6edaf88edcd8fa5208e1.jpg"
+        },
+        {
+          "name": "Fashion Statement",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/a67df1bd9d4767efda1448e30b54fe3d08ce47b8.jpg"
+        },
+        {
+          "name": "Heart of the Awoken",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/bd61420c3804eb3befbc9feda1ea0c34d146715d.jpg"
+        },
+        {
+          "name": "An Exotic Journey",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/c5a45165bd07f421f6de5a5ed5918f8e342fe320.jpg"
+        },
+        {
+          "name": "High-Stakes Play",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/da27fe8a4ee4379e15de5d280b99201d94651f8d.jpg"
+        },
+        {
+          "name": "Darkness Falls",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/02b3bf2ec43a90f60eb0d29c49a8ae79aa68360c.jpg"
+        },
+        {
+          "name": "Nothing Left to Say",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/25d1689712aaafda1a21da025ae08a96d3146a62.jpg"
+        },
+        {
+          "name": "Wishing for the Best",
+          "achieved": true,
+          "unlocktime": 1569976165,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/5116bae12cddf7942a225fcc68e89a54c4a02a05.jpg"
         }
       ]
     },
