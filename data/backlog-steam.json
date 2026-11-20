@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20T17:41:15.939Z",
+  "updated": "2026-11-20T23:09:07.476Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -786,9 +786,9 @@
     },
     "359870": {
       "name": "FINAL FANTASY X/X-2 HD Remaster",
-      "playtimeForeverMinutes": 982,
-      "playtime2WeeksMinutes": 150,
-      "lastPlayedUnix": 1794532976,
+      "playtimeForeverMinutes": 1090,
+      "playtime2WeeksMinutes": 259,
+      "lastPlayedUnix": 1795210732,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/359870/86616d56239e83099e90940c8c9424489aee2ceb.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/359870/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/359870/library_600x900_2x.jpg"
@@ -4313,8 +4313,14 @@
     },
     "359870": {
       "total": 69,
-      "unlocked": 3,
+      "unlocked": 4,
       "icons": [
+        {
+          "name": "All Together",
+          "achieved": true,
+          "unlocktime": 1795205029,
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/359870/ba222dbe0da141802c9b861968916ac93432f93b.jpg"
+        },
         {
           "name": "Striker",
           "achieved": true,
@@ -4350,12 +4356,6 @@
           "achieved": false,
           "unlocktime": 0,
           "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/359870/99405cae9551c298b4dc7defa90e521764163e0e.jpg"
-        },
-        {
-          "name": "All Together",
-          "achieved": false,
-          "unlocktime": 0,
-          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/359870/0b2b4235c89fca3b40844421e8a7c4e99c93cc5d.jpg"
         },
         {
           "name": "Heartstrings",
