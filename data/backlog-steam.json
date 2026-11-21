@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20T23:09:07.476Z",
+  "updated": "2026-11-21T16:43:18.071Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -634,7 +634,7 @@
     "289070": {
       "name": "Sid Meier's Civilization VI",
       "playtimeForeverMinutes": 2681,
-      "playtime2WeeksMinutes": 667,
+      "playtime2WeeksMinutes": 287,
       "lastPlayedUnix": 1794971023,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
@@ -2451,9 +2451,9 @@
     },
     "1422450": {
       "name": "Deadlock",
-      "playtimeForeverMinutes": 3635,
-      "playtime2WeeksMinutes": 235,
-      "lastPlayedUnix": 1795152835,
+      "playtimeForeverMinutes": 3724,
+      "playtime2WeeksMinutes": 324,
+      "lastPlayedUnix": 1795243733,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/library_600x900_2x.jpg"
@@ -3766,7 +3766,7 @@
     "3146520": {
       "name": "WEBFISHING",
       "playtimeForeverMinutes": 227,
-      "playtime2WeeksMinutes": 113,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1794016845,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3146520/f59f42d0b227a8161ac5bc5106d17fe6ba146157.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3146520/header.jpg",
