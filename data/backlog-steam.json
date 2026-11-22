@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T16:43:18.071Z",
+  "updated": "2026-11-22T17:01:47.758Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -543,9 +543,9 @@
     },
     "250900": {
       "name": "The Binding of Isaac: Rebirth",
-      "playtimeForeverMinutes": 273,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1789678763,
+      "playtimeForeverMinutes": 279,
+      "playtime2WeeksMinutes": 6,
+      "lastPlayedUnix": 1795315998,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/250900/16d46c8630499bfc54d20745ac90786a302cd643.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/250900/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/250900/library_600x900_2x.jpg"
@@ -634,7 +634,7 @@
     "289070": {
       "name": "Sid Meier's Civilization VI",
       "playtimeForeverMinutes": 2681,
-      "playtime2WeeksMinutes": 287,
+      "playtime2WeeksMinutes": 204,
       "lastPlayedUnix": 1794971023,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
@@ -2452,7 +2452,7 @@
     "1422450": {
       "name": "Deadlock",
       "playtimeForeverMinutes": 3724,
-      "playtime2WeeksMinutes": 324,
+      "playtime2WeeksMinutes": 288,
       "lastPlayedUnix": 1795243733,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
@@ -4135,7 +4135,7 @@
     "4883580": {
       "name": "The One Fish",
       "playtimeForeverMinutes": 44,
-      "playtime2WeeksMinutes": 34,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1794116813,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4883580/6a693115800565b65e3bf9770a42fe6684d39398.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/4883580/header.jpg",
