@@ -4,38 +4,47 @@
   "profilePic": "https://i.imgur.com/IsyBjDJ.png",
   "youtubeLatestVideoId": "oxO3454AmZc",
   "youtubeLatestVODId": "Rm7DDnRE838",
-  "lastUpdated": "2026-11-18",
+  "lastUpdated": "2026-11-23",
   "schedule": [
     {
       "id": 1,
       "day": "Lunes",
-      "time": "19:00",
-      "game": "",
-      "imageUrl": "",
+      "time": "18:30",
+      "game": "Tarde de código y pesca",
+      "imageUrl": "https://i.imgur.com/H4qUS56.png",
       "tag": "Stream Longo",
       "active": true
     },
     {
       "id": 2,
       "day": "Martes",
-      "time": null,
-      "game": "-",
-      "imageUrl": "",
-      "tag": "Off",
-      "active": false
+      "time": "21:00",
+      "game": "Pescando Ando",
+      "imageUrl": "https://i.imgur.com/7QXeqV5.png",
+      "tag": "Stream Longo",
+      "active": true
     },
     {
       "id": 3,
       "day": "Miércoles",
-      "time": "16:00",
+      "time": "20:30",
       "game": "Going Medieval",
       "imageUrl": "https://i.imgur.com/uIs53SI.png",
-      "tag": "Stream Longo",
+      "tag": "Stream Shorti",
       "active": true
     },
     {
       "id": 4,
       "day": "Jueves",
+      "time": "21:00",
+      "game": "Noche de código y pesca",
+      "imageUrl": "https://i.imgur.com/H4qUS56.png",
+      "tag": "Stream Longo",
+      "active": true
+    },
+    {
+      "id": 5,
+      "day": "Viernes",
       "time": null,
       "game": "-",
       "imageUrl": "",
@@ -43,22 +52,13 @@
       "active": false
     },
     {
-      "id": 5,
-      "day": "Viernes",
-      "time": "16:00",
-      "game": "Final Fantasy X",
-      "imageUrl": "https://i.imgur.com/fqVJUzA.png",
-      "tag": "Stream Longo",
-      "active": true
-    },
-    {
       "id": 6,
       "day": "Sábado",
-      "time": "16:00",
-      "game": "Pescando ando",
-      "imageUrl": "https://i.imgur.com/7QXeqV5.png",
-      "tag": "Stream Longo",
-      "active": true
+      "time": null,
+      "game": "-",
+      "imageUrl": "",
+      "tag": "Off",
+      "active": false
     },
     {
       "id": 7,
