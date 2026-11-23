@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22T17:01:47.758Z",
+  "updated": "2026-11-23T21:09:21.576Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -2407,7 +2407,7 @@
     "1371980": {
       "name": "No Rest for the Wicked",
       "playtimeForeverMinutes": 209,
-      "playtime2WeeksMinutes": 103,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1794195197,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1371980/8b383999493fa60adbbda2a5a5714805d9d7c913.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1371980/header.jpg",
@@ -3729,9 +3729,9 @@
     },
     "3124540": {
       "name": "Far Far West",
-      "playtimeForeverMinutes": 424,
-      "playtime2WeeksMinutes": 22,
-      "lastPlayedUnix": 1794369364,
+      "playtimeForeverMinutes": 426,
+      "playtime2WeeksMinutes": 23,
+      "lastPlayedUnix": 1795463993,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3124540/a0a5e461c215c2a8916f42111ce41fa887cbec71.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/library_600x900_2x.jpg"
