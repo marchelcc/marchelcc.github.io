@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T21:09:21.576Z",
+  "updated": "2026-11-24T20:04:46.209Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -1840,7 +1840,7 @@
     "1029780": {
       "name": "Going Medieval",
       "playtimeForeverMinutes": 2571,
-      "playtime2WeeksMinutes": 235,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1794276664,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1029780/3eec57d783c54036166564e195039b20f600a52f.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1029780/header.jpg",
