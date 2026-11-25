@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T20:04:46.209Z",
+  "updated": "2026-11-25T19:05:43.107Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -2452,7 +2452,7 @@
     "1422450": {
       "name": "Deadlock",
       "playtimeForeverMinutes": 3724,
-      "playtime2WeeksMinutes": 288,
+      "playtime2WeeksMinutes": 213,
       "lastPlayedUnix": 1795243733,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1422450/f6da1420a173324d49bcd470fa3eee781ad0fa5e.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1422450/header.jpg",
@@ -3253,7 +3253,7 @@
     "2357570": {
       "name": "Overwatch®",
       "playtimeForeverMinutes": 2534,
-      "playtime2WeeksMinutes": 21,
+      "playtime2WeeksMinutes": 0,
       "lastPlayedUnix": 1794374613,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2357570/da42bd294c941d5947b1bc2c2b2efa1313d36a91.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/2357570/header.jpg",
@@ -3730,7 +3730,7 @@
     "3124540": {
       "name": "Far Far West",
       "playtimeForeverMinutes": 426,
-      "playtime2WeeksMinutes": 23,
+      "playtime2WeeksMinutes": 1,
       "lastPlayedUnix": 1795463993,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/3124540/a0a5e461c215c2a8916f42111ce41fa887cbec71.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/3124540/header.jpg",
