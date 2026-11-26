@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25T19:05:43.107Z",
+  "updated": "2026-11-26T18:56:21.874Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -634,7 +634,7 @@
     "289070": {
       "name": "Sid Meier's Civilization VI",
       "playtimeForeverMinutes": 2681,
-      "playtime2WeeksMinutes": 204,
+      "playtime2WeeksMinutes": 47,
       "lastPlayedUnix": 1794971023,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
@@ -1839,9 +1839,9 @@
     },
     "1029780": {
       "name": "Going Medieval",
-      "playtimeForeverMinutes": 2571,
-      "playtime2WeeksMinutes": 0,
-      "lastPlayedUnix": 1794276664,
+      "playtimeForeverMinutes": 2640,
+      "playtime2WeeksMinutes": 68,
+      "lastPlayedUnix": 1795654477,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1029780/3eec57d783c54036166564e195039b20f600a52f.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1029780/header.jpg",
       "libraryUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/1029780/library_600x900_2x.jpg"
