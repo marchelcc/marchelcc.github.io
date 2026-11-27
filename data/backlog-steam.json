@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26T18:56:21.874Z",
+  "updated": "2026-11-27T18:48:43.527Z",
   "games": {
     "10": {
       "name": "Counter-Strike",
@@ -787,7 +787,7 @@
     "359870": {
       "name": "FINAL FANTASY X/X-2 HD Remaster",
       "playtimeForeverMinutes": 1090,
-      "playtime2WeeksMinutes": 259,
+      "playtime2WeeksMinutes": 108,
       "lastPlayedUnix": 1795210732,
       "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/359870/86616d56239e83099e90940c8c9424489aee2ceb.jpg",
       "headerUrl": "https://cdn.cloudflare.steamstatic.com/steam/apps/359870/header.jpg",
